@@ -73,9 +73,6 @@
 ;; w3m
 (global-set-key (kbd "C-c j") 'w3m)
 
-;; Auto-fill-mode toggle
-(global-set-key (kbd "C-c p") 'auto-fill-mode)
-
 ;; Open not much
 (global-set-key (kbd "C-c n n") 'notmuch)
 (defun drsl/mbsync ()

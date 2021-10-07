@@ -1,7 +1,7 @@
 ;;; init-org.el ---
 ;;; Commentary:
 
-;;
+;; Migrated init-org-roam into init-org.
 
 ;;; Code:
 
@@ -9,6 +9,7 @@
 ;; This is a pixel perfect alignment for org table.
 (add-hook 'org-mode-hook 'valign-mode)
 (add-hook 'org-mode-hook 'auto-fill-mode)
+(add-hook 'org-mode-hook 'org-indent-mode)
 (org-link-set-parameters "pdf-view"
                          :follow (lambda (path)
                                    (org-pdftools-open path)))
@@ -48,6 +49,17 @@
 (diminish 'valign-mode)
 
 (use-package org-pdftools)
+
+(use-package org-roam
+  :bind (:map org-mode-map
+              (("C-c r c" . org-id-get-create)
+               ("C-c r i" . org-roam-node-insert)
+               ("C-c r f" . org-roam-node-find))))
+
+(setq org-roam-directory "~/org-roam")
+(setq org-roam-v2-ack t)
+(org-roam-db-autosync-mode)
+
 
 (provide 'init-org)
 ;;; init-org.el ends here

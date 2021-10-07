@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: highlight-javascripts
+# key: hljs
+# --
+#+HTML_HEAD: <script src="../highlight/highlight.pack.js"></script>
+#+HTML_HEAD: <script>hljs.initHighlightingOnLoad();</script>

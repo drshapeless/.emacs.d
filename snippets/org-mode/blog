@@ -1,0 +1,21 @@
+# -*- mode: snippet -*-
+# name: blog
+# key: b
+# --
+#+TITLE: $1
+#+DATE: `(format-time-string "<%Y-%m-%d>")`
+#+HTML_HEAD: <link rel="stylesheet" href="https://drshapeless.com/css/default.css">
+#+HTML_HEAD: <meta charset="utf-8">
+#+HTML_PREAMBLE: <div id="link_container"><a href="https://blog.drshapeless.com" id="blog_homepage">DrShapeLess Blog</a></div>
+#+HTML_PREAMBLE: <h1 id="title">{{{title}}}</h1>
+#+HTML_POSTAMBLE: <hr> <p>Contact me via email.</p>
+#+HTML_POSTAMBLE: <p>Email: <a href=mailto:drsl@drshapeless.com>drsl@drshapeless.com</a></p>
+
+#+attr_html: :class date
+Created: {{{date(%Y-%m-%d)}}}             Updated: {{{time(%Y-%m-%d)}}}
+
+@@html:<hr>@@
+
+# Contents below this line. #
+
+$3

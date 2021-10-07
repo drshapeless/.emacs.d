@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: elisp
+# key: e
+# --
+;;; `(file-name-nondirectory buffer-file-name)` ---
+;;; Commentary:
+
+;; $2
+
+;;; Code:
+
+$3
+
+(provide '`(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))`)
+;;; `(file-name-nondirectory buffer-file-name)` ends here

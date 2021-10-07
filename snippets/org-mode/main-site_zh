@@ -1,0 +1,21 @@
+# -*- mode: snippet -*-
+# name: drsl-site-template_zh
+# key: h_z
+# --
+#+TITLE: $1
+#+DATE: `(format-time-string "<%Y-%m-%d>")`
+#+HTML_HEAD: <link rel="stylesheet" href="https://drshapeless.com/css/default.css">
+#+HTML_HEAD: <meta charset="utf-8">
+#+HTML_PREAMBLE: <div id="link_container"><a href="https://drshapeless.com/index_zh.html" id="homepage">DrShapeLess</a></div>
+#+HTML_PREAMBLE: <h1 id="title">{{{title}}}</h1>
+#+HTML_POSTAMBLE: <hr> <p>Contact me via email.</p>
+#+HTML_POSTAMBLE: <p>Email: <a href=mailto:drsl@drshapeless.com>drsl@drshapeless.com</a></p>
+#+HTML_POSTAMBLE: <a href="https://drshapeless.com">English</a>
+
+#+attr_html: :class date
+發佈: {{{date(%Y-%m-%d)}}}             更新: {{{time(%Y-%m-%d)}}}
+
+@@html:<hr>@@
+
+# Contents below this line. #
+$3

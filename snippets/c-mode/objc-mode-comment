@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: objc-mode-comment
+# key: objc
+# --
+/* -*- mode: objc -*- */

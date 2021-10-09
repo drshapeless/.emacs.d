@@ -9,7 +9,8 @@
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 
 ;; Download autothemer if necessary.
-(use-package autothemer)
+;; (use-package autothemer)
+;; My theme no longer requires autothemer.
 
 ;; Load my own theme.
 (load-theme 'shapeless t)

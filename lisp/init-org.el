@@ -57,7 +57,8 @@
                ("C-c r i" . org-roam-node-insert)
                ("C-c r f" . org-roam-node-find))))
 
-(setq org-roam-directory "~/org-roam")
+(setq org-roam-directory "~/org-roam/")
+(setq org-roam-db-location (expand-file-name "org-roam.db" org-roam-directory))
 (setq org-roam-v2-ack t)
 (org-roam-db-autosync-mode)
 

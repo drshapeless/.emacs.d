@@ -77,7 +77,10 @@
                                      display-buffer-no-window
                                      ((allow-no-window . t))))
 
-
+;; This is extremely annoying when compiling native elisp.
+(add-to-list 'display-buffer-alist '("\\*Warnings\\*"
+                                     display-buffer-no-window
+                                     ((allow-no-window . t))))
 
 (provide 'init-ui)
 ;;; init-ui.el ends here

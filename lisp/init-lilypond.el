@@ -5,6 +5,9 @@
 
 ;;; Code:
 
+(if *is-mac*
+    (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/lilypond"))
+
 (require 'lilypond-mode)
 (add-to-list 'auto-mode-alist '("\\.ly\\'" . LilyPond-mode))
 (add-to-list 'auto-mode-alist '("\\.ily\\'" . LilyPond-mode))

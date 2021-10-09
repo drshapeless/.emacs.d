@@ -91,6 +91,9 @@
    `(org-level-3 ((t (:foreground ,sl/yellow))))
    `(org-level-4 ((t (:foreground ,sl/blue))))
    `(org-table   ((t (:foreground ,sl/pale-orange))))
+   `(org-meta-line ((t (:inherit font-lock-comment-face))))
+   `(org-code    ((t (:background ,sl/darkest-gray))))
+   `(org-verbatim ((t (:background ,sl/darkest-gray))))
    ;; If your org file is more than 4 level, you are likely fucked up.
 
    ;; dired

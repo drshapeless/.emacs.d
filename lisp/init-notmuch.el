@@ -7,7 +7,12 @@
 
 ;; Notmuch is installed by package manager, so no use-package is
 ;; needed.
-(add-to-list 'load-path "/usr/share/emacs/site-lisp")
+(if *is-linux*
+    (add-to-list 'load-path "/usr/share/emacs/site-lisp"))
+
+(if *is-mac*
+    (add-to-list 'load-path "/usr/local/share/emacs/site-lisp"))
+
 (require 'notmuch)
 ;; The default dir of outmail is "sent", which doesn't match my
 ;; postfix setting, changed it to "Sent".

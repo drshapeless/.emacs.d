@@ -24,25 +24,26 @@
 
 (require 'ox-publish)
 (use-package ox-slimhtml)
+(require 'ox-shapelesshtml)
 
 (setq org-publish-project-alist
       '(
         ("blog"
          :base-directory "~/website/org/published/blog"
          :publishing-directory "~/website/drshapeless/blog"
-         :publishing-function ox-slimhtml-publish-to-html)
+         :publishing-function ox-shapelesshtml-publish-to-html)
         ("blog_zh"
          :base-directory "~/website/org/published/blog_zh"
          :publishing-directory "~/website/drshapeless/blog"
-         :publishing-function ox-slimhtml-publish-to-html)
+         :publishing-function ox-shapelesshtml-publish-to-html)
         ("main-site"
          :base-directory "~/website/org/published/main-site"
          :publishing-directory "~/website/drshapeless/main-site"
-         :publishing-function ox-slimhtml-publish-to-html)
+         :publishing-function ox-shapelesshtml-publish-to-html)
         ("main-site_zh"
          :base-directory "~/website/org/published/main-site_zh"
          :publishing-directory "~/website/drshapeless/main-site"
-         :publishing-function ox-slimhtml-publish-to-html)
+         :publishing-function ox-shapelesshtml-publish-to-html)
         ))
 
 (use-package valign)
@@ -60,6 +61,7 @@
 (setq org-roam-v2-ack t)
 (org-roam-db-autosync-mode)
 
+(use-package htmlize)
 
 (provide 'init-org)
 ;;; init-org.el ends here

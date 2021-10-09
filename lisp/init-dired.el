@@ -13,8 +13,8 @@
 ;; ship with mac does not have to option to sort directories first.
 
 ;; The work around for this is to install coreutils via homebrew.
-;; And add this line to your config file.
-;; (setq insert-directory-program "gls" dired-use-ls-dired t)
+(if *is-mac*
+    (setq insert-directory-program "gls" dired-use-ls-dired t))
 
 ;; "--group-directories-first" must be at front, otherwise concat will
 ;; break.

@@ -2,10 +2,10 @@
 ;;
 ;; Filename: shapeless-theme.el
 ;; Description: The shapeless theme.
-;; Author: Dr. ShapeLess <drsl@drshapeless.com>
+;; Author: DrShapeLess <drsl@drshapeless.com>
 ;; Created: Sat Jan 23 14:05:48 2021 (+0800)
-;; Modified: Fri Jun 4 12:46:25 2021 (+0800)
-;; Version: 0.3.0
+;; Modified: Sun Oct 10 21:55:25 2021 (+0800)
+;; Version: 0.3.1
 
 ;;; Commentary:
 
@@ -94,6 +94,7 @@
    `(org-meta-line ((t (:inherit font-lock-comment-face))))
    `(org-code    ((t (:background ,sl/darkest-gray))))
    `(org-verbatim ((t (:background ,sl/darkest-gray))))
+   `(org-date    ((t (:foreground ,sl/pink))))
    ;; If your org file is more than 4 level, you are likely fucked up.
 
    ;; dired

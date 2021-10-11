@@ -5,7 +5,9 @@
 
 ;;; Code:
 
-(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e/")
+(if *is-mac*
+    (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e/"))
+
 (require 'mu4e)
 
 ;; (setq mu4e-change-filenames-when-moving t) ; for some reasons mbsync

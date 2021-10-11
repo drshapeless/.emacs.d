@@ -180,11 +180,17 @@ Default to \"~/MinecraftClient/\".")
         (interactive)
         (shell-command "xmodmap ~/.Xmodmap"))
 
+      (defun drsl/reset-screen-color ()
+        "Reset screen color to 4500K."
+        (interactive)
+        (shell-command "redshift -x ; redshift -O 4500K"))
+
       ;; Do not use "C-c `", as mode authors may use non alphabet characters
       ;; for shortcuts.
       (global-set-key (kbd "C-z ` `") 'drsl/monitor-off)
       (global-set-key (kbd "C-z ` d") 'drsl/powersave-off)
       (global-set-key (kbd "C-z ` k") 'drsl/remap-keyboard)
+      (global-set-key (kbd "C-z ` r") 'drsl/remap-keyboard)
 
       ;; Audio volume in Linux
       (defun drsl/lower-audio-volume ()

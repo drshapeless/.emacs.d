@@ -8,7 +8,7 @@
 (require 'package)
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
                          ;; Orgmode elpa is deprecated since org version 9.5.
-                         ;; ("org" . "https://orgmode.org/elpa/")
+                         ("org" . "https://orgmode.org/elpa/")
                          ("nongnu" . "https://elpa.nongnu.org/nongnu/")
                          ("elpa" . "https://elpa.gnu.org/packages/")))
 (package-initialize)

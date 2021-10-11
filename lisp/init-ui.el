@@ -1,4 +1,4 @@
-;;; init-ui.el --- Settings about user interface.
+;;; init-ui.el --- Personal preferences on user interface.
 ;;; Commentary:
 
 ;; User Interface settings.

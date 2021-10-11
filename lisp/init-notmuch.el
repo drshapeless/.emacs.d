@@ -11,7 +11,7 @@
     (add-to-list 'load-path "/usr/share/emacs/site-lisp"))
 
 (if *is-mac*
-    (add-to-list 'load-path "/usr/local/share/emacs/site-lisp"))
+    (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/notmuch"))
 
 (require 'notmuch)
 ;; The default dir of outmail is "sent", which doesn't match my

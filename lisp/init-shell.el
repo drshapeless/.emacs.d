@@ -9,8 +9,8 @@
 (add-hook 'comint-mode-hook (lambda () (setq comint-process-echoes t)))
 
 ;; Use zsh as default shell in Emacs.
-(setq explicit-shell-file-name "/bin/sh")
-(setenv "SHELL" "/bin/sh")
+(setq explicit-shell-file-name "/bin/zsh")
+(setenv "SHELL" "/bin/zsh")
 
 ;; From emacs wiki, https://www.emacswiki.org/emacs/ExecPath
 ;; This is particularly useful if you edited the path variable, e.g. in your .zshrc.

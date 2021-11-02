@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: CC
+# key: CC
+# --
+CC = clang

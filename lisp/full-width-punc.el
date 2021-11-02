@@ -25,7 +25,7 @@
     ;; (define-key map (kbd ">") (lambda () (interactive) (insert "》")))
     ;; The following two is just some shortcuts for inserting some useful punctuation, who needs to insert ^ and ' in Chinese?
     ;; (define-key map (kbd "^") (lambda () (interactive) (insert "・")))
-    ;; (define-key map (kbd "'") (lambda () (interactive) (insert "⋯⋯")))
+    ;; (define-key map (kbd "'") (lambda () (interactive) (insert "……")))
     ;; (define-key map (kbd "+") (lambda () (interactive) (insert " + ")))
     ;; (define-key map (kbd "-") (lambda () (interactive) (insert " - ")))
     (define-key map (kbd "SPC") nil)

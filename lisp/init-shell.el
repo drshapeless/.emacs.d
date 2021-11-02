@@ -30,5 +30,9 @@ apps are not started from a shell."
 
 (set-exec-path-from-shell-PATH)
 
+(use-package vterm)
+(setq vterm-buffer-name-string "vterm %s")
+(setq vterm-always-compile-module t)
+
 (provide 'init-shell)
 ;;; init-shell.el ends here

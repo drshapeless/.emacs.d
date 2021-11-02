@@ -81,6 +81,9 @@
   (async-shell-command "mbsync -a" "*mbsync*"))
 (global-set-key (kbd "C-c n m") 'drsl/mbsync)
 
+;; vterm
+(global-set-key (kbd "C-c v") 'vterm)
+
 ;; Toggle mood-line
 (global-set-key (kbd "C-z m") 'mood-line-mode)
 
@@ -193,19 +196,20 @@ Default to \"~/MinecraftClient/\".")
       (global-set-key (kbd "C-z ` r") 'drsl/remap-keyboard)
 
       ;; Audio volume in Linux
+      ;; I am using pipewire and pipewire-pulseaudio
       (defun drsl/lower-audio-volume ()
         (interactive)
-        (shell-command "amixer set Master 3%- | grep 'Front Left:'")
-        ;; (call-process-shell-command "amixer set Master 3%-" nil 0)
+        (shell-command "pactl set-sink-volume @DEFAULT_SINK@ -3%")
+        (drsl/show-audio-volume)
         )
       (defun drsl/raise-audio-volume ()
         (interactive)
-        (shell-command "amixer set Master 3%+ | grep 'Front Left:'")
-        ;; (call-process-shell-command "amixer set Master 3%+" nil 0)
+        (shell-command "pactl set-sink-volume @DEFAULT_SINK@ +3%")
+        (drsl/show-audio-volume)
         )
       (defun drsl/show-audio-volume ()
         (interactive)
-        (shell-command "amixer | grep 'Front Left: Playback'"))
+        (shell-command "pactl get-sink-volume @DEFAULT_SINK@"))
       (global-set-key (kbd "<XF86AudioLowerVolume>") 'drsl/lower-audio-volume)
       (global-set-key (kbd "<XF86AudioRaiseVolume>") 'drsl/raise-audio-volume)
       (global-set-key (kbd "C-c m v") 'drsl/show-audio-volume)

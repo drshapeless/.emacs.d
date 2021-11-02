@@ -6,6 +6,8 @@
 ;;; Code:
 
 (use-package auto-package-update)
+(require 'auto-package-update)
+(setq auto-package-update-interval 1)
 (setq auto-package-update-at-time "03:00")
 (add-hook 'auto-package-update-after-hook
           (lambda () (message "All packages are updated.")))

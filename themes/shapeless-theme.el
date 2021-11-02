@@ -116,6 +116,9 @@
    ;; ansi-term
    ;; `(term ((t (:foreground ,sl/black :background ,sl/dark-gray))))
    `(term-color-black ((t (:foreground ,sl/white))))
+
+   ;; vterm
+   `(vterm-color-blue ((t (:foreground ,sl/blue))))
    )                                    ; end of custom-theme-set-faces
 
   (custom-theme-set-variables

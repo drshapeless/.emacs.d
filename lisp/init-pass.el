@@ -7,5 +7,7 @@
 
 (use-package pass)
 
+(setq auth-sources '(password-store))
+
 (provide 'init-pass)
 ;;; init-pass.el ends here

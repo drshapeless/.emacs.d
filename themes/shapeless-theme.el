@@ -119,6 +119,10 @@
 
    ;; vterm
    `(vterm-color-blue ((t (:foreground ,sl/blue))))
+
+   ;; markdown
+   `(markdown-inline-code-face ((t (:foreground ,sl/bright-orange))))
+   `(markdown-pre-face         ((t (:foreground ,sl/yellow))))
    )                                    ; end of custom-theme-set-faces
 
   (custom-theme-set-variables

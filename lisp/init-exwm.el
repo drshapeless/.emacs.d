@@ -1,51 +1,14 @@
-;;; init-exwm.el --- Exwm configurations.
+;;; init-exwm.el --- EXWM config. -*- lexical-binding: t -*-
+
 ;;; Commentary:
 
-;; Some exwm related settings. The multiple monitor setting required
-;; personal tuning to get it work.
+;; Using Emacs as a window manager, only works on Linux.
 
 ;;; Code:
-(use-package exwm)
+
+(leaf exwm)
+
 (require 'exwm)
-(require 'ido)
-
-;; These are directly from the config example.
-(defun exwm-config--fix/ido-buffer-window-other-frame ()
-  "Fix `ido-buffer-window-other-frame'."
-  (defalias 'exwm-config-ido-buffer-window-other-frame
-    (symbol-function #'ido-buffer-window-other-frame))
-  (defun ido-buffer-window-other-frame (buffer)
-    "This is a version redefined by EXWM.
-
-    You can find the original one at `exwm-config-ido-buffer-window-other-frame'."
-    (with-current-buffer (window-buffer (selected-window))
-      (if (and (derived-mode-p 'exwm-mode)
-               exwm--floating-frame)
-          ;; Switch from a floating frame.
-          (with-current-buffer buffer
-            (if (and (derived-mode-p 'exwm-mode)
-                     exwm--floating-frame
-                     (eq exwm--frame exwm-workspace--current))
-                ;; Switch to another floating frame.
-                (frame-root-window exwm--floating-frame)
-              ;; Do not switch if the buffer is not on the current workspace.
-              (or (get-buffer-window buffer exwm-workspace--current)
-                  (selected-window))))
-        (with-current-buffer buffer
-          (when (derived-mode-p 'exwm-mode)
-            (if (eq exwm--frame exwm-workspace--current)
-                (when exwm--floating-frame
-                  ;; Switch to a floating frame on the current workspace.
-                  (frame-selected-window exwm--floating-frame))
-              ;; Do not switch to exwm-mode buffers on other workspace (which
-              ;; won't work unless `exwm-layout-show-all-buffers' is set)
-              (unless exwm-layout-show-all-buffers
-                (selected-window)))))))))
-
-(defun exwm-config-ido ()
-  "Configure Ido to work with EXWM."
-  (ido-mode 1)
-  (add-hook 'exwm-init-hook #'exwm-config--fix/ido-buffer-window-other-frame))
 
 ;; The set the default workspace into 2.
 (setq exwm-workspace-number 2)
@@ -132,8 +95,6 @@
         ))
 
 (exwm-enable)
-
-(exwm-config-ido)
 
 ;; Remap keyboard.
 

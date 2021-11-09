@@ -1,18 +1,13 @@
-;;; init-theme.el ---
+;;; init-theme.el --- drshapeless theme -*- lexical-binding: t -*-
+
 ;;; Commentary:
 
-;; Load theme.
+;; Load my custom theme.
 
 ;;; Code:
 
-;; Theme load path.
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+(add-to-list 'custom-theme-load-path (expand-file-name "themes" user-emacs-directory))
 
-;; Download autothemer if necessary.
-;; (use-package autothemer)
-;; My theme no longer requires autothemer.
-
-;; Load my own theme.
 (load-theme 'shapeless t)
 
 (provide 'init-theme)

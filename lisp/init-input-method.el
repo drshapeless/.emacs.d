@@ -1,4 +1,5 @@
-;;; init-chinese-input.el ---
+;;; init-input-method.el ---  -*- lexical-binding: t -*-
+
 ;;; Commentary:
 
 ;;
@@ -42,6 +43,5 @@
                         ("cbtu"  "鋼")
                         )))
 
-
-(provide 'init-chinese-input)
-;;; init-chinese-input.el ends here
+(provide 'init-input-method)
+;;; init-input-method.el ends here

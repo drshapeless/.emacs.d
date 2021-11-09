@@ -1,7 +1,8 @@
-;;; init-dired.el --- The dired config at init.
+;;; init-dired.el ---  -*- lexical-binding: t -*-
+
 ;;; Commentary:
 
-;; Redefine the sorting mechanism in dired.
+;;
 
 ;;; Code:
 
@@ -9,16 +10,30 @@
 ;; Never ask about opening big file, I have a lot of ram.
 (setq large-file-warning-threshold nil)
 
+(require 'dired)
+
 ;; The following does not work out of the box for a mac, since the ls
 ;; ship with mac does not have to option to sort directories first.
 
 ;; The work around for this is to install coreutils via homebrew.
-(if *is-mac*
+(if *is-a-mac*
     (setq insert-directory-program "gls" dired-use-ls-dired t))
+
+(defun drsl/dired-listing-switches-toggle ()
+  "Toggle between --group-directories-first."
+  (interactive)
+  (if (string= "-ahl" dired-listing-switches)
+      (setq dired-listing-switches "--group-directories-first -ahl")
+    (setq dired-listing-switches "-ahl"))
+  (message (format "dired-listing-switches: %s" dired-listing-switches)))
+
+(define-key dired-mode-map "b" 'drsl/dired-listing-switches-toggle)
 
 ;; "--group-directories-first" must be at front, otherwise concat will
 ;; break.
 (setq dired-listing-switches "--group-directories-first -ahl")
+;; If tramp into macOS shows a blank dired buffer, mostly is because of the ls in macOS does not support the switch --group-directories-first.
+;; (setq dired-listing-switches "-ahl")
 (setq dired-mode-hook 'drsl/dired-sort-set-mode-line)
 
 ;; A custom sorting mechanism.
@@ -89,6 +104,7 @@ Setting it to other values may have undetermined effect.")
                         ((= drsl/dired-sort-mode 5)
                          "extension"))))
     (force-mode-line-update)))
+
 
 (provide 'init-dired)
 ;;; init-dired.el ends here

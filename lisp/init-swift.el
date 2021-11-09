@@ -1,11 +1,12 @@
-;;; init-swift.el ---
+;;; init-swift.el ---  -*- lexical-binding: t -*-
+
 ;;; Commentary:
 
 ;;
 
 ;;; Code:
 
-(use-package swift-mode)
+(leaf swift-mode)
 
 (provide 'init-swift)
 ;;; init-swift.el ends here

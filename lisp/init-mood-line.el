@@ -1,11 +1,13 @@
-;;; init-mood-line.el ---
+;;; init-mood-line.el --- A minimal mode line. -*- lexical-binding: t -*-
+
 ;;; Commentary:
 
-;; This is an minimalistic modeline package. It omits the minor modes.
+;; A minimal mode-line alternative.
 
 ;;; Code:
 
-(use-package mood-line)
+(leaf mood-line)
+
 (mood-line-mode)
 
 (provide 'init-mood-line)

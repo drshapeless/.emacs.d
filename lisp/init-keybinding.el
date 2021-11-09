@@ -1,11 +1,12 @@
-;;; init-keybind.el --- Personal Global Emacs Keybindings
+;;; init-keybinding.el --- Keybindings. -*- lexical-binding: t -*-
+
 ;;; Commentary:
 
-;; The global keybindings for personal use.
+;;
 
 ;;; Code:
 
-(if *is-mac*
+(if *is-a-mac*
     (progn
       (setq mac-right-command-modifier 'hyper)))
 
@@ -23,16 +24,16 @@
 ;; I used to use C-z as a personal prefix key, but it is so hard to
 ;; press that I gave up using C-c. C-c does not collide with anything.
 
-(defun drsl/toggle-full-width-punc ()
+(defun drsl/toggle-shapeless-chinese ()
   (interactive)
-  (if (equal drsl/full-width-punc-mode t)
-      (setq drsl/full-width-punc-mode nil)
-    (setq drsl/full-width-punc-mode t)))
-(defun drsl/toggle-input-and-full-width-punc ()
+  (if (equal shapeless-chinese-mode t)
+      (setq shapeless-chinese-mode nil)
+    (setq shapeless-chinese-mode t)))
+(defun drsl/toggle-input-and-shapeless-chinese ()
   (interactive)
   (toggle-input-method)
-  (drsl/toggle-full-width-punc))
-(global-set-key (kbd "s-<SPC>") 'drsl/toggle-input-and-full-width-punc)
+  (drsl/toggle-shapeless-chinese))
+(global-set-key (kbd "s-<SPC>") 'drsl/toggle-input-and-shapeless-chinese)
 
 ;; Redefine the arrow keys to windmove.
 (global-set-key (kbd "H-s") 'windmove-left)
@@ -121,42 +122,7 @@
 
 ;; Open password manager.
 (global-set-key (kbd "C-c g") 'pass)
-
-;; Minecraft console client
-(defvar drsl/minecraft-console-client-directory "~/MinecraftClient/"
-  "The path of the Minecraft console.
-Default to \"~/MinecraftClient/\".")
-
-(defvar drsl/minecraft-console-binary "MinecraftClient.exe"
-  "The path of the minecraft console binary.")
-
-(defun drsl/start-minecraft-console-normal ()
-  "Start a minecraft console."
-  (interactive)
-  (async-shell-command (concat "cd " drsl/minecraft-console-client-directory " ; mono " drsl/minecraft-console-binary " Normal.ini") "*minecraft-console*"))
-
-(defun drsl/start-minecraft-console-auto-attack ()
-  "Start a minecraft console in auto attack mode."
-  (interactive)
-  (async-shell-command (concat "cd " drsl/minecraft-console-client-directory " ; mono " drsl/minecraft-console-binary " AutoAttack.ini") "*minecraft-console*"))
-
-(defun drsl/start-minecraft-console-normal-bot ()
-  "Start a minecraft console bot."
-  (interactive)
-  (async-shell-command (concat "cd " drsl/minecraft-console-client-directory " ; mono " drsl/minecraft-console-binary " Normal-bot.ini") "*minecraft-console*"))
-
-(defun drsl/start-minecraft-console-auto-attack-bot ()
-  "Start a minecraft console in auto attack mode."
-  (interactive)
-  (async-shell-command (concat "cd " drsl/minecraft-console-client-directory " ; mono " drsl/minecraft-console-binary " AutoAttack-bot.ini") "*minecraft-console*"))
-
-(global-set-key (kbd "C-c i i") 'drsl/start-minecraft-console-normal)
-(global-set-key (kbd "C-c i a") 'drsl/start-minecraft-console-auto-attack)
-(global-set-key (kbd "C-c i b") 'drsl/start-minecraft-console-normal-bot)
-(global-set-key (kbd "C-c i s") 'drsl/start-minecraft-console-auto-attack-bot)
-
-
-(if *is-linux*
+(if *is-a-linux*
     (progn
       ;; Use flameshot to capture screen
       (defun drsl/flameshot-capture-screen ()
@@ -215,5 +181,5 @@ Default to \"~/MinecraftClient/\".")
       (global-set-key (kbd "C-c m v") 'drsl/show-audio-volume)
       ))
 
-(provide 'init-keybind)
-;;; init-keybind.el ends here
+(provide 'init-keybinding)
+;;; init-keybinding.el ends here

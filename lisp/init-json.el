@@ -1,11 +1,12 @@
-;;; init-json.el ---
+;;; init-json.el ---  -*- lexical-binding: t -*-
+
 ;;; Commentary:
 
 ;;
 
 ;;; Code:
 
-(use-package json-mode)
+(leaf json-mode)
 
 (provide 'init-json)
 ;;; init-json.el ends here

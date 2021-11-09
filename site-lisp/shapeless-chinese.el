@@ -1,11 +1,12 @@
-;;; full-width-punc.el --- A minor mode for inputing chinese punctuation.
+;;; shapeless-chinese.el ---  -*- lexical-binding: t -*-
+
 ;;; Commentary:
 
-;; My own implementation of inputing full width char.
+;;
 
 ;;; Code:
 
-(define-minor-mode drsl/full-width-punc-mode
+(define-minor-mode shapeless-chinese-mode
   "Full width punctuation"
   :lighter " full-punc"
   :keymap
@@ -32,5 +33,6 @@
     (define-key map (kbd "SPC") 'quail-select-current )
     map))
 
-(provide 'full-width-punc)
-;;; full-width-punc.el ends here
+
+(provide 'shapeless-chinese)
+;;; shapeless-chinese.el ends here

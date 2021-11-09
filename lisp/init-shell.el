@@ -1,4 +1,5 @@
-;;; init-shell.el ---
+;;; init-shell.el ---  -*- lexical-binding: t -*-
+
 ;;; Commentary:
 
 ;;
@@ -28,11 +29,8 @@ apps are not started from a shell."
     (setenv "PATH" path-from-shell)
     (setq exec-path (split-string path-from-shell path-separator))))
 
-(set-exec-path-from-shell-PATH)
-
-(use-package vterm)
-(setq vterm-buffer-name-string "vterm %s")
-(setq vterm-always-compile-module t)
+(if *is-a-mac*
+    (set-exec-path-from-shell-PATH))
 
 (provide 'init-shell)
 ;;; init-shell.el ends here

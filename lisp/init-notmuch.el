@@ -1,4 +1,5 @@
-;;; init-notmuch.el ---
+;;; init-notmuch.el ---  -*- lexical-binding: t -*-
+
 ;;; Commentary:
 
 ;;
@@ -7,20 +8,24 @@
 
 ;; Notmuch is installed by package manager, so no use-package is
 ;; needed.
-(if *is-linux*
+(if *is-a-linux*
     (add-to-list 'load-path "/usr/share/emacs/site-lisp"))
 
-(if *is-mac*
+(if *is-a-mac*
     (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/notmuch"))
 
-(require 'notmuch)
-;; The default dir of outmail is "sent", which doesn't match my
-;; postfix setting, changed it to "Sent".
-(setq notmuch-fcc-dirs "Sent +sent -unread")
-(setq send-mail-function 'smtpmail-send-it)
-(setq smtpmail-smtp-server "mail.drshapeless.com")
-(setq smtpmail-smtp-service 587)
-(setq smtpmail-smtp-user "drsl")
+(leaf notmuch
+  :straight nil
+  :require t
+  :config
+  ;; The default dir of outmail is "sent", which doesn't match my
+  ;; postfix setting, changed it to "Sent".
+  (setq notmuch-fcc-dirs "Sent +sent -unread"))
+
+(setq send-mail-function 'smtpmail-send-it
+      smtpmail-smtp-server "mail.drshapeless.com"
+      smtpmail-smtp-service 587
+      smtpmail-smtp-user "drsl")
 
 (provide 'init-notmuch)
 ;;; init-notmuch.el ends here

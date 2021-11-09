@@ -1,16 +1,17 @@
-;;; init-projectile.el ---
+;;; init-projectile.el ---  -*- lexical-binding: t -*-
+
 ;;; Commentary:
 
-;; Projectile.
+;;
 
 ;;; Code:
 
-(use-package projectile
-  :diminish
+(leaf projectile
   :init
   (projectile-mode +1)
-  :bind (:map projectile-mode-map
-              ("C-c p" . projectile-command-map)))
+  :bind
+  (:projectile-mode-map
+   ("C-c p" . projectile-command-map)))
 
 (provide 'init-projectile)
 ;;; init-projectile.el ends here

@@ -2,7 +2,8 @@
 # name: elisp
 # key: e
 # --
-;;; `(file-name-nondirectory buffer-file-name)` ---
+;;; `(file-name-nondirectory buffer-file-name)` --- $1 -*- lexical-binding: t -*-
+
 ;;; Commentary:
 
 ;; $2

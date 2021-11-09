@@ -1,18 +1,21 @@
-;;; init-company.el ---
+;;; init-company.el --- Company completion config. -*- lexical-binding: t -*-
+
 ;;; Commentary:
 
-;;
+;; Config for company mode.
 
 ;;; Code:
 
-(use-package company)
-(require 'company)
-(diminish 'company-mode)
-(global-company-mode t)
-(setq company-idle-delay 0)
-(setq company-echo-delay 0)
-(setq company-dabbrev-downcase nil)	; Enable case sensitive.
-(setq company-minimum-prefix-length 1)
+(leaf company
+  :require t
+  :init
+  (global-company-mode t)
+  :config
+  (setq company-idle-delay 0
+        company-echo-delay 0
+        company-dabbrev-downcase nil
+        company-minimum-prefix-length 1)
+  )
 
 (provide 'init-company)
 ;;; init-company.el ends here

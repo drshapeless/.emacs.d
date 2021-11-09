@@ -1,13 +1,14 @@
-;;; init-pass.el ---
+;;; init-pass.el ---  -*- lexical-binding: t -*-
+
 ;;; Commentary:
 
-;; Using pass, the standard unix password manager.
+;;
 
 ;;; Code:
 
-(use-package pass)
-
-(setq auth-sources '(password-store))
+(leaf pass
+  :config
+  (setq auth-sources '(password-store)))
 
 (provide 'init-pass)
 ;;; init-pass.el ends here

@@ -1,14 +1,19 @@
-;;; init-erc.el ---
+;;; init-erc.el ---  -*- lexical-binding: t -*-
+
 ;;; Commentary:
 
-;; Irc related stuffs, including bitlbee.
+;;
 
 ;;; Code:
-(require 'erc)
-(setq erc-nick "drshapeless")
-(setq erc-default-server "localhost")
-(setq erc-default-port "6667")
-(setq erc-password nil)
+
+(leaf erc
+  :straight nil
+  :require t
+  :config
+  (setq erc-nick "drshapeless"
+        erc-default-server "localhost"
+        erc-default-port "6667"
+        erc-password nil))
 
 (defvar bitlbee-password (string-chop-newline
                           (shell-command-to-string "pass bitlbee/drshapeless")))

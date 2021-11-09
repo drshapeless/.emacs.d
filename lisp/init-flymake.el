@@ -1,13 +1,13 @@
-;;; init-flymake.el ---
+;;; init-flymake.el ---  -*- lexical-binding: t -*-
+
 ;;; Commentary:
 
 ;;
 
 ;;; Code:
 
-;; This is a default package comes with Emacs.
-(require 'flymake)
-(diminish 'flymake-mode)
+(leaf flymake
+  :require t)
 
 (provide 'init-flymake)
 ;;; init-flymake.el ends here

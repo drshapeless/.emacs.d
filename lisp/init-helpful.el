@@ -1,19 +1,19 @@
-;;; init-helpful.el ---
+;;; init-helpful.el ---  -*- lexical-binding: t -*-
+
 ;;; Commentary:
 
 ;;
 
 ;;; Code:
 
-(use-package helpful
-  :custom
-  (counsel-describe-function-function #'helpful-callable)
-  (counsel-describe-variable-function #'helpful-variable)
+(leaf helpful
   :bind
-  ([remap describe-function] . counsel-describe-function)
-  ([remap describe-command] . helpful-command)
-  ([remap describe-variable] . counsel-describe-variable)
-  ([remap describe-key] . helpful-key))
+  ([remap describe-function] . helpful-callable)
+  ([remap describe-variable] . helpful-variable)
+  ([remap describe-key] . helpful-key)
+  ("C-c C-d" . helpful-at-point)
+  ("C-h F" . helpful-function)
+  ("C-h C" . helpful-command))
 
 (provide 'init-helpful)
 ;;; init-helpful.el ends here

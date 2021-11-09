@@ -1,1 +1,1 @@
-My emacs config file, made for macOS and arch linux.
+My emacs config file, made for macOS and Artix linux.

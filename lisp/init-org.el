@@ -13,8 +13,8 @@
 (leaf org
   :require t
   :hook
-  (org-mode . auto-fill-mode)
-  (org-mode . org-indent-mode)
+  (org-mode-hook . auto-fill-mode)
+  (org-mode-hook . org-indent-mode)
   :config
   (setq org-return-follows-link t)
   (setq org-src-window-setup 'current-window)

@@ -9,6 +9,7 @@
 (leaf emms
   :require t
   :config
+  (emms-default-players)
   (emms-all)
   (setq emms-source-file-default-directory "/mnt/hdd/Music/")
   (emms-mode-line nil)

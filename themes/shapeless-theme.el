@@ -4,8 +4,8 @@
 ;; Description: The shapeless theme.
 ;; Author: DrShapeLess <drsl@drshapeless.com>
 ;; Created: Sat Jan 23 14:05:48 2021 (+0800)
-;; Modified: Sun Oct 10 21:55:25 2021 (+0800)
-;; Version: 0.3.1
+;; Modified: Tue Nov 9 21:45:25 2021 (+0800)
+;; Version: 0.3.2
 
 ;;; Commentary:
 
@@ -34,6 +34,7 @@
       (sl/pale-orange   "#ceb058")
       (sl/bright-orange "#e09712")
       (sl/orange        "#b45900")
+      (sl/brown         "#542121")
       (sl/yellow        "#cecb6e")
       (sl/green         "#32cd32")
       (sl/blue          "#4785ee")
@@ -83,6 +84,7 @@
    `(company-scrollbar-bg      ((t (:background ,sl/dark-gray))))
    `(company-scrollbar-fg      ((t (:background ,sl/white))))
    `(company-preview-common    ((t (:inherit font-lock-comment-face))))
+   `(company-template-field    ((t (:foreground ,sl/white :background ,sl/brown))))
 
    ;; org
    `(org-block   ((t (:background ,sl/darkest-gray :extend t))))
@@ -102,6 +104,9 @@
 
    ;; ivy
    `(ivy-current-match ((t (:foreground ,sl/yellow :background ,sl/dark-gray :extend t))))
+
+   ;; vertico
+   `(vertico-current ((t (:foreground ,sl/yellow :background ,sl/dark-gray :extend t))))
 
    ;; comint
    `(comint-highlight-prompt ((t (:foreground ,sl/blue))))

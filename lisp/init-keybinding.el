@@ -24,6 +24,7 @@
 ;; I used to use C-z as a personal prefix key, but it is so hard to
 ;; press that I gave up using C-c. C-c does not collide with anything.
 
+(require 'shapeless-chinese)
 (defun drsl/toggle-shapeless-chinese ()
   (interactive)
   (if (equal shapeless-chinese-mode t)
@@ -122,6 +123,7 @@
 
 ;; Open password manager.
 (global-set-key (kbd "C-c g") 'pass)
+
 (if *is-a-linux*
     (progn
       ;; Use flameshot to capture screen
@@ -175,7 +177,7 @@
         )
       (defun drsl/show-audio-volume ()
         (interactive)
-        (shell-command "pactl get-sink-volume @DEFAULT_SINK@"))
+        (shell-command "pactl get-sink-volume @DEFAULT_SINK@ | grep Volume"))
       (global-set-key (kbd "<XF86AudioLowerVolume>") 'drsl/lower-audio-volume)
       (global-set-key (kbd "<XF86AudioRaiseVolume>") 'drsl/raise-audio-volume)
       (global-set-key (kbd "C-c m v") 'drsl/show-audio-volume)

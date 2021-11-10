@@ -28,5 +28,15 @@
 ;; Enable recursive minibuffers
 (setq enable-recursive-minibuffers t)
 
+;; This package is manually installed in site-lisp.
+(leaf vertico-directory
+  :straight nil
+  :require t
+  :bind (:vertico-map
+         ("RET" . vertico-directory-enter)
+         ("DEL" . vertico-directory-delete-char)
+         ("M-DEL" . vertico-directory-delete-word))
+  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
+
 (provide 'init-vertico)
 ;;; init-vertico.el ends here

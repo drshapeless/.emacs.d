@@ -37,11 +37,14 @@
 (global-set-key (kbd "s-<SPC>") 'drsl/toggle-input-and-shapeless-chinese)
 
 ;; Redefine the arrow keys to windmove.
+(require 'windmove)
+(require 'framemove)
 (global-set-key (kbd "H-s") 'windmove-left)
 (global-set-key (kbd "H-f") 'windmove-right)
 (global-set-key (kbd "H-e") 'windmove-up)
 (global-set-key (kbd "H-d") 'windmove-down)
 (global-set-key (kbd "H-a") 'other-frame)
+(setq framemove-hook-into-windmove t)
 
 ;; Syncing my personal website.
 (defun drsl/sync-drshapeless ()

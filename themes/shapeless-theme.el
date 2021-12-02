@@ -120,7 +120,7 @@
 
    ;; ansi-term
    ;; `(term ((t (:foreground ,sl/black :background ,sl/dark-gray))))
-   `(term-color-black ((t (:foreground ,sl/white))))
+   ;; `(term-color-black ((t (:foreground ,sl/white))))
 
    ;; vterm
    `(vterm-color-blue ((t (:foreground ,sl/blue))))

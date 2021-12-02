@@ -23,6 +23,9 @@
   (setq org-time-stamp-formats (cons "<%Y-%m-%d>" "<%Y-%m-%d %H:%M>"))
 
   (setq org-html-doctype "html5")
+
+  ;; Emacs keeps complaining about missing this function, fuck that.
+  (defalias 'org-file-name-concat #'file-name-concat)
   )
 
 (leaf valign
@@ -67,10 +70,12 @@
   :after org
   :require t
   :bind
+  ("C-c r i" . org-roam-node-insert)
+  ("C-c r f" . org-roam-node-find)
   (:org-mode-map
    ("C-c r c" . org-id-get-create)
-   ("C-c r i" . org-roam-node-insert)
-   ("C-c r f" . org-roam-node-find))
+   ("C-c r r" . org-roam-ref-add)
+   )
   :config
   (setq org-roam-directory "~/org-roam/"
         org-roam-db-location (expand-file-name "org-roam.db" org-roam-directory)

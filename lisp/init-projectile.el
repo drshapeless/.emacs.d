@@ -7,6 +7,7 @@
 ;;; Code:
 
 (leaf projectile
+  :after ripgrep
   :init
   (projectile-mode +1)
   :bind

@@ -90,8 +90,8 @@
         ?\M-:
         ;; Custom prefix.
         ?\C-z
-        ;; Input method.
-        ?\C-\\
+        ;; ;; Input method.
+        ;; ?\C-\\
         ))
 
 (exwm-enable)
@@ -104,12 +104,24 @@
 
 ;; I remap right super into hyper, and change the mouse into natural
 ;; scrolling like macOS.
+
+;; remove mod4 = Super_R
+;; keycode 134 = Hyper_R
+;; add    mod3 = Hyper_R
+
+;; pointer = 1 2 3 5 4 7 6 8 9 10 11 12
 (shell-command "xmodmap ~/.Xmodmap")
 
-;; Use Emacs input method in X window. Remember to set it in the
-;; passthrough list or global command.
+;; Use Emacs input method in X window.
+;; I prefer setting the env inside Emacs instead of in .xinitrc.
+(setenv "GTK_IM_MODULE" "xim")
+(setenv "QT_IM_MODULE" "xim")
+(setenv "XMODIFIERS" "@im=exwm-xim")
+(setenv "CLUTTER_IM_MODULE" "xim")
 (require 'exwm-xim)
 (exwm-xim-enable)
+;; Remember to set it in the passthrough list or global command.
+(push ?\C-\\ exwm-input-prefix-keys)
 
 ;; Set for dual monitor.
 ;; Use xrandr after startx to see what your hardwares are.

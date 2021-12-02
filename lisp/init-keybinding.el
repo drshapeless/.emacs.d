@@ -46,6 +46,21 @@
 (global-set-key (kbd "H-a") 'other-frame)
 (setq framemove-hook-into-windmove t)
 
+;; Reboot solves the following bug. But after you restart Emacs, you
+;; still need this.
+
+;; For some stupid unknown reasons, framemove think my right monitor
+;; is on the left. I just swap the shit.
+(defadvice windmove-do-window-select (around framemove-do-window-select-wrapper activate)
+  "Let windmove do its own thing, if there is an error, try
+other frame."
+  (condition-case err
+      ad-do-it
+    (error
+     (cond ((eq 'left (ad-get-arg 0)) (fm-next-frame 'right))
+           ((eq 'right (ad-get-arg 0)) (fm-next-frame 'left))
+           (t (error (error-message-string err)))))))
+
 ;; Syncing my personal website.
 (defun drsl/sync-drshapeless ()
   (interactive)
@@ -96,15 +111,22 @@
 (global-set-key (kbd "C-z t c") 'company-mode)
 
 ;; Some firefox shortcuts, make sure you are using exwm.
-(defun drsl/duckduckgo-with-firefox (term)
-  "Firefox duckduckgo search in a new tab."
-  (interactive (list (read-string "duckduckgo: ")))
-  (start-process-shell-command "firefox" nil (format "firefox --new-tab 'https://duckduckgo.com/?q=%s' " term)))
+;; Don't use librewolf, EXWM xim doesn't work.
 
-(defun drsl/google-with-firefox (term)
-  "Firefox google search in a new tab."
-  (interactive (list (read-string "google: ")))
-  (start-process-shell-command "firefox" nil (format "firefox --new-tab 'https://google.com/search?q=%s'" term)))
+;; (defun drsl/duckduckgo-with-firefox (term)
+;;   "Firefox duckduckgo search in a new tab."
+;;   (interactive (list (read-string "duckduckgo: ")))
+;;   (start-process-shell-command "firefox" nil (format "firefox --new-tab 'https://duckduckgo.com/?q=%s' " term)))
+
+;; (defun drsl/google-with-firefox (term)
+;;   "Firefox google search in a new tab."
+;;   (interactive (list (read-string "google: ")))
+;;   (start-process-shell-command "firefox" nil (format "firefox --new-tab 'https://google.com/search?q=%s'" term)))
+
+(defun drsl/search-with-firefox (term)
+  "Firefox search in a new tab."
+  (interactive (list (read-string "search: ")))
+  (start-process-shell-command "firefox" nil (format "firefox --new-tab --search '%s'" term)))
 
 (defun drsl/start-firefox ()
   "Start a new firefox session."
@@ -116,8 +138,9 @@
   (interactive)
   (start-process-shell-command "firefox" nil "firefox --private-window"))
 
-(global-set-key (kbd "C-c f d") 'drsl/duckduckgo-with-firefox)
-(global-set-key (kbd "C-c f g") 'drsl/google-with-firefox)
+;; (global-set-key (kbd "C-c f d") 'drsl/duckduckgo-with-firefox)
+;; (global-set-key (kbd "C-c f g") 'drsl/google-with-firefox)
+(global-set-key (kbd "C-c f s") 'drsl/search-with-firefox)
 (global-set-key (kbd "C-c f f") 'drsl/start-firefox)
 (global-set-key (kbd "C-c f p") 'drsl/start-firefox-private)
 

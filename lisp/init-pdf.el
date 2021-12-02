@@ -16,7 +16,7 @@
 
 (leaf pdf-view-restore
   :after pdf-tools
-  :hook pdf-view-mode
+  :hook pdf-view-mode-hook
   :config
   (setq pdf-view-restore-filename "~/.emacs-backups/.pdf-view-restore")
   )

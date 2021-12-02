@@ -83,6 +83,10 @@
                                      display-buffer-no-window
                                      ((allow-no-window . t))))
 
+;; Password-Store always fuck up at displaying at a correct window.
+(add-to-list 'display-buffer-alist '("\\*Password-Store\\*"
+                                     display-buffer-same-window))
+
 ;; This is extremely annoying when compiling native elisp.
 (setq warning-minimum-level :emergency)
 

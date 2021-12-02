@@ -45,10 +45,18 @@
 (require 'init-consult)
 (require 'init-which-key)
 (require 'init-helpful)
+(require 'init-aggressive-indent)
+(require 'init-good-scroll)
+(require 'init-ripgrep)
 
 ;; Major modes.
 (require 'init-markdown)
 (require 'init-swift)
+(require 'init-go)
+(require 'init-nginx)
+(require 'init-web)
+(require 'init-calibredb)
+(require 'init-nov)
 
 (require 'init-eglot)
 (require 'init-pdf)

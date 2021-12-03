@@ -13,7 +13,7 @@
   (eglot-ensure . flymake)
   :bind
   (:eglot-mode-map
-   ("C-c r" . elgot-reconnect))
+   ("C-c r" . eglot-reconnect))
   :config
   (add-to-list 'eglot-server-programs
                '(swift-mode . ("sourcekit-lsp")))

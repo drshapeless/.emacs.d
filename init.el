@@ -48,6 +48,9 @@
 (require 'init-aggressive-indent)
 (require 'init-good-scroll)
 (require 'init-ripgrep)
+(require 'init-shrface)
+(require 'init-inherit-org)
+(require 'init-request)
 
 ;; Major modes.
 (require 'init-markdown)

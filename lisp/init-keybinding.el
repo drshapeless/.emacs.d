@@ -180,7 +180,7 @@ other frame."
       (defun drsl/reset-screen-color ()
         "Reset screen color to 4500K."
         (interactive)
-        (shell-command "redshift -x ; redshift -O 4500K"))
+        (shell-command "redshift -x ; redshift -O 3600K"))
 
       ;; Do not use "C-c `", as mode authors may use non alphabet characters
       ;; for shortcuts.

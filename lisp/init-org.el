@@ -19,8 +19,8 @@
   (setq org-return-follows-link t)
   (setq org-src-window-setup 'current-window)
 
-  (setq org-time-stamp-custom-formats (cons "%Y-%m-%d" "%Y-%m-%d %a %H:%M"))
-  (setq org-time-stamp-formats (cons "<%Y-%m-%d>" "<%Y-%m-%d %H:%M>"))
+  (setq org-time-stamp-custom-formats (cons "<%Y-%m-%d>" "<%Y-%m-%d %a %H:%M>"))
+  (setq org-time-stamp-formats (cons "<%Y-%m-%d %H:%M>" "<%Y-%m-%d>"))
 
   (setq org-html-doctype "html5")
 

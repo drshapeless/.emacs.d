@@ -9,9 +9,8 @@
 
 (leaf good-scroll
   :require t
-  :hook nov-mode-hook
-  ;; :init
-  ;; (good-scroll-mode t)
+  :init
+  (good-scroll-mode t)
   :config
   (setq good-scroll-step 160)
   )

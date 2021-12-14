@@ -6,9 +6,8 @@
 
 ;;; Code:
 
-(leaf exwm)
-
-(require 'exwm)
+(leaf exwm
+  :require t)
 
 ;; The set the default workspace into 2.
 (setq exwm-workspace-number 2)
@@ -90,8 +89,6 @@
         ?\M-:
         ;; Custom prefix.
         ?\C-z
-        ;; ;; Input method.
-        ;; ?\C-\\
         ))
 
 (exwm-enable)
@@ -133,6 +130,9 @@
              "xrandr" nil "xrandr --output HDMI-0 --left-of DP-3 --auto")
             ))
 (exwm-randr-enable)
+
+(leaf exwm-edit
+  :require t)
 
 ;; Autohide minibuffer & echo area. Don't use, it sucks.
 ;; (setq exwm-workspace-minibuffer-position 'bottom)

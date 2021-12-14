@@ -8,6 +8,10 @@
 
 (leaf w3m
   :require t
+  :after inherit-org
+  :hook
+  (w3m-fontify-before-hook . inherit-org-w3m-headline-fontify)
+  (w3m-fontify-after-hook . inherit-org-mode)
   :bind
   (:w3m-mode-map
    ("l" . w3m-view-previous-page)

@@ -23,6 +23,7 @@
   (setq org-time-stamp-formats (cons "<%Y-%m-%d %H:%M>" "<%Y-%m-%d>"))
 
   (setq org-html-doctype "html5")
+  (setq tab-width 2)
 
   ;; Emacs keeps complaining about missing this function, fuck that.
   (defalias 'org-file-name-concat #'file-name-concat)
@@ -46,25 +47,26 @@
   :straight nil
   :require t
   :config
-  (setq org-publish-project-alist
-      '(
-        ("blog"
-         :base-directory "~/website/org/published/blog"
-         :publishing-directory "~/website/drshapeless/blog"
-         :publishing-function ox-shapelesshtml-publish-to-html)
-        ("blog_zh"
-         :base-directory "~/website/org/published/blog_zh"
-         :publishing-directory "~/website/drshapeless/blog"
-         :publishing-function ox-shapelesshtml-publish-to-html)
-        ("main-site"
-         :base-directory "~/website/org/published/main-site"
-         :publishing-directory "~/website/drshapeless/main-site"
-         :publishing-function ox-shapelesshtml-publish-to-html)
-        ("main-site_zh"
-         :base-directory "~/website/org/published/main-site_zh"
-         :publishing-directory "~/website/drshapeless/main-site"
-         :publishing-function ox-shapelesshtml-publish-to-html)
-        )))
+  ;; (setq org-publish-project-alist
+  ;;     '(
+  ;;       ("blog"
+  ;;        :base-directory "~/website/org/published/blog"
+  ;;        :publishing-directory "~/website/drshapeless/blog"
+  ;;        :publishing-function ox-shapelesshtml-publish-to-html)
+  ;;       ("blog_zh"
+  ;;        :base-directory "~/website/org/published/blog_zh"
+  ;;        :publishing-directory "~/website/drshapeless/blog"
+  ;;        :publishing-function ox-shapelesshtml-publish-to-html)
+  ;;       ("main-site"
+  ;;        :base-directory "~/website/org/published/main-site"
+  ;;        :publishing-directory "~/website/drshapeless/main-site"
+  ;;        :publishing-function ox-shapelesshtml-publish-to-html)
+  ;;       ("main-site_zh"
+  ;;        :base-directory "~/website/org/published/main-site_zh"
+  ;;        :publishing-directory "~/website/drshapeless/main-site"
+  ;;        :publishing-function ox-shapelesshtml-publish-to-html)
+  ;;       ))
+  )
 
 (leaf org-roam
   :after org
@@ -75,10 +77,12 @@
   (:org-mode-map
    ("C-c r c" . org-id-get-create)
    ("C-c r r" . org-roam-ref-add)
+   ("C-c r t" . org-roam-tag-add)
+   ("C-c r a" . org-roam-alias-add)
    )
   :config
   (setq org-roam-directory "~/org-roam/"
-        org-roam-db-location (expand-file-name "org-roam.db" org-roam-directory)
+        org-roam-db-location (expand-file-name "org-roam.db" user-emacs-directory)
         org-roam-v2-ack t)
   (org-roam-db-autosync-mode))
 

@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: shapeless-blog
+# key: b
+# --
+#+TITLE: $1
+#+DATE: `(format-time-string "[%Y-%m-%d %H:%M]")`
+#+UPDATE: nil
+#+CATEGORY: $2
+#+ID: nil
+
+# ## Blog post starts from here. ###
+$3

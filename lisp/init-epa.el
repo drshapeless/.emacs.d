@@ -11,7 +11,6 @@
 (leaf epa-file
   :straight nil
   :require t
-  :after pinentry
   :config
   (setq epa-file-select-keys nil
         epa-file-encrypt-to '("drsl@drshapeless.com"))

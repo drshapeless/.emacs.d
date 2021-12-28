@@ -74,6 +74,7 @@
    ;; system
    `(line-number-current-line ((t (:foreground ,sl/orange :background ,sl/dark-gray))))
    `(mode-line                ((t (:foreground ,sl/yellow :background ,sl/darker-gray))))
+   `(mode-line-active         ((t (:inherit mode-line))))
    `(mode-line-inactive       ((t (:foreground ,sl/white :background ,sl/darkest-gray))))
    `(minibuffer-prompt        ((t (:foreground ,sl/yellow))))
 

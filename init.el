@@ -51,6 +51,7 @@
 (require 'init-shrface)
 (require 'init-inherit-org)
 (require 'init-request)
+(require 'init-framemove)
 
 ;; Major modes.
 (require 'init-markdown)
@@ -60,6 +61,7 @@
 (require 'init-web)
 (require 'init-calibredb)
 (require 'init-nov)
+(require 'init-hackernews)
 
 (require 'init-eglot)
 (require 'init-pdf)
@@ -75,6 +77,7 @@
 (require 'init-projectile)
 
 (require 'init-org)
+(require 'init-shapeless-blog)
 
 (if *is-a-linux*
     (require 'init-exwm))

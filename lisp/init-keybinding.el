@@ -38,28 +38,11 @@
 
 ;; Redefine the arrow keys to windmove.
 (require 'windmove)
-(require 'framemove)
 (global-set-key (kbd "H-s") 'windmove-left)
 (global-set-key (kbd "H-f") 'windmove-right)
 (global-set-key (kbd "H-e") 'windmove-up)
 (global-set-key (kbd "H-d") 'windmove-down)
 (global-set-key (kbd "H-a") 'other-frame)
-(setq framemove-hook-into-windmove t)
-
-;; Reboot solves the following bug. But after you restart Emacs, you
-;; still need this.
-
-;; For some stupid unknown reasons, framemove think my right monitor
-;; is on the left. I just swap the shit.
-(defadvice windmove-do-window-select (around framemove-do-window-select-wrapper activate)
-  "Let windmove do its own thing, if there is an error, try
-other frame."
-  (condition-case err
-      ad-do-it
-    (error
-     (cond ((eq 'left (ad-get-arg 0)) (fm-next-frame 'right))
-           ((eq 'right (ad-get-arg 0)) (fm-next-frame 'left))
-           (t (error (error-message-string err)))))))
 
 ;; Syncing my personal website.
 (defun drsl/sync-drshapeless ()
@@ -73,8 +56,8 @@ other frame."
     (drsl/sync-drshapeless))
   )
 
-(global-set-key (kbd "C-c w w") 'drsl/publish-and-sync)
-(global-set-key (kbd "C-c w a") 'org-publish-all)
+;; (global-set-key (kbd "C-c w w") 'drsl/publish-and-sync)
+;; (global-set-key (kbd "C-c w a") 'org-publish-all)
 (global-set-key (kbd "C-z e") 'ox-slimhtml-export-to-html)
 
 ;; emms
@@ -123,10 +106,17 @@ other frame."
 ;;   (interactive (list (read-string "google: ")))
 ;;   (start-process-shell-command "firefox" nil (format "firefox --new-tab 'https://google.com/search?q=%s'" term)))
 
-(defun drsl/search-with-firefox (term)
+(defun drsl/firefox-search (term)
   "Firefox search in a new tab."
   (interactive (list (read-string "search: ")))
-  (start-process-shell-command "firefox" nil (format "firefox --new-tab --search '%s'" term)))
+  (start-process-shell-command "firefox" nil
+                               (format "firefox --new-tab 'https://searx.drshapeless.com/search?q=%s'" term)))
+
+(defun drsl/firefox-open-url (url)
+  "Firefox url in a new tab."
+  (interactive (list (read-string "url: ")))
+  (start-process-shell-command "firefox" nil
+                               (format "firefox --new-tab '%s'" url)))
 
 (defun drsl/start-firefox ()
   "Start a new firefox session."
@@ -140,7 +130,8 @@ other frame."
 
 ;; (global-set-key (kbd "C-c f d") 'drsl/duckduckgo-with-firefox)
 ;; (global-set-key (kbd "C-c f g") 'drsl/google-with-firefox)
-(global-set-key (kbd "C-c f s") 'drsl/search-with-firefox)
+(global-set-key (kbd "C-c f s") 'drsl/firefox-search)
+(global-set-key (kbd "C-c f t") 'drsl/firefox-open-url)
 (global-set-key (kbd "C-c f f") 'drsl/start-firefox)
 (global-set-key (kbd "C-c f p") 'drsl/start-firefox-private)
 
@@ -178,7 +169,7 @@ other frame."
         (shell-command "xmodmap ~/.Xmodmap"))
 
       (defun drsl/reset-screen-color ()
-        "Reset screen color to 4500K."
+        "Reset screen color to 3600K."
         (interactive)
         (shell-command "redshift -x ; redshift -O 3600K"))
 

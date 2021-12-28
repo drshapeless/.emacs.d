@@ -71,7 +71,7 @@ Setting it to other values may have undetermined effect.")
   "Toggle between sort by name, create time, access time, size, extension."
   ;; Loop the mode list.
   (if (< drsl/dired-sort-mode 5)
-      (setq drsl/dired-sort-mode (+ drsl/dired-sort-mode 1))
+      (setq drsl/dired-sort-mode (1+ drsl/dired-sort-mode))
     (setq drsl/dired-sort-mode 1))
   ;; Change the ls flags.
   (cond ((= drsl/dired-sort-mode 1)

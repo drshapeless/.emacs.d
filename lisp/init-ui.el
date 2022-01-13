@@ -52,10 +52,10 @@
 
 (if *is-a-linux*
     (progn
-      ;; (set-fontset-font t 'han "PingFang HK Regular")
       (drsl/init-font)
       ;; Reduce blue light from screen.
-      (shell-command "redshift -O 3600K")
+      ;; (shell-command "redshift -O 3600K")
+      (drsl/reset-screen-color)
 
       ;; Disable screen save.
       (shell-command "xset s off")
@@ -82,7 +82,7 @@
 (show-paren-mode t)
 (electric-pair-mode t)
 (setq ring-bell-function 'ignore)	; No notification sound.
-;; (global-auto-revert-mode t)		; Auto revert. It doesn't work
+(global-auto-revert-mode t)       ; Auto revert. It doesn't work
                                         ; well with tramp.
 
 (set-frame-parameter nil 'fullscreen 'fullboth)
@@ -122,6 +122,12 @@
 ;; Password-Store always fuck up at displaying at a correct window.
 (add-to-list 'display-buffer-alist '("\\*Password-Store\\*"
                                      display-buffer-same-window))
+
+(add-to-list 'display-buffer-alist '("\\*shell\\*"
+                                     display-buffer-same-window))
+
+(add-to-list 'display-buffer-alist '("\\*w3m\\*"
+                                     display-buffer-in-previous-window))
 
 ;; This is extremely annoying when compiling native elisp.
 (setq warning-minimum-level :emergency)

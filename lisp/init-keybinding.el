@@ -6,6 +6,8 @@
 
 ;;; Code:
 
+(require 'init-helpers)
+
 (if *is-a-mac*
     (progn
       (setq mac-right-command-modifier 'hyper)))
@@ -24,16 +26,6 @@
 ;; I used to use C-z as a personal prefix key, but it is so hard to
 ;; press that I gave up using C-c. C-c does not collide with anything.
 
-(require 'shapeless-chinese)
-(defun drsl/toggle-shapeless-chinese ()
-  (interactive)
-  (if (equal shapeless-chinese-mode t)
-      (setq shapeless-chinese-mode nil)
-    (setq shapeless-chinese-mode t)))
-(defun drsl/toggle-input-and-shapeless-chinese ()
-  (interactive)
-  (toggle-input-method)
-  (drsl/toggle-shapeless-chinese))
 (global-set-key (kbd "s-<SPC>") 'drsl/toggle-input-and-shapeless-chinese)
 
 ;; Redefine the arrow keys to windmove.
@@ -44,21 +36,10 @@
 (global-set-key (kbd "H-d") 'windmove-down)
 (global-set-key (kbd "H-a") 'other-frame)
 
-;; Syncing my personal website.
-(defun drsl/sync-drshapeless ()
-  (interactive)
-  (async-shell-command "rsync -urv --delete-after ~/website/drshapeless/ jacky@drshapeless.com:~/public/drshapeless" "*rsync*")
-  )
-(defun drsl/publish-and-sync ()
-  (interactive)
-  (progn
-    (org-publish-all)
-    (drsl/sync-drshapeless))
-  )
 
 ;; (global-set-key (kbd "C-c w w") 'drsl/publish-and-sync)
 ;; (global-set-key (kbd "C-c w a") 'org-publish-all)
-(global-set-key (kbd "C-z e") 'ox-slimhtml-export-to-html)
+;; (global-set-key (kbd "C-z e") 'ox-slimhtml-export-to-html)
 
 ;; emms
 (global-set-key (kbd "C-c m m") 'emms)
@@ -78,10 +59,6 @@
 
 ;; Open not much
 (global-set-key (kbd "C-c n n") 'notmuch)
-(defun drsl/mbsync ()
-  "Sync all the mailbox."
-  (interactive)
-  (async-shell-command "mbsync -a" "*mbsync*"))
 (global-set-key (kbd "C-c n m") 'drsl/mbsync)
 
 ;; vterm
@@ -93,49 +70,15 @@
 ;; Toggle company mode.
 (global-set-key (kbd "C-z t c") 'company-mode)
 
-;; Some firefox shortcuts, make sure you are using exwm.
-;; Don't use librewolf, EXWM xim doesn't work.
-
-;; (defun drsl/duckduckgo-with-firefox (term)
-;;   "Firefox duckduckgo search in a new tab."
-;;   (interactive (list (read-string "duckduckgo: ")))
-;;   (start-process-shell-command "firefox" nil (format "firefox --new-tab 'https://duckduckgo.com/?q=%s' " term)))
-
-;; (defun drsl/google-with-firefox (term)
-;;   "Firefox google search in a new tab."
-;;   (interactive (list (read-string "google: ")))
-;;   (start-process-shell-command "firefox" nil (format "firefox --new-tab 'https://google.com/search?q=%s'" term)))
-
-(defun drsl/firefox-search (term)
-  "Firefox search in a new tab."
-  (interactive (list (read-string "search: ")))
-  (start-process-shell-command "firefox" nil
-                               (format "firefox --new-tab 'https://searx.drshapeless.com/search?q=%s'" term)))
-
-(defun drsl/firefox-open-url (url)
-  "Firefox url in a new tab."
-  (interactive (list (read-string "url: ")))
-  (start-process-shell-command "firefox" nil
-                               (format "firefox --new-tab '%s'" url)))
-
-(defun drsl/start-firefox ()
-  "Start a new firefox session."
-  (interactive)
-  (start-process-shell-command "firefox" nil "firefox"))
-
-(defun drsl/start-firefox-private ()
-  "Start a new firefox private window."
-  (interactive)
-  (start-process-shell-command "firefox" nil "firefox --private-window"))
-
+;; Firefox
 ;; (global-set-key (kbd "C-c f d") 'drsl/duckduckgo-with-firefox)
 ;; (global-set-key (kbd "C-c f g") 'drsl/google-with-firefox)
-(global-set-key (kbd "C-c f s") 'drsl/firefox-search)
+(global-set-key (kbd "C-c f s") 'drsl/firefox-search-duckduckgo)
 (global-set-key (kbd "C-c f t") 'drsl/firefox-open-url)
 (global-set-key (kbd "C-c f f") 'drsl/start-firefox)
 (global-set-key (kbd "C-c f p") 'drsl/start-firefox-private)
 
-;; keybindings for mentor, rTorrent client in Emacs
+;; Mentor, rTorrent client in Emacs
 (global-set-key (kbd "C-c t") 'mentor)
 
 ;; Open password manager.
@@ -143,35 +86,7 @@
 
 (if *is-a-linux*
     (progn
-      ;; Use flameshot to capture screen
-      (defun drsl/flameshot-capture-screen ()
-        "Use flameshot to capture screen."
-        (interactive)
-        (async-shell-command "flameshot gui"))
       (global-set-key (kbd "C-c c") 'drsl/flameshot-capture-screen)
-
-      ;; Turn off monitor
-      (defun drsl/monitor-off ()
-        "Turn off the monitor."
-        (interactive)
-        (shell-command "sleep 1; xset dpms force off"))
-
-      ;; Turn off power save mode.
-      (defun drsl/powersave-off ()
-        "Disable powersave.\nYou may want to do this after waking up your monitor."
-        (interactive)
-        (shell-command "xset -dpms"))
-
-      ;; Remap the keyboard with ~/.Xmodmap
-      (defun drsl/remap-keyboard ()
-        "Remap the keyboard."
-        (interactive)
-        (shell-command "xmodmap ~/.Xmodmap"))
-
-      (defun drsl/reset-screen-color ()
-        "Reset screen color to 3600K."
-        (interactive)
-        (shell-command "redshift -x ; redshift -O 3600K"))
 
       ;; Do not use "C-c `", as mode authors may use non alphabet characters
       ;; for shortcuts.
@@ -182,19 +97,6 @@
 
       ;; Audio volume in Linux
       ;; I am using pipewire and pipewire-pulseaudio
-      (defun drsl/lower-audio-volume ()
-        (interactive)
-        (shell-command "pactl set-sink-volume @DEFAULT_SINK@ -3%")
-        (drsl/show-audio-volume)
-        )
-      (defun drsl/raise-audio-volume ()
-        (interactive)
-        (shell-command "pactl set-sink-volume @DEFAULT_SINK@ +3%")
-        (drsl/show-audio-volume)
-        )
-      (defun drsl/show-audio-volume ()
-        (interactive)
-        (shell-command "pactl get-sink-volume @DEFAULT_SINK@ | grep Volume"))
       (global-set-key (kbd "<XF86AudioLowerVolume>") 'drsl/lower-audio-volume)
       (global-set-key (kbd "<XF86AudioRaiseVolume>") 'drsl/raise-audio-volume)
       (global-set-key (kbd "C-c m v") 'drsl/show-audio-volume)

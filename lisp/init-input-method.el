@@ -41,6 +41,8 @@
                         ("yylc"  "迹")
                         ("rhhe"  "嚟")
                         ("cbtu"  "鋼")
+                        ("punl"  "邨")
+                        ("rkm"   "咗")
                         )))
 
 (provide 'init-input-method)

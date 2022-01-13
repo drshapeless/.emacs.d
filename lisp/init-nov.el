@@ -7,7 +7,6 @@
 ;;; Code:
 
 (leaf nov
-  :after good-scroll
   :require t
   :mode "\\.epub\\'"
   :hook

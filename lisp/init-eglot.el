@@ -9,11 +9,11 @@
 (leaf eglot
   :require t
   :hook
-  ((c-mode-hook c++-mode-hook objc-mode-hook swift-mode-hook python-mode-hook js-mode-hook go-mode-hook) . eglot-ensure)
+  ((c-mode-hook c++-mode-hook objc-mode-hook swift-mode-hook python-mode-hook js-mode-hook go-mode-hook sql-mode-hook) . eglot-ensure)
   (eglot-ensure . flymake)
   :bind
   (:eglot-mode-map
-   ("C-c r" . eglot-reconnect))
+   ("C-c e r" . eglot-reconnect))
   :config
   (add-to-list 'eglot-server-programs
                '(swift-mode . ("sourcekit-lsp")))
@@ -23,7 +23,7 @@
 (setq js-indent-level 2)
 (setq compile-command "make")
 
-;; golang related config.
+;; Find the nearest parent go.mod as the project root.
 (require 'project)
 
 (defun project-find-go-module (dir)

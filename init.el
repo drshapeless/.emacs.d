@@ -62,6 +62,7 @@
 (require 'init-calibredb)
 (require 'init-nov)
 (require 'init-hackernews)
+(require 'init-yaml)
 
 (require 'init-eglot)
 (require 'init-pdf)
@@ -81,8 +82,9 @@
 
 (if *is-a-linux*
     (require 'init-exwm))
-(require 'init-ui)
+(require 'init-helpers)
 (require 'init-keybinding)
+(require 'init-ui)
 
 (server-start)
 

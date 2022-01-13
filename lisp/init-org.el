@@ -29,6 +29,13 @@
   (defalias 'org-file-name-concat #'file-name-concat)
   )
 
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((dot . t)))
+
+;; Temp fix.
+(defalias 'org-replace-buffer-contents 'replace-buffer-contents)
+
 (leaf valign
   :after org
   :hook org-mode)

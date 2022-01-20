@@ -3,6 +3,7 @@
 ;;; Commentary:
 
 ;; HTTP request in Emacs.
+;; This package does not work.
 
 ;;; Code:
 

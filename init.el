@@ -50,7 +50,7 @@
 (require 'init-ripgrep)
 (require 'init-shrface)
 (require 'init-inherit-org)
-(require 'init-request)
+;; (require 'init-request)
 (require 'init-framemove)
 
 ;; Major modes.

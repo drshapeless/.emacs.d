@@ -9,7 +9,8 @@
 (require 'shapeless-blog)
 
 (setq slblog-username 'drshapeless)
-(setq slblog-password (auth-source-pass-get 'secret "slblog/drshapeless"))
+(if *is-a-linux*
+    (setq slblog-password (auth-source-pass-get 'secret "slblog/drshapeless")))
 (setq slblog-api-address "https://blog.drshapeless.com/api/v1/")
 
 (define-key org-mode-map (kbd "C-c b p") 'slblog-post)

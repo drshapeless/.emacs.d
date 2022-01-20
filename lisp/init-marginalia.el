@@ -13,6 +13,8 @@
   (marginalia-mode)
   ;; :bind (:map minibuffer-local-map
   ;;             ("M-A" . marginalia-cycle))
+  :config
+  (setq marginalia-align 'right)
   )
 
 (define-key minibuffer-local-map (kbd "M-A") 'marginalia-cycle)

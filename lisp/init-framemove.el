@@ -30,16 +30,17 @@ other frame."
            ((eq 'right (ad-get-arg 0)) (fm-next-frame 'left))
            (t (error (error-message-string err)))))))
 
-;; This is the original.
-;; (defadvice windmove-do-window-select (around framemove-do-window-select-wrapper activate)
-;;   "Let windmove do its own thing, if there is an error, try framemove in that direction."
-;;   (condition-case err
-;;       ad-do-it
-;;     (error
-;;      (if framemove-hook-into-windmove
-;;          (fm-next-frame (ad-get-arg 0))
-;;        (error (error-message-string err))))))
-
+;; This is the original, only useful when in first boot.
+(defun drsl/framemove-use-original ()
+  (interactive)
+  (defadvice windmove-do-window-select (around framemove-do-window-select-wrapper activate)
+    "Let windmove do its own thing, if there is an error, try framemove in that direction."
+    (condition-case err
+        ad-do-it
+      (error
+       (if framemove-hook-into-windmove
+           (fm-next-frame (ad-get-arg 0))
+         (error (error-message-string err)))))))
 
 (provide 'init-framemove)
 ;;; init-framemove.el ends here

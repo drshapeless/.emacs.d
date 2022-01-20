@@ -78,13 +78,13 @@
 (require 'init-projectile)
 
 (require 'init-org)
-(require 'init-shapeless-blog)
 
 (if *is-a-linux*
     (require 'init-exwm))
 (require 'init-helpers)
 (require 'init-keybinding)
 (require 'init-ui)
+(require 'init-shapeless-blog)
 
 (server-start)
 

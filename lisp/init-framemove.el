@@ -19,16 +19,18 @@
 ;; still need this.
 
 ;; For some stupid unknown reasons, framemove think my right monitor
-;; is on the left. I just swap the shit.
-(defadvice windmove-do-window-select (around framemove-do-window-select-wrapper activate)
-  "Let windmove do its own thing, if there is an error, try
+;; is on the left. Just swap the shit.
+(defun drsl/framemove-use-swap ()
+  (interactive)
+  (defadvice windmove-do-window-select (around framemove-do-window-select-wrapper activate)
+    "Let windmove do its own thing, if there is an error, try
 other frame."
-  (condition-case err
-      ad-do-it
-    (error
-     (cond ((eq 'left (ad-get-arg 0)) (fm-next-frame 'right))
-           ((eq 'right (ad-get-arg 0)) (fm-next-frame 'left))
-           (t (error (error-message-string err)))))))
+    (condition-case err
+        ad-do-it
+      (error
+       (cond ((eq 'left (ad-get-arg 0)) (fm-next-frame 'right))
+             ((eq 'right (ad-get-arg 0)) (fm-next-frame 'left))
+             (t (error (error-message-string err))))))))
 
 ;; This is the original, only useful when in first boot.
 (defun drsl/framemove-use-original ()
@@ -41,6 +43,8 @@ other frame."
        (if framemove-hook-into-windmove
            (fm-next-frame (ad-get-arg 0))
          (error (error-message-string err)))))))
+
+(drsl/framemove-use-original)
 
 (provide 'init-framemove)
 ;;; init-framemove.el ends here

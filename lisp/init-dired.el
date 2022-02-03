@@ -105,6 +105,16 @@ Setting it to other values may have undetermined effect.")
                          "extension"))))
     (force-mode-line-update)))
 
+(require 'dired-x)
+(setq dired-guess-shell-alist-user '(("\\.mkv\\'"  "mpv")
+                                     ("\\.avi\\'"  "mpv")
+                                     ("\\.mp4\\'"  "mpv")
+                                     ("\\.m4v\\'"  "mpv")
+                                     ("\\.flv\\'"  "mpv")
+                                     ("\\.wmv\\'"  "mpv")
+                                     ("\\.mpg\\'"  "mpv")
+                                     ("\\.mpeg\\'" "mpv")
+                                     ("\\.webm\\'" "mpv")))
 
 (provide 'init-dired)
 ;;; init-dired.el ends here

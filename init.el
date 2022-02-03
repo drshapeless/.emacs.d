@@ -52,8 +52,9 @@
 (require 'init-inherit-org)
 ;; (require 'init-request)
 (require 'init-framemove)
+(require 'init-projectile)
 
-;; Major modes.
+;; ;; Major modes.
 (require 'init-markdown)
 (require 'init-swift)
 (require 'init-go)
@@ -75,7 +76,8 @@
 (require 'init-lilypond)
 (require 'init-mentor)
 (require 'init-pass)
-(require 'init-projectile)
+;; (require 'init-slime)
+(require 'init-sly)
 
 (require 'init-org)
 

@@ -10,6 +10,8 @@
 
 (if *is-a-mac*
     (progn
+      (setq mac-option-modifier 'meta)
+      (setq mac-command-modifier 'super)
       (setq mac-right-command-modifier 'hyper)))
 
 (global-set-key (kbd "C-x k") 'kill-this-buffer) ; Kill buffer directly.

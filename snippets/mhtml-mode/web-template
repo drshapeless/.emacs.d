@@ -1,0 +1,31 @@
+# -*- mode: snippet -*-
+# name: web-template
+# key: w
+# --
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="https://drshapeless.com/css/default.css">
+    <meta charset="utf-8">
+    <title>drshapeless</title>
+  </head>
+  <body>
+      <a href="https://drshapeless.com">
+          <div class="header">
+              <h1>drshapeless</h1>
+          </div>
+      </a>
+
+      <div class="navbar">
+          <a href="https://blog.drshapeless.com">Blog</a>
+          <a href="./about_me.html">About me</a>
+          <a href="./contact.html">Contact</a>
+          <a href="./taste.html">Taste</a>
+          <a href="https://github.com/drshapeless" class="right">GitHub</a>
+      </div>
+
+      <div class="content">
+      $1
+      </div>
+  </body>
+</html>

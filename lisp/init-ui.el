@@ -82,8 +82,8 @@
 (show-paren-mode t)
 (electric-pair-mode t)
 (setq ring-bell-function 'ignore)	; No notification sound.
-(global-auto-revert-mode t)       ; Auto revert. It doesn't work
-                                        ; well with tramp.
+(global-auto-revert-mode t)       ; Auto revert. It doesn't work well with
+                                  ; tramp.
 
 (set-frame-parameter nil 'fullscreen 'fullboth)
 

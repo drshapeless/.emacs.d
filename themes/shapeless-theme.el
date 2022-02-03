@@ -129,6 +129,12 @@
    ;; markdown
    `(markdown-inline-code-face ((t (:foreground ,sl/bright-orange))))
    `(markdown-pre-face         ((t (:foreground ,sl/yellow))))
+
+   ;; web
+   ;; `(web-mode-annotation-face ((t (:foreground ,sl/green))))
+   ;; `(web-mode-comment-face    ((t (:foreground ,sl/green))))
+   `(web-mode-html-tag-face   ((t (:foreground ,sl/green))))
+   `(web-mode-html-attr-name-face ((t (:foreground ,sl/bright-orange))))
    )                                    ; end of custom-theme-set-faces
 
   (custom-theme-set-variables

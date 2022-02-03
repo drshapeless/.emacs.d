@@ -14,5 +14,10 @@
     (setq inferior-lisp-program "sbcl")
   (setq inferior-lisp-program "clisp"))
 
+(add-hook 'sly-mode-hook
+          (lambda ()
+            (unless (sly-connected-p)
+              (save-excursion (sly)))))
+
 (provide 'init-sly)
 ;;; init-sly.el ends here

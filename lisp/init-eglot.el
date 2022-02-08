@@ -15,6 +15,11 @@
   (:eglot-mode-map
    ("C-c e r" . eglot-reconnect))
   :config
+  ;; The automatic header insertion by clangd is cancer.
+  (add-to-list 'eglot-server-programs
+               '(c-mode . ("clangd" "--header-insertion=never")))
+  (add-to-list 'eglot-server-programs
+               '(c++-mode . ("clangd" "--header-insertion=never")))
   (add-to-list 'eglot-server-programs
                '(swift-mode . ("sourcekit-lsp")))
   (add-to-list 'eglot-server-programs

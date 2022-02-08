@@ -142,5 +142,35 @@
       '(((member exwm-class-name '("slcard"))
          char-mode t)))
 
+;; Firefox
+(leaf exwm-firefox
+  :straight (exwm-firefox :type git :host github :repo "ieure/exwm-firefox")
+  :require t
+  :bind (:exwm-firefox-keymap
+         ("C-n" . exwm-firefox-core-down)
+         ("C-p" . exwm-firefox-core-up)
+         ("C-f" . exwm-firefox-core-right)
+         ("C-b" . exwm-firefox-core-left)
+         ("M-w" . exwm-firefox-core-copy)
+         ("C-w" . exwm-firefox-core-cut)
+         ("C-y" . exwm-firefox-core-paste)
+         ("C-v" . exwm-firefox-core-page-down)
+         ("M-v" . exwm-firefox-core-page-up)
+         ("C-s" . exwm-firefox-core-find)
+         ("C-g" . exwm-firefox-core-cancel)
+         ("M-b" . exwm-firefox-core-back-word)
+         ("M-f" . exwm-firefox-core-forward-word)
+         ("M-<" . exwm-firefox-core-top)
+         ("M->" . exwm-firefox-core-bottom)
+         ("C-d" . exwm-firefox-core-delete)
+         ("C-/" . exwm-firefox-core-undo)
+         ("C-c C-k" . exwm-firefox-core-tab-close)
+         ))
+
+(exwm-firefox-mode)
+
+;; I don't know, but my firefox buffer is "firefox".
+(add-to-list 'exwm-firefox-class->name-alist (cons "firefox" "firefox"))
+
 (provide 'init-exwm)
 ;;; init-exwm.el ends here

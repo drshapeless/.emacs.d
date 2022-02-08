@@ -129,6 +129,9 @@
 (add-to-list 'display-buffer-alist '("\\*w3m\\*"
                                      display-buffer-in-previous-window))
 
+(add-to-list 'display-buffer-alist '("\\*sly-mrepl.*\\*"
+                                     display-buffer-same-window))
+
 ;; This is extremely annoying when compiling native elisp.
 (setq warning-minimum-level :emergency)
 

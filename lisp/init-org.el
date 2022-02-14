@@ -106,7 +106,7 @@
          :immediate-finish t
          :unnarrowed t)
         ("a" "article" plain "%?"
-         :if-new (file+head "articles/${title}.org" "#+title: ${title}\n#+filetags: :article:\n")
+         :if-new (file+head "articles/${title}.org" "#+title: ${title}\n#+filetags: :article:draft:\n")
          :immediate-finish t
          :unnarrowed t)))
 

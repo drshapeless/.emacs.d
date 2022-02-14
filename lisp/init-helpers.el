@@ -128,5 +128,7 @@
 
       ))
 
+(setq gc-cons-threshold 50000000)
+
 (provide 'init-helpers)
 ;;; init-helpers.el ends here

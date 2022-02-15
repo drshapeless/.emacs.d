@@ -64,6 +64,8 @@
 (require 'init-nov)
 (require 'init-hackernews)
 (require 'init-yaml)
+(require 'init-glsl)
+(require 'init-hlsl)
 
 (require 'init-eglot)
 (require 'init-pdf)

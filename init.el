@@ -31,6 +31,7 @@
 (require 'init-epa)
 (require 'init-erc)
 (require 'init-flymake)
+(require 'init-ediff)
 
 ;; Extra packages
 (require 'init-blackout)

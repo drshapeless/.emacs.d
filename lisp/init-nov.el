@@ -6,11 +6,19 @@
 
 ;;; Code:
 
+(defun drsl/browse-url-with-w3m ()
+  "Quick and dirty function to use w3m as default browser in nov."
+  (setq-local browse-url-browser-function 'w3m-browse-url))
+
 (leaf nov
   :require t
   :mode "\\.epub\\'"
   :hook
   (nov-mode-hook . shrface-mode)
+  ;; Since nov only uses `browse-url' to browse external url, we
+  ;; change the `browse-url-browser-function' to `w3m-browse-url'
+  ;; without disturbing other things.
+  (nov-mode-hook . drsl/browse-url-with-w3m)
   :bind
   (:nov-mode-map
    ("C-v" . good-scroll-up)

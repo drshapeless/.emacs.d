@@ -15,10 +15,10 @@
   (setq shrface-href-versatile t)
   :bind (:shrface-mode-map
          ;; ("TAB" . shrface-next-link)
-         ("<backtab>" . shrface-previour-link)
+         ("<backtab>" . shr-previous-link)
          ("C-t" . shrface-toggle-bullets)
          ("C-j" . shrface-next-headline)
-         ("C-k" . shrface-previour-headline)))
+         ("C-k" . shrface-previous-headline)))
 
 (provide 'init-shrface)
 ;;; init-shrface.el ends here

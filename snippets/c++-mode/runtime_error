@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: runtime error
+# key: rte
+# --
+std::runtime_error($1)

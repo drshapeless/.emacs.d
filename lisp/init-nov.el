@@ -21,8 +21,8 @@
   (nov-mode-hook . drsl/browse-url-with-w3m)
   :bind
   (:nov-mode-map
-   ("C-v" . good-scroll-up)
-   ("M-v" . good-scroll-down)
+   ;; ("C-v" . good-scroll-up)
+   ;; ("M-v" . good-scroll-down)
    ;; If you bury the buffer instead of killing it, calibredb will
    ;; create another buffer by opening the same file, AGAIN!
    ("q" . kill-this-buffer))

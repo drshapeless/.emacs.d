@@ -32,6 +32,7 @@
 (require 'init-erc)
 (require 'init-flymake)
 (require 'init-ediff)
+(require 'init-pixel-scroll-precision)
 
 ;; Extra packages
 (require 'init-blackout)
@@ -47,7 +48,7 @@
 (require 'init-which-key)
 (require 'init-helpful)
 (require 'init-aggressive-indent)
-(require 'init-good-scroll)
+;; (require 'init-good-scroll)
 (require 'init-ripgrep)
 (require 'init-shrface)
 (require 'init-inherit-org)
@@ -55,7 +56,7 @@
 (require 'init-framemove)
 (require 'init-projectile)
 
-;; ;; Major modes.
+;; Major modes.
 (require 'init-markdown)
 (require 'init-swift)
 (require 'init-go)

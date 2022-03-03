@@ -32,7 +32,10 @@
 (require 'init-erc)
 (require 'init-flymake)
 (require 'init-ediff)
-(require 'init-pixel-scroll-precision)
+
+;; This package comes after "29.0.50".
+(if (not (version< emacs-version "29.0.50"))
+    (require 'init-pixel-scroll-precision))
 
 ;; Extra packages
 (require 'init-blackout)

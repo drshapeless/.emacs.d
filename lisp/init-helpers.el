@@ -128,6 +128,26 @@
 
       ))
 
+(defun drsl/toggle-ssh-over-socks ()
+  "Toggle ssh over socks.
+
+The function requires a 'config.bak' and 'config.socks' in the
+ssh directory. "
+  (interactive)
+  (let* ((ssh-dir (concat (getenv "HOME") "/.ssh/"))
+         (config (concat ssh-dir "config"))
+         (config-socks (concat ssh-dir "config.socks"))
+         (config-backup (concat ssh-dir "config.bak")))
+    (if (file-exists-p config-socks)
+        (progn
+          (copy-file config-socks config)
+          (message "ssh over socks enabled."))
+      (if (file-exists-p config-backup)
+          (progn
+            (copy-file config-backup config)
+            (message "ssh over socks disabled."))
+        (message "no backup ssh config file.")))))
+
 (setq gc-cons-threshold 50000000)
 
 (provide 'init-helpers)

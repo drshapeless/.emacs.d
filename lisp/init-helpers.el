@@ -136,7 +136,7 @@
          (config-socks (concat ssh-dir "config.socks")))
     (if (file-exists-p config-socks)
         (progn
-          (copy-file config-socks config)
+          (copy-file config-socks config t)
           (message "ssh over socks enabled."))
       (message "no ssh socks config."))))
 
@@ -148,7 +148,7 @@
          (config-backup (concat ssh-dir "config.bak")))
     (if (file-exists-p config-backup)
         (progn
-          (copy-file config-backup config)
+          (copy-file config-backup config t)
           (message "ssh over socks disabled."))
       (message "no ssh backup config."))))
 

@@ -2,11 +2,10 @@
 # name: shapeless-blog
 # key: b
 # --
-#+TITLE: $1
-#+DATE: `(format-time-string "[%Y-%m-%d %H:%M]")`
-#+UPDATE: nil
-#+CATEGORY: $2
-#+ID: nil
+#+title: $1
+#+filetags: $2
+#+date: nil
+#+update: nil
+#+id: nil
 
-# ## Blog post starts from here. ###
 $3

@@ -33,10 +33,6 @@
 (require 'init-flymake)
 (require 'init-ediff)
 
-;; This package comes after "29.0.50".
-(if (not (version< emacs-version "29.0.50"))
-    (require 'init-pixel-scroll-precision))
-
 ;; Extra packages
 (require 'init-blackout)
 (require 'init-mood-line)
@@ -51,7 +47,9 @@
 (require 'init-which-key)
 (require 'init-helpful)
 (require 'init-aggressive-indent)
-;; (require 'init-good-scroll)
+;; In older emacs version, use good scroll instead.
+(if (version< emacs-version "29.0.50")
+    )
 (require 'init-ripgrep)
 (require 'init-shrface)
 (require 'init-inherit-org)
@@ -89,7 +87,17 @@
 (require 'init-org)
 
 (if *is-a-linux*
-    (require 'init-exwm))
+    (progn
+      ;; This is about smooth scrolling in Emacs.
+      ;; For macos, emacs-mac has a even better scrolling.
+      (if  (version< emacs-version "29.0.50")
+          ;; For older version, just use good-scroll.
+          (require 'init-good-scroll)
+        ;; pixel-scroll-precision-mode is a new feature in version 29.
+        (require 'init-pixel-scroll-precision))
+      (require 'init-exwm)
+      )
+  )
 (require 'init-helpers)
 (require 'init-keybinding)
 (require 'init-ui)

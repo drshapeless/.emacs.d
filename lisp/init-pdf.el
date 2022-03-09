@@ -21,5 +21,7 @@
   (setq pdf-view-restore-filename "~/.emacs-backups/.pdf-view-restore")
   )
 
+(pdf-tools-install)
+
 (provide 'init-pdf)
 ;;; init-pdf.el ends here

@@ -47,9 +47,6 @@
 (require 'init-which-key)
 (require 'init-helpful)
 (require 'init-aggressive-indent)
-;; In older emacs version, use good scroll instead.
-(if (version< emacs-version "29.0.50")
-    )
 (require 'init-ripgrep)
 (require 'init-shrface)
 (require 'init-inherit-org)
@@ -69,6 +66,7 @@
 (require 'init-yaml)
 (require 'init-glsl)
 (require 'init-hlsl)
+(require 'init-dart)
 
 (require 'init-eglot)
 (require 'init-pdf)

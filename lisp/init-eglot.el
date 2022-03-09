@@ -9,7 +9,7 @@
 (leaf eglot
   :require t
   :hook
-  ((c-mode-hook c++-mode-hook objc-mode-hook swift-mode-hook python-mode-hook js-mode-hook go-mode-hook sql-mode-hook) . eglot-ensure)
+  ((c-mode-hook c++-mode-hook objc-mode-hook swift-mode-hook python-mode-hook js-mode-hook go-mode-hook sql-mode-hook dart-mode-hook) . eglot-ensure)
   (eglot-ensure . flymake)
   :bind
   (:eglot-mode-map
@@ -23,7 +23,9 @@
   (add-to-list 'eglot-server-programs
                '(swift-mode . ("sourcekit-lsp")))
   (add-to-list 'eglot-server-programs
-               '(sql-mode . ("sqls"))))
+               '(sql-mode . ("sqls")))
+  (add-to-list 'eglot-server-programs
+               '(dart-mode . ("dart" "language-server"))))
 
 (setq js-indent-level 2)
 (setq compile-command "make")

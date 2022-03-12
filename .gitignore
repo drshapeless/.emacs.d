@@ -23,3 +23,5 @@
 /projects
 /var/
 /org-persist/
+/.dap-breakpoints
+/.lsp-session-v1

@@ -53,6 +53,7 @@
 ;; (require 'init-request)
 (require 'init-framemove)
 (require 'init-projectile)
+(require 'init-flutter)
 
 ;; Major modes.
 (require 'init-markdown)

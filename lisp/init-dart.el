@@ -7,7 +7,8 @@
 ;;; Code:
 
 (leaf dart-mode
-  :require t)
+  :require t
+  :hook (dart-mode-hook . flutter-test-mode))
 
 ;; This is pretty useless at the moment.
 ;; (leaf lsp-dart

@@ -36,7 +36,7 @@
 ;; Extra packages
 (require 'init-blackout)
 (require 'init-mood-line)
-(require 'init-company)
+;; (require 'init-company)
 (require 'init-yasnippet)
 (require 'init-vertico)
 (require 'init-orderless)
@@ -54,6 +54,7 @@
 (require 'init-framemove)
 (require 'init-projectile)
 (require 'init-flutter)
+(require 'init-corfu)
 
 ;; Major modes.
 (require 'init-markdown)

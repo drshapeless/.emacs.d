@@ -22,32 +22,41 @@
       `(
         ;; Reset to line mode.
         ([?\s-r] . exwm-reset)
+
         ;; Switch workspace.
         ([?\s-w] . exwm-workspace-switch)
+
         ;; Launch application.
         ([?\s-&] . (lambda (command)
                      (interactive (list (read-shell-command "$ ")))
                      (start-process-shell-command command nil command)))
+
+        ;; This is rarely used.
         ;; Switch to certain workspace.
-        ,@(mapcar (lambda (i)
-                    `(,(kbd (format "s-%d" i)) .
-                      (lambda ()
-                        (interactive)
-                        (exwm-workspace-switch-create ,i))))
-                  (number-sequence 0 9))
+        ;; ,@(mapcar (lambda (i)
+        ;;             `(,(kbd (format "s-%d" i)) .
+        ;;               (lambda ()
+        ;;                 (interactive)
+        ;;                 (exwm-workspace-switch-create ,i))))
+        ;;           (number-sequence 0 9))
+
         ;; Toggle fullscreen.
         ([?\s-f] . exwm-layout-toggle-fullscreen)
         ([?\s-F] . exwm-floating-toggle-floating)
+
         ;; Switch to char mode.
         ([?\s-c] . exwm-input-release-keyboard)
+
         ;; Swap two workspace.
         ([?\s-s] . exwm-workspace-swap)
+
         ;; These are winmoves.
         ([?\H-a] . other-frame)
         ([?\H-s] . windmove-left)
         ([?\H-d] . windmove-down)
         ([?\H-e] . windmove-up)
         ([?\H-f] . windmove-right)
+
         ;; Audio volume.
         ([XF86AudioLowerVolume] . drsl/lower-audio-volume)
         ([XF86AudioRaiseVolume] . drsl/raise-audio-volume)
@@ -165,6 +174,9 @@
          ("C-d" . exwm-firefox-core-delete)
          ("C-/" . exwm-firefox-core-undo)
          ("C-c C-k" . exwm-firefox-core-tab-close)
+         ("C-a" . [home])
+         ("C-e" . [end])
+         ("C-k" . [S-end delete])
          ))
 
 (exwm-firefox-mode)

@@ -12,7 +12,8 @@
   :config
   (setq corfu-auto t
         corfu-quit-no-match 'separator
-        corfu-auto-prefix 1)
+        corfu-auto-prefix 1
+        corfu-auto-delay 0)
   (corfu-global-mode))
 
 ;; Corfu for eglot.

@@ -7,6 +7,7 @@
 ;;; Code:
 
 (leaf vterm
+  :require t
   :config
   (setq vterm-buffer-name-string "vterm %s"
         vterm-always-compile-module t))

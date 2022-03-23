@@ -48,10 +48,12 @@
       :size 18
       :weight 'normal
       :width 'normal
-      :slant 'normal))))
+      :slant 'normal))
+    ))
 
 (if *is-a-linux*
     (progn
+      (setq use-default-font-for-symbols nil)
       (drsl/init-font)
       ;; Reduce blue light from screen.
       ;; (shell-command "redshift -O 3600K")

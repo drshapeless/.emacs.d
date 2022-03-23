@@ -2,7 +2,8 @@
 
 ;;; Commentary:
 
-;;
+;; This file contains all org mode related things, including export
+;; backend, minor modes and org roams.
 
 ;;; Code:
 
@@ -122,8 +123,23 @@
 (setq org-roam-node-display-template
       (concat "${type:15} ${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
 
+;; This package is for inline css while exporting source code block.
+(leaf htmlize
+  :require t)
 
-(leaf htmlize)
+(leaf org-present
+  :require t
+  :hook
+  (org-present-mode-hook . (lambda ()
+                             (org-present-big)
+                             (org-display-inline-images)
+                             (org-present-hide-cursor)
+                             (org-present-read-only)))
+  (org-present-mode-quit-hook . (lambda ()
+                                  (org-present-small)
+                                  (org-remove-inline-images)
+                                  (org-present-show-cursor)
+                                  (org-present-read-write))))
 
 (provide 'init-org)
 ;;; init-org.el ends here

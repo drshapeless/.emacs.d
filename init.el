@@ -54,6 +54,7 @@
 (require 'init-framemove)
 (require 'init-projectile)
 (require 'init-flutter)
+(require 'init-cape)
 (require 'init-corfu)
 
 ;; Major modes.

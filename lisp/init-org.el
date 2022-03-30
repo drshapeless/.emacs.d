@@ -39,7 +39,7 @@
 
 (leaf valign
   :after org
-  :hook org-mode)
+  :hook org-mode-hook)
 
 (leaf org-pdftools
   :after pdf-tools org

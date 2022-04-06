@@ -191,5 +191,39 @@
   ;; put the point in the lowest line and return
   (next-line arg))
 
+(defvar usd2hkd 7.83)
+
+;; The fee for trading stocks on futubull.
+(defun futubull-fee(cost number)
+  (interactive "nCost: \nnNumber: ")
+  (let* ((fee (+ (max (* 0.0049 number) 0.99)
+                 (max (* 0.005 number) 1)
+                 (* 0.003 number)))
+         (total (* cost number))
+         (min-price (+ (/ (* fee 2) number)
+                       cost))
+         (net (+ (* fee 2) total)))
+    (message (format "Minimum price: %0.3f, fee: %0.3f, total: %0.3f, net: %0.3f, hkd: %0.3f"
+                     min-price
+                     fee
+                     total
+                     net
+                     (* net usd2hkd)))))
+
+(defun futubull-profit(cost price number)
+  (interactive "nCost: \nnCurrent: \nnNumber: ")
+  (let* ((fee (+ (max (* 0.0049 number) 0.99)
+                 (max (* 0.005 number) 1)
+                 (* 0.003 number)))
+         (net (- (* price number)
+                 (* cost number)
+                 (* fee 2))))
+    (message (format "Net: %0.3f, hkd: %0.3f, cost: %0.3f, price: %0.3f, fee: %0.3f"
+                     net
+                     (* net usd2hkd)
+                     (* cost number)
+                     (* price number)
+                     (* fee 2)))))
+
 (provide 'init-helpers)
 ;;; init-helpers.el ends here

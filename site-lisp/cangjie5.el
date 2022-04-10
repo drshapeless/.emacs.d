@@ -20,7 +20,7 @@
                       '(;; ("." . quail-next-translation-block)
                         ;; ("," . quail-prev-translation-block)
                         (" " . quail-select-current))
-                      t nil)
+                      nil nil)
 
 (quail-define-rules
  ("a"	"日曰")
@@ -20650,7 +20650,7 @@
  ("yhgu"	"选")
  ("yhhe"	"邌")
  ("yhhhh"	"彦")
- ("yhhqm"	"産")
+ ("yhhqm"	"產")
  ("yhhv"	"裦")
  ("yhhw"	"遛")
  ("yhiv"	"褢")

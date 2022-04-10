@@ -47,5 +47,15 @@
 ;;                         ("rkm"   "咗")
 ;;                         )))
 
+;; Add back some cangjie 3 characters back into the pool.
+(with-temp-buffer
+  (activate-input-method "cangjie5")
+  (let ((quail-current-package (assoc "cangjie5" quail-package-alist)))
+    (quail-define-rules ((append . t))
+                        ("ohs"   "作")
+                        ("lmyyy" "非")
+                        ("igp"   "應")
+                        )))
+
 (provide 'init-input-method)
 ;;; init-input-method.el ends here

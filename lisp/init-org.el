@@ -32,7 +32,8 @@
 
 (org-babel-do-load-languages
  'org-babel-load-languages
- '((dot . t)))
+ '((dot . t)
+   (shell . t)))
 
 ;; Temp fix.
 (defalias 'org-replace-buffer-contents 'replace-buffer-contents)

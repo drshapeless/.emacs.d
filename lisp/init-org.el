@@ -11,6 +11,7 @@
 ;; version shipped with Emacs. Sounds stupid, but having it handled by
 ;; straight prevent compatibility issues.
 ;; https://github.com/raxod502/straight.el#the-wrong-version-of-my-package-was-loaded
+
 (leaf org
   :require t
   :hook
@@ -25,22 +26,23 @@
 
   (setq org-html-doctype "html5")
   (setq tab-width 2)
-
-  ;; Emacs keeps complaining about missing this function, fuck that.
-  (defalias 'org-file-name-concat #'file-name-concat)
   )
+
+;; `require' does not do shit, use load. Straight has take care of the load path.
+
+;; Manually loading these will fix some void definitions of functions,
+;; e.g. `org-replace-buffer-contents' and `org-file-name-concat'.
+(load "org-macs")
+(load "org-compat")
 
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((dot . t)
    (shell . t)))
 
-;; Temp fix.
-(defalias 'org-replace-buffer-contents 'replace-buffer-contents)
-
 (leaf valign
-  :after org
-  :hook org-mode-hook)
+  :hook org-mode-hook
+  )
 
 (leaf org-pdftools
   :after pdf-tools org
@@ -129,6 +131,7 @@
   :require t)
 
 (leaf org-present
+  :after org
   :require t
   :hook
   (org-present-mode-hook . (lambda ()

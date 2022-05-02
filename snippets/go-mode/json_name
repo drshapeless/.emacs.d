@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: json_name
+# key: js
+# --
+\`json:"$1"\`

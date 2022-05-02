@@ -14,11 +14,14 @@
         corfu-quit-no-match 'separator
         corfu-auto-prefix 1
         corfu-auto-delay 0)
-  (corfu-global-mode))
+  (global-corfu-mode))
 
 ;; Corfu for eglot.
 (setq completion-category-overrides '((eglot (styles orderless))))
 
+(load "extensions/corfu-history")
+(corfu-history-mode)
+(add-to-list 'savehist-additional-variables 'corfu-history)
 
 ;; These will lead to a very weird bug.
 

@@ -20,7 +20,8 @@
   :config
   ;; The default dir of outmail is "sent", which doesn't match my
   ;; postfix setting, changed it to "Sent".
-  (setq notmuch-fcc-dirs "Sent +sent -unread"))
+  (setq notmuch-fcc-dirs "Sent +sent -unread")
+  (setq notmuch-show-logo nil))
 
 (setq send-mail-function 'smtpmail-send-it
       smtpmail-smtp-server "mail.drshapeless.com"

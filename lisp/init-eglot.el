@@ -13,7 +13,8 @@
   (eglot-ensure . flymake)
   :bind
   (:eglot-mode-map
-   ("C-c e r" . eglot-reconnect))
+   ("C-c e r" . eglot-reconnect)
+   ("C-c e f" . eglot-code-action-quickfix))
   :config
   ;; The automatic header insertion by clangd is cancer.
   (add-to-list 'eglot-server-programs

@@ -32,8 +32,8 @@
 
 ;; Manually loading these will fix some void definitions of functions,
 ;; e.g. `org-replace-buffer-contents' and `org-file-name-concat'.
-(load "org-macs")
-(load "org-compat")
+;; (load "org-macs")
+;; (load "org-compat")
 
 (org-babel-do-load-languages
  'org-babel-load-languages

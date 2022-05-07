@@ -89,6 +89,7 @@
 (if *is-a-linux*
     (progn
       (global-set-key (kbd "C-c c") 'drsl/flameshot-capture-screen)
+      (global-set-key (kbd "C-c d") 'drsl/start-discord)
 
       ;; Do not use "C-c `", as mode authors may use non alphabet characters
       ;; for shortcuts.

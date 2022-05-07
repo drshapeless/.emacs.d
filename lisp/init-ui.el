@@ -195,7 +195,7 @@
 (global-auto-revert-mode t)       ; Auto revert. It doesn't work well with
                                   ; tramp.
 
-(set-frame-parameter nil 'fullscreen 'fullboth)
+;; (set-frame-parameter nil 'fullscreen 'fullboth)
 
 ;; Cleanup whitespace before saving.
 (add-hook 'before-save-hook 'whitespace-cleanup)

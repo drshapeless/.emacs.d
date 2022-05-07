@@ -20,6 +20,8 @@
 (require 'init-straight)
 (require 'init-leaf)
 
+(require 'init-org)
+
 ;; Emacs built-in config.
 ;; Although Emacs ships a version of these packages, it is usually
 ;; better to clone the latest version via straight.
@@ -84,8 +86,6 @@
 (require 'init-pass)
 ;; (require 'init-slime)
 (require 'init-sly)
-
-(require 'init-org)
 
 (if *is-a-linux*
     (progn

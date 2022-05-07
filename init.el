@@ -31,7 +31,7 @@
 (require 'init-input-method)
 (require 'init-shell)
 (require 'init-epa)
-(require 'init-erc)
+;; (require 'init-erc)
 (require 'init-flymake)
 (require 'init-ediff)
 

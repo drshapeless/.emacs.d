@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: not null
+# key: nn
+# --
+NOT NULL

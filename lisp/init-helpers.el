@@ -129,7 +129,7 @@
         (shell-command "pactl get-sink-volume @DEFAULT_SINK@ | grep Volume"))
       (defun drsl/start-discord ()
         (interactive)
-        (async-shell-command "discord"))
+        (async-shell-command "discord" "*discord*"))
       ))
 
 (defun drsl/enable-ssh-over-socks ()

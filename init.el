@@ -58,6 +58,7 @@
 (require 'init-flutter)
 (require 'init-cape)
 (require 'init-corfu)
+(require 'init-ibuffer)
 
 ;; Major modes.
 (require 'init-markdown)

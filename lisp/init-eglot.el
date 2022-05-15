@@ -54,5 +54,7 @@
   (add-hook 'before-save-hook #'eglot-format-buffer -10 t))
 (add-hook 'go-mode-hook #'eglot-format-buffer-on-save)
 
+(add-hook 'dart-mode-hook #'eglot-format-buffer-on-save)
+
 (provide 'init-eglot)
 ;;; init-eglot.el ends here

@@ -41,7 +41,7 @@
    (shell . t)))
 
 (leaf valign
-  :hook org-mode-hook
+  ;; :hook org-mode-hook
   )
 
 (leaf org-pdftools

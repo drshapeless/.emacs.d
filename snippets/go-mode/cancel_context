@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: cancel_context
+# key: cc
+# --
+  ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+  defer cancel()

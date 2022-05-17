@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: ResponseWriter_Request
+# key: wr
+# --
+func (app *application) $1(w http.ResponseWriter, r *http.Request) {
+  $2
+}

@@ -34,6 +34,7 @@
 ;; (require 'init-erc)
 (require 'init-flymake)
 (require 'init-ediff)
+(require 'init-ibuffer)
 
 ;; Extra packages
 (require 'init-blackout)
@@ -58,7 +59,7 @@
 (require 'init-flutter)
 (require 'init-cape)
 (require 'init-corfu)
-(require 'init-ibuffer)
+(require 'init-shell-switcher)
 
 ;; Major modes.
 (require 'init-markdown)

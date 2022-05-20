@@ -21,13 +21,13 @@
 (setq exwm-input-global-keys
       `(
         ;; Reset to line mode.
-        ([?\s-r] . exwm-reset)
+        ([?\H-r] . exwm-reset)
 
         ;; Switch workspace.
-        ([?\s-w] . exwm-workspace-switch)
+        ([?\H-w] . exwm-workspace-switch)
 
         ;; Launch application.
-        ([?\s-&] . (lambda (command)
+        ([?\H-&] . (lambda (command)
                      (interactive (list (read-shell-command "$ ")))
                      (start-process-shell-command command nil command)))
 
@@ -41,21 +41,21 @@
         ;;           (number-sequence 0 9))
 
         ;; Toggle fullscreen.
-        ([?\s-f] . exwm-layout-toggle-fullscreen)
-        ([?\s-F] . exwm-floating-toggle-floating)
+        ([?\H-f] . exwm-layout-toggle-fullscreen)
+        ([?\H-F] . exwm-floating-toggle-floating)
 
         ;; Switch to char mode.
-        ([?\s-c] . exwm-input-release-keyboard)
+        ([?\H-c] . exwm-input-release-keyboard)
 
         ;; Swap two workspace.
-        ([?\s-s] . exwm-workspace-swap)
+        ([?\H-s] . exwm-workspace-swap)
 
         ;; These are winmoves.
-        ([?\H-a] . other-frame)
-        ([?\H-s] . windmove-left)
-        ([?\H-d] . windmove-down)
-        ([?\H-e] . windmove-up)
-        ([?\H-f] . windmove-right)
+        ([?\s-a] . other-frame)
+        ([?\s-s] . windmove-left)
+        ([?\s-d] . windmove-down)
+        ([?\s-e] . windmove-up)
+        ([?\s-f] . windmove-right)
 
         ;; Audio volume.
         ([XF86AudioLowerVolume] . drsl/lower-audio-volume)
@@ -108,12 +108,13 @@
 ;; always fail to do xmodmap correctly. Putting it here is guarantee
 ;; to work.
 
-;; I remap right super into hyper, and change the mouse into natural
+;; I remap left super into hyper, and change the mouse into natural
 ;; scrolling like macOS.
 
-;; remove mod4 = Super_R
-;; keycode 134 = Hyper_R
-;; add    mod3 = Hyper_R
+;; remove mod4 = Super_L
+;; remove mod4 = Hyper_L
+;; keycode 133 = Hyper_L
+;; add    mod3 = Hyper_L
 
 ;; pointer = 1 2 3 5 4 7 6 8 9 10 11 12
 (shell-command "xmodmap ~/.Xmodmap")

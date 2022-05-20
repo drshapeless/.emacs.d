@@ -2,7 +2,10 @@
 
 ;;; Commentary:
 
-;;
+;; The left super key is changed into hyper.
+
+;; Originally, I change the right super key into hyper. But that does
+;; not work well in other window manager other than EXWM.
 
 ;;; Code:
 
@@ -11,15 +14,16 @@
 (if *is-a-mac*
     (progn
       (setq mac-option-modifier 'meta)
-      (setq mac-command-modifier 'super)
-      (setq mac-right-command-modifier 'hyper)))
+      (setq mac-command-modifier 'hyper)
+      (setq mac-right-command-modifier 'super)))
 
 (global-set-key (kbd "C-x k") 'kill-this-buffer) ; Kill buffer directly.
 (global-set-key (kbd "C-x C-b") 'ibuffer)	 ; Use ibuffer.
 (global-set-key (kbd "C-c K") 'compile)
 (global-set-key (kbd "C-c k") 'recompile)
 (global-set-key (kbd "C-c S") 'eshell)
-(global-set-key (kbd "C-c s") 'shell)
+;; I use "C-'" for switching between shells now.
+;; (global-set-key (kbd "C-c s") 'shell)
 
 ;; C-z was used as suspension of Emacs, in gui, it is useless, and it
 ;; sucks dick when you accidentally press it.
@@ -28,15 +32,15 @@
 ;; I used to use C-z as a personal prefix key, but it is so hard to
 ;; press that I gave up using C-c. C-c does not collide with anything.
 
-(global-set-key (kbd "s-<SPC>") 'drsl/toggle-input-and-shapeless-chinese)
+(global-set-key (kbd "H-<SPC>") 'drsl/toggle-input-and-shapeless-chinese)
 
 ;; Redefine the arrow keys to windmove.
 (require 'windmove)
-(global-set-key (kbd "H-s") 'windmove-left)
-(global-set-key (kbd "H-f") 'windmove-right)
-(global-set-key (kbd "H-e") 'windmove-up)
-(global-set-key (kbd "H-d") 'windmove-down)
-(global-set-key (kbd "H-a") 'other-frame)
+(global-set-key (kbd "s-s") 'windmove-left)
+(global-set-key (kbd "s-f") 'windmove-right)
+(global-set-key (kbd "s-e") 'windmove-up)
+(global-set-key (kbd "s-d") 'windmove-down)
+(global-set-key (kbd "s-a") 'other-frame)
 
 
 ;; (global-set-key (kbd "C-c w w") 'drsl/publish-and-sync)

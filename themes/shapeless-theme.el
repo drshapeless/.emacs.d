@@ -4,8 +4,8 @@
 ;; Description: The shapeless theme.
 ;; Author: DrShapeLess <drsl@drshapeless.com>
 ;; Created: Sat Jan 23 14:05:48 2021 (+0800)
-;; Modified: Tue Nov 9 21:45:25 2021 (+0800)
-;; Version: 0.3.2
+;; Modified: Sun May 22 12:48:00 2022 (+0800)
+;; Version: 0.3.3
 
 ;;; Commentary:
 
@@ -28,6 +28,7 @@
       (sl/dark-gray     "#404040")
       (sl/darker-gray   "#2b2b2b")
       (sl/darkest-gray  "#1a1a1a")
+      (sl/weird-bg      "#191a1b")
 
       ;; Other colors
       (sl/red           "#a10000")
@@ -41,6 +42,8 @@
       (sl/purple        "#ce66ce")
       (sl/violet        "#a63ea5")
       (sl/pink          "#d85daf")
+      (sl/blue-green    "#00415e")
+      (sl/light-blue    "#c0efff")
       )
 
   ;; Customize faces.
@@ -79,9 +82,9 @@
    `(minibuffer-prompt        ((t (:foreground ,sl/yellow))))
 
    ;; company
-   `(company-tooltip           ((t (:foreground ,sl/yellow :background ,sl/darker-gray))))
+   `(company-tooltip           ((t (:background ,sl/weird-bg))))
    `(company-tooltip-common    ((t (:foreground ,sl/orange))))
-   `(company-tooltip-selection ((t (:background ,sl/dark-gray))))
+   `(company-tooltip-selection ((t (:background ,sl/blue-green))))
    `(company-scrollbar-bg      ((t (:background ,sl/dark-gray))))
    `(company-scrollbar-fg      ((t (:background ,sl/white))))
    `(company-preview-common    ((t (:inherit font-lock-comment-face))))

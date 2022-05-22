@@ -14,7 +14,8 @@
   (setq company-idle-delay 0
         company-echo-delay 0
         company-dabbrev-downcase nil
-        company-minimum-prefix-length 1)
+        company-minimum-prefix-length 1
+        company-tooltip-maximum-width 60)
   )
 
 (provide 'init-company)

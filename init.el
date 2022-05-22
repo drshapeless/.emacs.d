@@ -60,9 +60,11 @@
 ;; Since the lastest emacs has a bug for child frame display, making
 ;; corfu absolutely unusable, for the latest Emacs build, use company
 ;; instead.
-(if (version< emacs-version "29.0.50")
-    (require 'init-corfu)
-  (require 'init-company))
+(require 'init-corfu)
+;; Company is just bad.
+;; (if (version< emacs-version "29.0.50")
+;;     (require 'init-corfu)
+;;   (require 'init-company))
 (require 'init-shell-switcher)
 
 ;; Major modes.

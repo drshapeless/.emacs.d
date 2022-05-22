@@ -39,7 +39,6 @@
 ;; Extra packages
 (require 'init-blackout)
 (require 'init-mood-line)
-;; (require 'init-company)
 (require 'init-yasnippet)
 (require 'init-vertico)
 (require 'init-orderless)
@@ -58,7 +57,12 @@
 (require 'init-projectile)
 (require 'init-flutter)
 (require 'init-cape)
-(require 'init-corfu)
+;; Since the lastest emacs has a bug for child frame display, making
+;; corfu absolutely unusable, for the latest Emacs build, use company
+;; instead.
+(if (version< emacs-version "29.0.50")
+    (require 'init-corfu)
+  (require 'init-company))
 (require 'init-shell-switcher)
 
 ;; Major modes.
@@ -93,7 +97,7 @@
     (progn
       ;; This is about smooth scrolling in Emacs.
       ;; For macos, emacs-mac has a even better scrolling.
-      (if  (version< emacs-version "29.0.50")
+      (if (version< emacs-version "29.0.50")
           ;; For older version, just use good-scroll.
           (require 'init-good-scroll)
         ;; pixel-scroll-precision-mode is a new feature in version 29.

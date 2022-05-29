@@ -144,6 +144,25 @@
           (message "ssh over socks enabled."))
       (message "no ssh socks config."))))
 
+;; In config.socks,
+;; Host drshapeless.com
+;; HostName drshapeless.com
+;; User git
+;; ProxyCommand nc -v -x 127.0.0.1:10800 %h %p
+
+;; Host github.com
+;; HostName github.com
+;; User git
+;; ProxyCommand nc -v -x 127.0.0.1:10800 %h %p
+
+;; Host home.drshapeless.com
+;; HostName home.drshapeless.com
+;; User jacky
+;; ProxyCommand nc -v -x 127.0.0.1:10800 %h %p
+
+;; Host *
+;; ControlMaster yes
+
 (defun drsl/disable-ssh-over-socks ()
   "Disable ssh over socks."
   (interactive)
@@ -155,6 +174,10 @@
           (copy-file config-backup config t)
           (message "ssh over socks disabled."))
       (message "no ssh backup config."))))
+
+;; In config.bak,
+;; Host *
+;; ControlMaster yes
 
 (defun drsl/start-v2ray ()
   "Start v2ray daemon."

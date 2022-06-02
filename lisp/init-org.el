@@ -25,7 +25,6 @@
   (setq org-time-stamp-formats (cons "<%Y-%m-%d %H:%M>" "<%Y-%m-%d>"))
 
   (setq org-html-doctype "html5")
-  (setq tab-width 2)
   )
 
 ;; `require' does not do shit, use load. Straight has take care of the load path.

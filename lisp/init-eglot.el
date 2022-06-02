@@ -29,7 +29,10 @@
   (add-to-list 'eglot-server-programs
                '(dart-mode . ("dart" "language-server"))))
 
-(setq js-indent-level 2)
+(setq c-default-style '((java-mode . "java")
+                        (awk-mode . "awk")
+                        (other . "linux")))
+
 (setq compile-command "make")
 
 ;; Find the nearest parent go.mod as the project root.

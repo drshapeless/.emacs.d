@@ -179,8 +179,6 @@
 
 (setq display-time-format "%Y-%m-%d %H:%M")
 
-(setq-default tab-width 2)
-
 ;; This line prevent the mode line from showing useless CPU usage.
 (setq display-time-load-average-threshold 10.0)
 (display-time-mode t)                   ; Display time.

@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: swag
+# key: swag
+# --
+// $1
+// @Summary $2
+// @Description $3
+// @Tags $4
+// @Accept  json
+// @Produce  json
+// @Param Authorization header string true "Bearer"
+// @Param data body swag_user_input true "The input user struct"
+// @Success 200 {}
+// @Failure 400 {}
+// @Router / [get]

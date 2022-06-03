@@ -9,6 +9,8 @@
 
 (setq gc-cons-threshold 50000000)
 
+(fset 'yes-or-no-p 'y-or-n-p)
+
 ;; From Bahbar, https://stackoverflow.com/questions/1774832/how-to-swap-the-buffers-in-2-windows-emacs.
 (defun swap-buffers-in-windows ()
   "Put the buffer from the selected window in next window, and vice versa"

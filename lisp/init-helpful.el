@@ -13,7 +13,8 @@
   ([remap describe-key] . helpful-key)
   ("C-c C-d" . helpful-at-point)
   ("C-h F" . helpful-function)
-  ("C-h C" . helpful-command))
+  ("C-h C" . helpful-command)
+  ("C-h C-k" . helpful-kill-buffers))
 
 (provide 'init-helpful)
 ;;; init-helpful.el ends here

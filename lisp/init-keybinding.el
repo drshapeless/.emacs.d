@@ -84,6 +84,7 @@
 (global-set-key (kbd "C-c f t") 'drsl/firefox-open-url)
 (global-set-key (kbd "C-c f f") 'drsl/start-firefox)
 (global-set-key (kbd "C-c f p") 'drsl/start-firefox-private)
+(global-set-key (kbd "C-c f w") 'drsl/switch-buffer-firefox)
 
 ;; Mentor, rTorrent client in Emacs
 (global-set-key (kbd "C-c t") 'mentor)

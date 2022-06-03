@@ -255,5 +255,17 @@
                      (* price number)
                      (* fee 2)))))
 
+(defun drsl/switch-buffer-by-prefix (PREFIX)
+  "Select a buffer prefixed by PREFIX."
+  (minibuffer-with-setup-hook
+      (lambda ()
+        (insert (concat "^" PREFIX)))
+    (consult-buffer)))
+
+(defun drsl/switch-buffer-firefox ()
+  "Select a firefox window."
+  (interactive)
+  (drsl/switch-buffer-by-prefix "*firefox"))
+
 (provide 'init-helpers)
 ;;; init-helpers.el ends here

@@ -14,11 +14,11 @@
   :require t
   :mode "\\.epub\\'"
   :hook
-  (nov-mode-hook . shrface-mode)
+  ;; (nov-mode-hook . shrface-mode)
   ;; Since nov only uses `browse-url' to browse external url, we
   ;; change the `browse-url-browser-function' to `w3m-browse-url'
   ;; without disturbing other things.
-  (nov-mode-hook . drsl/browse-url-with-w3m)
+  ;; (nov-mode-hook . drsl/browse-url-with-w3m)
   :bind
   (:nov-mode-map
    ;; ("C-v" . good-scroll-up)
@@ -36,6 +36,19 @@
 (defun drsl/nov-increase-font-size ()
   (text-scale-increase 1)
   (nov-render-document))
+
+(if (featurep 'xwidget)
+    (leaf nov-xwidget
+      :straight (nov-xwidget :type git :host github :repo "chenyanming/nov-xwidget")
+      :require t
+      :bind (:nov-xwidget-webkit-mode-map
+             ("n" . nov-xwidget-next-document)
+             ("p" . nov-xwidget-previous-document))
+      :config
+      (add-hook 'nov-mode-hook 'nov-xwidget-inject-all-files)
+      (add-hook 'nov-mode-hook 'nov-xwidget-view))
+  (progn (add-hook 'nov-mode-hook 'shrface-mode)
+         (add-hook 'nov-mode-hook 'drsl/browse-url-with-w3m)))
 
 (provide 'init-nov)
 ;;; init-nov.el ends here

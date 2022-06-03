@@ -11,7 +11,8 @@
 (leaf pass
   :require t
   :config
-  (setq auth-sources '(password-store)))
+  (setq auth-sources '(password-store))
+  (setq pass-username-fallback-on-filename t))
 
 (provide 'init-pass)
 ;;; init-pass.el ends here

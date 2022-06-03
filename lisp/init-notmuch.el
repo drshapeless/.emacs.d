@@ -22,7 +22,7 @@
   ;; postfix setting, changed it to "Sent".
   (setq notmuch-fcc-dirs "Sent +sent -unread")
   (setq notmuch-show-logo nil)
-  (setq notmuch-search-oldest-first nil)
+  (setq-default notmuch-search-oldest-first nil)
   )
 
 (setq send-mail-function 'smtpmail-send-it

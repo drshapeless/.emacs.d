@@ -1,1 +1,49 @@
-My emacs config file, made for macOS and Artix linux.
+#+title: drshapeless emacs configuration
+
+This Emacs configuration is for Linux and macOS. I have never use
+Emacs on Windows, (in fact I have not been using Windows for a long
+time).
+
+The structure of this config is heavily influenced by Steve Purcell,
+https://github.com/purcell/emacs.d, but the context is completely
+built from scratch.
+
+I am not a programmer, just a doctor like to tinker with computer.
+
+I have been using Emacs since 2020, and actively update my
+configuration.
+
+* Emacs version
+I always go with the bleed edge build of Emacs on Linux. But on macOS,
+I just go with emacs-mac by YAMAMOTO Mitsuharu,
+https://bitbucket.org/mituharu/emacs-mac/overview, which is only up to
+the latest stable build.
+
+* Key bindings
+I use the classic Emacs key bindings. I have never use vim before, no
+reason for me to use evil.
+
+* Packages of choice
+These are some of my many packages.
+
+- eglot (lsp)
+- corfu (completion)
+- vertico (ivy replacement)
+- marginalia (extra info)
+- consult (better alternatives for build in functions)
+- exwm (window manager)
+- leaf (alternative to use-package)
+- yasnippet (snippet)
+- vterm (terminal)
+- notmuch (email)
+- nov (epub)
+
+* Theme
+I use my custom shapeless-theme, which is an extremely dark theme with
+low contrast.
+
+* Fun fact
+I did not even know how to program nor do I have any necessary use
+when I start using Emacs. The only reason why I downloaded Emacs was
+because I was an Apple fanboy, and stupid enough to think Emacs has
+something related to macOS...

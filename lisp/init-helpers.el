@@ -54,26 +54,26 @@
 ;; Don't use librewolf, EXWM xim doesn't work.
 
 (defun drsl/firefox-search-duckduckgo (term)
-  "Firefox duckduckgo search in a new tab."
+  "Firefox duckduckgo search in a new window."
   (interactive (list (read-string "duckduckgo: ")))
-  (start-process-shell-command "firefox" nil (format "firefox --new-tab 'https://duckduckgo.com/?q=%s' " term)))
+  (start-process-shell-command "firefox" nil (format "firefox 'https://duckduckgo.com/?q=%s' " term)))
 
 ;; (defun drsl/google-with-firefox (term)
 ;;   "Firefox google search in a new tab."
 ;;   (interactive (list (read-string "google: ")))
 ;;   (start-process-shell-command "firefox" nil (format "firefox --new-tab 'https://google.com/search?q=%s'" term)))
 
-(defun drsl/firefox-search-searx (term)
-  "Firefox search in a new tab."
-  (interactive (list (read-string "search: ")))
-  (start-process-shell-command "firefox" nil
-                               (format "firefox --new-tab 'https://searx.drshapeless.com/search?q=%s'" term)))
+;; (defun drsl/firefox-search-searx (term)
+;;   "Firefox search in a new window."
+;;   (interactive (list (read-string "search: ")))
+;;   (start-process-shell-command "firefox" nil
+;;                                (format "firefox 'https://searx.drshapeless.com/search?q=%s'" term)))
 
 (defun drsl/firefox-open-url (url)
-  "Firefox url in a new tab."
+  "Firefox url in a new window."
   (interactive (list (read-string "url: ")))
   (start-process-shell-command "firefox" nil
-                               (format "firefox --new-tab '%s'" url)))
+                               (format "firefox '%s'" url)))
 
 (defun drsl/start-firefox ()
   "Start a new firefox session."

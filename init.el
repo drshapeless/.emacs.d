@@ -7,7 +7,7 @@
 ;;; Code:
 
 ;; Personal information.
-(setq user-full-name "drshapeless")
+(setq user-full-name "Jacky Li")
 (setq user-mail-address "drsl@drshapeless.com")
 
 ;; Load the "lisp" folder.

@@ -29,9 +29,23 @@
   (add-to-list 'eglot-server-programs
                '(dart-mode . ("dart" "language-server"))))
 
-(setq c-default-style '((java-mode . "java")
-                        (awk-mode . "awk")
-                        (other . "linux")))
+;; (setq c-default-style '((java-mode . "java")
+;;                         (awk-mode . "awk")
+;;                         (other . "linux")))
+
+(defun drsl/use-c-gnu-style ()
+  (interactive)
+  (setq c-default-style '((java-mode . "java")
+                          (awk-mode . "awk")
+                          (other . "gnu"))))
+
+(defun drsl/use-c-linux-style ()
+  (interactive)
+  (setq c-default-style '((java-mode . "java")
+                          (awk-mode . "awk")
+                          (other . "linux"))))
+
+(drsl/use-c-linux-style)
 
 (setq compile-command "make")
 

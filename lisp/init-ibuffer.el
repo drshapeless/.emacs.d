@@ -10,7 +10,15 @@
   :require t)
 
 (defvar drsl/ibuffer-filter-groups
-  '(("Helpful" (mode . helpful-mode))
+  '(("shell" (or (mode . shell-mode)
+                 (mode . vterm-mode)))
+    ("mail" (or (mode . notmuch-show-mode)
+                (mode . notmuch-search-mode)
+                (mode . notmuch-hello-mode)
+                (name . "^\\*sent mail")
+                (name . "^\\*unsent mail")))
+    ("firefox" (name . "\\^*firefox"))
+    ("Helpful" (mode . helpful-mode))
     ("emacs" (or (name . "^\\*scratch\\*$")
                  (name . "^\\*Messages\\*$")
                  (name . "^\\*Warnings\\*$")
@@ -20,7 +28,11 @@
                  (name . "^\\*Native-compile-Log\\*$")
                  (name . "^\\*info\\*$")
                  (name . "^\\*straight-process\\*$")
-                 (name . "^\\*v2ray\\*$")))
+                 (name . "^\\*v2ray\\*$")
+                 (name . "^\\*mbsync\\*$")
+                 (name . "^\\*straight-byte-compilation\\*$")
+                 (name . "^\\*Shell Command Output\\*$")
+                 (name . "^\\*XELB-DEBUG\\*$")))
     ("eglot" (name . "\\^*EGLOT"))
     ))
 
@@ -28,24 +40,26 @@
           (lambda ()
             (setq ibuffer-filter-groups (append drsl/ibuffer-filter-groups (ibuffer-project-generate-filter-groups)))))
 
+;; From https://www.emacswiki.org/emacs/IbufferMode#h5o-12.
 (setq ibuffer-formats
-      '((mark " " (name 18 18 :left :elide)
-              " " (human-readable-size 6 -1 :right)
-              " " (mode 16 16 :left :elide) " " filename-and-process)
-        (mark " " (name 16 -1) " " filename)))
+      '((mark modified read-only locked " "
+              (name 18 18 :left :elide)
+              " "
+              (size-h 9 -1 :right)
+              " "
+              (mode 16 16 :left :elide)
+              " " filename-and-process)
+        (mark " "
+              (name 16 -1)
+              " " filename)))
 
-(define-ibuffer-column human-readable-size
-  (:name "Size"
-         :inline t
-         :header-mouse-map ibuffer-size-header-map
-         :summarizer
-         (lambda (column-strings)
-           (cl-loop for s in column-strings
-                    sum (get-text-property (1- (length s)) 'size s) into total
-                    finally return (file-size-human-readable total))))
-  (let ((size (buffer-size)))
-    (propertize (file-size-human-readable size)
-                'size size)))
+(define-ibuffer-column size-h
+  (:name "Size" :inline t)
+  (cond
+   ((> (buffer-size) 1000000) (format "%7.1fM" (/ (buffer-size) 1000000.0)))
+   ((> (buffer-size) 100000) (format "%7.0fk" (/ (buffer-size) 1000.0)))
+   ((> (buffer-size) 1000) (format "%7.1fk" (/ (buffer-size) 1000.0)))
+   (t (format "%8d" (buffer-size)))))
 
 (provide 'init-ibuffer)
 ;;; init-ibuffer.el ends here

@@ -17,7 +17,6 @@
                 (mode . notmuch-hello-mode)
                 (name . "^\\*sent mail")
                 (name . "^\\*unsent mail")))
-    ("firefox" (name . "\\^*firefox"))
     ("Helpful" (mode . helpful-mode))
     ("emacs" (or (name . "^\\*scratch\\*$")
                  (name . "^\\*Messages\\*$")
@@ -35,6 +34,9 @@
                  (name . "^\\*XELB-DEBUG\\*$")))
     ("eglot" (name . "\\^*EGLOT"))
     ))
+
+(if *is-a-linux*
+    (add-to-list drsl/ibuffer-filter-groups '("firefox" (name . "\\^*firefox"))))
 
 (add-hook 'ibuffer-hook
           (lambda ()

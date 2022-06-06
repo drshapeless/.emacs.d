@@ -32,7 +32,7 @@
                  (name . "^\\*straight-byte-compilation\\*$")
                  (name . "^\\*Shell Command Output\\*$")
                  (name . "^\\*XELB-DEBUG\\*$")))
-    ("eglot" (name . "\\^*EGLOT"))
+    ("eglot" (name . "^\\*EGLOT"))
     ))
 
 (if *is-a-linux*

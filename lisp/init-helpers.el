@@ -269,5 +269,10 @@
   (interactive)
   (drsl/switch-buffer-by-prefix "*firefox"))
 
+(if *is-a-mac*
+    (progn
+      (toggle-frame-maximized)
+      (drsl/start-v2ray)))
+
 (provide 'init-helpers)
 ;;; init-helpers.el ends here

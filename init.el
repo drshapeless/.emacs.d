@@ -103,8 +103,8 @@
       (require 'init-exwm)
       )
   )
-(require 'init-ui)
 (require 'init-helpers)
+(require 'init-ui)
 (require 'init-keybinding)
 (require 'init-shapeless-blog)
 

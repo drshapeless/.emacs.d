@@ -9,7 +9,7 @@
 (leaf eglot
   :require t
   :hook
-  ((c-mode-hook c++-mode-hook objc-mode-hook swift-mode-hook python-mode-hook js-mode-hook go-mode-hook sql-mode-hook dart-mode-hook) . eglot-ensure)
+  ((c-mode-hook c++-mode-hook objc-mode-hook swift-mode-hook python-mode-hook js-mode-hook go-mode-hook sql-mode-hook dart-mode-hook rust-mode-hook) . eglot-ensure)
   (eglot-ensure . flymake)
   :bind
   (:eglot-mode-map

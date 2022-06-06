@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: theme
+# key: tt
+# --
+`($1 ((t (:foreground $2))))

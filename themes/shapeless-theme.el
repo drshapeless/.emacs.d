@@ -4,8 +4,8 @@
 ;; Description: The shapeless theme.
 ;; Author: DrShapeLess <drsl@drshapeless.com>
 ;; Created: Sat Jan 23 14:05:48 2021 (+0800)
-;; Modified: Sun May 22 12:48:00 2022 (+0800)
-;; Version: 0.3.3
+;; Modified: Mon June 6 10:11:00 2022 (+0800)
+;; Version: 0.4.0
 
 ;;; Commentary:
 
@@ -73,6 +73,45 @@
    `(font-lock-variable-name-face     ((t (:foreground
                                            ,sl/bright-orange))))
    `(font-lock-warning-face           ((t (:foreground ,sl/red :bold t))))
+
+   ;; tree-sitter
+   `(tree-sitter-hl-face:attribute             ((t (:foreground ,sl/yellow))))
+   `(tree-sitter-hl-face:comment               ((t (:foreground ,sl/gray))))
+   `(tree-sitter-hl-face:constant              ((t (:foreground ,sl/violet))))
+   `(tree-sitter-hl-face:constant.builtin      ((t (:foreground ,sl/violet))))
+   `(tree-sitter-hl-face:constructor           ((t (:foreground ,sl/pink))))
+   `(tree-sitter-hl-face:doc                   ((t (:foreground ,sl/yellow))))
+   `(tree-sitter-hl-face:embedded              ((t (:foreground ,sl/white))))
+   `(tree-sitter-hl-face:escape                ((t (:foreground ,sl/violet))))
+   `(tree-sitter-hl-face:function              ((t (:foreground ,sl/green))))
+   `(tree-sitter-hl-face:function.builtin      ((t (:foreground ,sl/green))))
+   `(tree-sitter-hl-face:function.call         ((t (:foreground ,sl/green))))
+   `(tree-sitter-hl-face:function.macro        ((t (:foreground ,sl/green))))
+   `(tree-sitter-hl-face:function.special      ((t (:foreground ,sl/green))))
+   `(tree-sitter-hl-face:keyword               ((t (:foreground ,sl/blue))))
+   `(tree-sitter-hl-face:label                 ((t (:foreground ,sl/yellow))))
+   `(tree-sitter-hl-face:method                ((t (:foreground ,sl/green))))
+   `(tree-sitter-hl-face:method.call           ((t (:foreground ,sl/green))))
+   `(tree-sitter-hl-face:number                ((t (:foreground ,sl/yellow))))
+   `(tree-sitter-hl-face:operator              ((t (:foreground ,sl/blue))))
+   `(tree-sitter-hl-face:property              ((t (:foreground ,sl/bright-orange))))
+   `(tree-sitter-hl-face:property.definition   ((t (:foreground ,sl/yellow))))
+   `(tree-sitter-hl-face:punctuation           ((t (:foreground ,sl/white))))
+   `(tree-sitter-hl-face:punctuation.bracket   ((t (:foreground ,sl/white))))
+   `(tree-sitter-hl-face:punctuation.delimiter ((t (:foreground ,sl/white))))
+   `(tree-sitter-hl-face:punctuation.special   ((t (:foreground ,sl/white))))
+   `(tree-sitter-hl-face:string                ((t (:foreground ,sl/pale-orange))))
+   `(tree-sitter-hl-face:string.special        ((t (:foreground ,sl/pale-orange))))
+   `(tree-sitter-hl-face:tag                   ((t (:foreground ,sl/yellow))))
+   `(tree-sitter-hl-face:type                  ((t (:foreground ,sl/pink))))
+   `(tree-sitter-hl-face:type.argument         ((t (:foreground ,sl/pink))))
+   `(tree-sitter-hl-face:type.builtin          ((t (:foreground ,sl/pink))))
+   `(tree-sitter-hl-face:type.parameter        ((t (:foreground ,sl/pink))))
+   `(tree-sitter-hl-face:type.super            ((t (:foreground ,sl/pink))))
+   `(tree-sitter-hl-face:variable              ((t (:foreground ,sl/bright-orange))))
+   `(tree-sitter-hl-face:variable.builtin      ((t (:foreground ,sl/blue))))
+   `(tree-sitter-hl-face:variable.parameter    ((t (:foreground ,sl/bright-orange))))
+   `(tree-sitter-hl-face:variable.special      ((t (:foreground ,sl/bright-orange))))
 
    ;; system
    `(line-number-current-line ((t (:foreground ,sl/orange :background ,sl/dark-gray))))

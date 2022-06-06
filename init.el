@@ -57,20 +57,16 @@
 (require 'init-projectile)
 (require 'init-flutter)
 (require 'init-cape)
-;; Since the lastest emacs has a bug for child frame display, making
-;; corfu absolutely unusable, for the latest Emacs build, use company
-;; instead.
 (require 'init-corfu)
-;; Company is just bad.
-;; (if (version< emacs-version "29.0.50")
-;;     (require 'init-corfu)
-;;   (require 'init-company))
 (require 'init-shell-switcher)
+(require 'init-tree-sitter)
+(require 'init-rainbow)
 
 ;; Major modes.
 (require 'init-markdown)
 (require 'init-swift)
 (require 'init-go)
+(require 'init-rust)
 (require 'init-nginx)
 (require 'init-web)
 (require 'init-calibredb)
@@ -107,9 +103,9 @@
       (require 'init-exwm)
       )
   )
+(require 'init-ui)
 (require 'init-helpers)
 (require 'init-keybinding)
-(require 'init-ui)
 (require 'init-shapeless-blog)
 
 (server-start)
@@ -124,7 +120,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("baf99d71d17780801f41c0be391641d3032aa8121c2c41f379d3ec643590e6f9" "71cbf5d7f6ecdb19b43466aef10622bacbf6f5fbd924de567ddd99c52ae25230" "e449dc2222ba43d28759ffbc3b770f7186f4f5c3f9732475709f02d876ccdc8e" "143f15a0a1260761363230fadb7af13f9c76ab44dc55af47c61c789b40728484" default))
+   '("22aa7150cc5563723c2ff2773a38b06dc7682a7c5482b9a45670dab096385750" "baf99d71d17780801f41c0be391641d3032aa8121c2c41f379d3ec643590e6f9" "71cbf5d7f6ecdb19b43466aef10622bacbf6f5fbd924de567ddd99c52ae25230" "e449dc2222ba43d28759ffbc3b770f7186f4f5c3f9732475709f02d876ccdc8e" "143f15a0a1260761363230fadb7af13f9c76ab44dc55af47c61c789b40728484" default))
  '(safe-local-variable-values
    '((elisp-lint-indent-specs
       (describe . 1)

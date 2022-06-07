@@ -11,6 +11,11 @@
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
+;; Always use space to align.
+;; (defadvice align-regexp (around align-regexp-with-spaces activate)
+;;   (let ((indent-tabs-mode nil))
+;;     ad-do-it))
+
 ;; From Bahbar, https://stackoverflow.com/questions/1774832/how-to-swap-the-buffers-in-2-windows-emacs.
 (defun swap-buffers-in-windows ()
   "Put the buffer from the selected window in next window, and vice versa"

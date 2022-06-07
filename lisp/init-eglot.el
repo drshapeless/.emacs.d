@@ -71,6 +71,9 @@
 (if *is-a-mac*
     (load "/opt/homebrew/share/clang/clang-format.el"))
 
+(if *is-a-linux*
+    (load "/usr/share/clang/clang-format.el"))
+
 (require 'clang-format)
 
 (defun clang-format-buffer-on-save ()

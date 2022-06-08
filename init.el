@@ -38,8 +38,8 @@
 
 ;; Extra packages
 (require 'init-blackout)
-;; (require 'init-mood-line)
-(require 'init-doom-modeline)
+(require 'init-mood-line)
+;; (require 'init-doom-modeline)
 (require 'init-yasnippet)
 (require 'init-vertico)
 (require 'init-orderless)

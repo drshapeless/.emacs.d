@@ -6,9 +6,10 @@
 
 ;;; Code:
 
-(leaf mood-line)
+(leaf mood-line
+  :require t)
 
-(mood-line-mode)
+(mood-line-mode 1)
 
 (provide 'init-mood-line)
 ;;; init-mood-line.el ends here

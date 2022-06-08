@@ -9,9 +9,7 @@
 ;;; Code:
 
 (leaf go-mode
-  :require t
-  :hook
-  (go-mode-hook . drsl/go-mode-hook))
+  :require t)
 
 (provide 'init-go)
 ;;; init-go.el ends here

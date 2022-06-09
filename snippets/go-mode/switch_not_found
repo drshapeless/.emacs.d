@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: switch not found
+# key: snf
+# --
+switch {
+case errors.Is(err, data.ErrRecordNotFound):
+app.notFoundResponse(w, r)
+default:
+app.serverErrorResponse(w, r, err)
+}
+return

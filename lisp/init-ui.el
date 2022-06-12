@@ -191,9 +191,10 @@
 (electric-pair-mode t)
 (setq ring-bell-function 'ignore)	; No notification sound.
 (global-auto-revert-mode t)       ; Auto revert. It doesn't work well with
-                                  ; tramp.
+                                        ; tramp.
 
 ;; (set-frame-parameter nil 'fullscreen 'fullboth)
+(setq confirm-kill-processes nil)
 
 ;; Cleanup whitespace before saving.
 (add-hook 'before-save-hook 'whitespace-cleanup)
@@ -203,6 +204,8 @@
 
 ;; Never use tab.
 (setq-default indent-tabs-mode nil)
+
+(setq use-short-answers t)
 
 ;; Custom directory for backup files.
 (setq backup-directory-alist

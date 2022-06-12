@@ -92,6 +92,10 @@
 ;; Open password manager.
 (global-set-key (kbd "C-c g") 'pass)
 
+;; Scroll half page only.
+(global-set-key [remap scroll-down-command] 'View-scroll-half-page-backward)
+(global-set-key [remap scroll-up-command] 'View-scroll-half-page-forward)
+
 (if *is-a-linux*
     (progn
       (global-set-key (kbd "C-c c") 'drsl/flameshot-capture-screen)

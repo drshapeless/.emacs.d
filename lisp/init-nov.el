@@ -31,6 +31,28 @@
   (setq nov-shr-rendering-functions '((img . nov-render-img) (title . nov-render-title)))
   (setq nov-shr-rendering-functions
         (append nov-shr-rendering-functions shr-external-rendering-functions))
+
+  (defun drsl/nov-scroll-up (ARG)
+    "Scroll with `View-scroll-half-page-forward' or visit next
+chapter if at bottom."
+    (interactive "P")
+    (if (>= (window-end) (point-max))
+        (nov-next-document)
+      (View-scroll-half-page-forward ARG)))
+
+  (defun drsl/nov-scroll-down (ARG)
+    "Scroll with `View-scroll-half-page-backward' or visit previous
+chapter if at top."
+    (interactive "P")
+    (if (and (<= (window-start) (point-min))
+             (> nov-documents-index 0))
+        (progn
+          (nov-previous-document)
+          (goto-char (point-max)))
+      (View-scroll-half-page-backward ARG)))
+
+  (advice-add 'nov-scroll-down :override 'drsl/nov-scroll-down)
+  (advice-add 'nov-scroll-up :override 'drsl/nov-scroll-up)
   )
 
 (defun drsl/nov-increase-font-size ()
@@ -42,7 +64,8 @@
   :require t
   :bind ((:nov-xwidget-webkit-mode-map
           ("n" . nov-xwidget-next-document)
-          ("p" . nov-xwidget-previous-document))
+          ("p" . nov-xwidget-previous-document)
+          ("q" . kill-this-buffer))
          (:nov-mode-map
           ("v" . nov-xwidget-view)))
   :config

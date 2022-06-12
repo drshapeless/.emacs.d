@@ -11,8 +11,8 @@
   :after dart-mode
   :bind (:dart-mode-map
          ("C-M-x" . #'flutter-run-or-hot-reload))
-  :custom
-  (flutter-sdk-path "/opt/flutter/"))
+  :config
+  (setq flutter-sdk-path "~/src/flutter/"))
 
 (provide 'init-flutter)
 ;;; init-flutter.el ends here

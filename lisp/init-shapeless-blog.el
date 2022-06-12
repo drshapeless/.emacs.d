@@ -7,13 +7,15 @@
 ;;; Code:
 
 (leaf shapeless-blog
+  :after request
   :straight (shapeless-blog :type git :host github :repo "drshapeless/emacs-shapeless-blog")
   :require t
-  :config
-  (setq shapeless-blog-token (password-store-get "blog.drshapeless.com"))
-  (setq shapeless-blog-api-url "https://blog.drshapeless.com/api")
   :bind (:org-mode-map
          ("C-c b p" . shapeless-blog-create-or-update-post)))
+
+(setq shapeless-blog-secret (password-store-get "blog.drshapeless.com"))
+(setq shapeless-blog-api-url "https://blog.drshapeless.com/api")
+
 
 ;; (define-key org-mode-map (kbd "C-c b p") 'shapeless-blog-create-or-update-post)
 ;; (define-key org-mode-map (kbd "C-c b m") 'shapeless-blog-modify-old-post)

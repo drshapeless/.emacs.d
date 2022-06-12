@@ -10,11 +10,10 @@
   :straight (shapeless-blog :type git :host github :repo "drshapeless/emacs-shapeless-blog")
   :require t
   :config
-  (setq shapeless-blog-remote-path "jacky@drshapeless.com:shapeless-blog")
+  (setq shapeless-blog-token (password-store-get "blog.drshapeless.com"))
+  (setq shapeless-blog-api-url "https://blog.drshapeless.com/api")
   :bind (:org-mode-map
-         ("C-c b p" . shapeless-blog-create-or-update-post)
-         ("C-c b m" . shapeless-blog-modify-old-post)
-         ("C-c b s" . shapeless-blog-sync)))
+         ("C-c b p" . shapeless-blog-create-or-update-post)))
 
 ;; (define-key org-mode-map (kbd "C-c b p") 'shapeless-blog-create-or-update-post)
 ;; (define-key org-mode-map (kbd "C-c b m") 'shapeless-blog-modify-old-post)

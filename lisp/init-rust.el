@@ -2,7 +2,8 @@
 
 ;;; Commentary:
 
-;;
+;; Writing rust on Emacs is just unbearably slow. Auto completion is
+;; way too laggy. No human on earth can withstand such an experience.
 
 ;;; Code:
 
@@ -14,7 +15,10 @@
   :mode "\\.rs\\'"
   :config
   (setq rustic-lsp-client 'eglot)
-  (setq rustic-format-trigger 'on-save))
+  (setq rustic-format-trigger 'on-save)
+  ;; (add-hook 'eglot-managed-mode-hook (lambda () (if (eq major-mode 'rustic-mode)
+  ;;                                                   (flymake-mode -1))))
+  )
 
 (leaf toml-mode
   :mode "\\.toml\\'"

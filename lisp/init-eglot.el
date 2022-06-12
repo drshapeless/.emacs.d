@@ -10,7 +10,7 @@
   :require t
   :hook
   ((c-mode-hook c++-mode-hook objc-mode-hook swift-mode-hook python-mode-hook js-mode-hook go-mode-hook sql-mode-hook dart-mode-hook rustic-mode-hook) . eglot-ensure)
-  (eglot-ensure . flymake)
+  ;; (eglot-ensure . flymake-mode)
   :bind
   (:eglot-mode-map
    ("C-c e r" . eglot-reconnect)

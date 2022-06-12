@@ -50,7 +50,8 @@
                            :follow (lambda (path)
                                      (org-pdftools-open path))))
 
-(leaf ox-slimhtml)
+(leaf ox-slimhtml
+  :require t)
 
 (leaf ox-shapelesshtml
   :after ox-slimhtml org

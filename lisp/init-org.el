@@ -106,11 +106,18 @@
          :unnarrowed t)
         ("r" "reference" plain "%?"
          :if-new
-         (file+head "references/${title}.org" "#+title: ${title}\n")
+         (file+head "references/${slug}.org" "#+title: ${title}\n")
          :immediate-finish t
          :unnarrowed t)
+        ;; Article is for myself.
         ("a" "article" plain "%?"
-         :if-new (file+head "articles/${title}.org" "#+title: ${title}\n#+filetags: :article:draft:\n")
+         :if-new (file+head "articles/${slug}.org" "#+title: ${title}\n#+filetags: :article:draft:\n")
+         :immediate-finish t
+         :unnarrowed t)
+        ;; Blog is for publishing on personal blog.
+        ("b" "blog" plain "%?"
+         :if-new (file+head "blog/${slug}.org"
+                            "#+title: ${title}\n#+date: nil\n#+update: nil\n#+id: nil\n")
          :immediate-finish t
          :unnarrowed t)))
 

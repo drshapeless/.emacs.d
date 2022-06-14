@@ -23,7 +23,9 @@
    (">" . s3m-tab-move-right))
   :config
   (setq w3m-use-cookies nil
-        w3m-search-default-engine "duckduckgo"))
+        ;; There is something encoding error when using duckduckgo.
+        ;; w3m-search-default-engine "duckduckgo"
+        ))
 
 (provide 'init-w3m)
 ;;; init-w3m.el ends here

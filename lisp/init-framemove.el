@@ -9,6 +9,9 @@
 ;; An ugly solution is to swap the left and right by replacing the
 ;; function.
 
+;; I wrote a function that checks `exwm-workspace-current-index',
+;; since the 0 workspace is always on the right.
+
 ;;; Code:
 
 ;; framemove is from emacs wiki, not a package.

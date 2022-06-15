@@ -7,18 +7,21 @@
 
 ;;; Code:
 
-;; (leaf rust-mode
-;;   :require t)
+(leaf rust-mode
+  :require t)
 
-(leaf rustic
-  :require t
-  :mode "\\.rs\\'"
-  :config
-  (setq rustic-lsp-client 'eglot)
-  (setq rustic-format-trigger 'on-save)
-  ;; (add-hook 'eglot-managed-mode-hook (lambda () (if (eq major-mode 'rustic-mode)
-  ;;                                                   (flymake-mode -1))))
-  )
+;; For whatever reason, using rustic will fuck up go mode format
+;; before save. I have no idea why.
+
+;; (leaf rustic
+;;   :require t
+;;   :mode "\\.rs\\'"
+;;   :config
+;;   (setq rustic-lsp-client 'eglot)
+;;   (setq rustic-format-trigger 'on-save)
+;;   ;; (add-hook 'eglot-managed-mode-hook (lambda () (if (eq major-mode 'rustic-mode)
+;;   ;;                                                   (flymake-mode -1))))
+;;   )
 
 (leaf toml-mode
   :mode "\\.toml\\'"

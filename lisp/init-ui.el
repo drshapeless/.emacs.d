@@ -253,5 +253,10 @@
 ;; This is extremely annoying when compiling native elisp.
 (setq warning-minimum-level :emergency)
 
+(if *is-a-mac*
+    (progn
+      (toggle-frame-maximized)
+      (drsl/start-v2ray)))
+
 (provide 'init-ui)
 ;;; init-ui.el ends here

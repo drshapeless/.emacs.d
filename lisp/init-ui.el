@@ -233,7 +233,7 @@
                                      display-buffer-no-window
                                      ((allow-no-window . t))))
 
-(add-to-list 'display-buffer-alist '("\\*v2ray\\*$"
+(add-to-list 'display-buffer-alist '("\\*v2ray\\*"
                                      display-buffer-no-window
                                      ((allow-no-window . t))))
 

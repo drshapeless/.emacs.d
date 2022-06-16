@@ -29,8 +29,10 @@ apps are not started from a shell."
     (setenv "PATH" path-from-shell)
     (setq exec-path (split-string path-from-shell path-separator))))
 
+;; No reason to make things complicated, add what I need to path.
 (if *is-a-mac*
-    (set-exec-path-from-shell-PATH))
+    (add-to-list 'exec-path (concat (getenv "HOME") "/go/bin"))
+  )
 
 (provide 'init-shell)
 ;;; init-shell.el ends here

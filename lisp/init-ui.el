@@ -209,9 +209,9 @@
 
 ;; Custom directory for backup files.
 (setq backup-directory-alist
-      `((".*" . ,"~/.emacs-backups")))
+      `((".*" . ,(expand-file-name "backup" user-emacs-directory))))
 (setq auto-save-file-name-transforms
-      `((".*" ,"~/.emacs-backups" t)))
+      `((".*" ,(expand-file-name "backup" user-emacs-directory) t)))
 
 ;; Do not display these buffers.
 (add-to-list 'display-buffer-alist '("\\*mbsync\\*"

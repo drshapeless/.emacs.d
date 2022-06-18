@@ -13,11 +13,8 @@
   :bind
   ("C-c l" . sly))
 
-;; The homebrew version of clisp is broken.
-;; Using clisp is for learning only.
-(if *is-a-mac*
-    (setq inferior-lisp-program "sbcl")
-  (setq inferior-lisp-program "clisp"))
+;; Always use sbcl.
+(setq inferior-lisp-program "sbcl")
 
 (add-hook 'sly-mode-hook
           (lambda ()

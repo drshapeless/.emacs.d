@@ -92,6 +92,7 @@
 (require 'init-pass)
 ;; (require 'init-slime)
 (require 'init-sly)
+(require 'init-geiser)
 
 (if *is-a-linux*
     (progn

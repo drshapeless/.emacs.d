@@ -5,9 +5,9 @@
 ;; These are some helper functions for myself. The common point is
 ;; that they do not depend on any external library, only Emacs itself.
 
-;;; Code:
+;; No function should be called within the package.
 
-(setq gc-cons-threshold 50000000)
+;;; Code:
 
 ;; Always use space to align.
 ;; (defadvice align-regexp (around align-regexp-with-spaces activate)

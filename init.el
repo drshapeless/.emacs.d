@@ -106,6 +106,8 @@
       (require 'init-exwm)
       )
   )
+
+(require 'init-font)
 (require 'init-helpers)
 (require 'init-ui)
 (require 'init-keybinding)

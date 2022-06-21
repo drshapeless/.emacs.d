@@ -98,6 +98,7 @@
 
   (org-roam-db-autosync-mode))
 
+;; From https://jethrokuan.github.io/org-roam-guide/
 (setq org-roam-capture-templates
       '(("m" "main" plain "%?"
          :if-new (file+head "main/${slug}.org"
@@ -131,7 +132,7 @@
     (error "")))
 
 (setq org-roam-node-display-template
-      (concat "${type:15} ${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
+      (concat "${type:15} ${title:*} " (propertize "${tags:15}" 'face 'org-tag)))
 
 ;; This package is for inline css while exporting source code block.
 (leaf htmlize

@@ -11,8 +11,9 @@
 
 (leaf nginx-mode
   :require t
-  :config
-  (setq nginx-indent-level 2))
+  ;; :config
+  ;; (setq nginx-indent-level 4)
+  )
 
 (provide 'init-nginx)
 ;;; init-nginx.el ends here

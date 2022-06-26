@@ -80,6 +80,7 @@
   (add-hook 'before-save-hook #'clang-format-buffer -10 t))
 
 (add-hook 'c-mode-hook #'clang-format-buffer-on-save)
+(add-hook 'c++-mode-hook #'clang-format-buffer-on-save)
 
 (defun eglot-format-buffer-on-save ()
   (add-hook 'before-save-hook #'eglot-format-buffer -10 t))

@@ -39,13 +39,41 @@
                           (awk-mode . "awk")
                           (other . "gnu"))))
 
+;; This is stolen from llvm.
+(defun llvm-lineup-statement (langelem)
+  (let ((in-assign (c-lineup-assignments langelem)))
+    (if (not in-assign)
+        '++
+      (aset in-assign 0
+            (+ (aref in-assign 0)
+               (* 2 c-basic-offset)))
+      in-assign)))
+
+;; Add a cc-mode style for editing LLVM C and C++ code
+(c-add-style "llvm.org"
+             '("gnu"
+               (fill-column . 80)
+               (c++-indent-level . 2)
+               (c-basic-offset . 2)
+               (indent-tabs-mode . nil)
+               (c-offsets-alist . ((arglist-intro . ++)
+                                   (innamespace . 0)
+                                   (member-init-intro . ++)
+                                   (statement-cont . llvm-lineup-statement)))))
+
 (defun drsl/use-c-linux-style ()
   (interactive)
   (setq c-default-style '((java-mode . "java")
                           (awk-mode . "awk")
-                          (other . "linux"))))
+                          (c-mode . "linux")
+                          (cc-mode . "llvm"))))
 
-(drsl/use-c-linux-style)
+;; (drsl/use-c-linux-style)
+
+(setq c-default-style '((java-mode . "java")
+                        (awk-mode . "awk")
+                        (c-mode . "linux")
+                        (cc-mode . "llvm")))
 
 (setq compile-command "make")
 
@@ -75,6 +103,8 @@
     (load "/usr/share/clang/clang-format.el"))
 
 (require 'clang-format)
+
+(setq-default clang-format-fallback-style "llvm")
 
 (defun clang-format-buffer-on-save ()
   (add-hook 'before-save-hook #'clang-format-buffer -10 t))

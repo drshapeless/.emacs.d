@@ -78,6 +78,7 @@
 (require 'init-hlsl)
 (require 'init-dart)
 (require 'init-wat)
+(require 'init-svelte)
 
 (require 'init-eglot)
 (require 'init-pdf)

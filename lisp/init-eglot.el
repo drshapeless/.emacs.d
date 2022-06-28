@@ -9,7 +9,9 @@
 (leaf eglot
   :require t
   :hook
-  ((c-mode-hook c++-mode-hook objc-mode-hook swift-mode-hook python-mode-hook js-mode-hook go-mode-hook sql-mode-hook dart-mode-hook rustic-mode-hook) . eglot-ensure)
+  ((c-mode-hook c++-mode-hook objc-mode-hook swift-mode-hook
+                python-mode-hook js-mode-hook go-mode-hook sql-mode-hook
+                dart-mode-hook rustic-mode-hook svelte-mode-hook) . eglot-ensure)
   ;; (eglot-ensure . flymake-mode)
   :bind
   (:eglot-mode-map
@@ -27,7 +29,9 @@
   (add-to-list 'eglot-server-programs
                '(sql-mode . ("sqls")))
   (add-to-list 'eglot-server-programs
-               '(dart-mode . ("dart" "language-server"))))
+               '(dart-mode . ("dart" "language-server")))
+  (add-to-list 'eglot-server-programs
+               '(svelte-mode . ("svelteserver" "--stdio"))))
 
 ;; (setq c-default-style '((java-mode . "java")
 ;;                         (awk-mode . "awk")

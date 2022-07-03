@@ -17,7 +17,8 @@
   (:eglot-mode-map
    ("C-c e r" . eglot-reconnect)
    ("C-c e f" . eglot-code-action-quickfix)
-   ("C-c e n" . eglot-rename))
+   ("C-c e n" . eglot-rename)
+   ("C-c e j" . drsl/format-buffer))
   :config
   ;; The automatic header insertion by clangd is cancer.
   (add-to-list 'eglot-server-programs
@@ -65,7 +66,7 @@
                                    (member-init-intro . ++)
                                    (statement-cont . llvm-lineup-statement)))))
 
-(defun drsl/use-c-linux-style ()
+(defun drsl/use-c-linux-cc-llvm-style ()
   (interactive)
   (setq c-default-style '((java-mode . "java")
                           (awk-mode . "awk")
@@ -76,8 +77,7 @@
 
 (setq c-default-style '((java-mode . "java")
                         (awk-mode . "awk")
-                        (c-mode . "linux")
-                        (cc-mode . "llvm")))
+                        (other . "linux")))
 
 (setq compile-command "make")
 
@@ -114,13 +114,19 @@
   (add-hook 'before-save-hook #'clang-format-buffer -10 t))
 
 (add-hook 'c-mode-hook #'clang-format-buffer-on-save)
-(add-hook 'c++-mode-hook #'clang-format-buffer-on-save)
+;; (add-hook 'c++-mode-hook #'clang-format-buffer-on-save)
 
 (defun eglot-format-buffer-on-save ()
   (add-hook 'before-save-hook #'eglot-format-buffer -10 t))
 (add-hook 'go-mode-hook #'eglot-format-buffer-on-save)
 
 (add-hook 'dart-mode-hook #'eglot-format-buffer-on-save)
+
+(defun drsl/format-buffer ()
+  "Format buffer according to major mode."
+  (interactive)
+  (cond ((eq major-mode #'c++-mode) (clang-format-buffer))
+        (t (eglot-format-buffer))))
 
 (provide 'init-eglot)
 ;;; init-eglot.el ends here

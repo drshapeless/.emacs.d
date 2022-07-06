@@ -22,7 +22,7 @@
 (global-set-key (kbd "C-c K") 'compile)
 (global-set-key (kbd "C-c k") 'recompile)
 (global-set-key (kbd "C-c S") 'eshell)
-(global-set-key (kbd "C-c s") 'vterm)
+;; (global-set-key (kbd "C-c s") 'vterm)
 ;; I use "C-'" for switching between shells now.
 ;; (global-set-key (kbd "C-c s") 'shell)
 

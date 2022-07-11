@@ -4,8 +4,8 @@
 ;; Description: The shapeless theme.
 ;; Author: DrShapeLess <drsl@drshapeless.com>
 ;; Created: Sat Jan 23 14:05:48 2021 (+0800)
-;; Modified: Mon June 6 10:11:00 2022 (+0800)
-;; Version: 0.4.0
+;; Modified: Mon Jul 11 21:41:00 2022 (+0800)
+;; Version: 0.4.1
 
 ;;; Commentary:
 
@@ -131,9 +131,9 @@
 
    ;; org
    `(org-block   ((t (:background ,sl/darkest-gray :extend t))))
-   `(org-level-1 ((t (:foreground ,sl/green))))
-   `(org-level-2 ((t (:foreground ,sl/bright-orange))))
-   `(org-level-3 ((t (:foreground ,sl/yellow))))
+   `(org-level-1 ((t (:foreground ,sl/green :weight ultra-bold))))
+   `(org-level-2 ((t (:foreground ,sl/bright-orange :weight extra-bold))))
+   `(org-level-3 ((t (:foreground ,sl/purple))))
    `(org-level-4 ((t (:foreground ,sl/blue))))
    `(org-table   ((t (:foreground ,sl/pale-orange))))
    `(org-meta-line ((t (:inherit font-lock-comment-face))))

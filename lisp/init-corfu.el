@@ -19,7 +19,7 @@
         corfu-count 14
         corfu-scroll-margin 4
         corfu-cycle nil
-        corfu-preselect-first t
+        corfu-preselect-first nil
         corfu-echo-documentation t)
   (global-corfu-mode))
 

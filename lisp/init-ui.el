@@ -47,6 +47,9 @@
 ;; Enable line number mode in programming modes.
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
+;; Enable horizontal scroll
+(setq mouse-wheel-tilt-scroll t)
+
 ;; Never use tab.
 (setq-default indent-tabs-mode nil)
 

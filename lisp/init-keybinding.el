@@ -69,7 +69,7 @@
 (global-set-key (kbd "C-c n m") 'drsl/mbsync)
 
 ;; vterm
-(global-set-key (kbd "C-c v") 'vterm)
+;; (global-set-key (kbd "C-c v") 'vterm)
 
 ;; Toggle mood-line
 (global-set-key (kbd "C-z m") 'mood-line-mode)

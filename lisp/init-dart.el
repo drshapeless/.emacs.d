@@ -10,11 +10,13 @@
   :require t
   :hook (dart-mode-hook . flutter-test-mode))
 
-;; This is pretty useless at the moment.
+;; It gives you the closing label of widgets, although it looks nice,
+;; it is kind of useless.
+
 ;; (leaf lsp-dart
 ;;   :require t
-;;   :config
-;;   ;; (add-hook 'dart-mode-hook 'lsp)
+;;   :hook
+;;   ((dart-mode-hook) . lsp)
 ;;   )
 
 

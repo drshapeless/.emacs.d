@@ -2,7 +2,10 @@
 
 ;;; Commentary:
 
-;; Lsp-mode for Emacs. I mostly use eglot, but in some 
+;; An lsp client for Emacs.
+
+;; I prefer eglot, but in lsp mode provides some fancy visual effect
+;; on some modern language like flutter with dart.
 
 ;;; Code:
 

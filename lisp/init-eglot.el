@@ -9,10 +9,7 @@
 (leaf eglot
   :require t
   :hook
-  ((c-mode-hook c++-mode-hook objc-mode-hook swift-mode-hook
-                python-mode-hook js-mode-hook go-mode-hook sql-mode-hook
-                dart-mode-hook rustic-mode-hook svelte-mode-hook) . eglot-ensure)
-  ;; (eglot-ensure . flymake-mode)
+  ((c-mode-hook c++-mode-hook objc-mode-hook swift-mode-hook python-mode-hook js-mode-hook go-mode-hook sql-mode-hook dart-mode-hook rustic-mode-hook svelte-mode-hook) . eglot-ensure)
   :bind
   (:eglot-mode-map
    ("C-c e r" . eglot-reconnect)
@@ -33,10 +30,6 @@
                '(dart-mode . ("dart" "language-server")))
   (add-to-list 'eglot-server-programs
                '(svelte-mode . ("svelteserver" "--stdio"))))
-
-;; (setq c-default-style '((java-mode . "java")
-;;                         (awk-mode . "awk")
-;;                         (other . "linux")))
 
 (defun drsl/use-c-gnu-style ()
   (interactive)
@@ -73,8 +66,7 @@
                           (c-mode . "linux")
                           (cc-mode . "llvm"))))
 
-;; (drsl/use-c-linux-style)
-
+;; Use linux style on C/C++ file
 (setq c-default-style '((java-mode . "java")
                         (awk-mode . "awk")
                         (other . "linux")))

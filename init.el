@@ -81,6 +81,7 @@
 (require 'init-svelte)
 
 (require 'init-eglot)
+;; (require 'init-lsp)                     ; lsp is still crap
 (require 'init-pdf)
 (require 'init-emms)
 (require 'init-w3m)

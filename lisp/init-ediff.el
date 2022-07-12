@@ -2,7 +2,7 @@
 
 ;;; Commentary:
 
-;;
+;; Diff in emacs.
 
 ;;; Code:
 

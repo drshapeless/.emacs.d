@@ -7,8 +7,8 @@
 
 ;;; Code:
 
-(leaf yaml-mode
-  :require t)
+(straight-use-package 'yaml-mode)
+(require 'yaml-mode)
 
 (provide 'init-yaml)
 ;;; init-yaml.el ends here

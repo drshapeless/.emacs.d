@@ -2,23 +2,14 @@
 
 ;;; Commentary:
 
-;;
+;; Dart officially supports Emacs with lsp-mode, but lsp-mode is
+;; bad. Go back to use eglot.
 
 ;;; Code:
 
-(leaf dart-mode
-  :require t
-  :hook (dart-mode-hook . flutter-test-mode))
-
-;; It gives you the closing label of widgets, although it looks nice,
-;; it is kind of useless.
-
-;; (leaf lsp-dart
-;;   :require t
-;;   :hook
-;;   ((dart-mode-hook) . lsp)
-;;   )
-
+(straight-use-package 'dart-mode)
+(require 'dart-mode)
+(add-hook 'dart-mode-hook #'flutter-test-mode)
 
 (provide 'init-dart)
 ;;; init-dart.el ends here

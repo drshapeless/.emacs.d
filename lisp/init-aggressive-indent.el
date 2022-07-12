@@ -2,17 +2,15 @@
 
 ;;; Commentary:
 
-;;
+;; Indent automatically.
 
 ;;; Code:
 
-(leaf aggressive-indent
-  :require t
-  :config
-  (global-aggressive-indent-mode 1)
-  ;; Useful in future.
-  ;; (add-to-list 'aggressive-indent-excluded-modes 'html-mode)
-  )
+(straight-use-package 'aggressive-indent)
+(require 'aggressive-indent)
+(global-aggressive-indent-mode 1)
+;; Useful in future.
+;; (add-to-list 'aggressive-indent-excluded-modes 'html-mode)
 
 ;; The variable aggressive-indent-dont-indent-if lets you customize
 ;; when you don't want indentation to happen. For instance, if you
@@ -29,7 +27,6 @@
  '(and (derived-mode-p 'c-mode)
        (null (string-match "\\([;{}]\\|\\b\\(if\\|for\\|while\\)\\b\\)"
                            (thing-at-point 'line)))))
-
 
 (provide 'init-aggressive-indent)
 ;;; init-aggressive-indent.el ends here

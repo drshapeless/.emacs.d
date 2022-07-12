@@ -2,14 +2,14 @@
 
 ;;; Commentary:
 
-;;
+;; Persist history over Emacs restarts.
 
 ;;; Code:
 
-;; Persist history over Emacs restarts. Vertico sorts by history position.
-(leaf savehist
-  :init
-  (savehist-mode))
+;; Vertico sorts by history position.
+(straight-use-package 'savehist)
+(require 'savehist)
+(savehist-mode t)
 
 (provide 'init-savehist)
 ;;; init-savehist.el ends here

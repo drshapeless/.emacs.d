@@ -48,11 +48,6 @@
     (drsl/sync-drshapeless))
   )
 
-(defun drsl/mbsync ()
-  "Sync all the mailbox."
-  (interactive)
-  (async-shell-command "mbsync -a" "*mbsync*"))
-
 ;; Some firefox shortcuts, make sure you are using exwm.
 ;; Don't use librewolf, EXWM xim doesn't work.
 

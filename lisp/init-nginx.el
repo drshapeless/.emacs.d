@@ -9,11 +9,8 @@
 
 ;;; Code:
 
-(leaf nginx-mode
-  :require t
-  ;; :config
-  ;; (setq nginx-indent-level 4)
-  )
+(straight-use-package 'nginx-mode)
+(require 'nginx-mode)
 
 (provide 'init-nginx)
 ;;; init-nginx.el ends here

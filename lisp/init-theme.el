@@ -1,8 +1,8 @@
-;;; init-theme.el --- drshapeless theme -*- lexical-binding: t -*-
+;;; init-theme.el --- custom theme -*- lexical-binding: t -*-
 
 ;;; Commentary:
 
-;; Load my custom theme.
+;; Load my custom theme at /themes.
 
 ;;; Code:
 

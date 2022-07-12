@@ -6,8 +6,8 @@
 
 ;;; Code:
 
-(leaf graphviz-dot-mode
-  :require t)
+(straight-use-package 'graphviz-dot-mode)
+(require 'graphviz-dot-mode)
 
 (provide 'init-graphviz-dot-mode)
 ;;; init-graphviz-dot-mode.el ends here

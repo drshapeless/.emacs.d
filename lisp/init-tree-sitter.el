@@ -2,18 +2,17 @@
 
 ;;; Commentary:
 
-;;
+;; A better syntax highlighting.
 
 ;;; Code:
 
-(leaf tree-sitter
-  :require t
-  :config
-  (global-tree-sitter-mode)
-  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
+(straight-use-package 'tree-sitter)
+(require 'tree-sitter)
+(global-tree-sitter-mode)
+(add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
 
-(leaf tree-sitter-langs
-  :require t)
+(straight-use-package 'tree-sitter-langs)
+(require 'tree-sitter-langs)
 
 (provide 'init-tree-sitter)
 ;;; init-tree-sitter.el ends here

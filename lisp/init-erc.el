@@ -6,14 +6,11 @@
 
 ;;; Code:
 
-(leaf erc
-  :straight nil
-  :require t
-  :config
-  (setq erc-nick "drshapeless"
-        erc-default-server "localhost"
-        erc-default-port "6667"
-        erc-password nil))
+(require 'erc)
+(setq erc-nick "drshapeless"
+      erc-default-server "localhost"
+      erc-default-port "6667"
+      erc-password nil)
 
 (defvar bitlbee-password (string-chop-newline
                           (shell-command-to-string "pass bitlbee/drshapeless")))

@@ -6,12 +6,10 @@
 
 ;;; Code:
 
-(leaf sly
-  :require t
-  :config
-  (setq sly-command-switch-to-existing-lisp 'always)
-  :bind
-  ("C-c l" . sly))
+(straight-use-package 'sly)
+(require 'sly)
+(setq sly-command-switch-to-existing-lisp 'always)
+(keymap-global-set "C-c l" #'sly)
 
 ;; Always use sbcl.
 (setq inferior-lisp-program "sbcl")

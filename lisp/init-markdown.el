@@ -2,18 +2,18 @@
 
 ;;; Commentary:
 
-;;
+;; Markdown.
 
 ;;; Code:
 
-(leaf markdown-mode
-  :commands (markdown-mode gfm-mode)
-  :mode (("README\\.md\\'" . gfm-mode)
-         ("\\.md\\'" . markdown-mode)
-         ("\\.markdown\\'" . markdown-mode))
-  :init (setq markdown-command "multimarkdown")
-  :config
-  (setq markdown-hide-urls t))
+(straight-use-package 'markdown-mode)
+(require 'markdown-mode)
+(add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+
+(setq markdown-command "multimarkdown")
+(setq markdown-hide-urls t)
 
 (provide 'init-markdown)
 ;;; init-markdown.el ends here

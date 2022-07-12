@@ -7,9 +7,8 @@
 
 ;;; Code:
 
-(leaf corfu
-  :require t
-  :config
+(straight-use-package 'corfu)
+(require 'corfu)
   (setq corfu-auto t
         corfu-quit-no-match 'separator
         corfu-auto-prefix 1
@@ -19,9 +18,9 @@
         corfu-count 14
         corfu-scroll-margin 4
         corfu-cycle nil
-        corfu-preselect-first nil
+        corfu-preselect-first t
         corfu-echo-documentation t)
-  (global-corfu-mode))
+(global-corfu-mode)
 
 ;; Corfu for eglot.
 (setq completion-category-overrides '((eglot (styles orderless))))

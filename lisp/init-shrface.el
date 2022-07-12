@@ -6,19 +6,15 @@
 
 ;;; Code:
 
-(leaf shrface
-  :require t
-  :config
-  (shrface-basic)
-  (shrface-trial)
-  ;; (shrface-default-keybindings)
-  (setq shrface-href-versatile t)
-  :bind (:shrface-mode-map
-         ;; ("TAB" . shrface-next-link)
-         ("<backtab>" . shr-previous-link)
-         ("C-t" . shrface-toggle-bullets)
-         ("C-j" . shrface-next-headline)
-         ("C-k" . shrface-previous-headline)))
+(straight-use-package 'shrface)
+(require 'shrface)
+(shrface-basic)
+(shrface-trial)
+(setq shrface-href-versatile t)
+(keymap-set shrface-mode-map "<backtab>" #'shr-previous-link)
+(keymap-set shrface-mode-map "C-t" #'shrface-toggle-bullets)
+(keymap-set shrface-mode-map "C-j" #'shrface-next-headline)
+(keymap-set shrface-mode-map "C-k" #'shrface-previous-headline)
 
 (provide 'init-shrface)
 ;;; init-shrface.el ends here

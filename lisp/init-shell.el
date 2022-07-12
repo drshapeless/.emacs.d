@@ -2,7 +2,9 @@
 
 ;;; Commentary:
 
-;;
+;; Packages about shell.
+
+;; shell-switcher, vterm, multi-vterm.
 
 ;;; Code:
 
@@ -33,6 +35,25 @@ apps are not started from a shell."
 (if *is-a-mac*
     (add-to-list 'exec-path (concat (getenv "HOME") "/go/bin"))
   )
+
+;; Shell switcher
+(straight-use-package 'shell-switcher)
+(require 'shell-switcher)
+(setq shell-switcher-mode t)
+(setq shell-switcher-new-shell-function #'shell-switcher-make-shell)
+
+;; vterm
+(straight-use-package 'vterm)
+(require 'vterm)
+(setq vterm-buffer-name-string "vterm %s"
+      vterm-always-compile-module t)
+
+;; multi-vterm
+(straight-use-package 'multi-vterm)
+(require 'multi-vterm)
+(keymap-global-set "C-c s" #'multi-vterm)
+(keymap-set vterm-mode-map "C-c C-n" #'multi-vterm-next)
+(keymap-set vterm-mode-map "C-c C-p" #'multi-vterm-prev)
 
 (provide 'init-shell)
 ;;; init-shell.el ends here

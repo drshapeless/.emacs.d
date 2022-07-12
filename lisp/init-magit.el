@@ -2,16 +2,16 @@
 
 ;;; Commentary:
 
-;;
+;; Without magit, I am not using git.
 
 ;;; Code:
 
-(leaf magit
-  :require t)
+(straight-use-package 'magit)
+(require 'magit)
 
-(leaf forge
-  :after magit
-  :require t)
+;; I currently don't have any use with forge.
+(straight-use-package 'forge)
+(require 'forge)
 
 (provide 'init-magit)
 ;;; init-magit.el ends here

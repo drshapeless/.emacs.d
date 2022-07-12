@@ -8,8 +8,8 @@
 
 ;;; Code:
 
-(leaf go-mode
-  :require t)
+(straight-use-package 'go-mode)
+(require 'go-mode)
 
 (provide 'init-go)
 ;;; init-go.el ends here

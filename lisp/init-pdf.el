@@ -2,26 +2,23 @@
 
 ;;; Commentary:
 
-;;
+;; View pdf inside Emacs.
+
+;; This may break when you update your system. Use `pdf-tools-install'
+;; can fix it.
 
 ;;; Code:
 
-(leaf pdf-tools
-  :require t
-  :mode ("\\.pdf\\'" . pdf-view-mode)
-  :config
-  (setq pdf-tools-handle-upgrades nil
-        pdf-info-epdfinto-program "epdfinfo")
-  )
+(straight-use-package 'pdf-tools)
+(require 'pdf-tools)
+(add-to-list 'auto-mode-alist '("\\.pdf\\'" . pdf-view-mode))
+(setq pdf-tools-handle-upgrades nil
+      pdf-info-epdfinto-program "epdfinfo")
 
-(leaf pdf-view-restore
-  :after pdf-tools
-  :hook pdf-view-mode-hook
-  :config
-  (setq pdf-view-restore-filename "~/.emacs-backups/.pdf-view-restore")
-  )
-
-;; (pdf-tools-install)
+(straight-use-package 'pdf-view-restore)
+(require 'pdf-view-restore)
+(add-hook 'pdf-view-mode-hook #'pdf-view-restore-mode)
+(setq pdf-view-restore-filename "~/.emacs-backups/.pdf-view-restore")
 
 (provide 'init-pdf)
 ;;; init-pdf.el ends here

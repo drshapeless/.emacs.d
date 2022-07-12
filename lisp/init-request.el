@@ -3,12 +3,11 @@
 ;;; Commentary:
 
 ;; HTTP request in Emacs.
-;; This package does not work.
 
 ;;; Code:
 
-(leaf request
-  :require t)
+(straight-use-package 'request)
+(require 'request)
 
 (provide 'init-request)
 ;;; init-request.el ends here

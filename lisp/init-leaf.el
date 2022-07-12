@@ -8,6 +8,8 @@
 ;; use-package is kind of hard. Luckily, "conao3" wrote an alternative
 ;; of use-package from scratch.
 
+;; I abandoned leaf for simplicity.
+
 ;;; Code:
 
 ;; This is the line to play with straight.el.

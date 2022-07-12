@@ -6,10 +6,10 @@
 
 ;;; Code:
 
-(leaf glsl-mode
-  :require t
-  ;; This is for bgfx shader, they are very similar.
-  :mode (("\\.sc\\'" "\\.glsl\\'" "\\.vert\\'" "\\.frag\\'" "\\.geom\\'" "\\.vs\\'" "\\.fs\\'") . glsl-mode))
+(straight-use-package 'glsl-mode)
+(require 'glsl-mode)
+(add-to-list 'auto-mode-alist '("\\.vs\\'" . glsl-mode))
+(add-to-list 'auto-mode-alist '("\\.fs\\'" . glsl-mode))
 
 (provide 'init-glsl)
 ;;; init-glsl.el ends here

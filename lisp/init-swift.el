@@ -2,11 +2,12 @@
 
 ;;; Commentary:
 
-;;
+;; Swift mode is really bad in Emacs.
 
 ;;; Code:
 
-(leaf swift-mode)
+(straight-use-package 'swift-mode)
+(require 'swift-mode)
 
 (provide 'init-swift)
 ;;; init-swift.el ends here

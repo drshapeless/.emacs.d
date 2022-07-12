@@ -6,9 +6,8 @@
 
 ;;; Code:
 
-(leaf inherit-org
-  :straight (inherit-org :type git :host github :repo "chenyanming/inherit-org")
-  :require t)
+(straight-use-package '(inherit-org :type git :host github :repo "chenyanming/inherit-org"))
+(require 'inherit-org)
 
 (provide 'init-inherit-org)
 ;;; init-inherit-org.el ends here

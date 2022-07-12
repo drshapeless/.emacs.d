@@ -2,14 +2,13 @@
 
 ;;; Commentary:
 
-;;
+;; Read hackernews in Emacs. Not so great.
 
 ;;; Code:
 
-(leaf hackernews
-  :require t
-  :config
-  (setq hackernews-internal-browser-function #'w3m-browse-url))
+(straight-use-package 'hackernews)
+(require 'hackernews)
+(setq hackernews-internal-browser-function #'w3m-browse-url)
 
 (provide 'init-hackernews)
 ;;; init-hackernews.el ends here

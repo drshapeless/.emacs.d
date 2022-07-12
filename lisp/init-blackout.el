@@ -9,8 +9,8 @@
 
 ;;; Code:
 
-(leaf blackout
-      :straight t)
+(straight-use-package 'blackout)
+(require 'blackout)
 
 (provide 'init-blackout)
 ;;; init-blackout.el ends here

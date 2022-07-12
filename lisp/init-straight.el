@@ -4,6 +4,9 @@
 
 ;; straight.el replace the built-in package.el
 
+;; It respects user configuration to clone the packages from
+;; source. Great for package developers.
+
 ;;; Code:
 
 (defvar bootstrap-version)

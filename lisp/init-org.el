@@ -12,91 +12,54 @@
 ;; straight prevent compatibility issues.
 ;; https://github.com/raxod502/straight.el#the-wrong-version-of-my-package-was-loaded
 
-(leaf org
-  :require t
-  :hook
-  (org-mode-hook . auto-fill-mode)
-  (org-mode-hook . org-indent-mode)
-  :config
-  (setq org-return-follows-link t)
-  (setq org-src-window-setup 'current-window)
+(straight-use-package 'org)
+(require 'org)
+(add-hook 'org-mode-hook #'auto-fill-mode)
+(add-hook 'org-mode-hook #'org-indent-mode)
 
-  (setq org-time-stamp-custom-formats (cons "<%Y-%m-%d>" "<%Y-%m-%d %a %H:%M>"))
-  (setq org-time-stamp-formats (cons "<%Y-%m-%d %H:%M>" "<%Y-%m-%d>"))
+(setq org-return-follows-link t)
+(setq org-src-window-setup 'current-window)
 
-  (setq org-html-doctype "html5")
-  )
+(setq org-time-stamp-custom-formats (cons "<%Y-%m-%d>" "<%Y-%m-%d %a %H:%M>"))
+(setq org-time-stamp-formats (cons "<%Y-%m-%d %H:%M>" "<%Y-%m-%d>"))
 
-;; `require' does not do shit, use load. Straight has take care of the load path.
-
-;; Manually loading these will fix some void definitions of functions,
-;; e.g. `org-replace-buffer-contents' and `org-file-name-concat'.
-;; (load "org-macs")
-;; (load "org-compat")
+(setq org-html-doctype "html5")
 
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((dot . t)
    (shell . t)))
 
-(leaf valign
-  ;; :hook org-mode-hook
-  )
+(straight-use-package 'valign)
+(require 'valign)
 
-(leaf org-pdftools
-  :after pdf-tools org
-  :config
-  (org-link-set-parameters "pdf-view"
-                           :follow (lambda (path)
-                                     (org-pdftools-open path))))
+(straight-use-package 'org-pdftools)
+(require 'org-pdftools)
 
-(leaf ox-slimhtml
-  :require t)
+(org-link-set-parameters "pdf-view"
+                         :follow (lambda (path)
+                                   (org-pdftools-open path)))
 
-(leaf ox-shapelesshtml
-  :after ox-slimhtml org
-  :straight nil
-  :require t
-  :config
-  ;; (setq org-publish-project-alist
-  ;;     '(
-  ;;       ("blog"
-  ;;        :base-directory "~/website/org/published/blog"
-  ;;        :publishing-directory "~/website/drshapeless/blog"
-  ;;        :publishing-function ox-shapelesshtml-publish-to-html)
-  ;;       ("blog_zh"
-  ;;        :base-directory "~/website/org/published/blog_zh"
-  ;;        :publishing-directory "~/website/drshapeless/blog"
-  ;;        :publishing-function ox-shapelesshtml-publish-to-html)
-  ;;       ("main-site"
-  ;;        :base-directory "~/website/org/published/main-site"
-  ;;        :publishing-directory "~/website/drshapeless/main-site"
-  ;;        :publishing-function ox-shapelesshtml-publish-to-html)
-  ;;       ("main-site_zh"
-  ;;        :base-directory "~/website/org/published/main-site_zh"
-  ;;        :publishing-directory "~/website/drshapeless/main-site"
-  ;;        :publishing-function ox-shapelesshtml-publish-to-html)
-  ;;       ))
-  )
+(straight-use-package 'ox-slimhtml)
+(require 'ox-slimhtml)
 
-(leaf org-roam
-  :after org
-  :require t
-  :bind
-  ("C-c r i" . org-roam-node-insert)
-  ("C-c r f" . org-roam-node-find)
-  (:org-mode-map
-   ("C-c r c" . org-id-get-create)
-   ("C-c r r" . org-roam-ref-add)
-   ("C-c r t" . org-roam-tag-add)
-   ("C-c r a" . org-roam-alias-add)
-   )
-  :config
-  (setq org-roam-directory "~/org-roam/"
-        org-roam-db-location (expand-file-name "org-roam.db" user-emacs-directory)
-        org-roam-v2-ack t)
+(require 'ox-shapelesshtml)
 
-  (org-roam-db-autosync-mode))
+(straight-use-package 'org-roam)
+(require 'org-roam)
+(keymap-global-set "C-c r i" #'org-roam-node-insert)
+(keymap-global-set "C-c r f" #'org-roam-node-find)
+
+(keymap-set org-mode-map "C-c r c" #'org-id-get-create)
+(keymap-set org-mode-map "C-c r r" #'org-roam-ref-add)
+(keymap-set org-mode-map "C-c r t" #'org-roam-tag-add)
+(keymap-set org-mode-map "C-c r a" #'org-roam-alias-add)
+
+(setq org-roam-directory "~/org-roam/"
+      org-roam-db-location (expand-file-name "org-roam.db" user-emacs-directory)
+      org-roam-v2-ack t)
+
+(org-roam-db-autosync-mode)
 
 ;; From https://jethrokuan.github.io/org-roam-guide/
 (setq org-roam-capture-templates
@@ -135,23 +98,13 @@
       (concat "${type:15} ${title:*} " (propertize "${tags:15}" 'face 'org-tag)))
 
 ;; This package is for inline css while exporting source code block.
-(leaf htmlize
-  :require t)
+(straight-use-package 'htmlize)
+(require 'htmlize)
+;; (leaf htmlize
+;;   :require t)
 
-(leaf org-present
-  :after org
-  :require t
-  :hook
-  (org-present-mode-hook . (lambda ()
-                             (org-present-big)
-                             (org-display-inline-images)
-                             (org-present-hide-cursor)
-                             (org-present-read-only)))
-  (org-present-mode-quit-hook . (lambda ()
-                                  (org-present-small)
-                                  (org-remove-inline-images)
-                                  (org-present-show-cursor)
-                                  (org-present-read-write))))
+(straight-use-package 'org-present)
+(require 'org-present)
 
 (provide 'init-org)
 ;;; init-org.el ends here

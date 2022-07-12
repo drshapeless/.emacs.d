@@ -2,12 +2,11 @@
 
 ;;; Commentary:
 
-;;
+;; Flymake is a built-in package.
 
 ;;; Code:
 
-(leaf flymake
-  :require t)
+(require 'flymake)
 
 (provide 'init-flymake)
 ;;; init-flymake.el ends here

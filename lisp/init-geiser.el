@@ -2,15 +2,15 @@
 
 ;;; Commentary:
 
-;; Scheme.
+;; Scheme with guile.
 
 ;;; Code:
 
-(leaf geiser
-  :require t)
+(straight-use-package 'geiser)
+(require 'geiser)
 
-(leaf geiser-guile
-  :require t)
+(straight-use-package 'geiser-guile)
+(require 'geiser-guile)
 
 (provide 'init-geiser)
 ;;; init-geiser.el ends here

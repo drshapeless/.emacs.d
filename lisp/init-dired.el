@@ -2,7 +2,9 @@
 
 ;;; Commentary:
 
-;;
+;; Use `gls' on macos to enable `--group-directories-first' tag.
+
+;; Some custom functions to enable sorting in dired.
 
 ;;; Code:
 
@@ -27,7 +29,8 @@
     (setq dired-listing-switches "-ahl"))
   (message (format "dired-listing-switches: %s" dired-listing-switches)))
 
-(define-key dired-mode-map "b" 'drsl/dired-listing-switches-toggle)
+(keymap-set dired-mode-map "b" #'drsl/dired-listing-switches-toggle)
+;; (define-key dired-mode-map "b" 'drsl/dired-listing-switches-toggle)
 
 ;; "--group-directories-first" must be at front, otherwise concat will
 ;; break.

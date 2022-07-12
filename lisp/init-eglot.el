@@ -2,34 +2,41 @@
 
 ;;; Commentary:
 
-;;
+;; Eglot is the only decent lsp server solution in Emacs.
 
 ;;; Code:
 
-(leaf eglot
-  :require t
-  :hook
-  ((c-mode-hook c++-mode-hook objc-mode-hook swift-mode-hook python-mode-hook js-mode-hook go-mode-hook sql-mode-hook dart-mode-hook rustic-mode-hook svelte-mode-hook) . eglot-ensure)
-  :bind
-  (:eglot-mode-map
-   ("C-c e r" . eglot-reconnect)
-   ("C-c e f" . eglot-code-action-quickfix)
-   ("C-c e n" . eglot-rename)
-   ("C-c e j" . drsl/format-buffer))
-  :config
-  ;; The automatic header insertion by clangd is cancer.
-  (add-to-list 'eglot-server-programs
-               '(c-mode . ("clangd" "--header-insertion=never")))
-  (add-to-list 'eglot-server-programs
-               '(c++-mode . ("clangd" "--header-insertion=never")))
-  (add-to-list 'eglot-server-programs
-               '(swift-mode . ("sourcekit-lsp")))
-  (add-to-list 'eglot-server-programs
-               '(sql-mode . ("sqls")))
-  (add-to-list 'eglot-server-programs
-               '(dart-mode . ("dart" "language-server")))
-  (add-to-list 'eglot-server-programs
-               '(svelte-mode . ("svelteserver" "--stdio"))))
+(straight-use-package 'eglot)
+(require 'eglot)
+(add-hook 'c-mode-hook      #'eglot-ensure)
+(add-hook 'c++-mode-hook    #'eglot-ensure)
+(add-hook 'objc-mode-hook   #'eglot-ensure)
+(add-hook 'swift-mode-hook  #'eglot-ensure)
+(add-hook 'python-mode-hook #'eglot-ensure)
+(add-hook 'js-mode-hook     #'eglot-ensure)
+(add-hook 'go-mode-hook     #'eglot-ensure)
+(add-hook 'sql-mode-hook    #'eglot-ensure)
+(add-hook 'dart-mode-hook   #'eglot-ensure)
+(add-hook 'rustic-mode-hook #'eglot-ensure)
+(add-hook 'svelte-mode-hook #'eglot-ensure)
+
+(keymap-set eglot-mode-map "C-c e r" #'eglot-reconnect)
+(keymap-set eglot-mode-map "C-c e f" #'eglot-code-action-quickfix)
+(keymap-set eglot-mode-map "C-c e n" #'eglot-rename)
+(keymap-set eglot-mode-map "C-c e j" #'drsl/format-buffer)
+
+(add-to-list 'eglot-server-programs
+             '(c-mode . ("clangd" "--header-insertion=never")))
+(add-to-list 'eglot-server-programs
+             '(c++-mode . ("clangd" "--header-insertion=never")))
+(add-to-list 'eglot-server-programs
+             '(swift-mode . ("sourcekit-lsp")))
+(add-to-list 'eglot-server-programs
+             '(sql-mode . ("sqls")))
+(add-to-list 'eglot-server-programs
+             '(dart-mode . ("dart" "language-server")))
+(add-to-list 'eglot-server-programs
+             '(svelte-mode . ("svelteserver" "--stdio")))
 
 (defun drsl/use-c-gnu-style ()
   (interactive)

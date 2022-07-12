@@ -2,12 +2,14 @@
 
 ;;; Commentary:
 
-;;
+;; Group buffers into categories. First by mode or functionality, then
+;; by project. Projects without a .git would not be identified as a
+;; project. To deal with this, initialize an empty git.
 
 ;;; Code:
 
-(leaf ibuffer-project
-  :require t)
+(straight-use-package 'ibuffer-project)
+(require 'ibuffer-project)
 
 (if *is-a-mac*
     (defvar drsl/ibuffer-filter-groups
@@ -37,6 +39,7 @@
         ("eglot" (name . "^\\*EGLOT"))
         )))
 
+;; I use EXWM on Linux, firefox is necessary.
 (if *is-a-linux*
     (defvar drsl/ibuffer-filter-groups
       '(("shell" (or (mode . shell-mode)
@@ -70,6 +73,8 @@
           (lambda ()
             (setq ibuffer-filter-groups (append drsl/ibuffer-filter-groups (ibuffer-project-generate-filter-groups)))))
 
+;; For unicode characters that is not monospace, the alignment is a
+;; bit off.
 ;; From https://www.emacswiki.org/emacs/IbufferMode#h5o-12.
 (setq ibuffer-formats
       '((mark modified read-only locked " "

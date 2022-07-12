@@ -17,80 +17,42 @@
       (setq mac-command-modifier 'hyper)
       (setq mac-right-command-modifier 'super)))
 
-(global-set-key (kbd "C-x k") 'kill-this-buffer) ; Kill buffer directly.
-(global-set-key (kbd "C-x C-b") 'ibuffer)	 ; Use ibuffer.
-(global-set-key (kbd "C-c K") 'compile)
-(global-set-key (kbd "C-c k") 'recompile)
-(global-set-key (kbd "C-c S") 'eshell)
-;; (global-set-key (kbd "C-c s") 'vterm)
+(keymap-global-set "C-x k" #'kill-this-buffer) ; Kill buffer directly.
+(keymap-global-set "C-x C-b" #'ibuffer)	 ; Use ibuffer.
+(keymap-global-set "C-c K" #'compile)
+(keymap-global-set "C-c k" #'recompile)
+(keymap-global-set "C-c S" #'eshell)
 ;; I use "C-'" for switching between shells now.
-;; (global-set-key (kbd "C-c s") 'shell)
+;; (keymap-global-set "C-c s" #'shell)
 
 ;; C-z was used as suspension of Emacs, in gui, it is useless, and it
 ;; sucks dick when you accidentally press it.
-(global-unset-key (kbd "C-z"))
+(keymap-global-unset "C-z")
 
 ;; I used to use C-z as a personal prefix key, but it is so hard to
 ;; press that I gave up using C-c. C-c does not collide with anything.
 
-(global-set-key (kbd "H-<SPC>") 'drsl/toggle-input-and-shapeless-chinese)
+(keymap-global-set "H-<SPC>" #'drsl/toggle-input-and-shapeless-chinese)
 
 ;; Redefine the arrow keys to windmove.
 (require 'windmove)
-(global-set-key (kbd "s-s") 'windmove-left)
-(global-set-key (kbd "s-f") 'windmove-right)
-(global-set-key (kbd "s-e") 'windmove-up)
-(global-set-key (kbd "s-d") 'windmove-down)
-(global-set-key (kbd "s-a") 'other-frame)
-
-
-;; (global-set-key (kbd "C-c w w") 'drsl/publish-and-sync)
-;; (global-set-key (kbd "C-c w a") 'org-publish-all)
-;; (global-set-key (kbd "C-z e") 'ox-slimhtml-export-to-html)
-
-;; emms
-(global-set-key (kbd "C-c m m") 'emms)
-(global-set-key (kbd "C-c m <SPC>") 'emms-pause)
-(global-set-key (kbd "C-c m p") 'emms-previous)
-(global-set-key (kbd "C-c m n") 'emms-next)
-(global-set-key (kbd "C-c m s") 'emms-shuffle)
-;; Play from the beginning of current song.
-(global-set-key (kbd "C-c m b")
-                (lambda () (interactive) (emms-stop) (emms-start)))
-(global-set-key (kbd "C-c m c") 'emms-show)
-(global-set-key (kbd "C-c m d") 'emms-add-directory)
-(global-set-key (kbd "C-c m f") 'emms-play-dired)
-
-;; w3m
-(global-set-key (kbd "C-c j") 'w3m)
-
-;; Open not much
-(global-set-key (kbd "C-c n n") 'notmuch)
-(global-set-key (kbd "C-c n m") 'drsl/mbsync)
-
-;; vterm
-;; (global-set-key (kbd "C-c v") 'vterm)
-
-;; Toggle mood-line
-(global-set-key (kbd "C-z m") 'mood-line-mode)
+(keymap-global-set "s-s" #'windmove-left)
+(keymap-global-set "s-f" #'windmove-right)
+(keymap-global-set "s-e" #'windmove-up)
+(keymap-global-set "s-d" #'windmove-down)
+(keymap-global-set "s-a" #'other-frame)
 
 ;; Toggle company mode.
-(global-set-key (kbd "C-z t c") 'company-mode)
+(keymap-global-set "C-z t c" #'company-mode)
 
 ;; Firefox
-;; (global-set-key (kbd "C-c f d") 'drsl/duckduckgo-with-firefox)
-;; (global-set-key (kbd "C-c f g") 'drsl/google-with-firefox)
-(global-set-key (kbd "C-c f s") 'drsl/firefox-search-duckduckgo)
-(global-set-key (kbd "C-c f t") 'drsl/firefox-open-url)
-(global-set-key (kbd "C-c f f") 'drsl/start-firefox)
-(global-set-key (kbd "C-c f p") 'drsl/start-firefox-private)
-(global-set-key (kbd "C-c f w") 'drsl/switch-buffer-firefox)
-
-;; Mentor, rTorrent client in Emacs
-(global-set-key (kbd "C-c t") 'mentor)
-
-;; Open password manager.
-(global-set-key (kbd "C-c g") 'pass)
+;; (keymap-global-set "C-c f d" #'drsl/duckduckgo-with-firefox)
+;; (keymap-global-set "C-c f g" #'drsl/google-with-firefox)
+(keymap-global-set "C-c f s" #'drsl/firefox-search-duckduckgo)
+(keymap-global-set "C-c f t" #'drsl/firefox-open-url)
+(keymap-global-set "C-c f f" #'drsl/start-firefox)
+(keymap-global-set "C-c f p" #'drsl/start-firefox-private)
+(keymap-global-set "C-c f w" #'drsl/switch-buffer-firefox)
 
 ;; Scroll half page only.
 ;; (global-set-key [remap scroll-down-command] 'View-scroll-half-page-backward)
@@ -98,21 +60,21 @@
 
 (if *is-a-linux*
     (progn
-      (global-set-key (kbd "C-c c") 'drsl/flameshot-capture-screen)
-      (global-set-key (kbd "C-c d") 'drsl/start-discord)
+      (keymap-global-set "C-c c" #'drsl/flameshot-capture-screen)
+      (keymap-global-set "C-c d" #'drsl/start-discord)
 
       ;; Do not use "C-c `", as mode authors may use non alphabet characters
       ;; for shortcuts.
-      (global-set-key (kbd "C-z ` `") 'drsl/monitor-off)
-      (global-set-key (kbd "C-z ` d") 'drsl/powersave-off)
-      (global-set-key (kbd "C-z ` k") 'drsl/remap-keyboard)
-      (global-set-key (kbd "C-z ` r") 'drsl/remap-keyboard)
+      (keymap-global-set "C-z ` `" #'drsl/monitor-off)
+      (keymap-global-set "C-z ` d" #'drsl/powersave-off)
+      (keymap-global-set "C-z ` k" #'drsl/remap-keyboard)
+      (keymap-global-set "C-z ` r" #'drsl/remap-keyboard)
 
       ;; Audio volume in Linux
       ;; I am using pipewire and pipewire-pulseaudio
-      (global-set-key (kbd "<XF86AudioLowerVolume>") 'drsl/lower-audio-volume)
-      (global-set-key (kbd "<XF86AudioRaiseVolume>") 'drsl/raise-audio-volume)
-      (global-set-key (kbd "C-c m v") 'drsl/show-audio-volume)
+      (keymap-global-set "<XF86AudioLowerVolume>" #'drsl/lower-audio-volume)
+      (keymap-global-set "<XF86AudioRaiseVolume>" #'drsl/raise-audio-volume)
+      (keymap-global-set "C-c m v" #'drsl/show-audio-volume)
       ))
 
 (provide 'init-keybinding)

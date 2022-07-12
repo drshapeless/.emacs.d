@@ -2,23 +2,18 @@
 
 ;;; Commentary:
 
-;;
+;; Display more information on the right margin.
 
 ;;; Code:
 
 ;; Enable richer annotations using the Marginalia package
-(leaf marginalia
-  :require t
-  :init
-  (marginalia-mode)
-  ;; :bind (:map minibuffer-local-map
-  ;;             ("M-A" . marginalia-cycle))
-  :config
-  (setq marginalia-align 'right)
-  )
+(straight-use-package 'marginalia)
+(require 'marginalia)
+(marginalia-mode t)
+(setq marginalia-align 'right)
 
-(define-key minibuffer-local-map (kbd "M-A") 'marginalia-cycle)
-
+;; This is kind of useless.
+(keymap-set minibuffer-local-map "M-A" #'marginalia-cycle)
 
 (provide 'init-marginalia)
 ;;; init-marginalia.el ends here

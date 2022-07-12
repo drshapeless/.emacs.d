@@ -2,127 +2,98 @@
 
 ;;; Commentary:
 
-;;
+;; I don't know what consult does. It gives some better alternatives
+;; of the built-in functions.
 
 ;;; Code:
 
-(leaf consult
-  ;; Replace bindings. Lazily loaded due by `use-package'.
-  :bind (;; C-c bindings (mode-specific-map)
-         ;; ("C-c h" . consult-history)
-         ;; ("C-c m" . consult-mode-command)
-         ;; ("C-c b" . consult-bookmark)
-         ;; ("C-c k" . consult-kmacro)
-         ;; C-x bindings (ctl-x-map)
-         ("C-x M-:" . consult-complex-command)     ;; orig. repeat-complex-command
-         ("C-x b" . consult-buffer)                ;; orig. switch-to-buffer
-         ("C-x 4 b" . consult-buffer-other-window) ;; orig. switch-to-buffer-other-window
-         ("C-x 5 b" . consult-buffer-other-frame)  ;; orig. switch-to-buffer-other-frame
-         ;; Custom M-# bindings for fast register access
-         ("M-#" . consult-register-load)
-         ("M-'" . consult-register-store)          ;; orig. abbrev-prefix-mark (unrelated)
-         ("C-M-#" . consult-register)
-         ;; Other custom bindings
-         ("M-y" . consult-yank-pop)                ;; orig. yank-pop
-         ("<help> a" . consult-apropos)            ;; orig. apropos-command
-         ;; M-g bindings (goto-map)
-         ("M-g e" . consult-compile-error)
-         ("M-g f" . consult-flymake)               ;; Alternative: consult-flycheck
-         ("M-g g" . consult-goto-line)             ;; orig. goto-line
-         ("M-g M-g" . consult-goto-line)           ;; orig. goto-line
-         ("M-g o" . consult-outline)               ;; Alternative: consult-org-heading
-         ("M-g m" . consult-mark)
-         ("M-g k" . consult-global-mark)
-         ("M-g i" . consult-imenu)
-         ("M-g I" . consult-imenu-multi)
-         ;; M-s bindings (search-map)
-         ("M-s f" . consult-find)
-         ("M-s F" . consult-locate)
-         ("M-s g" . consult-grep)
-         ("M-s G" . consult-git-grep)
-         ("M-s r" . consult-ripgrep)
-         ("M-s l" . consult-line)
-         ("M-s L" . consult-line-multi)
-         ("M-s m" . consult-multi-occur)
-         ("M-s k" . consult-keep-lines)
-         ("M-s u" . consult-focus-lines)
-         ;; Isearch integration
-         ("M-s e" . consult-isearch-history)
-         (:isearch-mode-map
-          ("M-e" . consult-isearch-history)         ;; orig. isearch-edit-string
-          ("M-s e" . consult-isearch-history)       ;; orig. isearch-edit-string
-          ("M-s l" . consult-line)                  ;; needed by consult-line to detect isearch
-          ("M-s L" . consult-line-multi))
-         )           ;; needed by consult-line to detect isearch
+(straight-use-package 'consult)
+(require 'consult)
+;; C-x bindings (ctl-x-map)
+;; orig. repeat-complex-command
+(keymap-global-set "C-x M-:" #'consult-complex-command)
+;; orig. switch-to-buffer
+(keymap-global-set "C-x b" #'consult-buffer)
+;; orig. switch-to-buffer-other-window
+(keymap-global-set "C-x 4 b" #'consult-buffer-other-window)
+;; orig. switch-to-buffer-other-frame
+(keymap-global-set "C-x 5 b" #'consult-buffer-other-frame)
 
-  ;; Enable automatic preview at point in the *Completions* buffer.
-  ;; This is relevant when you use the default completion UI,
-  ;; and not necessary for Vertico, Selectrum, etc.
-  :hook (completion-list-mode . consult-preview-at-point-mode)
+;; Custom M-# bindings for fast register access
+(keymap-global-set "M-#" #'consult-register-load)
+;; orig. abbrev-prefix-mark (unrelated)
+(keymap-global-set "M-'" #'consult-register-store)
+(keymap-global-set "C-M-#" #'consult-register)
 
-  ;; The :init configuration is always executed (Not lazy)
-  :init
+;; Other custom bindings
+;; orig. yank-pop
+(keymap-global-set "M-y" #'consult-yank-pop)
+;; orig. apropos-command
+(keymap-global-set "<help> a" #'consult-apropos)
 
-  ;; Optionally configure the register formatting. This improves the register
-  ;; preview for `consult-register', `consult-register-load',
-  ;; `consult-register-store' and the Emacs built-ins.
-  (setq register-preview-delay 0
-        register-preview-function #'consult-register-format)
+;; M-g bindings (goto-map)
+(keymap-global-set "M-g e" #'consult-compile-error)
+;; Alternative: consult-flycheck
+(keymap-global-set "M-g f" #'consult-flymake)
+;; orig. goto-line
+(keymap-global-set "M-g g" #'consult-goto-line)
+;; orig. goto-line
+(keymap-global-set "M-g M-g" #'consult-goto-line)
+;; Alternative: consult-org-heading
+(keymap-global-set "M-g o" #'consult-outline)
+(keymap-global-set "M-g m" #'consult-mark)
+(keymap-global-set "M-g k" #'consult-global-mark)
+(keymap-global-set "M-g i" #'consult-imenu)
+(keymap-global-set "M-g I" #'consult-imenu-multi)
 
-  ;; Optionally tweak the register preview window.
-  ;; This adds thin lines, sorting and hides the mode line of the window.
-  (advice-add #'register-preview :override #'consult-register-window)
+;; M-s bindings (search-map)
+(keymap-global-set "M-s f" #'consult-find)
+(keymap-global-set "M-s F" #'consult-locate)
+(keymap-global-set "M-s g" #'consult-grep)
+(keymap-global-set "M-s G" #'consult-git-grep)
+(keymap-global-set "M-s r" #'consult-ripgrep)
+(keymap-global-set "M-s l" #'consult-line)
+(keymap-global-set "M-s L" #'consult-line-multi)
+(keymap-global-set "M-s m" #'consult-multi-occur)
+(keymap-global-set "M-s k" #'consult-keep-lines)
+(keymap-global-set "M-s u" #'consult-focus-lines)
 
-  ;; Optionally replace `completing-read-multiple' with an enhanced version.
-  ;; (advice-add #'completing-read-multiple :override #'consult-completing-read-multiple)
+;; Isearch integration
+(keymap-global-set "M-s e" #'consult-isearch-history)
+;; orig. isearch-edit-string
+(keymap-set isearch-mode-map "M-e" #'consult-isearch-history)
+;; orig. isearch-edit-string
+(keymap-set isearch-mode-map "M-s e" #'consult-isearch-history)
+;; needed by consult-line to detect isearch
+(keymap-set isearch-mode-map "M-s l" #'consult-line)
+(keymap-set isearch-mode-map "M-s L" #'consult-line-multi)
 
-  ;; Use Consult to select xref locations with preview
-  (setq xref-show-xrefs-function #'consult-xref
-        xref-show-definitions-function #'consult-xref)
+(add-hook 'completion-list-mode #'consult-preview-at-point-mode)
 
-  ;; Configure other variables and modes in the :config section,
-  ;; after lazily loading the package.
-  :config
+(setq register-preview-delay 0
+      register-preview-function #'consult-register-format)
 
-  ;; Optionally configure preview. The default value
-  ;; is 'any, such that any key triggers the preview.
-  ;; (setq consult-preview-key 'any)
-  ;; (setq consult-preview-key (kbd "M-."))
-  ;; (setq consult-preview-key (list (kbd "<S-down>") (kbd "<S-up>")))
-  ;; For some commands and buffer sources it is useful to configure the
-  ;; :preview-key on a per-command basis using the `consult-customize' macro.
-  (consult-customize
-   consult-theme
-   :preview-key '(:debounce 0.2 any)
-   consult-ripgrep consult-git-grep consult-grep
-   consult-bookmark consult-recent-file consult-xref
-   consult--source-recent-file consult--source-project-recent-file consult--source-bookmark
-   :preview-key (kbd "M-."))
+(advice-add #'register-preview :override #'consult-register-window)
 
-  ;; Optionally configure the narrowing key.
-  ;; Both < and C-+ work reasonably well.
-  (setq consult-narrow-key "<") ;; (kbd "C-+")
+(advice-add #'completing-read-multiple :override #'consult-completing-read-multiple)
 
-  ;; Optionally make narrowing help available in the minibuffer.
-  ;; You may want to use `embark-prefix-help-command' or which-key instead.
-  ;; (define-key consult-narrow-map (vconcat consult-narrow-key "?") #'consult-narrow-help)
+;; Use Consult to select xref locations with preview
+(setq xref-show-xrefs-function #'consult-xref
+      xref-show-definitions-function #'consult-xref)
 
-  ;; Optionally configure a function which returns the project root directory.
-  ;; There are multiple reasonable alternatives to chose from.
-  ;;;; 1. project.el (project-roots)
-  ;; (setq consult-project-root-function
-  ;;       (lambda ()
-  ;;         (when-let (project (project-current))
-  ;;           (car (project-roots project)))))
-  ;;;; 2. projectile.el (projectile-project-root)
-  (autoload 'projectile-project-root "projectile")
-  (setq consult-project-root-function #'projectile-project-root)
-  ;;;; 3. vc.el (vc-root-dir)
-  ;; (setq consult-project-root-function #'vc-root-dir)
-  ;;;; 4. locate-dominating-file
-  ;; (setq consult-project-root-function (lambda () (locate-dominating-file "." ".git")))
-  )
+(consult-customize
+ consult-theme
+ :preview-key '(:debounce 0.2 any)
+ consult-ripgrep consult-git-grep consult-grep
+ consult-bookmark consult-recent-file consult-xref
+ consult--source-recent-file consult--source-project-recent-file consult--source-bookmark
+ :preview-key (kbd "M-."))
 
+(setq consult-narrow-key "<") ;; (kbd "C-+")
+
+(setq consult-project-root-function (lambda ()
+                                      (when-let (project (project-current))
+                                        (car (project-roots project)))))
 
 (provide 'init-consult)
 ;;; init-consult.el ends here

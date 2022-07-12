@@ -2,7 +2,8 @@
 
 ;;; Commentary:
 
-;;
+;; This package is no longer useful. Most of its functionalities can
+;; be replaced with the built-in project.el
 
 ;;; Code:
 

@@ -2,13 +2,14 @@
 
 ;;; Commentary:
 
-;;
+;; Web mode is a mode for editing html templates.
 
 ;;; Code:
 
-(leaf web-mode
-  :require t
-  :mode (("\\.phtml\\'" "\\.tmpl\\'") . web-mode))
+(straight-use-package 'web-mode)
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tmpl\\'" . web-mode))
 
 (provide 'init-web)
 ;;; init-web.el ends here

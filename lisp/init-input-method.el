@@ -2,7 +2,9 @@
 
 ;;; Commentary:
 
-;;
+;; Currently is all about Chinese.
+
+;; Use cangjie5 package.
 
 ;;; Code:
 
@@ -10,7 +12,7 @@
 
 (setq default-input-method "cangjie5")
 
-;; Extra characters.
+;; Extra characters for the original tsangchi input method. Deprecated.
 ;; (with-temp-buffer
 ;;   (activate-input-method "chinese-b5-tsangchi")
 ;;   (let ((quail-current-package (assoc "chinese-b5-tsangchi" quail-package-alist)))

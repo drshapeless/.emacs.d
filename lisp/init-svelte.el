@@ -2,12 +2,12 @@
 
 ;;; Commentary:
 
-;;
+;; Hopefully this is a decent way to write JavaScript.
 
 ;;; Code:
 
-(leaf svelte-mode
-  :require t)
+(straight-use-package 'svelte-mode)
+(require 'svelte-mode)
 
 (provide 'init-svelte)
 ;;; init-svelte.el ends here

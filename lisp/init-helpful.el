@@ -2,19 +2,20 @@
 
 ;;; Commentary:
 
-;;
+;; Better help page.
 
 ;;; Code:
 
-(leaf helpful
-  :bind
-  ([remap describe-function] . helpful-callable)
-  ([remap describe-variable] . helpful-variable)
-  ([remap describe-key] . helpful-key)
-  ("C-c C-d" . helpful-at-point)
-  ("C-h F" . helpful-function)
-  ("C-h C" . helpful-command)
-  ("C-h C-k" . helpful-kill-buffers))
+(straight-use-package 'helpful)
+(require 'helpful)
+;; I haven't find a way to remap key with `keymap-global-set'.
+(global-set-key [remap describe-function] #'helpful-callable)
+(global-set-key [remap describe-variable] #'helpful-variable)
+(global-set-key [remap describe-key] #'helpful-key)
+(keymap-global-set "C-c C-d" #'helpful-at-point)
+(keymap-global-set "C-h F" #'helpful-function)
+(keymap-global-set "C-h C" #'helpful-command)
+(keymap-global-set "C-h C-k" #'helpful-kill-buffers)
 
 (provide 'init-helpful)
 ;;; init-helpful.el ends here

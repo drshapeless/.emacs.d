@@ -2,11 +2,12 @@
 
 ;;; Commentary:
 
-;;
+;; Preview color.
 
 ;;; Code:
 
-(leaf rainbow-mode)
+(straight-use-package 'rainbow-mode)
+(require 'rainbow-mode)
 
 (provide 'init-rainbow)
 ;;; init-rainbow.el ends here

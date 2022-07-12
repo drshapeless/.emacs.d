@@ -2,15 +2,15 @@
 
 ;;; Commentary:
 
-;;
+;; Orderless completion.
 
 ;;; Code:
 
-(leaf orderless
-  :init
-  (setq completion-styles '(orderless)
-        completion-category-defaults nil
-        completion-category-overrides '((file (styles . (partial-completion))))))
+(straight-use-package 'orderless)
+(require 'orderless)
+(setq completion-styles '(orderless)
+      completion-category-defaults nil
+      completion-category-overrides '((file (styles . (partial-completion)))))
 
 (provide 'init-orderless)
 ;;; init-orderless.el ends here

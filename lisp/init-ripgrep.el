@@ -6,8 +6,8 @@
 
 ;;; Code:
 
-(leaf ripgrep
-  :require t)
+(straight-use-package 'ripgrep)
+(require 'ripgrep)
 
 (provide 'init-ripgrep)
 ;;; init-ripgrep.el ends here

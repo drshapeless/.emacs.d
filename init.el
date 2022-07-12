@@ -13,33 +13,34 @@
 ;; Load the "lisp" folder.
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 (add-to-list 'load-path (expand-file-name "site-lisp" user-emacs-directory))
+(add-to-list 'load-path "/usr/share/emacs/site-lisp/")
 (defconst *is-a-mac* (eq system-type 'darwin))
 (defconst *is-a-linux* (eq system-type 'gnu/linux))
+(defconst *is-older-emacs* (version< emacs-version "29.0.50"))
+
+(require 'init-compat)
+(require 'init-keybinding)
 
 ;; The order of the following must not change.
 (require 'init-straight)
-(require 'init-leaf)
+;; (require 'init-leaf)
 
 (require 'init-org)
 
-;; Emacs built-in config.
-;; Although Emacs ships a version of these packages, it is usually
-;; better to clone the latest version via straight.
+;; Emacs built-in packages.
 (require 'init-tramp)
 (require 'init-theme)
 (require 'init-dired)
 (require 'init-input-method)
 (require 'init-shell)
 (require 'init-epa)
-;; (require 'init-erc)
+;; (require 'init-erc)                     ; It is not useful in modern age.
 (require 'init-flymake)
 (require 'init-ediff)
 (require 'init-ibuffer)
 
-;; Extra packages
-(require 'init-blackout)
-(require 'init-mood-line)
-;; (require 'init-doom-modeline)
+;;; Extra packages
+;; (require 'init-blackout)                ; This is useless as I am using moodline.
 (require 'init-yasnippet)
 (require 'init-vertico)
 (require 'init-orderless)
@@ -49,47 +50,55 @@
 (require 'init-consult)
 (require 'init-which-key)
 (require 'init-helpful)
-(require 'init-aggressive-indent)
 (require 'init-ripgrep)
-(require 'init-shrface)
-(require 'init-inherit-org)
 (require 'init-request)
 (require 'init-framemove)
-(require 'init-projectile)
-(require 'init-flutter)
+;; (require 'init-projectile)
 (require 'init-cape)
 (require 'init-corfu)
-(require 'init-shell-switcher)
+;; (require 'init-shell-switcher)
 (require 'init-tree-sitter)
 (require 'init-rainbow)
+(require 'init-multiple-cursors)
+(require 'init-aggressive-indent)
 
-;; Major modes.
+;;; Appearance
+(require 'init-mood-line)
+(require 'init-shrface)
+(require 'init-inherit-org)
+
+;;; Major modes.
+(require 'init-calibredb)
+(require 'init-nov)
+(require 'init-hackernews)
+
+;;; Programming languages
 (require 'init-markdown)
 (require 'init-swift)
 (require 'init-go)
 (require 'init-rust)
 (require 'init-nginx)
 (require 'init-web)
-(require 'init-calibredb)
-(require 'init-nov)
-(require 'init-hackernews)
 (require 'init-yaml)
 (require 'init-glsl)
-(require 'init-hlsl)
+;; (require 'init-hlsl)
 (require 'init-dart)
+(require 'init-flutter)
 (require 'init-wat)
 (require 'init-svelte)
+(require 'init-json)
+(require 'init-lilypond)
 
+;;; lsp server
 (require 'init-eglot)
 ;; (require 'init-lsp)                     ; lsp is still crap
+
 (require 'init-pdf)
 (require 'init-emms)
 (require 'init-w3m)
 (require 'init-magit)
-(require 'init-vterm)
+;; (require 'init-vterm)
 (require 'init-notmuch)
-(require 'init-json)
-(require 'init-lilypond)
 (require 'init-mentor)
 (require 'init-pass)
 ;; (require 'init-slime)
@@ -100,7 +109,7 @@
     (progn
       ;; This is about smooth scrolling in Emacs.
       ;; For macos, emacs-mac has a even better scrolling.
-      (if (version< emacs-version "29.0.50")
+      (if *is-older-emacs*
           ;; For older version, just use good-scroll.
           (require 'init-good-scroll)
         ;; pixel-scroll-precision-mode is a new feature in version 29.
@@ -112,7 +121,6 @@
 (require 'init-font)
 (require 'init-helpers)
 (require 'init-ui)
-(require 'init-keybinding)
 (require 'init-shapeless-blog)
 
 (server-start)

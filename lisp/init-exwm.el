@@ -6,8 +6,8 @@
 
 ;;; Code:
 
-(leaf exwm
-  :require t)
+(straight-use-package 'exwm)
+(require 'exwm)
 
 ;; The set the default workspace into 2.
 (setq exwm-workspace-number 2)
@@ -141,8 +141,8 @@
             ))
 (exwm-randr-enable)
 
-(leaf exwm-edit
-  :require t)
+(straight-use-package 'exwm-edit)
+(require 'exwm-edit)
 
 ;; Autohide minibuffer & echo area. Don't use, it sucks.
 ;; (setq exwm-workspace-minibuffer-position 'bottom)
@@ -153,32 +153,29 @@
          char-mode t)))
 
 ;; Firefox
-(leaf exwm-firefox
-  :straight (exwm-firefox :type git :host github :repo "ieure/exwm-firefox")
-  :require t
-  :bind (:exwm-firefox-keymap
-         ("C-n" . exwm-firefox-core-down)
-         ("C-p" . exwm-firefox-core-up)
-         ("C-f" . exwm-firefox-core-right)
-         ("C-b" . exwm-firefox-core-left)
-         ("M-w" . exwm-firefox-core-copy)
-         ("C-w" . exwm-firefox-core-cut)
-         ("C-y" . exwm-firefox-core-paste)
-         ("C-v" . exwm-firefox-core-half-page-down)
-         ("M-v" . exwm-firefox-core-half-page-up)
-         ("C-s" . exwm-firefox-core-find)
-         ("C-g" . exwm-firefox-core-cancel)
-         ("M-b" . exwm-firefox-core-back-word)
-         ("M-f" . exwm-firefox-core-forward-word)
-         ("M-<" . exwm-firefox-core-top)
-         ("M->" . exwm-firefox-core-bottom)
-         ("C-d" . exwm-firefox-core-delete)
-         ("C-/" . exwm-firefox-core-undo)
-         ("C-c C-k" . exwm-firefox-core-tab-close)
-         ("C-a" . [home])
-         ("C-e" . [end])
-         ("C-k" . [S-end delete])
-         ))
+(straight-use-package '(exwm-firefox :type git :host github :repo "ieure/exwm-firefox"))
+(require 'exwm-firefox)
+(keymap-set exwm-firefox-keymap "C-n" #'exwm-firefox-core-down)
+(keymap-set exwm-firefox-keymap "C-p" #'exwm-firefox-core-up)
+(keymap-set exwm-firefox-keymap "C-f" #'exwm-firefox-core-right)
+(keymap-set exwm-firefox-keymap "C-b" #'exwm-firefox-core-left)
+(keymap-set exwm-firefox-keymap "M-w" #'exwm-firefox-core-copy)
+(keymap-set exwm-firefox-keymap "C-w" #'exwm-firefox-core-cut)
+(keymap-set exwm-firefox-keymap "C-y" #'exwm-firefox-core-paste)
+(keymap-set exwm-firefox-keymap "C-v" #'exwm-firefox-core-half-page-down)
+(keymap-set exwm-firefox-keymap "M-v" #'exwm-firefox-core-half-page-up)
+(keymap-set exwm-firefox-keymap "C-s" #'exwm-firefox-core-find)
+(keymap-set exwm-firefox-keymap "C-g" #'exwm-firefox-core-cancel)
+(keymap-set exwm-firefox-keymap "M-b" #'exwm-firefox-core-back-word)
+(keymap-set exwm-firefox-keymap "M-f" #'exwm-firefox-core-forward-word)
+(keymap-set exwm-firefox-keymap "M-<" #'exwm-firefox-core-top)
+(keymap-set exwm-firefox-keymap "M->" #'exwm-firefox-core-bottom)
+(keymap-set exwm-firefox-keymap "C-d" #'exwm-firefox-core-delete)
+(keymap-set exwm-firefox-keymap "C-/" #'exwm-firefox-core-undo)
+(keymap-set exwm-firefox-keymap "C-c C-k" #'exwm-firefox-core-tab-close)
+(keymap-set exwm-firefox-keymap "C-a" [home])
+(keymap-set exwm-firefox-keymap "C-e" [end])
+(keymap-set exwm-firefox-keymap "C-k" [S-end delete])
 
 (exwm-firefox-mode)
 

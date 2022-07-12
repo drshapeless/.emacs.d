@@ -2,13 +2,13 @@
 
 ;;; Commentary:
 
-;;
+;; This is better than ivy.
 
 ;;; Code:
 
-(leaf vertico
-  :init
-  (vertico-mode))
+(straight-use-package 'vertico)
+(require 'vertico)
+(vertico-mode t)
 
 (require 'emacs)
 (defun crm-indicator (args)
@@ -28,15 +28,12 @@
 ;; Enable recursive minibuffers
 (setq enable-recursive-minibuffers t)
 
-;; This package is manually installed in site-lisp.
-(leaf vertico-directory
-  :straight nil
-  :require t
-  :bind (:vertico-map
-         ("RET" . vertico-directory-enter)
-         ("DEL" . vertico-directory-delete-char)
-         ("M-DEL" . vertico-directory-delete-word))
-  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
+;; This extensions comes with vertico installed by straight.
+(load "extensions/vertico-directory")
+(keymap-set vertico-map "RET" #'vertico-directory-enter)
+(keymap-set vertico-map "DEL" #'vertico-directory-delete-char)
+(keymap-set vertico-map "M-DEL" #'vertico-directory-delete-word)
+(add-hook 'rfn-eshadow-update-overlay #'vertico-directory-tidy)
 
 (provide 'init-vertico)
 ;;; init-vertico.el ends here

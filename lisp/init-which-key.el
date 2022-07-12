@@ -2,15 +2,14 @@
 
 ;;; Commentary:
 
-;;
+;; Should a list of keybindings with the current inputed prefix.
 
 ;;; Code:
 
-(leaf which-key
-  :init
-  (which-key-mode t)
-  :config
-  (setq which-key-idle-delay 0.3))
+(straight-use-package 'which-key)
+(require 'which-key)
+(which-key-mode t)
+(setq which-key-idle-delay 0.3)
 
 (provide 'init-which-key)
 ;;; init-which-key.el ends here

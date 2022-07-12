@@ -2,29 +2,25 @@
 
 ;;; Commentary:
 
-;; Writing rust on Emacs is just unbearably slow. Auto completion is
-;; way too laggy. No human on earth can withstand such an experience.
+;; Writing rust in Emacs with a large library as dependency is
+;; unbearabily slow.
 
 ;;; Code:
 
-;; (leaf rust-mode
-;;   :require t)
+(straight-use-package 'rustic)
+(require 'rustic)
+(add-to-list 'auto-mode-alist '("\\.rs\\'" . rustic-mode))
+(setq rustic-lsp-client 'eglot)
+(setq rustic-format-trigger 'on-save)
 
-(leaf rustic
-  :require t
-  :mode "\\.rs\\'"
-  :config
-  (setq rustic-lsp-client 'eglot)
-  (setq rustic-format-trigger 'on-save)
-  )
+(straight-use-package 'toml-mode)
+(require 'toml-mode)
+(add-to-list 'auto-mode-alist '("\\.toml\\'" . toml-mode))
 
-(leaf toml-mode
-  :mode "\\.toml\\'"
-  :require t)
-
-(leaf cargo
-  :require t
-  :hook ((rustic-mode-hook toml-mode-hook) . cargo-minor-mode))
+(straight-use-package 'cargo)
+(require 'cargo)
+(add-hook 'rustic-mode-hook #'cargo-minor-mode)
+(add-hook 'toml-mode-hook #'cargo-minor-mode)
 
 (provide 'init-rust)
 ;;; init-rust.el ends here

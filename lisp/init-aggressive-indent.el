@@ -9,6 +9,7 @@
 (straight-use-package 'aggressive-indent)
 (require 'aggressive-indent)
 (global-aggressive-indent-mode 1)
+(add-to-list 'aggressive-indent-excluded-modes 'dart-mode)
 ;; Useful in future.
 ;; (add-to-list 'aggressive-indent-excluded-modes 'html-mode)
 

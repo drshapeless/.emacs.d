@@ -267,5 +267,12 @@
   (interactive)
   (drsl/switch-buffer-by-prefix "*firefox"))
 
+(defun drsl/insert-time-string ()
+  "Insert current time string.
+
+This format is for updating package modified time."
+  (interactive)
+  (insert (format-time-string "%a %b %e %H:%M:%S %Y (%z)")))
+
 (provide 'init-helpers)
 ;;; init-helpers.el ends here

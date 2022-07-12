@@ -4,8 +4,8 @@
 ;; Description: The shapeless theme.
 ;; Author: DrShapeLess <drsl@drshapeless.com>
 ;; Created: Sat Jan 23 14:05:48 2021 (+0800)
-;; Modified: Mon Jul 11 21:41:00 2022 (+0800)
-;; Version: 0.4.1
+;; Modified: Tue Jul 12 22:54:21 2022 (+0800)
+;; Version: 0.4.2
 
 ;;; Commentary:
 
@@ -44,6 +44,8 @@
       (sl/pink          "#d85daf")
       (sl/blue-green    "#00415e")
       (sl/light-blue    "#c0efff")
+      (sl/weird-green   "#306C53")
+      (sl/weirder-green "#214c3a")
       )
 
   ;; Customize faces.
@@ -177,6 +179,14 @@
    ;; `(web-mode-comment-face    ((t (:foreground ,sl/green))))
    `(web-mode-html-tag-face   ((t (:foreground ,sl/green))))
    `(web-mode-html-attr-name-face ((t (:foreground ,sl/bright-orange))))
+
+   ;; highlight-indent-guides
+   `(highlight-indent-guides-character-face ((t (:foreground ,sl/weird-green))))
+   `(highlight-indent-guides-odd-face       ((t (:background ,sl/weird-green))))
+   `(highlight-indent-guides-even-face      ((t (:background ,sl/weirder-green))))
+
+   ;; indent-guide
+   `(indent-guide-face ((t (:foreground ,sl/weird-green))))
    )                                    ; end of custom-theme-set-faces
 
   (custom-theme-set-variables

@@ -135,7 +135,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("22aa7150cc5563723c2ff2773a38b06dc7682a7c5482b9a45670dab096385750" default))
+   '("b8eff8830e1002339c922bef5858f65e17555795a82dc0db4e943336f9c8f84d" default))
  '(safe-local-variable-values
    '((elisp-lint-indent-specs
       (describe . 1)

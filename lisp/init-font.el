@@ -125,7 +125,13 @@
     (drsl/init-font))
 
 (defun drsl/set-font-size ()
-  (set-face-attribute 'default nil :height 120))
+  (if *is-a-mac*
+      (set-face-attribute 'default nil :height 140))
+  (if *is-a-linux*
+      (set-face-attribute 'default nil :height 120))
+  )
+
+(drsl/set-font-size)
 
 ;; Set font size after loading a theme.
 (setq after-load-theme-hook 'drsl/set-font-size)

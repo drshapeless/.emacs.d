@@ -20,7 +20,8 @@ This does not check the validity of key string."
         "Workaround of keymap-unset in older Emacs.
 
 This does not check the validity of key string."
-        (define-key keymap (kbd key) nil remove))
+        ;; Older define-key only accept 3 arguments.
+        (define-key keymap (kbd key) nil))
 
       (defun drsl/keymap-global-set (key command)
         "Workaround of keymap-global-set in older Emacs.

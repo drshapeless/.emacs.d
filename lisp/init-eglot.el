@@ -23,7 +23,6 @@
 (keymap-set eglot-mode-map "C-c e r" #'eglot-reconnect)
 (keymap-set eglot-mode-map "C-c e f" #'eglot-code-action-quickfix)
 (keymap-set eglot-mode-map "C-c e n" #'eglot-rename)
-(keymap-set eglot-mode-map "C-c e j" #'drsl/format-buffer)
 
 (add-to-list 'eglot-server-programs
              '(c-mode . ("clangd" "--header-insertion=never")))
@@ -112,20 +111,37 @@
 (defun clang-format-buffer-on-save ()
   (add-hook 'before-save-hook #'clang-format-buffer -10 t))
 
-(add-hook 'c-mode-hook #'clang-format-buffer-on-save)
+;; (add-hook 'c-mode-hook #'clang-format-buffer-on-save)
 ;; (add-hook 'c++-mode-hook #'clang-format-buffer-on-save)
 
 (defun eglot-format-buffer-on-save ()
   (add-hook 'before-save-hook #'eglot-format-buffer -10 t))
 (add-hook 'go-mode-hook #'eglot-format-buffer-on-save)
 
-(add-hook 'dart-mode-hook #'eglot-format-buffer-on-save)
+;; (add-hook 'dart-mode-hook #'eglot-format-buffer-on-save)
 
 (defun drsl/format-buffer ()
   "Format buffer according to major mode."
   (interactive)
   (cond ((eq major-mode #'c++-mode) (clang-format-buffer))
         (t (eglot-format-buffer))))
+
+;; Do not use `format-all' for `go-mode'.
+;; Do not hook to `prog-mode'.
+(straight-use-package 'format-all)
+(require 'format-all)
+(add-hook 'format-all-mode-hook #'format-all-ensure-formatter)
+(add-hook 'c-mode-hook #'format-all-mode)
+(add-hook 'c++-mode-hook #'format-all-mode)
+(add-hook 'dart-mode-hook #'format-all-mode)
+
+(keymap-set eglot-mode-map "C-c e j" #'format-all-buffer)
+
+;; Indent guide
+(straight-use-package 'indent-guide)
+(require 'indent-guide)
+(setq indent-guide-delay 0.2)
+(add-hook 'dart-mode-hook #'indent-guide-mode)
 
 (provide 'init-eglot)
 ;;; init-eglot.el ends here

@@ -38,6 +38,7 @@
 (require 'init-flymake)
 (require 'init-ediff)
 (require 'init-ibuffer)
+(require 'init-dictionary)
 
 ;;; Extra packages
 ;; (require 'init-blackout)                ; This is useless as I am using moodline.

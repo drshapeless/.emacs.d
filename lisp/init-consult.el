@@ -75,7 +75,8 @@
 
 (advice-add #'register-preview :override #'consult-register-window)
 
-(advice-add #'completing-read-multiple :override #'consult-completing-read-multiple)
+;; This is now deprecated.
+;; (advice-add #'completing-read-multiple :override #'consult-completing-read-multiple)
 
 ;; Use Consult to select xref locations with preview
 (setq xref-show-xrefs-function #'consult-xref

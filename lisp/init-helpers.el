@@ -25,17 +25,6 @@
     (set-window-buffer other this-buffer)
     (set-window-buffer this other-buffer)))
 
-(require 'shapeless-chinese)
-(defun drsl/toggle-shapeless-chinese ()
-  (interactive)
-  (if (equal shapeless-chinese-mode t)
-      (setq shapeless-chinese-mode nil)
-    (setq shapeless-chinese-mode t)))
-(defun drsl/toggle-input-and-shapeless-chinese ()
-  (interactive)
-  (toggle-input-method)
-  (drsl/toggle-shapeless-chinese))
-
 ;; Syncing my personal website.
 (defun drsl/sync-drshapeless ()
   (interactive)

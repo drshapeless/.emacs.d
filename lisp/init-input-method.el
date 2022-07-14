@@ -59,5 +59,17 @@
                         ("igp"   "應")
                         )))
 
+;; Input chinese punctuations with ease.
+(require 'shapeless-chinese)
+(defun drsl/toggle-shapeless-chinese ()
+  (interactive)
+  (if (equal shapeless-chinese-mode t)
+      (setq shapeless-chinese-mode nil)
+    (setq shapeless-chinese-mode t)))
+(defun drsl/toggle-input-and-shapeless-chinese ()
+  (interactive)
+  (toggle-input-method)
+  (drsl/toggle-shapeless-chinese))
+
 (provide 'init-input-method)
 ;;; init-input-method.el ends here

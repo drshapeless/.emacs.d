@@ -14,7 +14,7 @@
 (straight-use-package 'nov)
 (require 'nov)
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
-(add-hook 'nov-mode-hook #'shrface-mode)
+;; (add-hook 'nov-mode-hook #'shrface-mode)
 (add-hook 'nov-mode-hook #'drsl/browse-url-with-w3m)
 (keymap-set nov-mode-map "q" #'kill-this-buffer)
 (setq nov-shr-rendering-functions '((img . nov-render-img) (title . nov-render-title)))

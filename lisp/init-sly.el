@@ -16,8 +16,9 @@
 
 (add-hook 'sly-mode-hook
           (lambda ()
-            (unless (sly-connected-p)
-              (save-excursion (sly)))))
+            (if (eq major-mode 'lisp-mode)
+                (unless (sly-connected-p)
+                  (save-excursion (sly))))))
 
 (provide 'init-sly)
 ;;; init-sly.el ends here

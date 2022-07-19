@@ -16,5 +16,21 @@
 (if *is-a-mac*
     (setq flutter-sdk-path "/opt/homebrew/Caskroom/flutter/3.0.0/flutter"))
 
+(defun drsl/flutter-wrap-widget ()
+  "Wrap a flutter widget.
+
+This put the original widget in the child parameter."
+  (interactive)
+  (let ((b (region-beginning))
+        (e (region-end)))
+    (save-excursion
+      (goto-char e)
+      (insert "),")
+      (goto-char b)
+      (insert
+       "(
+  child: ")
+      )))
+
 (provide 'init-flutter)
 ;;; init-flutter.el ends here

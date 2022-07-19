@@ -51,7 +51,17 @@ apps are not started from a shell."
 ;; multi-vterm
 (straight-use-package 'multi-vterm)
 (require 'multi-vterm)
-(keymap-global-set "C-c s" #'multi-vterm)
+(defun drsl/new-vterm-or-existing-vterm ()
+  "Create new or open existing vterm buffer.
+
+Create a new vterm buffer if the current buffer is `vterm-mode'.
+Open an existing vterm buffer if the current buffer is not `vterm-mode'."
+  (interactive)
+  (if (eq major-mode 'vterm-mode)
+      (multi-vterm)
+    (multi-vterm-next)))
+
+(keymap-global-set "C-c s" #'drsl/new-vterm-or-existing-vterm)
 (keymap-set vterm-mode-map "C-c C-n" #'multi-vterm-next)
 (keymap-set vterm-mode-map "C-c C-p" #'multi-vterm-prev)
 

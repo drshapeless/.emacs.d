@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: build
+# key: build
+# --
+@override
+Widget build(BuildContext context) {
+  $1;
+}

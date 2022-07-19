@@ -57,7 +57,6 @@
 ;; (require 'init-projectile)
 (require 'init-cape)
 (require 'init-corfu)
-;; (require 'init-shell-switcher)
 (require 'init-tree-sitter)
 (require 'init-rainbow)
 (require 'init-multiple-cursors)
@@ -72,6 +71,7 @@
 (require 'init-calibredb)
 (require 'init-nov)
 (require 'init-hackernews)
+(require 'init-djvu)
 
 ;;; Programming languages
 (require 'init-markdown)
@@ -82,7 +82,6 @@
 (require 'init-web)
 (require 'init-yaml)
 (require 'init-glsl)
-;; (require 'init-hlsl)
 (require 'init-dart)
 (require 'init-flutter)
 (require 'init-wat)
@@ -98,11 +97,9 @@
 (require 'init-emms)
 (require 'init-w3m)
 (require 'init-magit)
-;; (require 'init-vterm)
 (require 'init-notmuch)
 (require 'init-mentor)
 (require 'init-pass)
-;; (require 'init-slime)
 (require 'init-sly)
 (require 'init-geiser)
 

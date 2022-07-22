@@ -8,6 +8,12 @@
 
 (straight-use-package 'eglot)
 (require 'eglot)
+
+;; This stops eglot from logging the json events of lsp server.
+(setq eglot-events-buffer-size 0)
+;; Do not show multiline eldoc.
+(setq eldoc-echo-area-use-multiline-p nil)
+
 (add-hook 'c-mode-hook      #'eglot-ensure)
 (add-hook 'c++-mode-hook    #'eglot-ensure)
 (add-hook 'objc-mode-hook   #'eglot-ensure)
@@ -91,11 +97,15 @@
 
 (add-hook 'project-find-functions #'project-find-go-module)
 
-;; gopls config.
+;; LSP settings.
 (setq-default eglot-workspace-configuration
-              '((:gopls .
+              '(;; gopls config.
+                (:gopls .
                         ((staticcheck . t)
-                         (matcher . "CaseSensitive")))))
+                         (matcher . "CaseSensitive")))
+                ;; dart config.
+                (:dart .
+                       ((completeFunctionCalls . t)))))
 
 ;; clang-format
 (if *is-a-mac*
@@ -126,22 +136,8 @@
   (cond ((eq major-mode #'c++-mode) (clang-format-buffer))
         (t (eglot-format-buffer))))
 
-;; Do not use `format-all' for `go-mode'.
-;; Do not hook to `prog-mode'.
-(straight-use-package 'format-all)
-(require 'format-all)
-(add-hook 'format-all-mode-hook #'format-all-ensure-formatter)
-(add-hook 'c-mode-hook #'format-all-mode)
-(add-hook 'c++-mode-hook #'format-all-mode)
-(add-hook 'dart-mode-hook #'format-all-mode)
-
+;; Load after format-all.
 (keymap-set eglot-mode-map "C-c e j" #'format-all-buffer)
-
-;; Indent guide
-(straight-use-package 'indent-guide)
-(require 'indent-guide)
-(setq indent-guide-delay 0.2)
-(add-hook 'dart-mode-hook #'indent-guide-mode)
 
 (provide 'init-eglot)
 ;;; init-eglot.el ends here

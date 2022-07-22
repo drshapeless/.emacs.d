@@ -89,9 +89,14 @@
 (require 'init-json)
 (require 'init-lilypond)
 
+;;; Programming helper
+(require 'init-indent-guide)
+(require 'init-format-all)
+
 ;;; lsp server
 (require 'init-eglot)
 ;; (require 'init-lsp)                     ; lsp is still crap
+;; (require 'init-lsp-bridge)
 
 (require 'init-pdf)
 (require 'init-emms)

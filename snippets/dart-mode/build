@@ -1,8 +1,8 @@
 # -*- mode: snippet -*-
 # name: build
-# key: build
+# key: wb
 # --
 @override
 Widget build(BuildContext context) {
-  $1;
+  return $1;
 }

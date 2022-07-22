@@ -18,7 +18,7 @@
 (straight-use-package 'pdf-view-restore)
 (require 'pdf-view-restore)
 (add-hook 'pdf-view-mode-hook #'pdf-view-restore-mode)
-(setq pdf-view-restore-filename "~/.emacs-backups/.pdf-view-restore")
+(setq pdf-view-restore-filename "~/.emacs.d/backup/.pdf-view-restore")
 
 (provide 'init-pdf)
 ;;; init-pdf.el ends here

@@ -181,6 +181,8 @@
 
 ;; I don't know, but my firefox buffer is "firefox".
 (add-to-list 'exwm-firefox-class->name-alist (cons "firefox" "firefox"))
+;; My librewolf buffer is librewolf.
+(add-to-list 'exwm-firefox-class->name-alist (cons "librewolf" "librewolf"))
 
 (provide 'init-exwm)
 ;;; init-exwm.el ends here

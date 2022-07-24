@@ -37,28 +37,50 @@
     (drsl/sync-drshapeless))
   )
 
-;; Some firefox shortcuts, make sure you are using exwm.
-;; Don't use librewolf, EXWM xim doesn't work.
+;;; Firefox.
+(defcustom drsl/firefox-browser-command "librewolf"
+  "The command for a firefox based browser.
+
+Default is librewolf. Can change to firefox."
+  :type 'string
+  :options '(firefox librewolf))
+
+(defun drsl/browser-search-duckduckgo (term)
+  "Search with duckduckgo."
+  (interactive (list (read-string "duckduckgo: ")))
+  (cond ((string= drsl/firefox-browser-command "librewolf")
+         (drsl/librewolf-search-duckduckgo term))
+        ((string= drsl/firefox-browser-command "firefox")
+         (drsl/firefox-search-duckduckgo term))))
+
+(defun drsl/browser-open-url (url)
+  "Open url."
+  (interactive (list (read-string "url: ")))
+  (cond ((string= drsl/firefox-browser-command 'librewolf) (drsl/librewolf-open-url url))
+        ((string= drsl/firefox-browser-command 'firefox) (drsl/firefox-open-url url))))
+
+(defun drsl/browser-new ()
+  "Open a new browser window."
+  (interactive)
+  (cond ((string= drsl/firefox-browser-command 'librewolf) (drsl/start-librewolf))
+        ((string= drsl/firefox-browser-command 'firefox) (drsl/start-firefox))))
+
+(defun drsl/browser-new-private ()
+  "Open a new private browser window."
+  (interactive)
+  (cond ((string= drsl/firefox-browser-command 'librewolf)
+         (drsl/start-librewolf-private))
+        ((string= drsl/firefox-browser-command 'firefox)
+         (drsl/start-firefox-private))))
 
 (defun drsl/firefox-search-duckduckgo (term)
   "Firefox duckduckgo search in a new window."
-  (interactive (list (read-string "duckduckgo: ")))
-  (start-process-shell-command "firefox" nil (format "firefox 'https://duckduckgo.com/?q=%s' " term)))
-
-;; (defun drsl/google-with-firefox (term)
-;;   "Firefox google search in a new tab."
-;;   (interactive (list (read-string "google: ")))
-;;   (start-process-shell-command "firefox" nil (format "firefox --new-tab 'https://google.com/search?q=%s'" term)))
-
-;; (defun drsl/firefox-search-searx (term)
-;;   "Firefox search in a new window."
-;;   (interactive (list (read-string "search: ")))
-;;   (start-process-shell-command "firefox" nil
-;;                                (format "firefox 'https://searx.drshapeless.com/search?q=%s'" term)))
+  (start-process-shell-command "firefox"
+                               nil
+                               (format "firefox 'https://duckduckgo.com/?q=%s' " term)))
 
 (defun drsl/firefox-open-url (url)
   "Firefox url in a new window."
-  (interactive (list (read-string "url: ")))
   (start-process-shell-command "firefox" nil
                                (format "firefox '%s'" url)))
 
@@ -71,6 +93,28 @@
   "Start a new firefox private window."
   (interactive)
   (start-process-shell-command "firefox" nil "firefox --private-window"))
+
+;;; librewolf
+(defun drsl/librewolf-search-duckduckgo (term)
+  "Librewolf duckduckgo search in a new window."
+  ;; (interactive (list (read-string "duckduckgo: ")))
+  (start-process-shell-command "librewolf" nil (format "librewolf 'https://duckduckgo.com/?q=%s' " term)))
+
+(defun drsl/librewolf-open-url (url)
+  "Librewolf url in a new window."
+  (start-process-shell-command "librewolf"
+                               nil
+                               (format "librewolf '%s'" url)))
+
+(defun drsl/start-librewolf ()
+  "Start a new librewolf session."
+  (interactive)
+  (start-process-shell-command "librewolf" nil "librewolf"))
+
+(defun drsl/start-librewolf-private ()
+  "Start a new librewolf private window."
+  (interactive)
+  (start-process-shell-command "librewolf" nil "librewolf --private-window"))
 
 (if *is-a-linux*
     (progn
@@ -255,6 +299,11 @@
   "Select a firefox window."
   (interactive)
   (drsl/switch-buffer-by-prefix "*firefox"))
+
+(defun drsl/switch-buffer-firefox-or-librewolf ()
+  "Select a firefox or librewolf window."
+  (interactive)
+  (drsl/switch-buffer-by-prefix "*\\(firefox\\)\\|\\(librewolf\\)"))
 
 (defun drsl/insert-time-string ()
   "Insert current time string.

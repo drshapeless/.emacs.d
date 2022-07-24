@@ -48,11 +48,11 @@
 ;; Firefox
 ;; (keymap-global-set "C-c f d" #'drsl/duckduckgo-with-firefox)
 ;; (keymap-global-set "C-c f g" #'drsl/google-with-firefox)
-(keymap-global-set "C-c f s" #'drsl/firefox-search-duckduckgo)
-(keymap-global-set "C-c f t" #'drsl/firefox-open-url)
-(keymap-global-set "C-c f f" #'drsl/start-firefox)
-(keymap-global-set "C-c f p" #'drsl/start-firefox-private)
-(keymap-global-set "C-c f w" #'drsl/switch-buffer-firefox)
+(keymap-global-set "C-c f s" #'drsl/browser-search-duckduckgo)
+(keymap-global-set "C-c f t" #'drsl/browser-open-url)
+(keymap-global-set "C-c f f" #'drsl/browser-new)
+(keymap-global-set "C-c f p" #'drsl/browser-new-private)
+(keymap-global-set "C-c f w" #'drsl/switch-buffer-firefox-or-librewolf)
 
 ;; Scroll half page only.
 ;; (global-set-key [remap scroll-down-command] 'View-scroll-half-page-backward)

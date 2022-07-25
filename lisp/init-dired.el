@@ -119,5 +119,8 @@ Setting it to other values may have undetermined effect.")
                                      ("\\.mpeg\\'" "mpv")
                                      ("\\.webm\\'" "mpv")))
 
+;; Omit .. and . directories.
+(add-hook 'dired-mode-hook (lambda () (dired-omit-mode 1)))
+
 (provide 'init-dired)
 ;;; init-dired.el ends here

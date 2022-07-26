@@ -48,7 +48,8 @@
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
 ;; Enable horizontal scroll
-(setq mouse-wheel-tilt-scroll t)
+;; Do not use horizontal scroll, it is very annoying.
+;; (setq mouse-wheel-tilt-scroll t)
 
 ;; Never use tab.
 (setq-default indent-tabs-mode nil)

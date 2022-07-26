@@ -87,6 +87,10 @@
                                      display-buffer-no-window
                                      ((allow-no-window . t))))
 
+(add-to-list 'display-buffer-alist '("\\*discord\\*"
+                                     display-buffer-no-window
+                                     ((allow-no-window . t))))
+
 ;; Password-Store always fuck up at displaying at a correct window.
 (add-to-list 'display-buffer-alist '("\\*Password-Store\\*"
                                      display-buffer-same-window))

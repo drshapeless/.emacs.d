@@ -21,5 +21,9 @@
 (add-hook 'pdf-view-mode-hook #'pdf-view-restore-mode)
 (setq pdf-view-restore-filename "~/.emacs.d/backup/.pdf-view-restore")
 
+;; Fix blurry pdf on mac.
+(if *is-a-mac*
+    (setq pdf-view-use-scaling t))
+
 (provide 'init-pdf)
 ;;; init-pdf.el ends here

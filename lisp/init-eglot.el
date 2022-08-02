@@ -141,5 +141,12 @@
 ;; Load after format-all.
 (keymap-set eglot-mode-map "C-c e j" #'format-all-buffer)
 
+(keymap-set eglot-mode-map "C-c e o" #'ff-find-other-file-other-window)
+(keymap-set eglot-mode-map "C-c e p" #'ff-find-other-file)
+
+(require 'shapeless-c-arrow)
+(add-hook 'c-mode-hook #'shapeless-c-arrow-mode)
+(add-hook 'c++-mode-hook #'shapeless-c-arrow-mode)
+
 (provide 'init-eglot)
 ;;; init-eglot.el ends here

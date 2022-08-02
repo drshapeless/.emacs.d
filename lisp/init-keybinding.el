@@ -53,6 +53,8 @@
 (keymap-global-set "C-c f f" #'drsl/browser-new)
 (keymap-global-set "C-c f p" #'drsl/browser-new-private)
 (keymap-global-set "C-c f w" #'drsl/switch-buffer-firefox-or-librewolf)
+(keymap-global-set "C-c f o" #'drsl/start-firefox)
+(keymap-global-set "C-c f l" #'drsl/start-firefox-private)
 
 ;; Scroll half page only.
 ;; (global-set-key [remap scroll-down-command] 'View-scroll-half-page-backward)
@@ -76,6 +78,9 @@
       (keymap-global-set "<XF86AudioRaiseVolume>" #'drsl/raise-audio-volume)
       (keymap-global-set "C-c m v" #'drsl/show-audio-volume)
       ))
+
+
+(keymap-global-set "C-z l" #'duplicate-line)
 
 (provide 'init-keybinding)
 ;;; init-keybinding.el ends here

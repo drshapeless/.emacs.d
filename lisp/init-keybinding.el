@@ -81,6 +81,7 @@
 
 
 (keymap-global-set "C-z l" #'duplicate-line)
+(keymap-global-set "C-z w" #'swap-buffers-in-windows)
 
 (provide 'init-keybinding)
 ;;; init-keybinding.el ends here

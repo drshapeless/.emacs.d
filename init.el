@@ -88,6 +88,7 @@
 (require 'init-svelte)
 (require 'init-json)
 (require 'init-lilypond)
+(require 'init-typescript)
 
 ;;; Programming helper
 (require 'init-indent-guide)

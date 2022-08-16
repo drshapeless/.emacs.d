@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: typescript
-# key: st
+# key: ts
 # --
 <script lang="ts">
   $1

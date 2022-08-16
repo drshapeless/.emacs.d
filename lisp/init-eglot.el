@@ -84,7 +84,9 @@
 ;; Use linux style on C/C++ file
 (setq c-default-style '((java-mode . "java")
                         (awk-mode . "awk")
-                        (other . "linux")))
+                        (c-mode . "linux")
+                        (cc-mode . "linux")
+                        (other . "llvm")))
 
 (setq compile-command "make")
 

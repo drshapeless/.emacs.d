@@ -20,6 +20,7 @@
 ;; (add-hook 'c-mode-hook #'format-all-mode)
 ;; (add-hook 'c++-mode-hook #'format-all-mode)
 (add-hook 'dart-mode-hook #'format-all-mode)
+(add-hook 'svelte-mode-hook #'format-all-mode)
 
 (provide 'init-format-all)
 ;;; init-format-all.el ends here

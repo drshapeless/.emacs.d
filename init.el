@@ -85,7 +85,7 @@
 (require 'init-dart)
 (require 'init-flutter)
 (require 'init-wat)
-(require 'init-svelte)
+;; (require 'init-svelte)
 (require 'init-json)
 (require 'init-lilypond)
 (require 'init-typescript)

@@ -11,6 +11,7 @@
 (global-aggressive-indent-mode 1)
 (add-to-list 'aggressive-indent-excluded-modes 'dart-mode)
 (add-to-list 'aggressive-indent-excluded-modes 'rustic-mode)
+(add-to-list 'aggressive-indent-excluded-modes 'svelte-mode)
 ;; Useful in future.
 ;; (add-to-list 'aggressive-indent-excluded-modes 'html-mode)
 

@@ -28,6 +28,7 @@
 (add-hook 'dart-mode-hook       #'eglot-ensure)
 (add-hook 'rustic-mode-hook     #'eglot-ensure)
 (add-hook 'svelte-mode-hook     #'eglot-ensure)
+(add-hook 'html-mode-hook       #'eglot-ensure)
 
 (keymap-set eglot-mode-map "C-c e r" #'eglot-reconnect)
 (keymap-set eglot-mode-map "C-c e f" #'eglot-code-action-quickfix)

@@ -55,6 +55,7 @@
 (keymap-global-set "C-c f w" #'drsl/switch-buffer-firefox-or-librewolf)
 (keymap-global-set "C-c f o" #'drsl/start-firefox)
 (keymap-global-set "C-c f l" #'drsl/start-firefox-private)
+(keymap-global-set "C-c f q" #'exwm-firefox-core-quit)
 
 ;; Scroll half page only.
 ;; (global-set-key [remap scroll-down-command] 'View-scroll-half-page-backward)

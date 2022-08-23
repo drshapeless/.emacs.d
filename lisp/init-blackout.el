@@ -11,6 +11,10 @@
 
 (straight-use-package 'blackout)
 (require 'blackout)
+(blackout 'yas-minor-mode)
+(blackout 'which-key-mode)
+(blackout 'eldoc-mode)
+(blackout 'visual-line-mode)
 
 (provide 'init-blackout)
 ;;; init-blackout.el ends here

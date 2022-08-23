@@ -19,8 +19,11 @@
 (add-hook 'format-all-mode-hook #'format-all-ensure-formatter)
 ;; (add-hook 'c-mode-hook #'format-all-mode)
 ;; (add-hook 'c++-mode-hook #'format-all-mode)
-(add-hook 'dart-mode-hook #'format-all-mode)
+(add-hook 'dart-mode-hook   #'format-all-mode)
 (add-hook 'svelte-mode-hook #'format-all-mode)
+(add-hook 'json-mode-hook   #'format-all-mode)
+(add-hook 'js-mode-hook     #'format-all-mode)
+(add-hook 'html-mode-hook   #'format-all-mode)
 
 (provide 'init-format-all)
 ;;; init-format-all.el ends here

@@ -41,7 +41,7 @@
 (require 'init-dictionary)
 
 ;;; Extra packages
-;; (require 'init-blackout)                ; This is useless as I am using moodline.
+(require 'init-blackout)                ; This is useless as I am using moodline.
 (require 'init-yasnippet)
 (require 'init-vertico)
 (require 'init-orderless)

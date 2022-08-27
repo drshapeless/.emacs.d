@@ -153,7 +153,9 @@
          char-mode t)))
 
 ;; Firefox
-(straight-use-package '(exwm-firefox :type git :host github :repo "ieure/exwm-firefox"))
+;; (straight-use-package '(exwm-firefox :type git :host nil :repo "https://codeberg.org/emacs-weirdware/exwm-firefox.git"))
+(straight-use-package 'exwm-firefox-core)
+(straight-use-package 's)
 (require 'exwm-firefox)
 (keymap-set exwm-firefox-keymap "C-n" #'exwm-firefox-core-down)
 (keymap-set exwm-firefox-keymap "C-p" #'exwm-firefox-core-up)

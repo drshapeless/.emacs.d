@@ -12,7 +12,7 @@
 ;; straight prevent compatibility issues.
 ;; https://github.com/raxod502/straight.el#the-wrong-version-of-my-package-was-loaded
 
-(straight-use-package 'org)
+(straight-use-package '(org :type built-in))
 (require 'org)
 (add-hook 'org-mode-hook #'auto-fill-mode)
 (add-hook 'org-mode-hook #'org-indent-mode)

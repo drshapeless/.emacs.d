@@ -42,8 +42,8 @@
              '(swift-mode . ("sourcekit-lsp")))
 (add-to-list 'eglot-server-programs
              '(sql-mode . ("sqls")))
-(add-to-list 'eglot-server-programs
-             '(dart-mode . ("dart" "language-server")))
+;; (add-to-list 'eglot-server-programs
+;;              '(dart-mode . ("dart" "language-server")))
 (add-to-list 'eglot-server-programs
              '(svelte-mode . ("svelteserver" "--stdio")))
 

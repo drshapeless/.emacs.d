@@ -8,7 +8,7 @@
 
 (defun drsl/init-font ()
   (progn
-    (set-face-attribute 'default nil :font "menlo")
+    (set-face-attribute 'default nil :font "monaco")
 
     ;; Provided by Sebastian Urban
     ;; More information at https://idiocy.org/emacs-fonts-and-fontsets.html

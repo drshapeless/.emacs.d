@@ -315,7 +315,7 @@ This format is for updating package modified time."
 (defun drsl/pull-emacs-config ()
   "Pull Emacs config."
   (interactive)
-  (async-shell-command "cd ~/.config/emacs/; git pull"))
+  (async-shell-command (format "cd %s; git pull" user-emacs-directory)))
 
 (defun drsl/pull-org-roam ()
   "Pull org-roam directory."

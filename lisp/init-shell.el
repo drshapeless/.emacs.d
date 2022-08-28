@@ -47,7 +47,8 @@ apps are not started from a shell."
 (require 'vterm)
 (setq vterm-buffer-name-string "vterm %s")
 (setq vterm-always-compile-module t)
-(define-key vterm-mode-map (kbd "C-q") #'vterm-send-next-key)
+(keymap-set vterm-mode-map "C-q" #'vterm-send-next-key)
+(add-to-list 'vterm-eval-cmds '("update-pwd" (lambda (path) (setq default-directory path))))
 
 ;; multi-vterm
 (straight-use-package 'multi-vterm)
@@ -63,8 +64,22 @@ Open an existing vterm buffer if the current buffer is not `vterm-mode'."
     (multi-vterm-next)))
 
 (keymap-global-set "C-c s" #'drsl/new-vterm-or-existing-vterm)
-(keymap-set vterm-mode-map "C-c C-n" #'multi-vterm-next)
-(keymap-set vterm-mode-map "C-c C-p" #'multi-vterm-prev)
+(keymap-set vterm-mode-map "H-n" #'multi-vterm-next)
+(keymap-set vterm-mode-map "H-p" #'multi-vterm-prev)
+
+(straight-use-package 'vterm-toggle)
+(require 'vterm-toggle)
+;; (keymap-global-set "C-c s" 'vterm-toggle)
+;; (keymap-set vterm-mode-map "H-n" 'vterm-toggle-forward)
+;; (keymap-set vterm-mode-map "H-p" 'vterm-toggle-backward)
+(setq vterm-toggle-fullscreen-p nil)
+(add-to-list 'display-buffer-alist
+             '((lambda (buffer-or-name _)
+                   (let ((buffer (get-buffer buffer-or-name)))
+                     (with-current-buffer buffer
+                       (or (equal major-mode 'vterm-mode)
+                           (string-prefix-p vterm-buffer-name (buffer-name buffer))))))
+         (display-buffer-reuse-window display-buffer-same-window)))
 
 (provide 'init-shell)
 ;;; init-shell.el ends here

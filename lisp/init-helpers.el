@@ -312,5 +312,27 @@ This format is for updating package modified time."
   (interactive)
   (insert (format-time-string "%a %b %e %H:%M:%S %Y (%z)")))
 
+(defun drsl/pull-emacs-config ()
+  "Pull Emacs config."
+  (interactive)
+  (async-shell-command "cd ~/.config/emacs/; git pull"))
+
+(defun drsl/pull-org-roam ()
+  "Pull org-roam directory."
+  (interactive)
+  (async-shell-command "cd ~/org-roam/; git pull"))
+
+(defun drsl/pull-calibre ()
+  "Pull calibre library."
+  (interactive)
+  (async-shell-command "cd ~/calibre/; git pull"))
+
+(defun drsl/pull-personal ()
+  "Pull personal git projects."
+  (interactive)
+  (drsl/pull-emacs-config)
+  (drsl/pull-org-roam)
+  (drsl/pull-calibre))
+
 (provide 'init-helpers)
 ;;; init-helpers.el ends here

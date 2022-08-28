@@ -89,6 +89,7 @@
 (require 'init-json)
 (require 'init-lilypond)
 (require 'init-typescript)
+(require 'init-caddyfile)
 
 ;;; Programming helper
 (require 'init-indent-guide)

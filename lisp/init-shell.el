@@ -45,8 +45,9 @@ apps are not started from a shell."
 ;; vterm
 (straight-use-package 'vterm)
 (require 'vterm)
-(setq vterm-buffer-name-string "vterm %s"
-      vterm-always-compile-module t)
+(setq vterm-buffer-name-string "vterm %s")
+(setq vterm-always-compile-module t)
+(define-key vterm-mode-map (kbd "C-q") #'vterm-send-next-key)
 
 ;; multi-vterm
 (straight-use-package 'multi-vterm)

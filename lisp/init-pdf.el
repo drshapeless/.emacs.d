@@ -15,11 +15,13 @@
 (setq pdf-tools-handle-upgrades nil
       pdf-info-epdfinto-program "epdfinfo")
 (add-hook 'pdf-view-mode-hook #'pdf-view-themed-minor-mode)
+(pdf-tools-install)
 
 (straight-use-package 'pdf-view-restore)
 (require 'pdf-view-restore)
 (add-hook 'pdf-view-mode-hook #'pdf-view-restore-mode)
-(setq pdf-view-restore-filename "~/.emacs.d/backup/.pdf-view-restore")
+(setq pdf-view-restore-filename
+      (expand-file-name "backup/.pdf-view-restore" user-emacs-directory))
 
 ;; Fix blurry pdf on mac.
 (if *is-a-mac*

@@ -315,17 +315,17 @@ This format is for updating package modified time."
 (defun drsl/pull-emacs-config ()
   "Pull Emacs config."
   (interactive)
-  (async-shell-command (format "cd %s; git pull" user-emacs-directory)))
+  (async-shell-command (format "git -C %s pull" user-emacs-directory)))
 
 (defun drsl/pull-org-roam ()
   "Pull org-roam directory."
   (interactive)
-  (async-shell-command "cd ~/org-roam/; git pull"))
+  (async-shell-command "git -C ~/org-roam/ pull"))
 
 (defun drsl/pull-calibre ()
   "Pull calibre library."
   (interactive)
-  (async-shell-command "cd ~/calibre/; git pull"))
+  (async-shell-command "git -C ~/calibre/ pull"))
 
 (defun drsl/pull-personal ()
   "Pull personal git projects."

@@ -25,6 +25,13 @@
 
 (setq org-html-doctype "html5")
 
+(setq org-link-frame-setup
+      '((vm . vm-visit-folder-other-frame)
+        (vm-imap . vm-visit-imap-folder-other-frame)
+        (gnus . org-gnus-no-new-news)
+        (file . find-file)
+        (wl . wl-other-frame)))
+
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((dot . t)

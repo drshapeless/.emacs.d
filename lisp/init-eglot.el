@@ -64,7 +64,7 @@
       in-assign)))
 
 ;; Add a cc-mode style for editing LLVM C and C++ code
-(c-add-style "llvm.org"
+(c-add-style "llvm"
              '("gnu"
                (fill-column . 80)
                (c++-indent-level . 2)

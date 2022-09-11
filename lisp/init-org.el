@@ -32,11 +32,6 @@
         (file . find-file)
         (wl . wl-other-frame)))
 
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((dot . t)
-   (shell . t)))
-
 (straight-use-package 'valign)
 (require 'valign)
 
@@ -112,6 +107,15 @@
 
 (straight-use-package 'org-present)
 (require 'org-present)
+
+(straight-use-package 'ob-restclient)
+(require 'ob-restclient)
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((dot . t)
+   (shell . t)
+   (restclient . t)))
 
 (provide 'init-org)
 ;;; init-org.el ends here

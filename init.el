@@ -73,6 +73,7 @@
 (require 'init-nov)
 (require 'init-hackernews)
 (require 'init-djvu)
+(require 'init-restclient)
 
 ;;; Programming languages
 (require 'init-markdown)

@@ -24,3 +24,10 @@ c-mode
 (objc "/* -*- mode: objc -*- */")
 
 (todo "/* TODO: " p " */")
+
+(cpp "#ifdef __cplusplus" n
+     "extern \"C\" {" n
+     "#endif" n n r
+     "#ifdef __cplusplus" n
+     "}" n
+     "#endif" n)

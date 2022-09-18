@@ -13,8 +13,10 @@
 (setq eglot-events-buffer-size 0)
 ;; Do not show multiline eldoc.
 (setq eldoc-echo-area-use-multiline-p nil)
+
 ;; Auto shutdown server
-(setq eglot-autoshutdown t)
+;; (setq eglot-autoshutdown t)
+;; Auto shutdown somehow causes some weird lag.
 
 (add-hook 'c-mode-hook          #'eglot-ensure)
 (add-hook 'c++-mode-hook        #'eglot-ensure)

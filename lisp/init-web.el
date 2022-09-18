@@ -22,5 +22,7 @@
 (setq web-mode-engines-alist
       '(("svelte" . "\\.svelte\\'")))
 
+(setq web-mode-enable-auto-quoting nil)
+
 (provide 'init-web)
 ;;; init-web.el ends here

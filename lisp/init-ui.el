@@ -30,7 +30,7 @@
 
 (column-number-mode t)
 (blink-cursor-mode -1)                  ; Disable cursor blinking.
-(global-visual-line-mode t)
+;; (global-visual-line-mode t)
 (show-paren-mode t)
 (electric-pair-mode t)
 (setq ring-bell-function 'ignore)	; No notification sound.

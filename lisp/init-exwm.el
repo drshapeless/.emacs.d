@@ -6,6 +6,9 @@
 
 ;;; Code:
 
+;; For bug#58245.
+(setq x-no-window-manager t)
+
 (straight-use-package 'exwm)
 (require 'exwm)
 

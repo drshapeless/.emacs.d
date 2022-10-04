@@ -20,7 +20,7 @@
 ;; (add-hook 'c-mode-hook #'format-all-mode)
 ;; (add-hook 'c++-mode-hook #'format-all-mode)
 (add-hook 'dart-mode-hook   #'format-all-mode)
-(add-hook 'svelte-mode-hook #'format-all-mode)
+;; (add-hook 'svelte-mode-hook #'format-all-mode)
 (add-hook 'json-mode-hook   #'format-all-mode)
 (add-hook 'js-mode-hook     #'format-all-mode)
 (add-hook 'html-mode-hook   #'format-all-mode)

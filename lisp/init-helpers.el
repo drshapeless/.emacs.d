@@ -334,5 +334,32 @@ This format is for updating package modified time."
   (drsl/pull-org-roam)
   (drsl/pull-calibre))
 
+(defun drsl/download-all-magnet-links-in-html()
+  "Download all the magnet link in the local html.
+
+Visit a local html file and run the function.
+
+It currently do not support external link due to javascript.
+
+Only tested with nyaa search page."
+  (interactive)
+  (let ((dom (libxml-parse-html-region)))
+    (mapcar
+     (lambda (l)
+       (mentor-download-load-magnet-link-or-url nil l))
+     (remq nil (mapcar
+                (lambda (x)
+                  (if (and x
+                           (string-match-p "^magnet"
+                                           x))
+                      x
+                    nil))
+                (mapcar
+                 (lambda (x)
+                   (dom-attr
+                    x
+                    'href))
+                 (dom-by-tag dom 'a)))))))
+
 (provide 'init-helpers)
 ;;; init-helpers.el ends here

@@ -117,7 +117,8 @@ Setting it to other values may have undetermined effect.")
                                      ("\\.wmv\\'"  "mpv")
                                      ("\\.mpg\\'"  "mpv")
                                      ("\\.mpeg\\'" "mpv")
-                                     ("\\.webm\\'" "mpv")))
+                                     ("\\.webm\\'" "mpv")
+                                     ("\\.xlsx\\'" "soffice")))
 
 ;; Omit .. and . directories.
 (add-hook 'dired-mode-hook (lambda () (dired-omit-mode 1)))

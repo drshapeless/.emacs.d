@@ -119,7 +119,8 @@
 ;; keycode 133 = Hyper_L
 ;; add    mod3 = Hyper_L
 
-;; pointer = 1 2 3 5 4 7 6 8 9 10 11 12
+;; Do not invert the scolling direction in xmodmap, because it does
+;; not work in gtk3.
 (shell-command "xmodmap ~/.Xmodmap")
 
 ;; Use Emacs input method in X window.

@@ -32,7 +32,7 @@
 ;; I used to use C-z as a personal prefix key, but it is so hard to
 ;; press that I gave up using C-c. C-c does not collide with anything.
 
-(keymap-global-set "H-<SPC>" #'drsl/toggle-input-and-shapeless-chinese)
+;; (keymap-global-set "H-<SPC>" #'drsl/toggle-input-and-shapeless-chinese)
 
 ;; Redefine the arrow keys to windmove.
 (require 'windmove)

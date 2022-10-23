@@ -71,5 +71,7 @@
   (toggle-input-method)
   (drsl/toggle-shapeless-chinese))
 
+(keymap-global-set "H-<SPC>" #'toggle-input-method)
+
 (provide 'init-input-method)
 ;;; init-input-method.el ends here

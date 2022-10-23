@@ -4,9 +4,12 @@
 
 ;; Eglot is the only decent lsp server solution in Emacs.
 
+;; Eglot now comes with Emacs.
+
 ;;; Code:
 
-(straight-use-package 'eglot)
+(if *is-older-emacs*
+    (straight-use-package 'eglot))
 (require 'eglot)
 
 ;; This stops eglot from logging the json events of lsp server.

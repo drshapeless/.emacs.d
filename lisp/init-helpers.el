@@ -162,7 +162,7 @@ Default is librewolf. Can change to firefox."
         (shell-command "pactl get-sink-volume @DEFAULT_SINK@ | grep Volume"))
       (defun drsl/start-discord ()
         (interactive)
-        (async-shell-command "discord" "*discord*"))
+        (async-shell-command "fast-discord" "*discord*"))
       ))
 
 (defun drsl/enable-ssh-over-socks ()

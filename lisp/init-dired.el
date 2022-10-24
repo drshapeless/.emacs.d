@@ -122,6 +122,9 @@ Setting it to other values may have undetermined effect.")
 
 ;; Omit .. and . directories.
 (add-hook 'dired-mode-hook (lambda () (dired-omit-mode 1)))
+;; Omit junk files in macos.
+(setq dired-omit-files
+      (concat dired-omit-files "\\|^.DS_Store$\\|^[.]_"))
 
 (provide 'init-dired)
 ;;; init-dired.el ends here

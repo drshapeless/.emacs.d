@@ -15,10 +15,15 @@
       ;; Disable screen save.
       (shell-command "xset s off")
       (shell-command "xset -dpms")
+
+      ;; Disable menu bar.
+
+      ;; Do not disable menu bar in macos, it will cause weird
+      ;; behaviour of the fullscreen button.
+      (menu-bar-mode -1)
       ))
 
 (setq inhibit-startup-screen t)		; Disable startup screen.
-(menu-bar-mode -1)                      ; Disable menu bar.
 (scroll-bar-mode -1)                    ; Disable scroll bar.
 (tool-bar-mode -1)                      ; Disable tool bar.
 

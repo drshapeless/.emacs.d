@@ -112,12 +112,14 @@
 ;; This is extremely annoying when compiling native elisp.
 (setq warning-minimum-level :emergency)
 
+;; Do not expand the minibuffer.
+(setq resize-mini-windows nil)
+
 (setq gc-cons-threshold 50000000)
 
 (if *is-a-mac*
     (progn
-      (toggle-frame-maximized)
-      ;; (drsl/start-v2ray)
+      (drsl/macos-fullscreen)
       ))
 
 (provide 'init-ui)

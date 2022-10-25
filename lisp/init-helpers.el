@@ -361,5 +361,18 @@ Only tested with nyaa search page."
                     'href))
                  (dom-by-tag dom 'a)))))))
 
+(defun drsl/macos-fullscreen ()
+  "Make Emacs window in macos to fullscreen.
+
+The default `toggle-frame-fullscreen' does not respect the notch
+in newer Macbook, some contents are block by the front
+camera. Also, it does not create a new dedicated desktop in
+macos, just a weird fullscreen application blockiong other
+applications in the original desktop.
+
+This function makes use of the applescript to toggle fullscreen
+in macos."
+    (async-shell-command "osascript -e 'tell application \"System Events\" to tell process \"Emacs\" \n set value of attribute \"AXFullScreen\" of window 1 to true \n end tell'"))
+
 (provide 'init-helpers)
 ;;; init-helpers.el ends here

@@ -113,7 +113,7 @@
 (setq warning-minimum-level :emergency)
 
 ;; Do not expand the minibuffer.
-(setq resize-mini-windows nil)
+;; (setq resize-mini-windows 'grow-only)
 
 (setq gc-cons-threshold 50000000)
 

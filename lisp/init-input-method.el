@@ -57,6 +57,7 @@
                         ("ohs"   "作")
                         ("lmyyy" "非")
                         ("igp"   "應")
+                        ("mwyl"  "面")
                         )))
 
 ;; Input chinese punctuations with ease.
@@ -72,6 +73,8 @@
   (drsl/toggle-shapeless-chinese))
 
 (keymap-global-set "H-<SPC>" #'toggle-input-method)
+(keymap-global-set "C-z c" #'drsl/toggle-shapeless-chinese)
+(keymap-global-set "s-<SPC>" #'drsl/toggle-input-and-shapeless-chinese)
 
 (provide 'init-input-method)
 ;;; init-input-method.el ends here

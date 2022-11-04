@@ -18,7 +18,7 @@
 (setq eldoc-echo-area-use-multiline-p nil)
 
 ;; Auto shutdown server
-;; (setq eglot-autoshutdown t)
+(setq eglot-autoshutdown t)
 ;; Auto shutdown somehow causes some weird lag.
 
 (add-hook 'c-mode-hook          #'eglot-ensure)

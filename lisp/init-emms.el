@@ -10,7 +10,7 @@
 (require 'emms)
 (emms-default-players)
 (emms-all)
-(setq emms-source-file-default-directory "~/hdd/Music/")
+(setq emms-source-file-default-directory "~/music/")
 (emms-mode-line nil)
 (emms-playing-time-enable-display)
 

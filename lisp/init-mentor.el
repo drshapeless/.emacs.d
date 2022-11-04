@@ -8,7 +8,7 @@
 
 (straight-use-package 'mentor)
 (require 'mentor)
-(setq mentor-rtorrent-download-directory "/mnt/hdd/Downloads/")
+(setq mentor-rtorrent-download-directory "~/torrent-downloads/")
 (setq mentor-rtorrent-keep-session t)
 (keymap-global-set "C-c t" #'mentor)
 

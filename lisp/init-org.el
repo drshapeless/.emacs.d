@@ -32,6 +32,8 @@
         (file . find-file)
         (wl . wl-other-frame)))
 
+(setq org-image-actual-width nil)
+
 (straight-use-package 'valign)
 (require 'valign)
 

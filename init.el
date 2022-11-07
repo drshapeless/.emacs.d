@@ -145,7 +145,13 @@
  '(custom-safe-themes
    '("b8eff8830e1002339c922bef5858f65e17555795a82dc0db4e943336f9c8f84d" default))
  '(safe-local-variable-values
-   '((diff-add-log-use-relative-names . t)
+   '((eval valign-mode t)
+     (valign-mode . t)
+     (eval progn
+           (org-babel-goto-named-src-block "startup")
+           (org-babel-execute-src-block)
+           (outline-hide-sublevels 1))
+     (diff-add-log-use-relative-names . t)
      (vc-git-annotate-switches . "-w")
      (elisp-lint-indent-specs
       (describe . 1)

@@ -95,8 +95,9 @@
 
 ;;; Programming helper
 (require 'init-indent-guide)
-(require 'init-format-all)
-(require 'init-prettier)
+;; (require 'init-format-all)
+;; (require 'init-prettier)
+(require 'init-apheleia)
 
 ;;; lsp server
 (require 'init-eglot)

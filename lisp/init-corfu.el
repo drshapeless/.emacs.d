@@ -51,7 +51,13 @@
 ;;                                     (or (frame-parent corfu--frame)
 ;;                                         exwm-workspace--current))))
 
+(straight-use-package
+ '(corfu-terminal
+   :type git
+   :repo "https://codeberg.org/akib/emacs-corfu-terminal.git"))
 
+(unless (display-graphic-p)
+  (corfu-terminal-mode 1))
 
 (provide 'init-corfu)
 ;;; init-corfu.el ends here

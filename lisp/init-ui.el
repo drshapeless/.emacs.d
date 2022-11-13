@@ -118,9 +118,6 @@
 ;; This is extremely annoying when compiling native elisp.
 (setq warning-minimum-level :emergency)
 
-;; Do not expand the minibuffer.
-;; (setq resize-mini-windows 'grow-only)
-
 (setq gc-cons-threshold 50000000)
 
 (provide 'init-ui)

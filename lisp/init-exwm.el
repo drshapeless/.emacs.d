@@ -156,7 +156,7 @@
 
 ;; Set specific applications in char-mode.
 (setq exwm-manage-configurations
-      '(((member exwm-class-name '("slcard"))
+      '(((member exwm-class-name '("slcard" "XTerm"))
          char-mode t)))
 
 ;; Firefox

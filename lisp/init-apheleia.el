@@ -13,7 +13,7 @@
              '(swift-mode . swift-format))
 
 (add-to-list 'apheleia-formatters
-             '(swift-mode "swift-format"))
+             '(swift-format "swift-format"))
 
 (apheleia-global-mode 1)
 

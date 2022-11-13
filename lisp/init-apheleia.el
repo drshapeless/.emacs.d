@@ -7,6 +7,7 @@
 ;;; Code:
 
 (straight-use-package 'apheleia)
+(require 'apheleia)
 
 (add-to-list 'apheleia-mode-alist
              '(swift-mode . swift-format))

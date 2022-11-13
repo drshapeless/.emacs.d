@@ -148,8 +148,8 @@
             ))
 (exwm-randr-enable)
 
-(straight-use-package 'exwm-edit)
-(require 'exwm-edit)
+;; (straight-use-package 'exwm-edit)
+;; (require 'exwm-edit)
 
 ;; Autohide minibuffer & echo area. Don't use, it sucks.
 ;; (setq exwm-workspace-minibuffer-position 'bottom)

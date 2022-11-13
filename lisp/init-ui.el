@@ -23,6 +23,12 @@
       (menu-bar-mode -1)
       ))
 
+(if *is-a-mac*
+    (progn
+      (if (display-graphic-p)
+          (drsl/macos-fullscreen)
+        (menu-bar-mode -1))))
+
 (setq inhibit-startup-screen t)		; Disable startup screen.
 (scroll-bar-mode -1)                    ; Disable scroll bar.
 (tool-bar-mode -1)                      ; Disable tool bar.
@@ -116,11 +122,6 @@
 ;; (setq resize-mini-windows 'grow-only)
 
 (setq gc-cons-threshold 50000000)
-
-(if *is-a-mac*
-    (progn
-      (drsl/macos-fullscreen)
-      ))
 
 (provide 'init-ui)
 ;;; init-ui.el ends here

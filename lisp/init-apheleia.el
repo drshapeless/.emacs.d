@@ -13,7 +13,8 @@
              '(swift-mode . swift-format))
 
 (add-to-list 'apheleia-formatters
-             '(swift-format "swift-format"))
+             '(swift-format "swift-format" "--configuration"
+                            (expand-file-name "~/.config/swift-format/.swift-format")))
 
 (apheleia-global-mode 1)
 

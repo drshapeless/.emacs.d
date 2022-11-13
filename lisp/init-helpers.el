@@ -372,7 +372,14 @@ applications in the original desktop.
 
 This function makes use of the applescript to toggle fullscreen
 in macos."
-    (async-shell-command "osascript -e 'tell application \"System Events\" to tell process \"Emacs\" \n set value of attribute \"AXFullScreen\" of window 1 to true \n end tell'"))
+  (interactive)
+  (async-shell-command "osascript -e 'tell application \"System Events\" to tell process \"Emacs\" \n set value of attribute \"AXFullScreen\" of window 1 to true \n end tell'"))
+
+(defun drsl/macos-term-mode ()
+  "A bunch of settings for better terminal emacs experience."
+  (interactive)
+  (corfu-terminal-mode 1)
+  (menu-bar-mode -1))
 
 (provide 'init-helpers)
 ;;; init-helpers.el ends here

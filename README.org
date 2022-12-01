@@ -19,9 +19,64 @@ I just go with emacs-mac by YAMAMOTO Mitsuharu,
 https://bitbucket.org/mituharu/emacs-mac/overview, which is only up to
 the latest stable build.
 
+I wrote [[https://blog.drshapeless.com/posts/emacs-installation-tutorial.html][a blog about how I build Emacs on different platforms]].
+
 * Key bindings
 I use the classic Emacs key bindings. I have never use vim before, no
 reason for me to use evil.
+
+* Features of this configuration
+** No [[https://github.com/jwiegley/use-package][use-package]]
+I think use-package hides a lot of details of how the underlying elisp
+works by the excessive amount of keywords. It is not an issue for an
+elisp expert, but if you are a beginner, you may face a lot of
+difficulties of how to write you own config from scratch.
+
+Although use-package is very popular, I actually recommend its
+alternative, [[https://github.com/conao3/leaf.el][leaf]], which is very similar to use-package, but cleaner
+and more predictable, (use-package may have fixed some of the issues
+that leaf want to fix in the first place, but I haven't been using
+either of them in a while).
+
+** Pure [[https://github.com/radian-software/straight.el][straight.el]]
+I use straight.el to fetch the Emacs packages from source instead of
+installing through the internal package manager. (This may change in
+Emacs 29.0 if Emacs is capable of installing package from source.)
+
+** Custom theme
+I wrote my own theme from scratch because I want a dark theme with
+lower contract to protect my eyes. However, the theme I wrote is far
+from polished, therefore I never make a package for it.
+
+** Picks packages that utilize internal Emacs functions
+There are some very popular packages like [[https://github.com/abo-abo/swiper][ivy]], [[https://github.com/company-mode/company-mode][company]], [[https://github.com/emacs-lsp/lsp-mode][lsp-mode]],
+mu4e. But for historical reasons, most of them develop a set of
+specified functions for their own use. In the development of Emacs, a
+lot of things have been added to the core, newer packages can then
+utilize internal Emacs functions to do things.
+
+However, packages like ivy and company have been doing things in their
+own way for a long time, their size are likely bloated because they
+contains some duplicated specified functions. So packages like [[https://github.com/minad/corfu][corfu]],
+which is an alternative to company, are much lighter and less error
+prone. (corfu is not a complete replacement for company, but to me, it
+does everything I need.)
+
+This config would choose packages that prefers built-in functions.
+
+** No org-babel
+A lot of Emacs users are leaning towards using a single org file to
+manage their Emacs config, for the purpose of literate programming. I
+personally think literate programming is a good idea, but it is not
+suitable for Emacs config. Not everything needs explaination,
+good code tells what it does and why it is. A lot of time, I ended up
+with a single code block without any comments. The problem of using
+org file for config is that, you need to export it to elisp every
+time. Although you can add to hook to save-file, it is a bit stupid to
+export your whole config for fixing a typo.
+
+As a result, I choose to use the Purcell's way to separate config into
+small files.
 
 * Packages of choice
 These are some of my many packages.

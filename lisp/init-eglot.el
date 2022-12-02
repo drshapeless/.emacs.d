@@ -247,7 +247,24 @@ UseTab: Always
           (concat (dired-current-directory)
                   ".clang-format")
        (concat (file-name-directory (buffer-file-name))
-              ".clang-format"))))
+               ".clang-format"))))
+
+(defun drsl/generate-prettierrc ()
+  "Generate a .prettierrc.toml in the current directory."
+  (interactive)
+  (write-region "useTabs = false
+singleQuote = false
+semi = true
+trailingComma = \"es5\"
+printWidth = 80
+pluginSearchDirs = [\".\"]
+overrides = [ { files = \"*.svelte\", options = { parser = \"svelte\"}}]
+"
+  nil (if (eq major-mode 'dired-mode)
+          (concat (dired-current-directory)
+                  ".prettierrc.toml")
+        (concat (file-name-directory (buffer-file-name))
+                ".prettierrc.toml"))))
 
 (defun clang-format-buffer-on-save ()
   (add-hook 'before-save-hook #'clang-format-buffer -10 t))

@@ -119,13 +119,13 @@
                        ((completeFunctionCalls . t)))))
 
 ;; clang-format
-(if *is-a-mac*
-    (if (file-exists-p "/opt/homebrew/share/clang/clang-format.el")
-        (load "/opt/homebrew/share/clang/clang-format.el")))
-
-(if *is-a-linux*
-    (if (file-exists-p "/usr/share/clang/clang-format.el")
-        (load "/usr/share/clang/clang-format.el")))
+(let ((clang-format-path "/usr/share/clang/clang-format.el"))
+  (if *is-a-mac*
+        (setq clang-format-path (concat (getenv "HOMEBREW_PREFIX")
+                                        "/share/clang/clang-format.el")))
+  (if (file-exists-p clang-format-path)
+      (load clang-format-path)
+    (message "clang-format not found")))
 
 (require 'clang-format)
 

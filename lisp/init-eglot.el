@@ -52,6 +52,17 @@
 (add-to-list 'eglot-server-programs
              '(svelte-mode . ("svelteserver" "--stdio")))
 
+;; Deno support from https://deno.land/manual@v1.28.3/getting_started/setup_your_environment
+(add-to-list 'eglot-server-programs '((js-mode typescript-mode) . (eglot-deno "deno" "lsp")))
+
+(defclass eglot-deno (eglot-lsp-server) ()
+  :documentation "A custom class for deno lsp.")
+
+(cl-defmethod eglot-initialization-options ((server eglot-deno))
+  "Passes through required deno initialization options"
+  (list :enable t
+        :lint t))
+
 (defun drsl/use-c-gnu-style ()
   (interactive)
   (setq c-default-style '((java-mode . "java")

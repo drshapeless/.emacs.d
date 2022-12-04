@@ -9,17 +9,17 @@
 
 (straight-use-package 'corfu)
 (require 'corfu)
-  (setq corfu-auto t
-        corfu-quit-no-match 'separator
-        corfu-auto-prefix 1
-        corfu-auto-delay 0
-        corfu-min-width 80
-        corfu-max-width corfu-min-width
-        corfu-count 14
-        corfu-scroll-margin 4
-        corfu-cycle nil
-        corfu-preselect-first t
-        corfu-echo-documentation t)
+(setq corfu-auto t
+      corfu-quit-no-match 'separator
+      corfu-auto-prefix 1
+      corfu-auto-delay 0
+      corfu-min-width 80
+      corfu-max-width corfu-min-width
+      corfu-count 14
+      corfu-scroll-margin 4
+      corfu-cycle nil
+      corfu-preselect-first t
+      corfu-echo-documentation t)
 (global-corfu-mode)
 
 ;; Corfu for eglot.

@@ -118,6 +118,7 @@ Setting it to other values may have undetermined effect.")
                                      ("\\.mpg\\'"  "mpv")
                                      ("\\.mpeg\\'" "mpv")
                                      ("\\.webm\\'" "mpv")
+                                     ("\\.flac\\'" "mpv")
                                      ("\\.xlsx\\'" "soffice")))
 
 ;; Omit .. and . directories.

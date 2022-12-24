@@ -42,6 +42,11 @@ apps are not started from a shell."
 (setq shell-switcher-mode t)
 (setq shell-switcher-new-shell-function #'shell-switcher-make-shell)
 
+;; Coterm
+(straight-use-package 'coterm)
+;; Coterm enable TUI like program to be run in shell.
+(coterm-mode)
+
 ;; vterm
 (straight-use-package 'vterm)
 (require 'vterm)
@@ -81,10 +86,27 @@ Open an existing vterm buffer if the current buffer is not `vterm-mode'."
                            (string-prefix-p vterm-buffer-name (buffer-name buffer))))))
                (display-buffer-reuse-window display-buffer-same-window)))
 
+;; vterm-capf
+;; (straight-use-package '(vterm-capf :type git :host github :repo "twlz0ne/vterm-capf"))
+;; (require 'vterm-capf)
+;; (setq vterm-capf-frontend 'corfu)
+;; (add-hook 'vterm-mode-hook #'vterm-capf-mode)
+
 ;; This is about eterm.
 (straight-use-package 'eterm-256color)
 (require 'eterm-256color)
 (add-hook 'term-mode-hook #'eterm-256color-mode)
+
+;; Eat.
+(straight-use-package
+ '(eat :type git
+       :host codeberg
+       :repo "akib/emacs-eat"
+       :files ("*.el" ("term" "term/*.el") "*.texi"
+               "*.ti" ("terminfo/e" "terminfo/e/*")
+               ("terminfo/65" "terminfo/65/*")
+               ("integration" "integration/*")
+               (:exclude ".dir-locals.el" "*-tests.el"))))
 
 (provide 'init-shell)
 ;;; init-shell.el ends here

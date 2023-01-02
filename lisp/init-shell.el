@@ -32,9 +32,8 @@ apps are not started from a shell."
     (setq exec-path (split-string path-from-shell path-separator))))
 
 ;; No reason to make things complicated, add what I need to path.
-(if *is-a-mac*
-    (add-to-list 'exec-path (concat (getenv "HOME") "/go/bin"))
-  )
+(add-to-list 'exec-path (concat (getenv "HOME") "/go/bin"))
+(add-to-list 'exec-path (concat (getenv "HOME") "/bin"))
 
 ;; Shell switcher
 (straight-use-package 'shell-switcher)

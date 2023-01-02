@@ -72,9 +72,10 @@
                             "#+title: ${title}\n")
          :immediate-finish t
          :unnarrowed t)
-        ("r" "reference" plain "%?"
+        ;; Review is for book, music, anime, manga.
+        ("r" "review" plain "%?"
          :if-new
-         (file+head "references/${slug}.org" "#+title: ${title}\n")
+         (file+head "reviews/${slug}.org" "#+title: ${title}\n#+date: nil\n#+update: nil\n#+id: nil\n#+filetags: :review:draft:\n")
          :immediate-finish t
          :unnarrowed t)
         ;; Article is for myself.
@@ -85,7 +86,7 @@
         ;; Blog is for publishing on personal blog.
         ("b" "blog" plain "%?"
          :if-new (file+head "blog/${slug}.org"
-                            "#+title: ${title}\n#+date: nil\n#+update: nil\n#+id: nil\n")
+                            "#+title: ${title}\n#+date: nil\n#+update: nil\n#+id: nil\n#+filetags: :draft:\n")
          :immediate-finish t
          :unnarrowed t)))
 

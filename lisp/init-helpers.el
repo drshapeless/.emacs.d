@@ -379,5 +379,15 @@ in macos."
   (corfu-terminal-mode 1)
   (menu-bar-mode -1))
 
+(defun drsl/set-default-audio-output-piano ()
+  "Set default audio output to piano."
+  (interactive)
+  (shell-command "pactl set-default-sink alsa_output.usb-Roland_Roland_Digital_Piano-00.analog-stereo"))
+
+(defun drsl/set-default-audio-output-analog ()
+  "Set default audio output to analog."
+  (interactive)
+  (shell-command "pactl set-default-sink alsa_output.pci-0000_09_00.4.analog-stereo"))
+
 (provide 'init-helpers)
 ;;; init-helpers.el ends here

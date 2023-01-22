@@ -33,6 +33,7 @@ apps are not started from a shell."
 
 ;; No reason to make things complicated, add what I need to path.
 (add-to-list 'exec-path (concat (getenv "HOME") "/go/bin"))
+(add-to-list 'exec-path (concat (getenv "HOME") "/.cargo/bin"))
 (add-to-list 'exec-path (concat (getenv "HOME") "/bin"))
 
 ;; Shell switcher

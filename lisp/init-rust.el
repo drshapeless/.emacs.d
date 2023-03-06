@@ -9,9 +9,20 @@
 
 (straight-use-package 'rustic)
 (require 'rustic)
-(add-to-list 'auto-mode-alist '("\\.rs\\'" . rustic-mode))
+;; (add-to-list 'auto-mode-alist '("\\.rs\\'" . rustic-mode))
 (setq rustic-lsp-client 'eglot)
 (setq rustic-format-trigger 'on-save)
+
+;; This is a temporary fix for using internal treesit.
+(if (treesit-available-p)
+    (define-derived-mode rustic-mode rust-ts-mode "Rustic"
+      "Major mode for Rust code.
+
+\\{rustic-mode-map}"
+      :group 'rustic
+
+      (when (bound-and-true-p rustic-cargo-auto-add-missing-dependencies)
+        (add-hook 'lsp-after-diagnostics-hook 'rustic-cargo-add-missing-dependencies-hook nil t))))
 
 (straight-use-package 'toml-mode)
 (require 'toml-mode)

@@ -21,14 +21,24 @@
 (setq eglot-autoshutdown t)
 ;; Auto shutdown somehow causes some weird lag.
 
-(add-hook 'c-mode-hook          #'eglot-ensure)
-(add-hook 'c++-mode-hook        #'eglot-ensure)
+(if (treesit-available-p)
+    (progn
+      (add-hook 'c-ts-mode-hook          #'eglot-ensure)
+      (add-hook 'c++-ts-mode-hook        #'eglot-ensure)
+      (add-hook 'python-ts-mode-hook     #'eglot-ensure)
+      (add-hook 'js-ts-mode-hook         #'eglot-ensure)
+      (add-hook 'typescript-ts-mode-hook #'eglot-ensure)
+      (add-hook 'go-ts-mode-hook         #'eglot-ensure))
+  (progn
+    (add-hook 'c-mode-hook          #'eglot-ensure)
+    (add-hook 'c++-mode-hook        #'eglot-ensure)
+    (add-hook 'python-mode-hook     #'eglot-ensure)
+    (add-hook 'js-mode-hook         #'eglot-ensure)
+    (add-hook 'typescript-mode-hook #'eglot-ensure)
+    (add-hook 'go-mode-hook         #'eglot-ensure)))
+
 (add-hook 'objc-mode-hook       #'eglot-ensure)
 (add-hook 'swift-mode-hook      #'eglot-ensure)
-(add-hook 'python-mode-hook     #'eglot-ensure)
-(add-hook 'js-mode-hook         #'eglot-ensure)
-(add-hook 'typescript-mode-hook #'eglot-ensure)
-(add-hook 'go-mode-hook         #'eglot-ensure)
 (add-hook 'sql-mode-hook        #'eglot-ensure)
 (add-hook 'dart-mode-hook       #'eglot-ensure)
 (add-hook 'rustic-mode-hook     #'eglot-ensure)

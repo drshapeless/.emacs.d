@@ -9,6 +9,8 @@
 
 ;;; Code:
 
+(setq straight-repository-branch "develop")
+
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
@@ -23,6 +25,8 @@
   (load bootstrap-file nil 'nomessage))
 
 (require 'straight-x)
+
+(straight-override-recipe '(compat :type git :host github :repo "emacs-compat/compat"))
 
 (provide 'init-straight)
 ;;; init-straight.el ends here

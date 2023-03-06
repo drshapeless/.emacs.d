@@ -21,7 +21,7 @@
 (setq eglot-autoshutdown t)
 ;; Auto shutdown somehow causes some weird lag.
 
-(if (treesit-available-p)
+(if (and (not *is-older-emacs*) (treesit-available-p))
     (progn
       (add-hook 'c-ts-mode-hook          #'eglot-ensure)
       (add-hook 'c++-ts-mode-hook        #'eglot-ensure)

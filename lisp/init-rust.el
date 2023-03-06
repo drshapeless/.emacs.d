@@ -14,7 +14,7 @@
 (setq rustic-format-trigger 'on-save)
 
 ;; This is a temporary fix for using internal treesit.
-(if (treesit-available-p)
+(if (and (not *is-older-emacs*) (treesit-available-p))
     (define-derived-mode rustic-mode rust-ts-mode "Rustic"
       "Major mode for Rust code.
 

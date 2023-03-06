@@ -213,7 +213,7 @@ Default is librewolf. Can change to firefox."
 (defun drsl/start-v2ray ()
   "Start v2ray daemon."
   (interactive)
-  (async-shell-command "v2ray -c ~/code/v2ray-client.json" "*v2ray*"))
+  (async-shell-command "v2ray run -c ~/code/v2ray-client.json" "*v2ray*"))
 
 ;; https://stackoverflow.com/questions/88399/how-do-i-duplicate-a-whole-line-in-emacs
 ;; From user pesche.

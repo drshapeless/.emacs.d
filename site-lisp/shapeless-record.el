@@ -104,8 +104,8 @@ Stop recording if is recording now."
                           "/"
                           shapeless-record-current-project-name
                           "."
-                          (number-to-string
-                           shapeless-record-current-take)
+                          (format "%02d"
+                                  shapeless-record-current-take)
                           ".wav"))))
 
 (defun shapeless-record--stop-recording-wav ()
@@ -123,7 +123,7 @@ Stop recording if is recording now."
                           "/"
                           shapeless-record-current-project-name
                           "."
-                          (number-to-string
+                          (format "%02d"
                            shapeless-record-current-take)
                           ".midi"))))
 

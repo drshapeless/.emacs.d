@@ -88,7 +88,7 @@
  consult-ripgrep consult-git-grep consult-grep
  consult-bookmark consult-recent-file consult-xref
  consult--source-recent-file consult--source-project-recent-file consult--source-bookmark
- :preview-key (kbd "M-."))
+ :preview-key "M-.")
 
 (setq consult-narrow-key "<") ;; (kbd "C-+")
 

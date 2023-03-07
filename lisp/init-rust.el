@@ -13,16 +13,21 @@
 (setq rustic-lsp-client 'eglot)
 (setq rustic-format-trigger 'on-save)
 
-;; This is a temporary fix for using internal treesit.
+This is a temporary fix for using internal treesit.
 (if (and (not *is-older-emacs*) (treesit-available-p))
-    (define-derived-mode rustic-mode rust-ts-mode "Rustic"
-      "Major mode for Rust code.
+    (progn
+      (define-derived-mode rustic-mode rust-ts-mode "Rustic"
+        "Major mode for Rust code.
 
 \\{rustic-mode-map}"
-      :group 'rustic
+        :group 'rustic
 
-      (when (bound-and-true-p rustic-cargo-auto-add-missing-dependencies)
-        (add-hook 'lsp-after-diagnostics-hook 'rustic-cargo-add-missing-dependencies-hook nil t))))
+        (when (bound-and-true-p rustic-cargo-auto-add-missing-dependencies)
+          (add-hook 'lsp-after-diagnostics-hook 'rustic-cargo-add-missing-dependencies-hook nil t)))
+
+      (let ((mode '("\\.rs\\'" . rust-ts-mode)))
+        (when (member mode auto-mode-alist)
+          (setq auto-mode-alist (remove mode auto-mode-alist))))))
 
 (straight-use-package 'toml-mode)
 (require 'toml-mode)

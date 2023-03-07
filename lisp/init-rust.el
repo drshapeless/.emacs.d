@@ -13,7 +13,7 @@
 (setq rustic-lsp-client 'eglot)
 (setq rustic-format-trigger 'on-save)
 
-This is a temporary fix for using internal treesit.
+;; This is a temporary fix for using internal treesit.
 (if (and (not *is-older-emacs*) (treesit-available-p))
     (progn
       (define-derived-mode rustic-mode rust-ts-mode "Rustic"

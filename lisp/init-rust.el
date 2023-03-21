@@ -13,6 +13,14 @@
 (setq rustic-lsp-client 'eglot)
 (setq rustic-format-trigger 'on-save)
 
+(straight-use-package 'toml-mode)
+(require 'toml-mode)
+(add-to-list 'auto-mode-alist '("\\.toml\\'" . toml-mode))
+
+(straight-use-package 'cargo)
+(require 'cargo)
+(add-hook 'rustic-mode-hook #'cargo-minor-mode)
+
 ;; This is a temporary fix for using internal treesit.
 (if (and (not *is-older-emacs*) (treesit-available-p))
     (progn
@@ -23,20 +31,21 @@
         :group 'rustic
 
         (when (bound-and-true-p rustic-cargo-auto-add-missing-dependencies)
-          (add-hook 'lsp-after-diagnostics-hook 'rustic-cargo-add-missing-dependencies-hook nil t)))
+          (add-hook 'lsp-after-diagnostics-hook 'rustic-cargo-add-missing-dependencies-hook nil t)))))
 
-      (let ((mode '("\\.rs\\'" . rust-ts-mode)))
-        (when (member mode auto-mode-alist)
-          (setq auto-mode-alist (remove mode auto-mode-alist))))))
+(require 'rust-ts-mode)
+(let ((mode '("\\.rs\\'" . rust-ts-mode)))
+  (when (member mode auto-mode-alist)
+    (setq auto-mode-alist (remove mode auto-mode-alist))))
 
-(straight-use-package 'toml-mode)
-(require 'toml-mode)
-(add-to-list 'auto-mode-alist '("\\.toml\\'" . toml-mode))
-
-(straight-use-package 'cargo)
-(require 'cargo)
-(add-hook 'rustic-mode-hook #'cargo-minor-mode)
-(add-hook 'toml-mode-hook #'cargo-minor-mode)
+(setq rustic-ansi-faces  ["black"
+                          "red3"
+                          "green3"
+                          "yellow3"
+                          "DeepSkyBlue2"
+                          "magenta3"
+                          "cyan3"
+                          "white"])
 
 (provide 'init-rust)
 ;;; init-rust.el ends here

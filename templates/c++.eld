@@ -1,4 +1,5 @@
 c++-mode
+c++-ts-mode
 
 (cerr "std::cerr << " p " std::endl;")
 (cf "// clang-format off" n p n "// clang-format on" n)

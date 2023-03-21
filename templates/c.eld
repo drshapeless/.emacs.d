@@ -1,4 +1,5 @@
 c-mode
+c-ts-mode
 
 (cf "/* clang-format off */" n
     p n

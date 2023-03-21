@@ -1,4 +1,5 @@
 go-mode
+go-ts-mode
 
 ;; Cancel context
 (cc

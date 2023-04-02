@@ -38,6 +38,9 @@ and more predictable, (use-package may have fixed some of the issues
 that leaf want to fix in the first place, but I haven't been using
 either of them in a while).
 
+I use pure elisp without macros for most of the configurations. This
+may seems an alien act to modern Emacs users.
+
 ** Pure [[https://github.com/radian-software/straight.el][straight.el]]
 I use straight.el to fetch the Emacs packages from source instead of
 installing through the internal package manager. (This may change in

@@ -17,9 +17,12 @@
 (require 'toml-mode)
 (add-to-list 'auto-mode-alist '("\\.toml\\'" . toml-mode))
 
-(straight-use-package 'cargo)
-(require 'cargo)
-(add-hook 'rustic-mode-hook #'cargo-minor-mode)
+;; cargo mode does not seem to be important as many of its features
+;; can be found in rustic.
+
+;; (straight-use-package 'cargo)
+;; (require 'cargo)
+;; (add-hook 'rustic-mode-hook #'cargo-minor-mode)
 
 ;; This is a temporary fix for using internal treesit.
 (if (and (not *is-older-emacs*) (treesit-available-p))

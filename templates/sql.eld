@@ -1,0 +1,9 @@
+sql-mode
+
+(c "CREATE TABLE IF NOT EXISTS ")
+
+(d "DROP TABLE IF EXISTS ")
+
+(nn "NOT NULL")
+
+(t "TIMESTAMP")

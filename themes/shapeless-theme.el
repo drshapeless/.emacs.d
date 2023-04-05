@@ -2,10 +2,10 @@
 ;;
 ;; Filename: shapeless-theme.el
 ;; Description: The shapeless theme.
-;; Author: DrShapeLess <drsl@drshapeless.com>
+;; Author: drshapeless <drsl@drshapeless.com>
 ;; Created: Sat Jan 23 14:05:48 2021 (+0800)
-;; Modified: Tue Jul 12 22:54:21 2022 (+0800)
-;; Version: 0.4.2
+;; Modified: Tue Apr 12 22:33:21 2023 (+0800)
+;; Version: 0.4.3
 
 ;;; Commentary:
 

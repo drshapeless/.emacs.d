@@ -34,9 +34,10 @@
         :group 'rustic
 
         (when (bound-and-true-p rustic-cargo-auto-add-missing-dependencies)
-          (add-hook 'lsp-after-diagnostics-hook 'rustic-cargo-add-missing-dependencies-hook nil t)))))
+          (add-hook 'lsp-after-diagnostics-hook 'rustic-cargo-add-missing-dependencies-hook nil t)))
+      (require 'rust-ts-mode)
+      ))
 
-(require 'rust-ts-mode)
 (let ((mode '("\\.rs\\'" . rust-ts-mode)))
   (when (member mode auto-mode-alist)
     (setq auto-mode-alist (remove mode auto-mode-alist))))

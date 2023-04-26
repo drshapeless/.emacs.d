@@ -75,20 +75,33 @@
         ;; Review is for book, music, anime, manga.
         ("r" "review" plain "%?"
          :if-new
-         (file+head "reviews/${slug}.org" "#+title: ${title}\n#+date: nil\n#+update: nil\n#+id: nil\n#+filetags: :review:draft:\n")
+         (file+head "reviews/${slug}.org" "#+title: ${title}\n#+date: nil\n#+update: nil\n#+id: nil\n#+filetags: :review:\n")
          :immediate-finish t
          :unnarrowed t)
         ;; Article is for myself.
         ("a" "article" plain "%?"
-         :if-new (file+head "articles/${slug}.org" "#+title: ${title}\n#+filetags: :article:draft:\n")
+         :if-new (file+head "articles/${slug}.org" "#+title: ${title}\n#+filetags: :article:\n")
          :immediate-finish t
          :unnarrowed t)
         ;; Blog is for publishing on personal blog.
         ("b" "blog" plain "%?"
          :if-new (file+head "blog/${slug}.org"
-                            "#+title: ${title}\n#+date: nil\n#+update: nil\n#+id: nil\n#+filetags: :draft:\n")
+                            "#+title: ${title}\n#+date: nil\n#+update: nil\n#+id: nil\n")
          :immediate-finish t
          :unnarrowed t)))
+
+(setq org-capture-templates
+      '(;; Slipbox for immediate thoughts.
+        ("s" "Slipbox" entry (file "~/org-roam/inbox.org")
+         "* %?\n")))
+
+(defun drsl/org-capture-slipbox ()
+  (interactive)
+  (org-capture nil "s"))
+
+(defun drsl/tag-new-node-as-draft ()
+  (org-roam-tag-add '("draft")))
+(add-hook 'org-roam-capture-new-node-hook #'drsl/tag-new-node-as-draft)
 
 (cl-defmethod org-roam-node-type ((node org-roam-node))
   "Return the TYPE of NODE."
@@ -100,7 +113,7 @@
     (error "")))
 
 (setq org-roam-node-display-template
-      (concat "${type:15} ${title:*} " (propertize "${tags:15}" 'face 'org-tag)))
+      (concat "${type:10} ${title:*} " (propertize "${tags:*}" 'face 'org-tag)))
 
 ;; This package is for inline css while exporting source code block.
 (straight-use-package 'htmlize)

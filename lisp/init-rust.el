@@ -51,5 +51,7 @@
                           "cyan3"
                           "white"])
 
+(setq rustic-analyzer-command '("rustup" "run" "nightly" "rust-analyzer"))
+
 (provide 'init-rust)
 ;;; init-rust.el ends here

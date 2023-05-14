@@ -317,5 +317,9 @@ overrides = [ { files = \"*.svelte\", options = { parser = \"svelte\"}}]
 (add-hook 'c-mode-hook #'shapeless-c-arrow-mode)
 (add-hook 'c++-mode-hook #'shapeless-c-arrow-mode)
 
+(straight-use-package '(breadcrumb :type git :host github :repo "joaotavora/breadcrumb"))
+(require 'breadcrumb)
+(breadcrumb-mode)
+
 (provide 'init-eglot)
 ;;; init-eglot.el ends here

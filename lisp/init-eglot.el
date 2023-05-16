@@ -321,5 +321,17 @@ overrides = [ { files = \"*.svelte\", options = { parser = \"svelte\"}}]
 (require 'breadcrumb)
 (breadcrumb-mode)
 
+;;; Things with Corfu
+;; Use Eglot to provide continuously updated candidates
+(advice-add 'eglot-completion-at-point :around #'cape-wrap-buster)
+(defun drsl/eglot-capf ()
+  (setq-local completion-at-point-functions
+              (list (cape-super-capf
+                     #'eglot-completion-at-point
+                     #'tempel-expand
+                     #'cape-file))))
+
+(add-hook 'eglot-managed-mode-hook #'drsl/eglot-capf)
+
 (provide 'init-eglot)
 ;;; init-eglot.el ends here

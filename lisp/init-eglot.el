@@ -333,5 +333,9 @@ overrides = [ { files = \"*.svelte\", options = { parser = \"svelte\"}}]
 
 (add-hook 'eglot-managed-mode-hook #'drsl/eglot-capf)
 
+;;; Use tempel instead of yasnippet. It does not work.
+;; (straight-use-package '(eglot-tempel :type git :host github :repo "fejfighter/eglot-tempel"))
+;; (require 'eglot-tempel)
+
 (provide 'init-eglot)
 ;;; init-eglot.el ends here

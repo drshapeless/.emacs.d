@@ -15,6 +15,7 @@
 
 (keymap-global-set "M-+" #'tempel-expand)
 (keymap-global-set "M-*" #'tempel-insert)
+(keymap-global-set "C-<tab>" #'tempel-expand)
 
 (provide 'init-tempel)
 ;;; init-tempel.el ends here

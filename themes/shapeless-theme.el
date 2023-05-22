@@ -4,8 +4,8 @@
 ;; Description: The shapeless theme.
 ;; Author: drshapeless <drsl@drshapeless.com>
 ;; Created: Sat Jan 23 14:05:48 2021 (+0800)
-;; Modified: Tue Apr 12 22:33:21 2023 (+0800)
-;; Version: 0.4.3
+;; Modified: Mon May 22 19:30:21 2023 (+0800)
+;; Version: 0.5.3
 
 ;;; Commentary:
 
@@ -174,6 +174,25 @@
    ;; w3m
    `(w3m-anchor ((t (:foreground ,sl/blue :underline t))))
 
+   ;; ansi-color
+   `(ansi-color-black ((t (:foreground ,sl/black :background ,sl/black))))
+   `(ansi-color-blue  ((t (:foreground ,sl/blue :background ,sl/blue))))
+   `(ansi-color-bold  ((t (:inherit bold))))
+   `(ansi-color-bright-black  ((t (:foreground ,sl/dark-gray :background ,sl/dark-gray))))
+   `(ansi-color-bright-blue  ((t (:foreground ,sl/light-blue :background ,sl/light-blue))))
+   `(ansi-color-bright-cyan  ((t (:foreground ,sl/crazy-green :background ,sl/crazy-green))))
+   `(ansi-color-bright-green  ((t (:foreground ,sl/green :background ,sl/green))))
+   `(ansi-color-bright-magenta  ((t (:foreground ,sl/violet :background ,sl/violet))))
+   `(ansi-color-bright-red  ((t (:foreground ,sl/orange :background ,sl/orange))))
+   `(ansi-color-bright-white  ((t (:foreground ,sl/white :background ,sl/white))))
+   `(ansi-color-bright-yellow  ((t (:foreground ,sl/yellow :background ,sl/yellow))))
+   `(ansi-color-cyan  ((t (:foreground ,sl/crazy-green :background ,sl/crazy-green))))
+   `(ansi-color-green  ((t (:foreground ,sl/green :background ,sl/green))))
+   `(ansi-color-magenta  ((t (:foreground ,sl/violet :background ,sl/violet))))
+   `(ansi-color-red  ((t (:foreground ,sl/red :background ,sl/red))))
+   `(ansi-color-white  ((t (:foreground ,sl/gray :background ,sl/gray))))
+   `(ansi-color-yellow  ((t (:foreground ,sl/yellow :background ,sl/yellow))))
+
    ;; ansi-term
    ;; `(term ((t (:foreground ,sl/black :background ,sl/dark-gray))))
    ;; `(term-color-black ((t (:foreground ,sl/white))))
@@ -200,10 +219,10 @@
    `(indent-guide-face ((t (:foreground ,sl/weird-green))))
    )                                    ; end of custom-theme-set-faces
 
-  (custom-theme-set-variables
-   'shapeless
-   `(ansi-color-names-vector
-     [,sl/darker-gray ,sl/red ,sl/green ,sl/yellow ,sl/blue ,sl/purple ,sl/blue ,sl/white]))
+  ;; (custom-theme-set-variables
+  ;;  'shapeless
+  ;;  `(ansi-color-names-vector
+  ;;    [,sl/darker-gray ,sl/red ,sl/green ,sl/yellow ,sl/blue ,sl/purple ,sl/blue ,sl/white]))
   )
 
 ;;;###autoload

@@ -5,7 +5,7 @@
 ;; Author: drshapeless <drsl@drshapeless.com>
 ;; Created: Sat Jan 23 14:05:48 2021 (+0800)
 ;; Modified: Tue May 23 20:12:38 2023 (+0800)
-;; Version: 0.6.0
+;; Version: 0.6.1
 
 ;;; Commentary:
 
@@ -31,14 +31,15 @@
       (sl/weird-bg      "#191a1b")
 
       ;; Other colors
-      (sl/calm-red           "#a10000")
+      (sl/calm-red      "#a10000")
       (sl/pale-orange   "#ceb058")
       (sl/bright-orange "#e09712")
       (sl/orange        "#b45900")
       (sl/brown         "#542121")
-      (sl/calm-yellow        "#cecb6e")
-      (sl/calm-green         "#32cd32")
-      (sl/calm-blue          "#4785ee")
+      (sl/calm-yellow   "#cecb6e")
+      (sl/calm-green    "#32cd32")
+      (sl/calm-blue     "#4785ee")
+      (sl/dodger-blue   "#1E90FF")
       (sl/purple        "#ce66ce")
       (sl/violet        "#a63ea5")
       (sl/pink          "#d85daf")
@@ -58,8 +59,7 @@
       (sl/white         "#D1D1D1")
       (sl/yellow        "#D7D704")
 
-
-      (sl/bright-black  "#2b2b2b")
+      (sl/bright-black   "#2b2b2b")
       (sl/bright-blue    "#0E86D4")
       (sl/bright-cyan    "#00FFFF")
       (sl/bright-green   "#2EFF2E")
@@ -91,11 +91,11 @@
    `(font-lock-doc-markup-face           ((t (:foreground ,sl/calm-yellow))))
    `(font-lock-escape-face               ((t (:foreground ,sl/calm-white))))
    `(font-lock-function-name-face        ((t (:foreground ,sl/calm-green))))
-   `(font-lock-keyword-face              ((t (:foreground ,sl/calm-blue))))
+   `(font-lock-keyword-face              ((t (:foreground ,sl/dodger-blue))))
    `(font-lock-misc-punctuation-face     ((t (:foreground ,sl/calm-white))))
    `(font-lock-negation-char-face        ((t (:foreground ,sl/calm-yellow))))
    `(font-lock-number-face               ((t (:foreground ,sl/calm-yellow))))
-   `(font-lock-operator-face             ((t (:foreground ,sl/calm-blue))))
+   `(font-lock-operator-face             ((t (:foreground ,sl/dodger-blue))))
    `(font-lock-preprocessor-face         ((t (:foreground ,sl/calm-yellow))))
    `(font-lock-property-face             ((t (:foreground ,sl/crazy-green))))
    `(font-lock-punctuation-face          ((t (:foreground ,sl/calm-white))))
@@ -121,12 +121,12 @@
    `(tree-sitter-hl-face:function.call         ((t (:foreground ,sl/calm-green))))
    `(tree-sitter-hl-face:function.macro        ((t (:foreground ,sl/calm-green))))
    `(tree-sitter-hl-face:function.special      ((t (:foreground ,sl/calm-green))))
-   `(tree-sitter-hl-face:keyword               ((t (:foreground ,sl/calm-blue))))
+   `(tree-sitter-hl-face:keyword               ((t (:foreground ,sl/dodger-blue))))
    `(tree-sitter-hl-face:label                 ((t (:foreground ,sl/calm-yellow))))
    `(tree-sitter-hl-face:method                ((t (:foreground ,sl/calm-green))))
    `(tree-sitter-hl-face:method.call           ((t (:foreground ,sl/calm-green))))
    `(tree-sitter-hl-face:number                ((t (:foreground ,sl/calm-yellow))))
-   `(tree-sitter-hl-face:operator              ((t (:foreground ,sl/calm-blue))))
+   `(tree-sitter-hl-face:operator              ((t (:foreground ,sl/dodger-blue))))
    `(tree-sitter-hl-face:property              ((t (:foreground ,sl/bright-orange))))
    `(tree-sitter-hl-face:property.definition   ((t (:foreground ,sl/calm-yellow))))
    `(tree-sitter-hl-face:punctuation           ((t (:foreground ,sl/calm-white))))
@@ -142,7 +142,7 @@
    `(tree-sitter-hl-face:type.parameter        ((t (:foreground ,sl/pink))))
    `(tree-sitter-hl-face:type.super            ((t (:foreground ,sl/pink))))
    `(tree-sitter-hl-face:variable              ((t (:foreground ,sl/bright-orange))))
-   `(tree-sitter-hl-face:variable.builtin      ((t (:foreground ,sl/calm-blue))))
+   `(tree-sitter-hl-face:variable.builtin      ((t (:foreground ,sl/dodger-blue))))
    `(tree-sitter-hl-face:variable.parameter    ((t (:foreground ,sl/bright-orange))))
    `(tree-sitter-hl-face:variable.special      ((t (:foreground ,sl/bright-orange))))
 
@@ -167,7 +167,7 @@
    `(org-level-1 ((t (:foreground ,sl/calm-green :weight ultra-bold))))
    `(org-level-2 ((t (:foreground ,sl/bright-orange :weight extra-bold))))
    `(org-level-3 ((t (:foreground ,sl/purple))))
-   `(org-level-4 ((t (:foreground ,sl/calm-blue))))
+   `(org-level-4 ((t (:foreground ,sl/dodger-blue))))
    `(org-table   ((t (:foreground ,sl/pale-orange))))
    `(org-meta-line ((t (:inherit font-lock-comment-face))))
    `(org-code    ((t (:background ,sl/darkest-gray))))
@@ -185,11 +185,11 @@
    `(vertico-current ((t (:foreground ,sl/calm-yellow :background ,sl/dark-gray :extend t))))
 
    ;; comint
-   `(comint-highlight-prompt ((t (:foreground ,sl/calm-blue))))
+   `(comint-highlight-prompt ((t (:foreground ,sl/dodger-blue))))
    `(comint-highlight-input  ((t (:foreground ,sl/bright-orange))))
 
    ;; eshell
-   `(eshell-prompt ((t (:foreground ,sl/calm-blue))))
+   `(eshell-prompt ((t (:foreground ,sl/dodger-blue))))
 
    ;; w3m
    `(w3m-anchor ((t (:foreground ,sl/calm-blue :underline t))))
@@ -218,7 +218,7 @@
    ;; `(term-color-black ((t (:foreground ,sl/calm-white))))
 
    ;; vterm
-   `(vterm-color-blue ((t (:foreground ,sl/calm-blue))))
+   `(vterm-color-blue ((t (:foreground ,sl/dodger-blue))))
 
    ;; markdown
    `(markdown-inline-code-face ((t (:foreground ,sl/bright-orange))))

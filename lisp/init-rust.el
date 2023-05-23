@@ -42,15 +42,6 @@
   (when (member mode auto-mode-alist)
     (setq auto-mode-alist (remove mode auto-mode-alist))))
 
-(setq rustic-ansi-faces  ["black"
-                          "red3"
-                          "green3"
-                          "yellow3"
-                          "DeepSkyBlue2"
-                          "magenta3"
-                          "cyan3"
-                          "white"])
-
 (setq rustic-analyzer-command '("rustup" "run" "nightly" "rust-analyzer"))
 
 (provide 'init-rust)

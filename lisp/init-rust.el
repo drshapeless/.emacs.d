@@ -44,5 +44,14 @@
 
 (setq rustic-analyzer-command '("rustup" "run" "nightly" "rust-analyzer"))
 
+(setq rustic-ansi-faces ["#000000"
+                         "#FF033E"
+                         "#2EFF2E"
+                         "#FAFA0F"
+                         "#0E86D4"
+                         "#FF0BAC"
+                         "#5CFFFF"
+                         "#E8E8E8"])
+
 (provide 'init-rust)
 ;;; init-rust.el ends here

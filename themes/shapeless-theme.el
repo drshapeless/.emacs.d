@@ -22,8 +22,8 @@
 ;; Define a color palette.
 (let (
       ;; Gray scales
-      (sl/calm-black         "#000000")
-      (sl/calm-white         "#cecece")
+      (sl/calm-black    "#000000")
+      (sl/calm-white    "#cecece")
       (sl/gray          "#6e6e6e")
       (sl/dark-gray     "#404040")
       (sl/darker-gray   "#2b2b2b")

@@ -13,7 +13,8 @@
 (defun drsl/shapeless-blog-update-token ()
   "Fetch the secret via pass before updating token."
   (interactive)
-  (setq shapeless-blog-secret (password-store-get "blog.drshapeless.com"))
+  (setq shapeless-blog-username "jacky")
+  (setq shapeless-blog-password (password-store-get "blog.drshapeless.com"))
   (shapeless-blog-update-token))
 
 (setq shapeless-blog-api-url "https://blog.drshapeless.com/api")

@@ -8,7 +8,7 @@
 
 (defun drsl/init-font ()
   (progn
-    (set-face-attribute 'default nil :font "monaco")
+    ;; (set-face-attribute 'default nil :font "monaco")
 
     ;; Provided by Sebastian Urban
     ;; More information at https://idiocy.org/emacs-fonts-and-fontsets.html
@@ -126,17 +126,17 @@
 (if *is-a-linux*
     (drsl/init-font))
 
-(defun drsl/set-font-size ()
+(defun drsl/set-font ()
   (if *is-a-mac*
-      (set-face-attribute 'default nil :height 140))
+      (set-face-attribute 'default nil :height 140 :font "monaco"))
   (if *is-a-linux*
-      (set-face-attribute 'default nil :height 120))
+      (set-face-attribute 'default nil :height 120 :font "hack"))
   )
 
-(drsl/set-font-size)
+(drsl/set-font)
 
 ;; Set font size after loading a theme.
-(setq after-load-theme-hook 'drsl/set-font-size)
+(setq after-load-theme-hook 'drsl/set-font)
 
 (provide 'init-font)
 ;;; init-font.el ends here

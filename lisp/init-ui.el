@@ -118,5 +118,7 @@
          (display-graphic-p))
     (drsl/macos-fullscreen))
 
+(setq comint-pager "cat")
+
 (provide 'init-ui)
 ;;; init-ui.el ends here

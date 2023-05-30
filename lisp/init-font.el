@@ -130,7 +130,7 @@
   (if *is-a-mac*
       (set-face-attribute 'default nil :height 140 :font "monaco"))
   (if *is-a-linux*
-      (set-face-attribute 'default nil :height 120 :font "hack"))
+      (set-face-attribute 'default nil :height 130 :font "hack"))
   )
 
 (drsl/set-font)

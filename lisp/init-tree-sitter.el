@@ -23,6 +23,7 @@
           (conf-toml-mode  . toml-ts-mode)
           (css-mode        . css-ts-mode)
           (js-mode         . js-ts-mode)
+          (javascript-mode . js-ts-mode)
           (js-json-mode    . json-ts-mode)
           (python-mode     . python-ts-mode)
           (sh-mode         . bash-ts-mode)

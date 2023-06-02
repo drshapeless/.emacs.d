@@ -49,6 +49,7 @@
 (keymap-set eglot-mode-map "C-c e r" #'eglot-reconnect)
 (keymap-set eglot-mode-map "C-c e f" #'eglot-code-action-quickfix)
 (keymap-set eglot-mode-map "C-c e n" #'eglot-rename)
+(keymap-set eglot-mode-map "C-c e h" #'eglot-inlay-hints-mode)
 
 (add-to-list 'eglot-server-programs
              '(c-mode . ("clangd" "--header-insertion=never")))

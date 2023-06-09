@@ -57,10 +57,10 @@ other frame."
         ad-do-it
       (error
        (cond ((and (eq 'left (ad-get-arg 0))
-                   (eq exwm-workspace-current-index 0))
+                   (eq exwm-workspace-current-index 1))
               (other-frame 1))
              ((and (eq 'right (ad-get-arg 0))
-                   (eq exwm-workspace-current-index 1))
+                   (eq exwm-workspace-current-index 0))
               (other-frame 1))
              (t (error (error-message-string err))))))))
 

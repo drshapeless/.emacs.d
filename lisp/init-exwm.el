@@ -140,7 +140,7 @@
 ;; Set for dual monitor.
 ;; Use xrandr after startx to see what your hardwares are.
 (require 'exwm-randr)
-(setq exwm-randr-workspace-output-plist '(0 "DP-3" 1 "HDMI-0"))
+(setq exwm-randr-workspace-output-plist '(1 "DP-3" 0 "HDMI-0"))
 (add-hook 'exwm-randr-screen-change-hook
           (lambda ()
             (start-process-shell-command

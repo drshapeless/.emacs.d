@@ -7,3 +7,9 @@ sql-mode
 (nn "NOT NULL")
 
 (t "TIMESTAMP")
+
+(i "INTEGER")
+
+(p "PRIMARY KEY")
+
+(ai "AUTOINCREMENT")

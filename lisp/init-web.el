@@ -9,10 +9,14 @@
 (straight-use-package 'web-mode)
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.tmpl\\'" . web-mode))
+
+(define-derived-mode tmpl-mode web-mode "tmpl"
+  "A temporary major mode for html template.")
+
+(add-to-list 'auto-mode-alist '("\\.tmpl\\'" . tmpl-mode))
 
 (define-derived-mode svelte-mode web-mode "svelte"
-  "A temporary major mode to fix eglot connection.")
+  "A temporary major mode to fix eglot connection for svelte.")
 
 (add-to-list 'auto-mode-alist '("\\.svelte\\'" . svelte-mode))
 (defun drsl/tab-width-2 ()

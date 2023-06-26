@@ -45,6 +45,7 @@
 (add-hook 'svelte-mode-hook     #'eglot-ensure)
 (add-hook 'html-mode-hook       #'eglot-ensure)
 (add-hook 'tmpl-mode-hook       #'eglot-ensure)
+(add-hook 'web-mode-hook        #'eglot-ensure)
 
 (keymap-set eglot-mode-map "C-c e a" #'eglot-code-actions)
 (keymap-set eglot-mode-map "C-c e r" #'eglot-reconnect)
@@ -66,6 +67,8 @@
              '(svelte-mode . ("svelteserver" "--stdio")))
 (add-to-list 'eglot-server-programs
              '(tmpl-mode . ("vscode-html-language-server" "--stdio")))
+(add-to-list 'eglot-server-programs
+             '(web-mode . ("vscode-html-language-server" "--stdio")))
 
 ;; Deno support from https://deno.land/manual@v1.28.3/getting_started/setup_your_environment
 (add-to-list 'eglot-server-programs '((js-mode typescript-mode) . (eglot-deno "deno" "lsp")))

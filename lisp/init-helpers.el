@@ -389,5 +389,44 @@ in macos."
   (interactive)
   (shell-command "pactl set-default-sink alsa_output.pci-0000_09_00.4.analog-stereo"))
 
+(defun drsl/generate-rsync-makefile ()
+  "Append rsync commands to makefile at current directory."
+  (interactive)
+  (let* ((relative-dir
+          (string-remove-suffix "/"
+                                (file-relative-name
+                                 (dired-current-directory)
+                                 (getenv "HOME")))))
+    (with-temp-buffer
+      (insert
+       (format
+        "# The section below should be deleted before the first git commit.
+.PHONY: from_mac to_mac from_artix to_artix from_home to_home
+from_mac:
+        rsync -urv --delete-after --exclude target/ --exclude .git/ jacky@mac.local:%s/ .
+
+to_mac:
+        rsync -urv --delete-after --exclude target/ --exclude .git/ ./ jacky@mac.local:%s
+
+from_artix:
+        rsync -urv --delete-after --exclude target/ --exclude .git/ jacky@artix.local:%s/ .
+
+to_artix:
+        rsync -urv --delete-after --exclude target/ --exclude .git/ ./ jacky@artix.local:%s
+
+from_home:
+        rsync -urv --delete-after --exclude target/ --exclude .git/ jacky@home.drshapeless.com:%s/ .
+
+to_home:
+        rsync -urv --delete-after --exclude target/ --exclude .git/ ./ jacky@home.drshapeless.com:%s
+"
+       relative-dir
+       relative-dir
+       relative-dir
+       relative-dir
+       relative-dir
+       relative-dir))
+      (append-to-file (point-min) (point-max) "makefile"))))
+
 (provide 'init-helpers)
 ;;; init-helpers.el ends here

@@ -69,8 +69,9 @@
     (setq shapeless-chinese-mode t)))
 (defun drsl/toggle-input-and-shapeless-chinese ()
   (interactive)
-  (toggle-input-method)
-  (drsl/toggle-shapeless-chinese))
+  (progn
+    (drsl/toggle-shapeless-chinese)
+    (toggle-input-method)))
 
 (keymap-global-set "s-<SPC>" #'toggle-input-method)
 (keymap-global-set "C-z c" #'drsl/toggle-shapeless-chinese)

@@ -92,6 +92,7 @@
 (require 'init-lilypond)
 (require 'init-typescript)
 (require 'init-caddyfile)
+(require 'init-zig)
 
 ;;; Programming helper
 (require 'init-indent-guide)

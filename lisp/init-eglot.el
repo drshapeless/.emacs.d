@@ -46,6 +46,7 @@
 (add-hook 'html-mode-hook       #'eglot-ensure)
 (add-hook 'tmpl-mode-hook       #'eglot-ensure)
 (add-hook 'web-mode-hook        #'eglot-ensure)
+(add-hook 'zig-mode-hook        #'eglot-ensure)
 
 (keymap-set eglot-mode-map "C-c e a" #'eglot-code-actions)
 (keymap-set eglot-mode-map "C-c e r" #'eglot-reconnect)

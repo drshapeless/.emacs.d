@@ -70,6 +70,10 @@
 (pyim-cangjie3dict-enable)
 (pyim-cangjie5dict-enable)
 
+;; This is for showing candidates.
+(straight-use-package 'posframe)
+(require 'posframe)
+
 ;; Input chinese punctuations with ease.
 (require 'shapeless-chinese)
 (defun drsl/toggle-shapeless-chinese ()

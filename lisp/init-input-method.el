@@ -8,9 +8,9 @@
 
 ;;; Code:
 
-(require 'cangjie5)
+;; (require 'cangjie5)
 
-(setq default-input-method "cangjie5")
+;; (setq default-input-method "cangjie5")
 
 ;; Extra characters for the original tsangchi input method. Deprecated.
 ;; (with-temp-buffer
@@ -50,15 +50,25 @@
 ;;                         )))
 
 ;; Add back some cangjie 3 characters back into the pool.
-(with-temp-buffer
-  (activate-input-method "cangjie5")
-  (let ((quail-current-package (assoc "cangjie5" quail-package-alist)))
-    (quail-define-rules ((append . t))
-                        ("ohs"   "作")
-                        ("lmyyy" "非")
-                        ("igp"   "應")
-                        ("mwyl"  "面")
-                        )))
+;; (with-temp-buffer
+;;   (activate-input-method "cangjie5")
+;;   (let ((quail-current-package (assoc "cangjie5" quail-package-alist)))
+;;     (quail-define-rules ((append . t))
+;;                         ("ohs"   "作")
+;;                         ("lmyyy" "非")
+;;                         ("igp"   "應")
+;;                         ("mwyl"  "面")
+;;                         )))
+
+(straight-use-package 'pyim)
+(require 'pyim)
+(setq default-input-method "pyim")
+
+(straight-use-package 'pyim-cangjiedict)
+(require 'pyim-cangjiedict)
+(pyim-default-scheme 'cangjie)
+(pyim-cangjie3dict-enable)
+(pyim-cangjie5dict-enable)
 
 ;; Input chinese punctuations with ease.
 (require 'shapeless-chinese)

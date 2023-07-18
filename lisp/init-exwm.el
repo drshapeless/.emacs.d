@@ -54,7 +54,7 @@
         ([?\H-s] . exwm-workspace-swap)
 
         ;; Toggle input method.
-        (,(kbd "H-<SPC>") . toggle-input-method)
+        (,(kbd "s-<SPC>") . toggle-input-method)
 
         ;; These are winmoves.
         ([?\s-a] . other-frame)

@@ -12,10 +12,11 @@
 
 (defun drsl/setup-cape ()
   (progn
-    (add-to-list 'completion-at-point-functions #'cape-dabbrev)
     (add-to-list 'completion-at-point-functions #'cape-file)))
 
 (add-hook 'corfu-mode-hook #'drsl/setup-cape)
+
+(add-hook 'makefile-gmake-mode-hook (lambda () (add-to-list 'completion-at-point-functions #'cape-dabbrev)))
 
 (provide 'init-cape)
 ;;; init-cape.el ends here

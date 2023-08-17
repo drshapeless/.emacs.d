@@ -428,5 +428,11 @@ to_home:
        relative-dir))
       (append-to-file (point-min) (point-max) "makefile"))))
 
+(defun drsl/no-rgb()
+  "Turn off the RGB light of the RAM."
+  (interactive)
+  (shell-command "sudo modprobe i2c-dev")
+  (async-shell-command "openrgb -p ~/.config/OpenRGB/dark.orp"))
+
 (provide 'init-helpers)
 ;;; init-helpers.el ends here

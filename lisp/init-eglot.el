@@ -139,14 +139,19 @@
 (add-hook 'project-find-functions #'project-find-go-module)
 
 ;; LSP settings.
+;; (setq-default eglot-workspace-configuration
+;;               '(;; gopls config.
+;;                 (:gopls .
+;;                         ((staticcheck . t)
+;;                          (matcher . "CaseSensitive")))
+;;                 ;; dart config.
+;;                 (:dart .
+;;                        ((completeFunctionCalls . t)))))
+
 (setq-default eglot-workspace-configuration
-              '(;; gopls config.
-                (:gopls .
-                        ((staticcheck . t)
-                         (matcher . "CaseSensitive")))
-                ;; dart config.
-                (:dart .
-                       ((completeFunctionCalls . t)))))
+              (list (cons :gopls  (list :staticcheck t
+                                        :matcher "CaseSensitive"
+                                        :hints (list :assignVariableTypes t)))))
 
 ;; clang-format
 (let ((clang-format-path "/usr/share/clang/clang-format.el"))

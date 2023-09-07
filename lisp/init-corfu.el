@@ -25,8 +25,8 @@
 ;; Corfu for eglot.
 (setq completion-category-overrides '((eglot (styles orderless))))
 
-(load "extensions/corfu-history")
-(corfu-history-mode)
+(corfu-history-mode 1)
+(savehist-mode 1)
 (add-to-list 'savehist-additional-variables 'corfu-history)
 
 ;; These will lead to a very weird bug.

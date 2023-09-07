@@ -29,7 +29,6 @@
 (setq enable-recursive-minibuffers t)
 
 ;; This extensions comes with vertico installed by straight.
-(load "extensions/vertico-directory")
 (keymap-set vertico-map "RET" #'vertico-directory-enter)
 (keymap-set vertico-map "DEL" #'vertico-directory-delete-char)
 (keymap-set vertico-map "M-DEL" #'vertico-directory-delete-word)

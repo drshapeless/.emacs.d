@@ -7,9 +7,7 @@ go-ts-mode
  > "defer cancel()" n)
 
 (en
- > "if err != nil {" n
- > p n
- > "}" n)
+ > "if err != nil {" p q "}" n)
 
 (js "`json:" p "`")
 

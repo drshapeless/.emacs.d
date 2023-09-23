@@ -114,9 +114,9 @@
 
 (setq gc-cons-threshold 50000000)
 
-(if (and *is-a-mac*
-         (display-graphic-p))
-    (drsl/macos-fullscreen))
+;; (if (and *is-a-mac*
+;;          (display-graphic-p))
+;;     (drsl/macos-fullscreen))
 
 (setq comint-pager "cat")
 

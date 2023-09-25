@@ -25,7 +25,7 @@
 ;; (add-hook 'rustic-mode-hook #'cargo-minor-mode)
 
 ;; This is a temporary fix for using internal treesit.
-(if (and (not *is-older-emacs*) (treesit-available-p))
+(if (treesit-available-p)
     (progn
       (define-derived-mode rustic-mode rust-ts-mode "Rustic"
         "Major mode for Rust code.

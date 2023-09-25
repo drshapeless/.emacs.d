@@ -8,8 +8,6 @@
 
 ;;; Code:
 
-(if *is-older-emacs*
-    (straight-use-package 'eglot))
 (require 'eglot)
 
 ;; This stops eglot from logging the json events of lsp server.
@@ -21,21 +19,12 @@
 (setq eglot-autoshutdown t)
 ;; Auto shutdown somehow causes some weird lag.
 
-(if (and (not *is-older-emacs*) (treesit-available-p))
-    (progn
-      (add-hook 'c-ts-mode-hook          #'eglot-ensure)
-      (add-hook 'c++-ts-mode-hook        #'eglot-ensure)
-      (add-hook 'python-ts-mode-hook     #'eglot-ensure)
-      (add-hook 'js-ts-mode-hook         #'eglot-ensure)
-      (add-hook 'typescript-ts-mode-hook #'eglot-ensure)
-      (add-hook 'go-ts-mode-hook         #'eglot-ensure))
-  (progn
-    (add-hook 'c-mode-hook          #'eglot-ensure)
-    (add-hook 'c++-mode-hook        #'eglot-ensure)
-    (add-hook 'python-mode-hook     #'eglot-ensure)
-    (add-hook 'js-mode-hook         #'eglot-ensure)
-    (add-hook 'typescript-mode-hook #'eglot-ensure)
-    (add-hook 'go-mode-hook         #'eglot-ensure)))
+(add-hook 'c-ts-mode-hook          #'eglot-ensure)
+(add-hook 'c++-ts-mode-hook        #'eglot-ensure)
+(add-hook 'python-ts-mode-hook     #'eglot-ensure)
+(add-hook 'js-ts-mode-hook         #'eglot-ensure)
+(add-hook 'typescript-ts-mode-hook #'eglot-ensure)
+(add-hook 'go-ts-mode-hook         #'eglot-ensure)
 
 (add-hook 'objc-mode-hook       #'eglot-ensure)
 (add-hook 'swift-mode-hook      #'eglot-ensure)
@@ -345,10 +334,6 @@ overrides = [ { files = \"*.svelte\", options = { parser = \"svelte\"}}]
                      #'cape-file))))
 
 (add-hook 'eglot-managed-mode-hook #'drsl/eglot-capf)
-
-;;; Use tempel instead of yasnippet. It does not work.
-;; (straight-use-package '(eglot-tempel :type git :host github :repo "fejfighter/eglot-tempel"))
-;; (require 'eglot-tempel)
 
 (provide 'init-eglot)
 ;;; init-eglot.el ends here

@@ -14,7 +14,7 @@
 (straight-use-package 'tree-sitter-langs)
 (require 'tree-sitter-langs)
 
-(if (and (not *is-older-emacs*) (treesit-available-p))
+(if (treesit-available-p)
     (setq major-mode-remap-alist
         '((c-mode . c-ts-mode)
           (c++-mode        . c++-ts-mode)

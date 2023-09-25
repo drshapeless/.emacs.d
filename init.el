@@ -119,11 +119,8 @@
     (progn
       ;; This is about smooth scrolling in Emacs.
       ;; For macos, emacs-mac has a even better scrolling.
-      (if *is-older-emacs*
-          ;; For older version, just use good-scroll.
-          (require 'init-good-scroll)
-        ;; pixel-scroll-precision-mode is a new feature in version 29.
-        (require 'init-pixel-scroll-precision))
+      ;; pixel-scroll-precision-mode is a new feature in version 29.
+      (require 'init-pixel-scroll-precision)
       (require 'init-exwm)
       (require 'init-shapeless-record)
       )

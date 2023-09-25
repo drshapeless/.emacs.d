@@ -14,8 +14,11 @@ I have been using Emacs since 2020, and actively update my
 configuration.
 
 * Emacs version
-I always go with the bleed edge build of Emacs on Linux. But on macOS,
-I just go with emacs-mac by YAMAMOTO Mitsuharu,
+I used to live in HEAD, compile Emacs from source every week. But
+currently, I am staying at stable version 29. Because eglot does not
+display its messages in the minibuffer at master.
+
+On macOS, I just go with emacs-mac by YAMAMOTO Mitsuharu,
 https://bitbucket.org/mituharu/emacs-mac/overview, which is only up to
 the latest stable build.
 
@@ -90,7 +93,6 @@ These are some of my many packages.
 - marginalia (extra info)
 - consult (better alternatives for build in functions)
 - exwm (window manager)
-- leaf (alternative to use-package)
 - yasnippet (snippet)
 - vterm (terminal)
 - notmuch (email)
@@ -105,3 +107,10 @@ I did not even know how to program nor do I have any necessary use
 when I start using Emacs. The only reason why I downloaded Emacs was
 because I was an Apple fanboy, and stupid enough to think Emacs has
 something related to macOS...
+
+* Causions
+There are a lot of weird functions in my config, mostly only suitable
+for my personal use. The majority of them live in init-helpers.el.
+
+I recommend not to use my config directly, if you are interested, just
+copy whatever lines you want.

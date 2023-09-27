@@ -6,15 +6,15 @@
 
 ;;; Code:
 
-(straight-use-package 'tree-sitter)
-(require 'tree-sitter)
+;; (straight-use-package 'tree-sitter)
+;; (require 'tree-sitter)
 
-(add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
+;; (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
 
-(straight-use-package 'tree-sitter-langs)
-(require 'tree-sitter-langs)
+;; (straight-use-package 'tree-sitter-langs)
+;; (require 'tree-sitter-langs)
 
-(if (treesit-available-p)
+;; (if (and (not *is-older-emacs*) (treesit-available-p))
     (setq major-mode-remap-alist
         '((c-mode . c-ts-mode)
           (c++-mode        . c++-ts-mode)
@@ -29,7 +29,7 @@
           (sh-mode         . bash-ts-mode)
           (rust-mode       . rust-ts-mode)
           (typescript-mode . typescript-ts-mode)))
-  (global-tree-sitter-mode))
+;;   (global-tree-sitter-mode))
 
 (provide 'init-tree-sitter)
 ;;; init-tree-sitter.el ends here

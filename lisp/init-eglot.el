@@ -48,6 +48,10 @@
 (add-to-list 'eglot-server-programs
              '(c++-mode . ("clangd" "--header-insertion=never")))
 (add-to-list 'eglot-server-programs
+             '(c-ts-mode . ("clangd" "--header-insertion=never")))
+(add-to-list 'eglot-server-programs
+             '(c++-ts-mode . ("clangd" "--header-insertion=never")))
+(add-to-list 'eglot-server-programs
              '(swift-mode . ("sourcekit-lsp")))
 (add-to-list 'eglot-server-programs
              '(sql-mode . ("sqls")))

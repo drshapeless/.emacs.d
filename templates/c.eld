@@ -2,7 +2,7 @@ c-mode
 c-ts-mode
 
 (cf "/* clang-format off */" n
-    p n
+    p q n
     "/* clang-format on */")
 
 ;; Header
@@ -11,20 +11,20 @@ c-ts-mode
    "_H" n
    "#define "
    (upcase (file-name-nondirectory (file-name-sans-extension buffer-file-name)))
-   "_H" n n p n n
+   "_H" n n p q n n
    "#endif /* "
    (upcase (file-name-nondirectory (file-name-sans-extension buffer-file-name)))
    "_H */")
 
 (main "int main(int argc, char *argv[])" n
       "{" n
-      > p n
+      > p q n
       > "return 0;" n
       "}")
 
 (objc "/* -*- mode: objc -*- */")
 
-(todo "/* TODO: " p " */")
+(todo "/* TODO: " p q " */")
 
 (cpp "#ifdef __cplusplus" n
      "extern \"C\" {" n

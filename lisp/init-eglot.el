@@ -19,6 +19,9 @@
 (setq eglot-autoshutdown t)
 ;; Auto shutdown somehow causes some weird lag.
 
+(setq-default c-basic-offset 4)
+(setq c-ts-mode-indent-offset 4)
+
 (add-hook 'c-ts-mode-hook          #'eglot-ensure)
 (add-hook 'c++-ts-mode-hook        #'eglot-ensure)
 (add-hook 'python-ts-mode-hook     #'eglot-ensure)
@@ -92,16 +95,16 @@
       in-assign)))
 
 ;; Add a cc-mode style for editing LLVM C and C++ code
-(c-add-style "llvm"
-             '("gnu"
-               (fill-column . 80)
-               (c++-indent-level . 2)
-               (c-basic-offset . 2)
-               (indent-tabs-mode . nil)
-               (c-offsets-alist . ((arglist-intro . ++)
-                                   (innamespace . 0)
-                                   (member-init-intro . ++)
-                                   (statement-cont . llvm-lineup-statement)))))
+;; (c-add-style "llvm"
+;;              '("gnu"
+;;                (fill-column . 80)
+;;                (c++-indent-level . 2)
+;;                (c-basic-offset . 2)
+;;                (indent-tabs-mode . nil)
+;;                (c-offsets-alist . ((arglist-intro . ++)
+;;                                    (innamespace . 0)
+;;                                    (member-init-intro . ++)
+;;                                    (statement-cont . llvm-lineup-statement)))))
 
 (defun drsl/use-c-linux-cc-llvm-style ()
   (interactive)
@@ -111,11 +114,11 @@
                           (cc-mode . "llvm"))))
 
 ;; Use linux style on C/C++ file
-(setq c-default-style '((java-mode . "java")
-                        (awk-mode . "awk")
-                        (c-mode . "linux")
-                        (cc-mode . "linux")
-                        (other . "llvm")))
+;; (setq c-default-style '((java-mode . "java")
+;;                         (awk-mode . "awk")
+;;                         (c-mode . "linux")
+;;                         (cc-mode . "linux")
+;;                         (other . "llvm")))
 
 (setq compile-command "make")
 

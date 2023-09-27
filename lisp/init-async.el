@@ -7,6 +7,7 @@
 ;;; Code:
 
 (straight-use-package 'emacs-async)
+(require 'async)
 (dired-async-mode 1)
 
 (provide 'init-async)

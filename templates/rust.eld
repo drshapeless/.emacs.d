@@ -12,3 +12,5 @@ rustic-mode
 
 (header "let mut headers = HeaderMap::new();
 headers.insert(\"HX-Trigger\", \"newTool\".parse().unwrap());")
+
+(todo "// TODO: ")

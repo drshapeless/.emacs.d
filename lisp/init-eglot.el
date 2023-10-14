@@ -147,7 +147,8 @@
 (setq-default eglot-workspace-configuration
               (list (cons :gopls  (list :staticcheck t
                                         :matcher "CaseSensitive"
-                                        :hints (list :assignVariableTypes t)))))
+                                        :hints (list :assignVariableTypes t)
+                                        :usePlaceholders t))))
 
 ;; clang-format
 (let ((clang-format-path "/usr/share/clang/clang-format.el"))
@@ -429,7 +430,6 @@ overrides = [ { files = \"*.svelte\", options = { parser = \"svelte\"}}]
 
 (defun eglot-format-buffer-on-save ()
   (add-hook 'before-save-hook #'eglot-format-buffer -10 t))
-;; (add-hook 'go-mode-hook #'eglot-format-buffer-on-save)
 ;; (add-hook 'svelte-mode-hook #'eglot-format-buffer-on-save)
 
 ;; (add-hook 'dart-mode-hook #'eglot-format-buffer-on-save)
@@ -447,8 +447,10 @@ overrides = [ { files = \"*.svelte\", options = { parser = \"svelte\"}}]
 (keymap-set eglot-mode-map "C-c e p" #'ff-find-other-file)
 
 (require 'shapeless-c-arrow)
-(add-hook 'c-mode-hook #'shapeless-c-arrow-mode)
-(add-hook 'c++-mode-hook #'shapeless-c-arrow-mode)
+(add-hook 'c-mode-hook      #'shapeless-c-arrow-mode)
+(add-hook 'c++-mode-hook    #'shapeless-c-arrow-mode)
+(add-hook 'c-ts-mode-hook   #'shapeless-c-arrow-mode)
+(add-hook 'c++-ts-mode-hook #'shapeless-c-arrow-mode)
 
 (straight-use-package '(breadcrumb :type git :host github :repo "joaotavora/breadcrumb"))
 (require 'breadcrumb)
@@ -465,6 +467,14 @@ overrides = [ { files = \"*.svelte\", options = { parser = \"svelte\"}}]
                      #'cape-file))))
 
 (add-hook 'eglot-managed-mode-hook #'drsl/eglot-capf)
+
+;; https://github.com/joaotavora/eglot/issues/574
+;; This is for gopls to remove unused imports.
+(defun my-eglot-organize-imports () (interactive)
+       (eglot-code-actions nil nil "source.organizeImports" t))
+(defun eglot-organize-imports-on-save ()
+  (add-hook 'before-save-hook 'my-eglot-organize-imports nil t))
+(add-hook 'go-ts-mode-hook #'eglot-organize-imports-on-save)
 
 (provide 'init-eglot)
 ;;; init-eglot.el ends here

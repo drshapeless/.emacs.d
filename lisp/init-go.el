@@ -11,6 +11,7 @@
 (straight-use-package 'go-mode)
 (require 'go-mode)
 (add-hook 'go-mode-hook (lambda () (setq tab-width 4)))
+(add-hook 'go-ts-mode-hook (lambda () (setq tab-width 4)))
 
 (provide 'init-go)
 ;;; init-go.el ends here

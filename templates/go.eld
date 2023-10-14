@@ -2,12 +2,12 @@ go-mode
 go-ts-mode
 
 ;; Cancel context
-(cc
+(ctx
  > "ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)" n
  > "defer cancel()" n)
 
 (en
- > "if err != nil {" p q "}" n)
+ > "if err != nil {" n p q n "}" n)
 
 (js "`json:" p "`")
 

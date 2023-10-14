@@ -12,6 +12,7 @@
 (require 'go-mode)
 (add-hook 'go-mode-hook (lambda () (setq tab-width 4)))
 (add-hook 'go-ts-mode-hook (lambda () (setq tab-width 4)))
+(setq go-ts-mode-indent-offset 4)
 
 (provide 'init-go)
 ;;; init-go.el ends here

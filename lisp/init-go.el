@@ -14,5 +14,12 @@
 (add-hook 'go-ts-mode-hook (lambda () (setq tab-width 4)))
 (setq go-ts-mode-indent-offset 4)
 
+(defun drsl/go-db ()
+  "Insert the snake_case version of current field "
+  (interactive)
+  (let ((word (string-inflection-underscore-function (current-word))))
+    (end-of-line)
+    (insert "`db:\"" word "\"`")))
+
 (provide 'init-go)
 ;;; init-go.el ends here

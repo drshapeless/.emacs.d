@@ -61,6 +61,7 @@
 (require 'init-tree-sitter)
 (require 'init-rainbow)
 (require 'init-multiple-cursors)
+(require 'init-string-inflection)
 ;; (require 'init-aggressive-indent)
 
 ;;; Appearance

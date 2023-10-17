@@ -11,7 +11,7 @@
 (require 'eglot)
 
 ;; This stops eglot from logging the json events of lsp server.
-;; (setq eglot-events-buffer-size 0)
+(setq eglot-events-buffer-size 0)
 ;; Do not show multiline eldoc.
 (setq eldoc-echo-area-use-multiline-p nil)
 

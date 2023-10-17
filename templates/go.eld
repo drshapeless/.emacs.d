@@ -9,6 +9,8 @@ go-ts-mode
 (en
  > "if err != nil {" n p q n "}" n)
 
+(db "db *pgxpool.Pool")
+
 (js "`json:" p "`")
 
 (main "package main" n n

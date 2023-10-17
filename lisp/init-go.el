@@ -19,7 +19,7 @@
   (interactive)
   (let ((word (string-inflection-underscore-function (current-word))))
     (end-of-line)
-    (insert "`db:\"" word "\"`")))
+    (insert " `db:\"" word "\"`")))
 
 (provide 'init-go)
 ;;; init-go.el ends here

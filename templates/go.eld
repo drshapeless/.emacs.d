@@ -7,7 +7,24 @@ go-ts-mode
  > "defer cancel()" n)
 
 (en
- > "if err != nil {" n p q n "}" n)
+ > "if err != nil {" n > p q n "\t}" n)
+
+(ef
+ > "if err != nil {" n
+ > "app.error(\""
+ ;; This inserts the current function name using treesitter
+ (treesit-node-text
+  (car
+   (treesit-filter-child
+    (treesit-defun-at-point)
+    (lambda (node)
+      (string= (treesit-node-type node)
+               'field_identifier))))
+  t)
+ "\", err, w)" n
+ > "return" n
+ "\t}"
+ )
 
 (db "db *pgxpool.Pool")
 

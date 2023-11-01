@@ -21,5 +21,17 @@
     (end-of-line)
     (insert " `db:\"" word "\"`")))
 
+(defun drsl/go-debug ()
+  (interactive)
+  (let ((NAME (treesit-defun-name (treesit-defun-at-point))))
+    (treesit-indent)
+    (insert "if err != nil {")
+    (newline)
+    (treesit-indent)
+    (insert "app.error(\"" NAME "\", err, w)")
+    (newline)
+    (treesit-indent)
+    (insert "}")))
+
 (provide 'init-go)
 ;;; init-go.el ends here

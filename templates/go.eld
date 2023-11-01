@@ -9,22 +9,7 @@ go-ts-mode
 (en
  > "if err != nil {" n > p q n "\t}" n)
 
-(ef
- > "if err != nil {" n
- > "app.error(\""
- ;; This inserts the current function name using treesitter
- (treesit-node-text
-  (car
-   (treesit-filter-child
-    (treesit-defun-at-point)
-    (lambda (node)
-      (string= (treesit-node-type node)
-               'field_identifier))))
-  t)
- "\", err, w)" n
- > "return" n
- "\t}"
- )
+(ef (drsl/go-debug))
 
 (db "db *pgxpool.Pool")
 

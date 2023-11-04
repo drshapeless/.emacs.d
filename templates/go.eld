@@ -9,7 +9,11 @@ go-ts-mode
 (en
  > "if err != nil {" n > p q n "\t}" n)
 
-(ef (drsl/go-debug))
+(ef
+ > "if err != nil {" n
+ > "slog.Error(err.Error())" n
+ > "app.serverError(err, w)" n
+ > "return" n "}")
 
 (db "db *pgxpool.Pool")
 
@@ -49,3 +53,7 @@ go-ts-mode
 (test "func Test" p "(t *testing.T) {" n
       > p n
       "}" n)
+
+(tx > "tx, err := app.db.Begin(ctx)" n
+    > p q n
+    > "defer tx.Rollback(ctx)")

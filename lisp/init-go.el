@@ -28,10 +28,26 @@
     (insert "if err != nil {")
     (newline)
     (treesit-indent)
+    (insert "slog.Error(err.Error())")
+    (newline)
+    (treesit-indent)
     (insert "app.error(\"" NAME "\", err, w)")
     (newline)
     (treesit-indent)
-    (insert "}")))
+    (insert "return")
+    (newline)
+    (insert "}")
+    (treesit-indent-region (pos-bol) (pos-eol))
+    ;; This empty string is used to work around tempel insertion
+    ""
+    ))
+
+(font-lock-add-keywords 'templ-mode '(("templ" . 'font-lock-keyword-face)))
+
+(define-derived-mode templ-mode go-mode "Templ Mode" "Major mode for templ file"
+  )
+
+(add-to-list 'auto-mode-alist '("\\.templ\\'" . templ-mode))
 
 (provide 'init-go)
 ;;; init-go.el ends here

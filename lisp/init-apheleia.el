@@ -11,9 +11,13 @@
 
 (add-to-list 'apheleia-mode-alist
              '(swift-mode . swift-format))
+(add-to-list 'apheleia-mode-alist
+             '(templ-mode . templ-format))
 
 (add-to-list 'apheleia-formatters
              '(swift-format "swift-format" (buffer-file-name)))
+(add-to-list 'apheleia-formatters
+             '(templ-format "templ" "fmt"))
 
 (apheleia-global-mode 1)
 

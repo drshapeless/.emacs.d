@@ -57,3 +57,8 @@ go-ts-mode
 (tx > "tx, err := app.db.Begin(ctx)" n
     > p q n
     > "defer tx.Rollback(ctx)")
+
+(rows > "rows, err := db.Query(ctx, q, " p q ")" n
+      > "if err != nil {" n
+      > "return nil, err" n
+      > "}" n)

@@ -11,9 +11,8 @@ go-ts-mode
 
 (ef
  > "if err != nil {" n
- > "slog.Error(err.Error())" n
  > "app.serverError(err, w)" n
- > "return" n "}")
+ > "return" n "\t}")
 
 (db "db *pgxpool.Pool")
 

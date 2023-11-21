@@ -28,8 +28,6 @@
 (tool-bar-mode -1)                      ; Disable tool bar.
 
 (setq display-time-format "%b %e %H:%M")
-;; Use relative line numbers
-(setq display-line-numbers-type 'relative)
 
 ;; This line prevent the mode line from showing useless CPU usage.
 (setq display-time-load-average-threshold 10.0)

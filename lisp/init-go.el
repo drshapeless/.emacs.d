@@ -44,7 +44,7 @@
 
 (define-derived-mode templ-mode go-mode "Templ Mode" "Major mode for templ file"
   )
-(font-lock-add-keywords 'templ-mode '(("templ" . 'font-lock-keyword-face)))
+(font-lock-add-keywords 'templ-mode '(("templ " . 'font-lock-keyword-face)))
 
 (add-to-list 'auto-mode-alist '("\\.templ\\'" . templ-mode))
 

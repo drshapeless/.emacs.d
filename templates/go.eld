@@ -14,6 +14,11 @@ go-ts-mode
  > "app.serverError(err, w)" n
  > "return" n "\t}")
 
+(er
+ > "if err != nil {" n
+ > "return err" n
+ > "}")
+
 (db "db *pgxpool.Pool")
 
 (js "`json:" p "`")
@@ -54,8 +59,18 @@ go-ts-mode
       "}" n)
 
 (tx > "tx, err := app.db.Begin(ctx)" n
+    > "if err != nil {" n
+    > "app.serverError(err, w)" n
+    > "return" n
+     "\t}" n
+    > "defer tx.Rollback(ctx)" n
     > p q n
-    > "defer tx.Rollback(ctx)")
+    > "err = tx.Commit(ctx)" n
+    > "if err != nil {" n
+        > "app.serverError(err, w)" n
+    > "return" n
+     "\t}" n
+)
 
 (rows > "rows, err := db.Query(ctx, q, " p q ")" n
       > "if err != nil {" n

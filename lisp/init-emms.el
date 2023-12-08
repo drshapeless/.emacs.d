@@ -10,6 +10,9 @@
 (require 'emms)
 (emms-default-players)
 (emms-all)
+;; mpv for whatever reason fucked up.
+(setq emms-player-list '(emms-player-vlc)
+      emms-info-functions '(emms-info-native))
 (setq emms-source-file-default-directory "~/music/")
 (emms-mode-line nil)
 (emms-playing-time-enable-display)

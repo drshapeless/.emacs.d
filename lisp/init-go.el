@@ -21,27 +21,6 @@
     (end-of-line)
     (insert " `db:\"" word "\"`")))
 
-(defun drsl/go-debug ()
-  (interactive)
-  (let ((NAME (treesit-defun-name (treesit-defun-at-point))))
-    (treesit-indent)
-    (insert "if err != nil {")
-    (newline)
-    (treesit-indent)
-    (insert "slog.Error(err.Error())")
-    (newline)
-    (treesit-indent)
-    (insert "app.error(\"" NAME "\", err, w)")
-    (newline)
-    (treesit-indent)
-    (insert "return")
-    (newline)
-    (insert "}")
-    (treesit-indent-region (pos-bol) (pos-eol))
-    ;; This empty string is used to work around tempel insertion
-    ""
-    ))
-
 (define-derived-mode templ-mode go-mode "Templ Mode" "Major mode for templ file"
   )
 (font-lock-add-keywords 'templ-mode '(("templ " . 'font-lock-keyword-face)))

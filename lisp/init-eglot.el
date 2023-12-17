@@ -13,7 +13,7 @@
 ;; This stops eglot from logging the json events of lsp server.
 (setq eglot-events-buffer-size 0)
 ;; Do not show multiline eldoc.
-(setq eldoc-echo-area-use-multiline-p nil)
+;; (setq eldoc-echo-area-use-multiline-p nil)
 
 ;; Auto shutdown server
 (setq eglot-autoshutdown t)
@@ -156,8 +156,8 @@
 ;; clang-format
 (let ((clang-format-path "/usr/share/clang/clang-format.el"))
   (if *is-a-mac*
-        (setq clang-format-path (concat (getenv "HOMEBREW_PREFIX")
-                                        "/share/clang/clang-format.el")))
+      (setq clang-format-path (concat (getenv "HOMEBREW_PREFIX")
+                                      "/share/clang/clang-format.el")))
   (if (file-exists-p clang-format-path)
       (load clang-format-path)
     (message "clang-format not found")))
@@ -285,8 +285,8 @@ UseTab: Never
 " nil (if (eq major-mode 'dired-mode)
           (concat (dired-current-directory)
                   ".clang-format")
-       (concat (file-name-directory (buffer-file-name))
-               ".clang-format"))))
+        (concat (file-name-directory (buffer-file-name))
+                ".clang-format"))))
 
 (defun drsl/generate-linux-style-clang-format ()
   "Generate a .clang-format file in the current directory.
@@ -405,8 +405,8 @@ UseTab: Always
 " nil (if (eq major-mode 'dired-mode)
           (concat (dired-current-directory)
                   ".clang-format")
-       (concat (file-name-directory (buffer-file-name))
-               ".clang-format"))))
+        (concat (file-name-directory (buffer-file-name))
+                ".clang-format"))))
 
 (defun drsl/generate-prettierrc ()
   "Generate a .prettierrc.toml in the current directory."
@@ -419,11 +419,11 @@ printWidth = 80
 pluginSearchDirs = [\".\"]
 overrides = [ { files = \"*.svelte\", options = { parser = \"svelte\"}}]
 "
-  nil (if (eq major-mode 'dired-mode)
-          (concat (dired-current-directory)
-                  ".prettierrc.toml")
-        (concat (file-name-directory (buffer-file-name))
-                ".prettierrc.toml"))))
+                nil (if (eq major-mode 'dired-mode)
+                        (concat (dired-current-directory)
+                                ".prettierrc.toml")
+                      (concat (file-name-directory (buffer-file-name))
+                              ".prettierrc.toml"))))
 
 (defun clang-format-buffer-on-save ()
   (add-hook 'before-save-hook #'clang-format-buffer -10 t))
@@ -464,7 +464,7 @@ overrides = [ { files = \"*.svelte\", options = { parser = \"svelte\"}}]
 (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster)
 (defun drsl/eglot-capf ()
   (setq-local completion-at-point-functions
-              (list (cape-super-capf
+              (list (cape-capf-super
                      #'eglot-completion-at-point
                      #'tempel-expand
                      #'cape-file))))

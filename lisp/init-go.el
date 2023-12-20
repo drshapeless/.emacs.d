@@ -21,7 +21,7 @@
     (end-of-line)
     (insert " `db:\"" word "\"`")))
 
-(define-derived-mode templ-mode go-mode "Templ Mode" "Major mode for templ file"
+(define-derived-mode templ-mode web-mode "Templ Mode" "Major mode for templ file"
   )
 (font-lock-add-keywords 'templ-mode '(("templ " . 'font-lock-keyword-face)))
 

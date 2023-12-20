@@ -28,7 +28,7 @@ go-ts-mode
       > p n
       "}" n)
 
-(wr "func (app *application) " p q "(w http.ResponseWriter, r *http.Request) {" n
+(wr "func (app *Application) " p q "(w http.ResponseWriter, r *http.Request) {" n
     > n
     "}" n)
 

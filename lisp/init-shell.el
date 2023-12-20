@@ -108,6 +108,7 @@ Open an existing vterm buffer if the current buffer is not `vterm-mode'."
                ("integration" "integration/*")
                (:exclude ".dir-locals.el" "*-tests.el"))))
 
+(require 'eat)
 (eat-compile-terminfo)
 (keymap-global-set "C-c s" #'eat)
 

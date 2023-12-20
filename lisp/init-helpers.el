@@ -28,8 +28,11 @@
 ;; Syncing my personal website.
 (defun drsl/sync-drshapeless ()
   (interactive)
-  (async-shell-command "rsync -urv --delete-after ~/website/drshapeless/ jacky@drshapeless.com:~/public/drshapeless" "*rsync*")
-  )
+  (async-shell-command "rsync -urv --delete-after ~/web/ jacky@drshapeless.com:web" "*rsync*"))
+(defun drsl/sync-from-drshapeless ()
+  (interactive)
+  (async-shell-command "rsync -urv --delete-after jacky@drshapeless.com:web/ ~/web" "*rsync*"))
+
 (defun drsl/publish-and-sync ()
   (interactive)
   (progn
@@ -420,12 +423,12 @@ from_home:
 to_home:
         rsync -urv --delete-after --exclude target/ --exclude .git/ ./ jacky@home.drshapeless.com:%s
 "
-       relative-dir
-       relative-dir
-       relative-dir
-       relative-dir
-       relative-dir
-       relative-dir))
+        relative-dir
+        relative-dir
+        relative-dir
+        relative-dir
+        relative-dir
+        relative-dir))
       (append-to-file (point-min) (point-max) "makefile"))))
 
 (defun drsl/no-rgb()

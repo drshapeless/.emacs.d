@@ -68,7 +68,7 @@ Open an existing vterm buffer if the current buffer is not `vterm-mode'."
       (multi-vterm)
     (multi-vterm-next)))
 
-(keymap-global-set "C-c s" #'drsl/new-vterm-or-existing-vterm)
+(keymap-global-set "C-c v" #'drsl/new-vterm-or-existing-vterm)
 (keymap-set vterm-mode-map "H-n" #'multi-vterm-next)
 (keymap-set vterm-mode-map "H-p" #'multi-vterm-prev)
 
@@ -80,10 +80,10 @@ Open an existing vterm buffer if the current buffer is not `vterm-mode'."
 (setq vterm-toggle-fullscreen-p nil)
 (add-to-list 'display-buffer-alist
              '((lambda (buffer-or-name _)
-                   (let ((buffer (get-buffer buffer-or-name)))
-                     (with-current-buffer buffer
-                       (or (equal major-mode 'vterm-mode)
-                           (string-prefix-p vterm-buffer-name (buffer-name buffer))))))
+                 (let ((buffer (get-buffer buffer-or-name)))
+                   (with-current-buffer buffer
+                     (or (equal major-mode 'vterm-mode)
+                         (string-prefix-p vterm-buffer-name (buffer-name buffer))))))
                (display-buffer-reuse-window display-buffer-same-window)))
 
 ;; vterm-capf
@@ -107,6 +107,9 @@ Open an existing vterm buffer if the current buffer is not `vterm-mode'."
                ("terminfo/65" "terminfo/65/*")
                ("integration" "integration/*")
                (:exclude ".dir-locals.el" "*-tests.el"))))
+
+(eat-compile-terminfo)
+(keymap-global-set "C-c s" #'eat)
 
 (provide 'init-shell)
 ;;; init-shell.el ends here

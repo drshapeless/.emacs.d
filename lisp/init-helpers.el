@@ -28,10 +28,10 @@
 ;; Syncing my personal website.
 (defun drsl/sync-drshapeless ()
   (interactive)
-  (async-shell-command "rsync -urv --delete-after ~/web/ jacky@drshapeless.com:web" "*rsync*"))
+  (async-shell-command "rsync -urv --delete-after ~/website/web/ jacky@drshapeless.com:web" "*rsync*"))
 (defun drsl/sync-from-drshapeless ()
   (interactive)
-  (async-shell-command "rsync -urv --delete-after jacky@drshapeless.com:web/ ~/web" "*rsync*"))
+  (async-shell-command "rsync -urv --delete-after jacky@drshapeless.com:web/ ~/website/web" "*rsync*"))
 
 (defun drsl/publish-and-sync ()
   (interactive)
@@ -436,6 +436,21 @@ to_home:
   (interactive)
   (shell-command "sudo modprobe i2c-dev")
   (async-shell-command "openrgb -p ~/.config/OpenRGB/dark.orp"))
+
+(defun drsl/publish-blog ()
+  (interactive)
+  (mapc
+   (lambda (FILE)
+     (find-file FILE)
+     (let ((filename (file-name-sans-extension (file-name-nondirectory FILE))))
+       (ox-shapelesshtml-export-as-html nil nil nil t)
+       (write-file (concat
+                    (getenv "HOME")
+                    "/website/web/blog/"
+                    filename
+                    ".html")))
+     (kill-buffer)
+     (kill-buffer (file-name-nondirectory FILE)))))
 
 (provide 'init-helpers)
 ;;; init-helpers.el ends here

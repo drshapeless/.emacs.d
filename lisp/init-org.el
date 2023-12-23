@@ -48,6 +48,7 @@
 (straight-use-package 'ox-slimhtml)
 (require 'ox-slimhtml)
 
+(straight-use-package '(ox-shapelesshtml :type git :host github :repo "drshapeless/ox-shapelesshtml"))
 (require 'ox-shapelesshtml)
 
 (straight-use-package 'org-roam)
@@ -119,8 +120,6 @@
 ;; This package is for inline css while exporting source code block.
 (straight-use-package 'htmlize)
 (require 'htmlize)
-;; (leaf htmlize
-;;   :require t)
 
 (straight-use-package 'org-present)
 (require 'org-present)

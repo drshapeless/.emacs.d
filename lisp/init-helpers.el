@@ -442,15 +442,41 @@ to_home:
   (mapc
    (lambda (FILE)
      (find-file FILE)
-     (let ((filename (file-name-sans-extension (file-name-nondirectory FILE))))
+     (let ((filename (file-name-sans-extension (file-name-nondirectory FILE)))
+           (TAGS (shapeless-blog--get-tags))
+           (TITLE (shapeless-blog--get-title))
+           (CREATE (shapeless-blog--get-create-date))
+           (UPDATE (shapeless-blog--get-update-date)))
        (ox-shapelesshtml-export-as-html nil nil nil t)
+       (beginning-of-buffer)
+       (insert (concat "<h1>" TITLE "</h1>"))
+       (insert (concat
+                "<div>Tags: "
+                (s-join " | "
+                        (mapcar
+                         (lambda (TAG)
+                           (concat "<a href=\"/blog/tags/"
+                                   TAG
+                                   ".html\">"
+                                   TAG
+                                   "</a>"))
+                         TAGS))
+                "</div>"
+                ))
+       (insert (concat
+                "<p>"
+                "Create: " CREATE
+                ", "
+                "Update: " UPDATE
+                "</p>"))
        (write-file (concat
                     (getenv "HOME")
                     "/website/web/blog/"
                     filename
                     ".html")))
      (kill-buffer)
-     (kill-buffer (file-name-nondirectory FILE)))))
+     (kill-buffer (file-name-nondirectory FILE)))
+   (directory-files (concat (getenv "HOME") "/website/blog/") t ".org")))
 
 (provide 'init-helpers)
 ;;; init-helpers.el ends here

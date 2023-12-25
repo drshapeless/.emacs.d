@@ -437,46 +437,55 @@ to_home:
   (shell-command "sudo modprobe i2c-dev")
   (async-shell-command "openrgb -p ~/.config/OpenRGB/dark.orp"))
 
-(defun drsl/publish-blog ()
-  (interactive)
+(defun drsl/publish-one-blog (FILE OUTDIR)
+  (find-file FILE)
+  (let ((filename (file-name-sans-extension (file-name-nondirectory FILE)))
+        (TAGS (shapeless-blog--get-tags))
+        (TITLE (shapeless-blog--get-title))
+        (CREATE (shapeless-blog--get-create-date))
+        (UPDATE (shapeless-blog--get-update-date)))
+    (ox-shapelesshtml-export-as-html nil nil nil t)
+    (beginning-of-buffer)
+    (insert (concat
+             "<h1>" TITLE "</h1>"
+             "<div>Tags: "
+             (s-join " | "
+                     (mapcar
+                      (lambda (TAG)
+                        (concat "<a href=\"/blog/tags/"
+                                TAG
+                                ".html\">"
+                                TAG
+                                "</a>"))
+                      TAGS))
+             "</div>"
+             "<p>"
+             "Create: " CREATE
+             ", "
+             "Update: " UPDATE
+             "</p>"))
+    (write-file (concat
+                 OUTDIR
+                 (s-replace
+                  "-" "_"
+                  (s-replace
+                   " " "_"
+                   (downcase TITLE)))
+                 ".html"))
+    (kill-buffer)
+    (kill-buffer (file-name-nondirectory FILE))))
+
+(defun drsl/publish-blogs (DIR OUTDIR)
   (mapc
    (lambda (FILE)
-     (find-file FILE)
-     (let ((filename (file-name-sans-extension (file-name-nondirectory FILE)))
-           (TAGS (shapeless-blog--get-tags))
-           (TITLE (shapeless-blog--get-title))
-           (CREATE (shapeless-blog--get-create-date))
-           (UPDATE (shapeless-blog--get-update-date)))
-       (ox-shapelesshtml-export-as-html nil nil nil t)
-       (beginning-of-buffer)
-       (insert (concat "<h1>" TITLE "</h1>"))
-       (insert (concat
-                "<div>Tags: "
-                (s-join " | "
-                        (mapcar
-                         (lambda (TAG)
-                           (concat "<a href=\"/blog/tags/"
-                                   TAG
-                                   ".html\">"
-                                   TAG
-                                   "</a>"))
-                         TAGS))
-                "</div>"
-                ))
-       (insert (concat
-                "<p>"
-                "Create: " CREATE
-                ", "
-                "Update: " UPDATE
-                "</p>"))
-       (write-file (concat
-                    (getenv "HOME")
-                    "/website/web/blog/"
-                    filename
-                    ".html")))
-     (kill-buffer)
-     (kill-buffer (file-name-nondirectory FILE)))
-   (directory-files (concat (getenv "HOME") "/website/blog/") t ".org")))
+     (drsl/publish-one-blog FILE OUTDIR))
+   (directory-files DIR t ".org")))
+
+(defun drsl/publish-english-blogs ()
+  (interactive)
+  (let ((HOME (getenv "HOME")))
+    (drsl/publish-blogs (concat HOME "/org-roam/blog/") (concat HOME "/website/web/blog/")))
+  )
 
 (provide 'init-helpers)
 ;;; init-helpers.el ends here

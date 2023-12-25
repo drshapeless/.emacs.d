@@ -131,7 +131,7 @@
 (require 'init-helpers)
 (require 'init-ui)
 (require 'init-shapeless-blog)
-(require 'init-emacs-async)
+(require 'init-async)
 
 (server-start)
 

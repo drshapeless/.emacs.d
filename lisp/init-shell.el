@@ -110,6 +110,7 @@ Open an existing vterm buffer if the current buffer is not `vterm-mode'."
 
 (require 'eat)
 (eat-compile-terminfo)
+(setq eat-term-name "xterm-256color")
 (keymap-global-set "C-c s" #'eat)
 
 (provide 'init-shell)

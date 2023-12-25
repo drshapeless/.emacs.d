@@ -484,7 +484,7 @@ to_home:
 (defun drsl/publish-english-blogs ()
   (interactive)
   (let ((HOME (getenv "HOME")))
-    (drsl/publish-blogs (concat HOME "/website/blog/") (concat HOME "/website/web/blog/")))
+    (drsl/publish-blogs (concat HOME "/org-roam/blog/") (concat HOME "/website/web/blog/")))
   )
 
 (provide 'init-helpers)

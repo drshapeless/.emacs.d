@@ -88,7 +88,7 @@
         ;; Blog is for publishing on personal blog.
         ("b" "blog" plain "%?"
          :if-new (file+head "blog/${slug}.org"
-                            "#+title: ${title}\n#+date: nil\n#+update: nil\n#+id: nil\n")
+                            "#+title: ${title}\n#+filetags: :draft:\n#+date: nil\n#+update: nil\n\n")
          :immediate-finish t
          :unnarrowed t)))
 

@@ -482,10 +482,65 @@ to_home:
    (directory-files DIR t ".org")))
 
 (defun drsl/publish-english-blogs ()
+  "Publish all English blogs."
   (interactive)
   (let ((HOME (getenv "HOME")))
-    (drsl/publish-blogs (concat HOME "/org-roam/blog/") (concat HOME "/website/web/blog/")))
-  )
+    (drsl/publish-blogs (concat HOME "/org-roam/blog/") (concat HOME "/website/web/blog/"))))
+
+(defun drsl/publish-current-blog (OUTDIR)
+  "Publish current blog"
+  (drsl/blog-set-create-date-to-now)
+  (drsl/blog-set-update-date-to-now)
+  (let ((TAGS (shapeless-blog--get-tags))
+        (TITLE (shapeless-blog--get-title))
+        (CREATE (shapeless-blog--get-create-date))
+        (UPDATE (shapeless-blog--get-update-date)))
+    (ox-shapelesshtml-export-as-html nil nil nil t)
+    (beginning-of-buffer)
+    (insert (concat
+             "<h1>" TITLE "</h1>"
+             "<div>Tags: "
+             (s-join " | "
+                     (mapcar
+                      (lambda (TAG)
+                        (concat "<a href=\"/blog/tags/"
+                                TAG
+                                ".html\">"
+                                TAG
+                                "</a>"))
+                      TAGS))
+             "</div>"
+             "<p>"
+             "Create: " CREATE
+             ", "
+             "Update: " UPDATE
+             "</p>"))
+    (write-file (concat
+                 OUTDIR
+                 (s-replace
+                  "-" "_"
+                  (s-replace
+                   " " "_"
+                   (downcase TITLE)))
+                 ".html"))
+    (kill-buffer)))
+
+(defun drsl/publish-current-blog-as-english ()
+  "Publish current blog as an English blog"
+  (interactive)
+  (drsl/publish-current-blog
+   (concat (getenv "HOME")
+           "/website/web/blog/")))
+
+(defun drsl/blog-set-create-date-to-now ()
+  "Update #+date into now"
+  (interactive)
+  (shapeless-blog--edit-create-date (format-time-string "%Y-%m-%d")))
+
+(defun drsl/blog-set-update-date-to-now ()
+  "Update #+update into now"
+  (interactive)
+  (shapeless-blog--edit-update-date (format-time-string "%Y-%m-%d")))
 
 (provide 'init-helpers)
 ;;; init-helpers.el ends here

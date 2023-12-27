@@ -58,7 +58,7 @@ go-ts-mode
       > p n
       "}" n)
 
-(tx > "tx, err := app.db.Begin(ctx)" n
+(tx > "tx, err := app.DB.Begin(ctx)" n
     > "if err != nil {" n
     > "app.serverError(err, w)" n
     > "return" n

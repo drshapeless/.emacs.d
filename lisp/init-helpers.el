@@ -447,7 +447,7 @@ to_home:
     (ox-shapelesshtml-export-as-html nil nil nil t)
     (beginning-of-buffer)
     (insert (concat
-             "<h1>" TITLE "</h1>"
+             "<h1 id=\"title\">" TITLE "</h1>"
              "<div>Tags: "
              (s-join " | "
                      (mapcar
@@ -467,10 +467,8 @@ to_home:
     (write-file (concat
                  OUTDIR
                  (s-replace
-                  "-" "_"
-                  (s-replace
-                   " " "_"
-                   (downcase TITLE)))
+                  " " "-"
+                  (downcase TITLE))
                  ".html"))
     (kill-buffer)
     (kill-buffer (file-name-nondirectory FILE))))
@@ -498,7 +496,7 @@ to_home:
     (ox-shapelesshtml-export-as-html nil nil nil t)
     (beginning-of-buffer)
     (insert (concat
-             "<h1>" TITLE "</h1>"
+             "<h1 id=\"title\">" TITLE "</h1>"
              "<div>Tags: "
              (s-join " | "
                      (mapcar
@@ -518,10 +516,8 @@ to_home:
     (write-file (concat
                  OUTDIR
                  (s-replace
-                  "-" "_"
-                  (s-replace
-                   " " "_"
-                   (downcase TITLE)))
+                  " " "-"
+                  (downcase TITLE))
                  ".html"))
     (kill-buffer)))
 

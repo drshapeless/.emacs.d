@@ -96,5 +96,36 @@
                                       (when-let (project (project-current))
                                         (car (project-roots project)))))
 
+;; EXWM related config
+(defvar +consult-exwm-filter "\\`\\*EXWM")
+(add-to-list 'consult-buffer-filter +consult-exwm-filter)
+
+(defvar +consult-source-exwm
+  `(:name      "EXWM"
+               :narrow    ?x
+               ;; :hidden t
+               :category  buffer
+               :face      consult-buffer
+               :history   buffer-name-history
+               ;; Specify either :action or :state
+               :action    ,#'consult--buffer-action ;; No preview
+               ;; :state  ,#'consult--buffer-state  ;; Preview
+               :items
+               ,(lambda () (consult--buffer-query
+                            :sort 'visibility
+                            :as #'buffer-name
+                            :exclude (remq +consult-exwm-filter consult-buffer-filter)
+                            :mode 'exwm-mode)))
+  "EXWM buffer source.")
+
+(defun consult-exwm-preview-fix (&rest _args)
+  "Kludge to stop EXWM buffers from stealing focus during Consult previews."
+  (when (derived-mode-p 'exwm-mode)
+    (when-let ((mini (active-minibuffer-window)))
+      (select-window (active-minibuffer-window)))))
+
+(advice-add
+ #'consult--buffer-preview :after #'consult-exwm-preview-fix)
+
 (provide 'init-consult)
 ;;; init-consult.el ends here

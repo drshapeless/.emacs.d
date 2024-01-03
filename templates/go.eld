@@ -21,7 +21,7 @@ go-ts-mode
 
 (db "db *pgxpool.Pool")
 
-(js "`json:" p "`")
+(js "`json:\"" p q "\"`")
 
 (main "package main" n n
       "func main() {" n

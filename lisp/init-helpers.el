@@ -487,8 +487,6 @@ to_home:
 
 (defun drsl/publish-current-blog (OUTDIR)
   "Publish current blog"
-  (drsl/blog-set-create-date-to-now)
-  (drsl/blog-set-update-date-to-now)
   (let ((TAGS (shapeless-blog--get-tags))
         (TITLE (shapeless-blog--get-title))
         (CREATE (shapeless-blog--get-create-date))
@@ -522,8 +520,24 @@ to_home:
     (kill-buffer)))
 
 (defun drsl/publish-current-blog-as-english ()
-  "Publish current blog as an English blog"
+  "Publish current blog as an English blog.
+
+Set the create and update date to now."
   (interactive)
+  (drsl/blog-set-create-date-to-now)
+  (drsl/blog-set-update-date-to-now)
+  (drsl/publish-current-blog
+   (concat (getenv "HOME")
+           "/website/web/blog/")))
+
+(defun drsl/update-current-blog-as-english ()
+  "Update current blog as an English blog.
+
+The difference between this and
+`drsl/publish-current-blog-as-english' is that it does not update
+create date."
+  (interactive)
+  (drsl/blog-set-update-date-to-now)
   (drsl/publish-current-blog
    (concat (getenv "HOME")
            "/website/web/blog/")))

@@ -552,5 +552,21 @@ create date."
   (interactive)
   (shapeless-blog--edit-update-date (format-time-string "%Y-%m-%d")))
 
+(defun insert-todo-comment ()
+  (interactive)
+  (indent-for-tab-command)
+  (insert "TODO: ")
+  (back-to-indentation)
+  (set-mark-command nil)
+  (move-end-of-line nil)
+  (comment-dwim nil))
+
+(defun todo-comment-on-next-line ()
+  "Insert a TODO comment on the next line at the proper indentation"
+  (interactive)
+  (move-end-of-line nil)
+  (newline)
+  (insert-todo-comment))
+
 (provide 'init-helpers)
 ;;; init-helpers.el ends here

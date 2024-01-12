@@ -526,6 +526,7 @@ Set the create and update date to now."
   (interactive)
   (drsl/blog-set-create-date-to-now)
   (drsl/blog-set-update-date-to-now)
+  (save-buffer)
   (drsl/publish-current-blog
    (concat (getenv "HOME")
            "/website/web/blog/")))
@@ -538,6 +539,7 @@ The difference between this and
 create date."
   (interactive)
   (drsl/blog-set-update-date-to-now)
+  (save-buffer)
   (drsl/publish-current-blog
    (concat (getenv "HOME")
            "/website/web/blog/")))

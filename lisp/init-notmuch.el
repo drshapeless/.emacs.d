@@ -14,7 +14,7 @@
 (if *is-a-mac*
     (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/notmuch"))
 
-(require 'notmuch)
+(require 'notmuch nil t)
 ;; The default dir of outmail is "sent", which doesn't match my
 ;; postfix setting, changed it to "Sent".
 (setq notmuch-fcc-dirs "Sent +sent -unread")

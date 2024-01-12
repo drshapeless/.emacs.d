@@ -15,7 +15,7 @@
 (setq pdf-tools-handle-upgrades nil
       pdf-info-epdfinto-program "epdfinfo")
 (add-hook 'pdf-view-mode-hook #'pdf-view-themed-minor-mode)
-(pdf-tools-install)
+(pdf-tools-install t nil t)
 
 (straight-use-package 'pdf-view-restore)
 (require 'pdf-view-restore)

@@ -8,7 +8,7 @@
 
 ;;; Code:
 
-(require 'lilypond-mode)
+(require 'lilypond-mode nil t)
 (add-to-list 'auto-mode-alist '("\\.ly\\'" . LilyPond-mode))
 (add-to-list 'auto-mode-alist '("\\.ily\\'" . LilyPond-mode))
 (add-to-list 'auto-mode-alist '("\\.lytex\\'" . LilyPond-mode))

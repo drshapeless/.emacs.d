@@ -29,6 +29,7 @@
 (add-hook 'typescript-ts-mode-hook #'eglot-ensure)
 (add-hook 'go-ts-mode-hook         #'eglot-ensure)
 
+(add-hook 'glsl-mode-hook       #'eglot-ensure)
 (add-hook 'objc-mode-hook       #'eglot-ensure)
 (add-hook 'swift-mode-hook      #'eglot-ensure)
 (add-hook 'sql-mode-hook        #'eglot-ensure)
@@ -69,6 +70,8 @@
              '(web-mode . ("vscode-html-language-server" "--stdio")))
 (add-to-list 'eglot-server-programs
              '(templ-mode . ("templ" "lsp")))
+(add-to-list 'eglot-server-programs
+             '(glsl-mode . ("glslls" "--stdin")))
 
 ;; Deno support from https://deno.land/manual@v1.28.3/getting_started/setup_your_environment
 (add-to-list 'eglot-server-programs '((js-mode typescript-mode) . (eglot-deno "deno" "lsp")))
@@ -162,7 +165,7 @@
       (load clang-format-path)
     (message "clang-format not found")))
 
-(require 'clang-format)
+(require 'clang-format nil t)
 
 (setq-default clang-format-fallback-style "llvm")
 

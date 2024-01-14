@@ -18,6 +18,9 @@
 (defconst *is-a-linux* (eq system-type 'gnu/linux))
 (defconst *is-older-emacs* (version< emacs-version "29.0.50"))
 
+(if *is-a-linux*
+    (require 'site-gentoo nil t))
+
 (require 'init-compat)
 (require 'init-keybinding)
 

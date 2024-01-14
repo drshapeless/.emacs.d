@@ -74,10 +74,10 @@
       (keymap-global-set "C-z ` r" #'drsl/remap-keyboard)
 
       ;; Audio volume in Linux
-      ;; I am using pipewire and pipewire-pulseaudio
-      (keymap-global-set "<XF86AudioLowerVolume>" #'drsl/lower-audio-volume)
-      (keymap-global-set "<XF86AudioRaiseVolume>" #'drsl/raise-audio-volume)
-      (keymap-global-set "C-c m v" #'drsl/show-audio-volume)
+      ;; Sway is used now, use sway to adjust the volume.
+      ;; (keymap-global-set "<XF86AudioLowerVolume>" #'drsl/lower-audio-volume)
+      ;; (keymap-global-set "<XF86AudioRaiseVolume>" #'drsl/raise-audio-volume)
+      ;; (keymap-global-set "C-c m v" #'drsl/show-audio-volume)
       ))
 
 

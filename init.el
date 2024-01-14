@@ -125,7 +125,7 @@
       ;; For macos, emacs-mac has a even better scrolling.
       ;; pixel-scroll-precision-mode is a new feature in version 29.
       (require 'init-pixel-scroll-precision)
-      (require 'init-exwm)
+      ;; (require 'init-exwm)
       (require 'init-shapeless-record)
       )
   )

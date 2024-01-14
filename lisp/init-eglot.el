@@ -157,15 +157,8 @@
                                         :usePlaceholders t))))
 
 ;; clang-format
-(let ((clang-format-path "/usr/share/clang/clang-format.el"))
-  (if *is-a-mac*
-      (setq clang-format-path (concat (getenv "HOMEBREW_PREFIX")
-                                      "/share/clang/clang-format.el")))
-  (if (file-exists-p clang-format-path)
-      (load clang-format-path)
-    (message "clang-format not found")))
-
-(require 'clang-format nil t)
+(straight-use-package 'clang-format)
+(require 'clang-format)
 
 (setq-default clang-format-fallback-style "llvm")
 

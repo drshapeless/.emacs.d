@@ -190,6 +190,7 @@
 
 ;; I don't know, but my firefox buffer is "firefox".
 (add-to-list 'exwm-firefox-class->name-alist (cons "firefox" "firefox"))
+(add-to-list 'exwm-firefox-class->name-alist (cons "firefox-esr" "firefox"))
 ;; My librewolf buffer is librewolf.
 (add-to-list 'exwm-firefox-class->name-alist (cons "librewolf" "librewolf"))
 

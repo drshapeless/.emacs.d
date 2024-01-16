@@ -13,8 +13,8 @@
       (drsl/reset-screen-color)
 
       ;; Disable screen save.
-      (shell-command "xset s off")
-      (shell-command "xset -dpms")
+      ;; (shell-command "xset s off")
+      ;; (shell-command "xset -dpms")
 
       ;; Disable menu bar.
 

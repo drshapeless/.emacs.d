@@ -69,8 +69,8 @@ Open an existing vterm buffer if the current buffer is not `vterm-mode'."
     (multi-vterm-next)))
 
 (keymap-global-set "C-c v" #'drsl/new-vterm-or-existing-vterm)
-(keymap-set vterm-mode-map "H-n" #'multi-vterm-next)
-(keymap-set vterm-mode-map "H-p" #'multi-vterm-prev)
+(keymap-set vterm-mode-map "s-n" #'multi-vterm-next)
+(keymap-set vterm-mode-map "s-p" #'multi-vterm-prev)
 
 (straight-use-package 'vterm-toggle)
 (require 'vterm-toggle)

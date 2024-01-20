@@ -64,8 +64,8 @@ other frame."
               (other-frame 1))
              (t (error (error-message-string err))))))))
 
-(if *is-a-linux*
-    (drsl/framemove-use-exwm))
+;; (if *is-a-linux*
+;;     (drsl/framemove-use-exwm))
 
 (provide 'init-framemove)
 ;;; init-framemove.el ends here

@@ -193,6 +193,10 @@
 
    ;; w3m
    `(w3m-anchor ((t (:foreground ,sl/calm-blue :underline t))))
+   `(w3m-tab-background ((t (:background ,sl/darker-gray :foregorund ,sl/white))))
+   `(w3m-tab-unselected ((t (:background ,sl/dark-gray :foregorund ,sl/white))))
+   `(w3m-tab-unselected-retrieving ((t (:background ,sl/dark-gray :foregorund ,sl/red))))
+   `(w3m-tab-unselected-unseen ((t (:background ,sl/dark-gray :foregorund ,sl/green))))
 
    ;; ansi-color
    `(ansi-color-bold  ((t (:inherit bold))))

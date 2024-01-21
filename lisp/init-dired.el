@@ -30,13 +30,11 @@
   (message (format "dired-listing-switches: %s" dired-listing-switches)))
 
 (keymap-set dired-mode-map "b" #'drsl/dired-listing-switches-toggle)
-;; (define-key dired-mode-map "b" 'drsl/dired-listing-switches-toggle)
 
 ;; "--group-directories-first" must be at front, otherwise concat will
 ;; break.
 (setq dired-listing-switches "-ahl")
 ;; If tramp into macOS shows a blank dired buffer, mostly is because of the ls in macOS does not support the switch --group-directories-first.
-;; (setq dired-listing-switches "-ahl")
 (setq dired-mode-hook 'drsl/dired-sort-set-mode-line)
 
 ;; A custom sorting mechanism.

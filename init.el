@@ -16,35 +16,34 @@
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/")
 (defconst *is-a-mac* (eq system-type 'darwin))
 (defconst *is-a-linux* (eq system-type 'gnu/linux))
-(defconst *is-older-emacs* (version< emacs-version "29.0.50"))
 
 (if *is-a-linux*
     (require 'site-gentoo nil t))
 
-(require 'init-compat)
-(require 'init-keybinding)
-
-;; The order of the following must not change.
-(require 'init-straight)
-;; (require 'init-leaf)
+(require 'init-elpaca)
 
 (require 'init-org)
 
+(require 'init-ui)
+(require 'init-theme)
+(require 'init-font)
+(require 'init-helpers)
+(require 'init-keybinding)
+
 ;; Emacs built-in packages.
 (require 'init-tramp)
-(require 'init-theme)
 (require 'init-dired)
 (require 'init-input-method)
-(require 'init-shell)
 (require 'init-epa)
-;; (require 'init-erc)                     ; It is not useful in modern age.
 (require 'init-flymake)
 (require 'init-ediff)
 (require 'init-ibuffer)
 (require 'init-dictionary)
 
-;;; Extra packages
-(require 'init-blackout)                ; This is useless as I am using moodline.
+;; A lot of shells
+(require 'init-shell)
+
+;; ;;; Extra packages
 (require 'init-yasnippet)
 (require 'init-tempel)
 (require 'init-vertico)
@@ -58,19 +57,16 @@
 (require 'init-ripgrep)
 (require 'init-request)
 (require 'init-framemove)
-;; (require 'init-projectile)
 (require 'init-cape)
 (require 'init-corfu)
 (require 'init-tree-sitter)
 (require 'init-rainbow)
 (require 'init-multiple-cursors)
 (require 'init-string-inflection)
-;; (require 'init-aggressive-indent)
 
 ;;; Appearance
 (require 'init-mood-line)
 (require 'init-shrface)
-(require 'init-inherit-org)
 
 ;;; Major modes.
 (require 'init-calibredb)
@@ -90,8 +86,6 @@
 (require 'init-glsl)
 (require 'init-dart)
 (require 'init-flutter)
-(require 'init-wat)
-;; (require 'init-svelte)
 (require 'init-json)
 (require 'init-lilypond)
 (require 'init-typescript)
@@ -100,14 +94,10 @@
 
 ;;; Programming helper
 (require 'init-indent-guide)
-;; (require 'init-format-all)
-;; (require 'init-prettier)
 (require 'init-apheleia)
 
 ;;; lsp server
 (require 'init-eglot)
-;; (require 'init-lsp)                     ; lsp is still crap
-;; (require 'init-lsp-bridge)
 
 (require 'init-pdf)
 (require 'init-emms)
@@ -119,20 +109,9 @@
 (require 'init-sly)
 (require 'init-geiser)
 
-(if *is-a-linux*
-    (progn
-      ;; This is about smooth scrolling in Emacs.
-      ;; For macos, emacs-mac has a even better scrolling.
-      ;; pixel-scroll-precision-mode is a new feature in version 29.
-      (require 'init-pixel-scroll-precision)
-      ;; (require 'init-exwm)
-      (require 'init-shapeless-record)
-      )
-  )
+(when *is-a-linux*
+  (require 'init-shapeless-record))
 
-(require 'init-font)
-(require 'init-helpers)
-(require 'init-ui)
 (require 'init-shapeless-blog)
 (require 'init-async)
 
@@ -147,26 +126,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   '("b8eff8830e1002339c922bef5858f65e17555795a82dc0db4e943336f9c8f84d"
-     default))
- '(safe-local-variable-values
-   '((dired-omit-files . "\\`[.]?#\\|\\`[.][.]?\\'\\|templ\\.go\\'")
-     (eval valign-mode t) (valign-mode . t)
-     (eval progn (org-babel-goto-named-src-block "startup")
-           (org-babel-execute-src-block) (outline-hide-sublevels 1))
-     (diff-add-log-use-relative-names . t)
-     (vc-git-annotate-switches . "-w")
-     (elisp-lint-indent-specs (describe . 1) (it . 1)
-                              (thread-first . 0) (cl-flet . 1)
-                              (cl-flet* . 1) (org-element-map . defun)
-                              (org-roam-dolist-with-progress . 2)
-                              (org-roam-with-temp-buffer . 1)
-                              (org-with-point-at . 1)
-                              (magit-insert-section . defun)
-                              (magit-section-case . 0)
-                              (org-roam-with-file . 2))
-     (elisp-lint-ignored-validators "byte-compile" "package-lint"))))
+ '(safe-local-variable-values '((eval valign-mode t))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

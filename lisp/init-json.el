@@ -6,8 +6,9 @@
 
 ;;; Code:
 
-(straight-use-package 'json-mode)
-(require 'json-mode)
+(elpaca
+ json-mode
+ (require 'json-mode))
 
 (provide 'init-json)
 ;;; init-json.el ends here

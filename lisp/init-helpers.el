@@ -29,130 +29,13 @@
 (defun drsl/sync-drshapeless ()
   (interactive)
   (async-shell-command "rsync -urv --delete-after ~/website/web/ jacky@drshapeless.com:web" "*rsync*"))
+
 (defun drsl/sync-from-drshapeless ()
   (interactive)
   (async-shell-command "rsync -urv --delete-after jacky@drshapeless.com:web/ ~/website/web" "*rsync*"))
 
-(defun drsl/publish-and-sync ()
-  (interactive)
-  (progn
-    (org-publish-all)
-    (drsl/sync-drshapeless))
-  )
-
-;;; Firefox.
-(defcustom drsl/firefox-browser-command "librewolf"
-  "The command for a firefox based browser.
-
-Default is librewolf. Can change to firefox."
-  :type 'string
-  :options '(firefox librewolf))
-
-(defun drsl/browser-search-duckduckgo (term)
-  "Search with duckduckgo."
-  (interactive (list (read-string "duckduckgo: ")))
-  (cond ((string= drsl/firefox-browser-command "librewolf")
-         (drsl/librewolf-search-duckduckgo term))
-        ((string= drsl/firefox-browser-command "firefox")
-         (drsl/firefox-search-duckduckgo term))))
-
-(defun drsl/browser-open-url (url)
-  "Open url."
-  (interactive (list (read-string "url: ")))
-  (cond ((string= drsl/firefox-browser-command 'librewolf) (drsl/librewolf-open-url url))
-        ((string= drsl/firefox-browser-command 'firefox) (drsl/firefox-open-url url))))
-
-(defun drsl/browser-new ()
-  "Open a new browser window."
-  (interactive)
-  (cond ((string= drsl/firefox-browser-command 'librewolf) (drsl/start-librewolf))
-        ((string= drsl/firefox-browser-command 'firefox) (drsl/start-firefox))))
-
-(defun drsl/browser-new-private ()
-  "Open a new private browser window."
-  (interactive)
-  (cond ((string= drsl/firefox-browser-command 'librewolf)
-         (drsl/start-librewolf-private))
-        ((string= drsl/firefox-browser-command 'firefox)
-         (drsl/start-firefox-private))))
-
-(defun drsl/firefox-search-duckduckgo (term)
-  "Firefox duckduckgo search in a new window."
-  (start-process-shell-command "firefox"
-                               nil
-                               (format "firefox 'https://duckduckgo.com/?q=%s' " term)))
-
-(defun drsl/firefox-open-url (url)
-  "Firefox url in a new window."
-  (start-process-shell-command "firefox" nil
-                               (format "firefox '%s'" url)))
-
-(defun drsl/start-firefox ()
-  "Start a new firefox session."
-  (interactive)
-  (start-process-shell-command "firefox" nil "firefox"))
-
-(defun drsl/start-firefox-private ()
-  "Start a new firefox private window."
-  (interactive)
-  (start-process-shell-command "firefox" nil "firefox --private-window"))
-
-;;; librewolf
-(defun drsl/librewolf-search-duckduckgo (term)
-  "Librewolf duckduckgo search in a new window."
-  ;; (interactive (list (read-string "duckduckgo: ")))
-  (start-process-shell-command "librewolf" nil (format "librewolf 'https://duckduckgo.com/?q=%s' " term)))
-
-(defun drsl/librewolf-open-url (url)
-  "Librewolf url in a new window."
-  (start-process-shell-command "librewolf"
-                               nil
-                               (format "librewolf '%s'" url)))
-
-(defun drsl/start-librewolf ()
-  "Start a new librewolf session."
-  (interactive)
-  (start-process-shell-command "librewolf" nil "librewolf"))
-
-(defun drsl/start-librewolf-private ()
-  "Start a new librewolf private window."
-  (interactive)
-  (start-process-shell-command "librewolf" nil "librewolf --private-window"))
-
 (if *is-a-linux*
     (progn
-      ;; Turn off monitor
-      (defun drsl/monitor-off ()
-        "Turn off the monitor."
-        (interactive)
-        (shell-command "sleep 1; xset dpms force off"))
-
-      ;; Turn off power save mode.
-      (defun drsl/powersave-off ()
-        "Disable powersave.\nYou may want to do this after waking up your monitor."
-        (interactive)
-        (shell-command "xset -dpms"))
-
-      ;; Remap the keyboard with ~/.Xmodmap
-      (defun drsl/remap-keyboard ()
-        "Remap the keyboard."
-        (interactive)
-        (shell-command "xmodmap ~/.Xmodmap"))
-
-      (defun drsl/reset-screen-color ()
-        "Reset screen color to 3600K."
-        (interactive)
-        (shell-command "redshift -x ; redshift -O 3600K"))
-
-      ;; Use flameshot to capture screen
-      (defun drsl/flameshot-capture-screen ()
-        "Use flameshot to capture screen."
-        (interactive)
-        (async-shell-command "flameshot gui"))
-
-      (defun drsl/start-pipewire ()
-        (interactive)
-        (async-shell-command "gentoo-pipewire-launcher" "*pipewire*"))
       (defun drsl/lower-audio-volume ()
         (interactive)
         (shell-command "wpctl set-volume @DEFAULT_AUDIO_SINK@ 3%-")
@@ -164,9 +47,6 @@ Default is librewolf. Can change to firefox."
       (defun drsl/show-audio-volume ()
         (interactive)
         (shell-command "wpctl get-volume @DEFAULT_AUDIO_SINK@"))
-      (defun drsl/start-discord ()
-        (interactive)
-        (async-shell-command "discord" "*discord*"))
       ))
 
 (defun drsl/enable-ssh-over-socks ()
@@ -258,56 +138,12 @@ Default is librewolf. Can change to firefox."
   ;; put the point in the lowest line and return
   (next-line arg))
 
-(defvar usd2hkd 7.83)
-
-;; The fee for trading stocks on futubull.
-(defun futubull-fee(cost number)
-  (interactive "nCost: \nnNumber: ")
-  (let* ((fee (+ (max (* 0.0049 number) 0.99)
-                 (max (* 0.005 number) 1)
-                 (* 0.003 number)))
-         (total (* cost number))
-         (min-price (+ (/ (* fee 2) number)
-                       cost))
-         (net (+ (* fee 2) total)))
-    (message (format "Minimum price: %0.3f, fee: %0.3f, total: %0.3f, net: %0.3f, hkd: %0.3f"
-                     min-price
-                     fee
-                     total
-                     net
-                     (* net usd2hkd)))))
-
-(defun futubull-profit(cost price number)
-  (interactive "nCost: \nnCurrent: \nnNumber: ")
-  (let* ((fee (+ (max (* 0.0049 number) 0.99)
-                 (max (* 0.005 number) 1)
-                 (* 0.003 number)))
-         (net (- (* price number)
-                 (* cost number)
-                 (* fee 2))))
-    (message (format "Net: %0.3f, hkd: %0.3f, cost: %0.3f, price: %0.3f, fee: %0.3f"
-                     net
-                     (* net usd2hkd)
-                     (* cost number)
-                     (* price number)
-                     (* fee 2)))))
-
 (defun drsl/switch-buffer-by-prefix (PREFIX)
   "Select a buffer prefixed by PREFIX."
   (minibuffer-with-setup-hook
       (lambda ()
         (insert (concat "^" PREFIX)))
     (consult-buffer)))
-
-(defun drsl/switch-buffer-firefox ()
-  "Select a firefox window."
-  (interactive)
-  (drsl/switch-buffer-by-prefix "*firefox"))
-
-(defun drsl/switch-buffer-firefox-or-librewolf ()
-  "Select a firefox or librewolf window."
-  (interactive)
-  (drsl/switch-buffer-by-prefix "*\\(firefox\\)\\|\\(librewolf\\)"))
 
 (defun drsl/insert-time-string ()
   "Insert current time string.
@@ -365,35 +201,16 @@ Only tested with nyaa search page."
                     'href))
                  (dom-by-tag dom 'a)))))))
 
-(defun drsl/macos-fullscreen ()
-  "Make Emacs window in macos to fullscreen.
+;; Need revise for pure Pipewire.
+;; (defun drsl/set-default-audio-output-piano ()
+;;   "Set default audio output to piano."
+;;   (interactive)
+;;   (shell-command "pactl set-default-sink alsa_output.usb-Roland_Roland_Digital_Piano-00.analog-stereo"))
 
-The default `toggle-frame-fullscreen' does not respect the notch
-in newer Macbook, some contents are block by the front
-camera. Also, it does not create a new dedicated desktop in
-macos, just a weird fullscreen application blockiong other
-applications in the original desktop.
-
-This function makes use of the applescript to toggle fullscreen
-in macos."
-  (interactive)
-  (async-shell-command "osascript -e 'tell application \"System Events\" to tell process \"Emacs\" \n set value of attribute \"AXFullScreen\" of window 1 to true \n end tell'"))
-
-(defun drsl/macos-term-mode ()
-  "A bunch of settings for better terminal emacs experience."
-  (interactive)
-  (corfu-terminal-mode 1)
-  (menu-bar-mode -1))
-
-(defun drsl/set-default-audio-output-piano ()
-  "Set default audio output to piano."
-  (interactive)
-  (shell-command "pactl set-default-sink alsa_output.usb-Roland_Roland_Digital_Piano-00.analog-stereo"))
-
-(defun drsl/set-default-audio-output-analog ()
-  "Set default audio output to analog."
-  (interactive)
-  (shell-command "pactl set-default-sink alsa_output.pci-0000_09_00.4.analog-stereo"))
+;; (defun drsl/set-default-audio-output-analog ()
+;;   "Set default audio output to analog."
+;;   (interactive)
+;;   (shell-command "pactl set-default-sink alsa_output.pci-0000_09_00.4.analog-stereo"))
 
 (defun drsl/generate-rsync-makefile ()
   "Append rsync commands to makefile at current directory."
@@ -440,122 +257,6 @@ to_home:
   (shell-command "sudo modprobe i2c-dev")
   (async-shell-command "openrgb -p ~/.config/OpenRGB/dark.orp"))
 
-(defun drsl/publish-one-blog (FILE OUTDIR)
-  (find-file FILE)
-  (let ((filename (file-name-sans-extension (file-name-nondirectory FILE)))
-        (TAGS (shapeless-blog--get-tags))
-        (TITLE (shapeless-blog--get-title))
-        (CREATE (shapeless-blog--get-create-date))
-        (UPDATE (shapeless-blog--get-update-date)))
-    (ox-shapelesshtml-export-as-html nil nil nil t)
-    (beginning-of-buffer)
-    (insert (concat
-             "<h1 id=\"title\">" TITLE "</h1>"
-             "<div>Tags: "
-             (s-join " | "
-                     (mapcar
-                      (lambda (TAG)
-                        (concat "<a href=\"/blog/tags/"
-                                TAG
-                                ".html\">"
-                                TAG
-                                "</a>"))
-                      TAGS))
-             "</div>"
-             "<p>"
-             "Create: " CREATE
-             ", "
-             "Update: " UPDATE
-             "</p>"))
-    (write-file (concat
-                 OUTDIR
-                 (s-replace
-                  " " "-"
-                  (downcase TITLE))
-                 ".html"))
-    (kill-buffer)
-    (kill-buffer (file-name-nondirectory FILE))))
-
-(defun drsl/publish-blogs (DIR OUTDIR)
-  (mapc
-   (lambda (FILE)
-     (drsl/publish-one-blog FILE OUTDIR))
-   (directory-files DIR t ".org")))
-
-(defun drsl/publish-english-blogs ()
-  "Publish all English blogs."
-  (interactive)
-  (let ((HOME (getenv "HOME")))
-    (drsl/publish-blogs (concat HOME "/org-roam/blog/") (concat HOME "/website/web/blog/"))))
-
-(defun drsl/publish-current-blog (OUTDIR)
-  "Publish current blog"
-  (let ((TAGS (shapeless-blog--get-tags))
-        (TITLE (shapeless-blog--get-title))
-        (CREATE (shapeless-blog--get-create-date))
-        (UPDATE (shapeless-blog--get-update-date)))
-    (ox-shapelesshtml-export-as-html nil nil nil t)
-    (beginning-of-buffer)
-    (insert (concat
-             "<h1 id=\"title\">" TITLE "</h1>"
-             "<div>Tags: "
-             (s-join " | "
-                     (mapcar
-                      (lambda (TAG)
-                        (concat "<a href=\"/blog/tags/"
-                                TAG
-                                ".html\">"
-                                TAG
-                                "</a>"))
-                      TAGS))
-             "</div>"
-             "<p>"
-             "Create: " CREATE
-             ", "
-             "Update: " UPDATE
-             "</p>"))
-    (write-file (concat
-                 OUTDIR
-                 (s-replace
-                  " " "-"
-                  (downcase TITLE))
-                 ".html"))
-    (kill-buffer)))
-
-(defun drsl/publish-current-blog-as-english ()
-  "Publish current blog as an English blog.
-
-Set the create and update date to now."
-  (interactive)
-  (drsl/blog-set-create-date-to-now)
-  (drsl/blog-set-update-date-to-now)
-  (save-buffer)
-  (drsl/publish-current-blog
-   (concat (getenv "HOME")
-           "/website/web/blog/")))
-
-(defun drsl/update-current-blog-as-english ()
-  "Update current blog as an English blog.
-
-The difference between this and
-`drsl/publish-current-blog-as-english' is that it does not update
-create date."
-  (interactive)
-  (drsl/blog-set-update-date-to-now)
-  (save-buffer)
-  (drsl/publish-current-blog
-   (concat (getenv "HOME")
-           "/website/web/blog/")))
-
-(defun drsl/blog-set-create-date-to-now ()
-  "Update #+date into now"
-  (interactive)
-  (shapeless-blog--edit-create-date (format-time-string "%Y-%m-%d")))
-
-(defun drsl/blog-set-update-date-to-now ()
-  "Update #+update into now"
-  (interactive)
-  (shapeless-blog--edit-update-date (format-time-string "%Y-%m-%d")))
 
 (defun insert-todo-comment ()
   (interactive)

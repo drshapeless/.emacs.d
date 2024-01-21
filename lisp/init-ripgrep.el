@@ -6,8 +6,9 @@
 
 ;;; Code:
 
-(straight-use-package 'ripgrep)
-(require 'ripgrep)
+(elpaca
+ ripgrep
+ (require 'ripgrep))
 
 (provide 'init-ripgrep)
 ;;; init-ripgrep.el ends here

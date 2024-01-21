@@ -6,11 +6,13 @@
 
 ;;; Code:
 
-(straight-use-package 'geiser)
-(require 'geiser)
+(elpaca
+ geiser
+ (require 'geiser))
 
-(straight-use-package 'geiser-guile)
-(require 'geiser-guile)
+(elpaca
+ geiser-guile
+ (require 'geiser-guile))
 
 (provide 'init-geiser)
 ;;; init-geiser.el ends here

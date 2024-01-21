@@ -7,8 +7,9 @@
 
 ;;; Code:
 
-(straight-use-package 'yaml-mode)
-(require 'yaml-mode)
+(elpaca
+ yaml-mode
+ (require 'yaml-mode))
 
 (provide 'init-yaml)
 ;;; init-yaml.el ends here

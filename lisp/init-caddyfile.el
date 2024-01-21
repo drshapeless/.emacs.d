@@ -6,8 +6,9 @@
 
 ;;; Code:
 
-(straight-use-package 'caddyfile-mode)
-(require 'caddyfile-mode)
+(elpaca
+ caddyfile-mode
+ (require 'caddyfile-mode))
 
 (provide 'init-caddyfile)
 ;;; init-caddyfile.el ends here

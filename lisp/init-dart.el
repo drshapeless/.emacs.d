@@ -7,9 +7,10 @@
 
 ;;; Code:
 
-(straight-use-package 'dart-mode)
-(require 'dart-mode)
-(add-hook 'dart-mode-hook #'flutter-test-mode)
+(elpaca
+ dart-mode
+ (require 'dart-mode)
+ (add-hook 'dart-mode-hook #'flutter-test-mode))
 
 (provide 'init-dart)
 ;;; init-dart.el ends here

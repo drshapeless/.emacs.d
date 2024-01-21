@@ -8,13 +8,15 @@
 
 ;;; Code:
 
-(straight-use-package 'flutter)
-(require 'flutter)
-(keymap-set dart-mode-map "C-M-x" #'flutter-run-or-hot-reload)
-(if *is-a-linux*
-    (setq flutter-sdk-path "~/src/flutter/"))
-(if *is-a-mac*
-    (setq flutter-sdk-path "/opt/homebrew/Caskroom/flutter/3.0.0/flutter"))
+(elpaca
+ flutter
+ (require 'flutter)
+ (keymap-set dart-mode-map "C-M-x" #'flutter-run-or-hot-reload)
+ (if *is-a-linux*
+     (setq flutter-sdk-path "~/src/flutter/"))
+ (if *is-a-mac*
+     (setq flutter-sdk-path "/opt/homebrew/Caskroom/flutter/3.0.0/flutter"))
+ )
 
 (defun drsl/flutter-wrap-widget ()
   "Wrap a flutter widget.

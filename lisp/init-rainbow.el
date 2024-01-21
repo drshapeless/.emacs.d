@@ -6,8 +6,9 @@
 
 ;;; Code:
 
-(straight-use-package 'rainbow-mode)
-(require 'rainbow-mode)
+(elpaca
+ rainbow-mode
+ (require 'rainbow-mode))
 
 (provide 'init-rainbow)
 ;;; init-rainbow.el ends here

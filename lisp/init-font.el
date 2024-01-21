@@ -123,20 +123,24 @@
 
 (setq use-default-font-for-symbols nil)
 
-(if *is-a-linux*
-    (drsl/init-font))
+(when *is-a-linux*
+  (drsl/init-font))
+
+
+(create-default-fontset)
 
 (defun drsl/set-font ()
-  (if *is-a-mac*
-      (set-face-attribute 'default nil :height 140 :font "monaco"))
-  (if *is-a-linux*
-      (set-face-attribute 'default nil :height 130 :font "hack"))
-  )
+  (when *is-a-mac*
+    (add-to-list 'default-frame-alist
+                 '(font . "monaco-13")))
+  (when *is-a-linux*
+    (add-to-list 'default-frame-alist
+                 '(font . "Hack-13"))))
 
 (drsl/set-font)
 
 ;; Set font size after loading a theme.
-(setq after-load-theme-hook 'drsl/set-font)
+(setq after-load-theme-hook #'drsl/set-font)
 
 (provide 'init-font)
 ;;; init-font.el ends here

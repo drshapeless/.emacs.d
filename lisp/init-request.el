@@ -6,8 +6,9 @@
 
 ;;; Code:
 
-(straight-use-package 'request)
-(require 'request)
+(elpaca
+ request
+ (require 'request))
 
 (provide 'init-request)
 ;;; init-request.el ends here

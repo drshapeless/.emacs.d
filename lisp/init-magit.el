@@ -6,12 +6,14 @@
 
 ;;; Code:
 
-(straight-use-package 'magit)
-(require 'magit)
+(elpaca
+ magit
+ (require 'magit))
 
 ;; I currently don't have any use with forge.
-(straight-use-package 'forge)
-(require 'forge)
+(elpaca
+ forge
+ (require 'forge))
 
 (provide 'init-magit)
 ;;; init-magit.el ends here

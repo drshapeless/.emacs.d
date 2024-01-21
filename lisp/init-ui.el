@@ -6,22 +6,12 @@
 
 ;;; Code:
 
-(if *is-a-linux*
-    (progn
-      ;; Reduce blue light from screen.
-      ;; (shell-command "redshift -O 3600K")
-      (drsl/reset-screen-color)
+(when *is-a-linux*
+  ;; Disable menu bar.
 
-      ;; Disable screen save.
-      ;; (shell-command "xset s off")
-      ;; (shell-command "xset -dpms")
-
-      ;; Disable menu bar.
-
-      ;; Do not disable menu bar in macos, it will cause weird
-      ;; behaviour of the fullscreen button.
-      (menu-bar-mode -1)
-      ))
+  ;; Do not disable menu bar in macos, it will cause weird
+  ;; behaviour of the fullscreen button.
+  (menu-bar-mode -1))
 
 (setq inhibit-startup-screen t)		; Disable startup screen.
 (scroll-bar-mode -1)                    ; Disable scroll bar.
@@ -39,6 +29,7 @@
 (show-paren-mode t)
 (electric-pair-mode t)
 (setq ring-bell-function 'ignore)	; No notification sound.
+(pixel-scroll-precision-mode 1)         ; smooth scrolling
 
 ;; Auto-revert doesn't work well with tramp.
 (global-auto-revert-mode t)
@@ -117,10 +108,6 @@
 (setq warning-minimum-level :emergency)
 
 (setq gc-cons-threshold 50000000)
-
-;; (if (and *is-a-mac*
-;;          (display-graphic-p))
-;;     (drsl/macos-fullscreen))
 
 (setq comint-pager "cat")
 

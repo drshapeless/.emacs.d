@@ -8,11 +8,13 @@
 
 ;;; Code:
 
-(straight-use-package 'go-mode)
-(require 'go-mode)
-(add-hook 'go-mode-hook (lambda () (setq tab-width 4)))
-(add-hook 'go-ts-mode-hook (lambda () (setq tab-width 4)))
-(setq go-ts-mode-indent-offset 4)
+(elpaca
+ go-mode
+ (require 'go-mode)
+ (add-hook 'go-mode-hook (lambda () (setq tab-width 4)))
+ (add-hook 'go-ts-mode-hook (lambda () (setq tab-width 4)))
+ (setq go-ts-mode-indent-offset 4))
+
 
 (defun drsl/go-db ()
   "Insert the snake_case version of current field "
@@ -20,13 +22,6 @@
   (let ((word (string-inflection-underscore-function (current-word))))
     (end-of-line)
     (insert " `db:\"" word "\"`")))
-
-(define-derived-mode templ-mode web-mode "Templ Mode" "Major mode for templ file"
-  (setq tab-width 4))
-
-;; (font-lock-add-keywords 'templ-mode '(("templ " . 'font-lock-keyword-face)))
-
-(add-to-list 'auto-mode-alist '("\\.templ\\'" . templ-mode))
 
 (provide 'init-go)
 ;;; init-go.el ends here

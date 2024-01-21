@@ -2,12 +2,13 @@
 
 ;;; Commentary:
 
-;;
+;; This package convert string from camelCase to snake_case.
 
 ;;; Code:
 
-(straight-use-package 'string-inflection)
-(require 'string-inflection)
+(elpaca
+ string-inflection
+ (require 'string-inflection))
 
 (provide 'init-string-inflection)
 ;;; init-string-inflection.el ends here

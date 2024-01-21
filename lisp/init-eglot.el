@@ -157,10 +157,14 @@
                                         :usePlaceholders t))))
 
 ;; clang-format
-(straight-use-package 'clang-format)
-(require 'clang-format)
+(elpaca
+ clang-format
+ (require 'clang-format)
 
-(setq-default clang-format-fallback-style "llvm")
+ (setq-default clang-format-fallback-style "llvm")
+ (defun clang-format-buffer-on-save ()
+   (add-hook 'before-save-hook #'clang-format-buffer -10 t)))
+
 
 (defun drsl/generate-clang-format ()
   "Generate a .clang-format file in the current directory.
@@ -421,17 +425,9 @@ overrides = [ { files = \"*.svelte\", options = { parser = \"svelte\"}}]
                       (concat (file-name-directory (buffer-file-name))
                               ".prettierrc.toml"))))
 
-(defun clang-format-buffer-on-save ()
-  (add-hook 'before-save-hook #'clang-format-buffer -10 t))
-
-;; (add-hook 'c-mode-hook #'clang-format-buffer-on-save)
-;; (add-hook 'c++-mode-hook #'clang-format-buffer-on-save)
 
 (defun eglot-format-buffer-on-save ()
   (add-hook 'before-save-hook #'eglot-format-buffer -10 t))
-;; (add-hook 'svelte-mode-hook #'eglot-format-buffer-on-save)
-
-;; (add-hook 'dart-mode-hook #'eglot-format-buffer-on-save)
 
 (defun drsl/format-buffer ()
   "Format buffer according to major mode."
@@ -451,9 +447,10 @@ overrides = [ { files = \"*.svelte\", options = { parser = \"svelte\"}}]
 (add-hook 'c-ts-mode-hook   #'shapeless-c-arrow-mode)
 (add-hook 'c++-ts-mode-hook #'shapeless-c-arrow-mode)
 
-(straight-use-package '(breadcrumb :type git :host github :repo "joaotavora/breadcrumb"))
-(require 'breadcrumb)
-(breadcrumb-mode)
+(elpaca
+ (breadcrumb :host github :repo "joaotavora/breadcrumb")
+ (require 'breadcrumb)
+ (breadcrumb-mode))
 
 ;;; Things with Corfu
 ;; Use Eglot to provide continuously updated candidates

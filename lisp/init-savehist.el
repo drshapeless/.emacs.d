@@ -7,7 +7,6 @@
 ;;; Code:
 
 ;; Vertico sorts by history position.
-(straight-use-package 'savehist)
 (require 'savehist)
 (savehist-mode t)
 

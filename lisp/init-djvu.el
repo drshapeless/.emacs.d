@@ -6,8 +6,9 @@
 
 ;;; Code:
 
-(straight-use-package 'djvu)
-(require 'djvu)
+(elpaca
+ djvu
+ (require 'djvu))
 
 (provide 'init-djvu)
 ;;; init-djvu.el ends here

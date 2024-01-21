@@ -37,81 +37,81 @@ apps are not started from a shell."
 (add-to-list 'exec-path (concat (getenv "HOME") "/bin"))
 
 ;; Shell switcher
-(straight-use-package 'shell-switcher)
-(require 'shell-switcher)
-(setq shell-switcher-mode t)
-(setq shell-switcher-new-shell-function #'shell-switcher-make-shell)
+(elpaca
+ shell-switcher
+ (require 'shell-switcher)
+ (setq shell-switcher-mode t)
+ (setq shell-switcher-new-shell-function #'shell-switcher-make-shell))
+
 
 ;; Coterm
-(straight-use-package 'coterm)
-;; Coterm enable TUI like program to be run in shell.
-(coterm-mode)
+(elpaca
+ coterm
+ ;; Coterm enable TUI like program to be run in shell.
+ (coterm-mode))
+
 
 ;; vterm
-(straight-use-package 'vterm)
-(require 'vterm)
-(setq vterm-buffer-name-string "vterm %s")
-(setq vterm-always-compile-module t)
-(keymap-set vterm-mode-map "C-q" #'vterm-send-next-key)
-(add-to-list 'vterm-eval-cmds '("update-pwd" (lambda (path) (setq default-directory path))))
+(elpaca
+ vterm
+ (require 'vterm)
+ (setq vterm-buffer-name-string "vterm %s")
+ (setq vterm-always-compile-module t)
+ (keymap-set vterm-mode-map "C-q" #'vterm-send-next-key)
+ (add-to-list 'vterm-eval-cmds '("update-pwd" (lambda (path) (setq default-directory path)))))
 
 ;; multi-vterm
-(straight-use-package 'multi-vterm)
-(require 'multi-vterm)
-(defun drsl/new-vterm-or-existing-vterm ()
-  "Create new or open existing vterm buffer.
+(elpaca
+ multi-vterm
+ (require 'multi-vterm)
+ (defun drsl/new-vterm-or-existing-vterm ()
+   "Create new or open existing vterm buffer.
 
 Create a new vterm buffer if the current buffer is `vterm-mode'.
 Open an existing vterm buffer if the current buffer is not `vterm-mode'."
-  (interactive)
-  (if (eq major-mode 'vterm-mode)
-      (multi-vterm)
-    (multi-vterm-next)))
+   (interactive)
+   (if (eq major-mode 'vterm-mode)
+       (multi-vterm)
+     (multi-vterm-next)))
 
-(keymap-global-set "C-c v" #'drsl/new-vterm-or-existing-vterm)
-(keymap-set vterm-mode-map "s-n" #'multi-vterm-next)
-(keymap-set vterm-mode-map "s-p" #'multi-vterm-prev)
+ (keymap-global-set "C-c v" #'drsl/new-vterm-or-existing-vterm)
+ (keymap-set vterm-mode-map "s-n" #'multi-vterm-next)
+ (keymap-set vterm-mode-map "s-p" #'multi-vterm-prev))
 
-(straight-use-package 'vterm-toggle)
-(require 'vterm-toggle)
-;; (keymap-global-set "C-c s" 'vterm-toggle)
-;; (keymap-set vterm-mode-map "H-n" 'vterm-toggle-forward)
-;; (keymap-set vterm-mode-map "H-p" 'vterm-toggle-backward)
-(setq vterm-toggle-fullscreen-p nil)
-(add-to-list 'display-buffer-alist
-             '((lambda (buffer-or-name _)
-                 (let ((buffer (get-buffer buffer-or-name)))
-                   (with-current-buffer buffer
-                     (or (equal major-mode 'vterm-mode)
-                         (string-prefix-p vterm-buffer-name (buffer-name buffer))))))
-               (display-buffer-reuse-window display-buffer-same-window)))
+(elpaca
+ vterm-toggle
+ (require 'vterm-toggle)
+ (setq vterm-toggle-fullscreen-p nil)
+ (add-to-list 'display-buffer-alist
+              '((lambda (buffer-or-name _)
+                  (let ((buffer (get-buffer buffer-or-name)))
+                    (with-current-buffer buffer
+                      (or (equal major-mode 'vterm-mode)
+                          (string-prefix-p vterm-buffer-name (buffer-name buffer))))))
+                (display-buffer-reuse-window display-buffer-same-window))))
 
-;; vterm-capf
-;; (straight-use-package '(vterm-capf :type git :host github :repo "twlz0ne/vterm-capf"))
-;; (require 'vterm-capf)
-;; (setq vterm-capf-frontend 'corfu)
-;; (add-hook 'vterm-mode-hook #'vterm-capf-mode)
 
 ;; This is about eterm.
-(straight-use-package 'eterm-256color)
-(require 'eterm-256color)
-(add-hook 'term-mode-hook #'eterm-256color-mode)
+(elpaca
+ eterm-256color
+ (require 'eterm-256color)
+ (add-hook 'term-mode-hook #'eterm-256color-mode))
+
 
 ;; Eat.
-(straight-use-package
- '(eat :type git
-       :host codeberg
-       :repo "akib/emacs-eat"
-       :files ("*.el" ("term" "term/*.el") "*.texi"
-               "*.ti" ("terminfo/e" "terminfo/e/*")
-               ("terminfo/65" "terminfo/65/*")
-               ("integration" "integration/*")
-               (:exclude ".dir-locals.el" "*-tests.el"))))
-
-(require 'eat)
-;; (eat-compile-terminfo)
-(setq eat-term-name "xterm-256color")
-(keymap-global-set "C-c s" #'eat)
+(elpaca
+ (eat :host codeberg
+      :repo "akib/emacs-eat"
+      :files ("*.el" ("term" "term/*.el") "*.texi"
+              "*.ti" ("terminfo/e" "terminfo/e/*")
+              ("terminfo/65" "terminfo/65/*")
+              ("integration" "integration/*")
+              (:exclude ".dir-locals.el" "*-tests.el")))
+ (require 'eat)
+ ;; (eat-compile-terminfo)
+ (setq eat-term-name "xterm-256color")
+ (keymap-global-set "C-c s" #'eat)
+ )
 
 (provide 'init-shell)
 ;;; init-shell.el ends here

@@ -9,8 +9,9 @@
 
 ;;; Code:
 
-(straight-use-package 'nginx-mode)
-(require 'nginx-mode)
+(elpaca
+ nginx-mode
+ (require 'nginx-mode))
 
 (provide 'init-nginx)
 ;;; init-nginx.el ends here

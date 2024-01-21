@@ -6,9 +6,10 @@
 
 ;;; Code:
 
-(straight-use-package 'hackernews)
-(require 'hackernews)
-(setq hackernews-internal-browser-function #'w3m-browse-url)
+(elpaca
+ hackernews
+ (require 'hackernews)
+ (setq hackernews-internal-browser-function #'w3m-browse-url))
 
 (provide 'init-hackernews)
 ;;; init-hackernews.el ends here

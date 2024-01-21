@@ -2,12 +2,10 @@
 
 ;;; Commentary:
 
-;; Do not use straight to clone tramp, it gives an weird error.
+;; Use the built-in tramp.
 
 ;;; Code:
 
-;; The default git version from straight.el is handicapped.
-;; (straight-use-package 'tramp)
 (require 'tramp)
 ;; This is for remote host to recognize tramp as a unique type of
 ;; shell, useful for remote zsh, e.g. macOS. This should always work

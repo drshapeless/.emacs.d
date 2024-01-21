@@ -6,12 +6,12 @@
 
 ;;; Code:
 
-;; (straight-use-package 'tree-sitter)
+;; (elpaca tree-sitter)
 ;; (require 'tree-sitter)
 
 ;; (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
 
-;; (straight-use-package 'tree-sitter-langs)
+;; (elpaca tree-sitter-langs)
 ;; (require 'tree-sitter-langs)
 
 (setq treesit-language-source-alist

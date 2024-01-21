@@ -6,13 +6,14 @@
 
 ;;; Code:
 
-(straight-use-package 'mood-line)
-(require 'mood-line)
+(elpaca
+ mood-line
+ (require 'mood-line)
 
-(mood-line-mode 1)
+ (mood-line-mode 1)
 
-;; Toggle mood-line
-(keymap-global-set "C-z m" #'mood-line-mode)
+ ;; Toggle mood-line
+ (keymap-global-set "C-z m" #'mood-line-mode))
 
 (provide 'init-mood-line)
 ;;; init-mood-line.el ends here

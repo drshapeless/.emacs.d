@@ -2,7 +2,7 @@
 
 ;;; Commentary:
 
-;; Diff in emacs.
+;; Diff in emacs. It is a built-in package.
 
 ;;; Code:
 

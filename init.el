@@ -23,10 +23,7 @@
 (require 'init-elpaca)
 
 (require 'init-org)
-
 (require 'init-ui)
-(require 'init-theme)
-(require 'init-font)
 (require 'init-helpers)
 (require 'init-keybinding)
 
@@ -114,6 +111,10 @@
 
 (require 'init-shapeless-blog)
 (require 'init-async)
+
+;; for whatever reason, font and theme must be at the end of init
+(require 'init-theme)
+(require 'init-font)
 
 (server-start)
 

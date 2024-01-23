@@ -59,7 +59,7 @@
 (add-to-list 'eglot-server-programs
              '(swift-mode . ("sourcekit-lsp")))
 (add-to-list 'eglot-server-programs
-             '(sql-mode . ("sql-language-server" "up" "--method" "stdio")))
+             '(sql-mode . ("sqls")))
 ;; (add-to-list 'eglot-server-programs
 ;;              '(dart-mode . ("dart" "language-server")))
 (add-to-list 'eglot-server-programs

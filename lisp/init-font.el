@@ -123,7 +123,9 @@
 
 (defun drsl/set-font ()
   (when *is-a-linux*
-    (drsl/init-font)))
+    (drsl/init-font))
+  (when *is-a-mac*
+    (set-face-attribute 'default nil :height 140)))
 
 (drsl/set-font)
 

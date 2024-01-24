@@ -19,8 +19,10 @@
         (cpp . ("https://github.com/tree-sitter/tree-sitter-cpp"))
         (go . ("https://github.com/tree-sitter/tree-sitter-go"))
         (rust . ("https://github.com/tree-sitter/tree-sitter-rust"))
-        (js . ("https://github.com/tree-sitter/tree-sitter-javascript"))
+        (javascript . ("https://github.com/tree-sitter/tree-sitter-javascript"))
         (python . ("https://github.com/tree-sitter/tree-sitter-python"))
+        (templ . ("https://github.com/vrischmann/tree-sitter-templ"))
+        (gomod . ("https://github.com/camdencheek/tree-sitter-go-mod"))
         ))
 
 (setq major-mode-remap-alist

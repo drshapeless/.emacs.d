@@ -38,7 +38,7 @@
 (add-hook 'svelte-mode-hook     #'eglot-ensure)
 (add-hook 'html-mode-hook       #'eglot-ensure)
 (add-hook 'tmpl-mode-hook       #'eglot-ensure)
-(add-hook 'templ-mode-hook      #'eglot-ensure)
+(add-hook 'templ-ts-mode-hook      #'eglot-ensure)
 (add-hook 'web-mode-hook        #'eglot-ensure)
 (add-hook 'zig-mode-hook        #'eglot-ensure)
 
@@ -69,7 +69,7 @@
 (add-to-list 'eglot-server-programs
              '(web-mode . ("vscode-html-language-server" "--stdio")))
 (add-to-list 'eglot-server-programs
-             '(templ-mode . ("templ" "lsp")))
+             '(templ-ts-mode . ("templ" "lsp")))
 (add-to-list 'eglot-server-programs
              '(glsl-mode . ("glslls" "--stdin")))
 
@@ -158,12 +158,12 @@
 
 ;; clang-format
 (elpaca
- clang-format
- (require 'clang-format)
+    clang-format
+  (require 'clang-format)
 
- (setq-default clang-format-fallback-style "llvm")
- (defun clang-format-buffer-on-save ()
-   (add-hook 'before-save-hook #'clang-format-buffer -10 t)))
+  (setq-default clang-format-fallback-style "llvm")
+  (defun clang-format-buffer-on-save ()
+    (add-hook 'before-save-hook #'clang-format-buffer -10 t)))
 
 
 (defun drsl/generate-clang-format ()
@@ -448,9 +448,9 @@ overrides = [ { files = \"*.svelte\", options = { parser = \"svelte\"}}]
 (add-hook 'c++-ts-mode-hook #'shapeless-c-arrow-mode)
 
 (elpaca
- (breadcrumb :host github :repo "joaotavora/breadcrumb")
- (require 'breadcrumb)
- (breadcrumb-mode))
+    (breadcrumb :host github :repo "joaotavora/breadcrumb")
+  (require 'breadcrumb)
+  (breadcrumb-mode))
 
 ;;; Things with Corfu
 ;; Use Eglot to provide continuously updated candidates

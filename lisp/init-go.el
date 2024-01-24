@@ -9,12 +9,15 @@
 ;;; Code:
 
 (elpaca
- go-mode
- (require 'go-mode)
- (add-hook 'go-mode-hook (lambda () (setq tab-width 4)))
- (add-hook 'go-ts-mode-hook (lambda () (setq tab-width 4)))
- (setq go-ts-mode-indent-offset 4))
+    go-mode
+  (require 'go-mode)
+  (add-hook 'go-mode-hook (lambda () (setq tab-width 4)))
+  (add-hook 'go-ts-mode-hook (lambda () (setq tab-width 4)))
+  (setq go-ts-mode-indent-offset 4))
 
+(elpaca
+    templ-ts-mode
+  (add-hook 'templ-ts-mode-hook (lambda () (setq tab-width 4))))
 
 (defun drsl/go-db ()
   "Insert the snake_case version of current field "

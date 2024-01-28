@@ -34,84 +34,85 @@ apps are not started from a shell."
 ;; No reason to make things complicated, add what I need to path.
 (add-to-list 'exec-path (concat (getenv "HOME") "/go/bin"))
 (add-to-list 'exec-path (concat (getenv "HOME") "/.cargo/bin"))
+(add-to-list 'exec-path (concat (getenv "HOME") "/.venv/bin"))
 (add-to-list 'exec-path (concat (getenv "HOME") "/bin"))
 
 ;; Shell switcher
 (elpaca
- shell-switcher
- (require 'shell-switcher)
- (setq shell-switcher-mode t)
- (setq shell-switcher-new-shell-function #'shell-switcher-make-shell))
+    shell-switcher
+  (require 'shell-switcher)
+  (setq shell-switcher-mode t)
+  (setq shell-switcher-new-shell-function #'shell-switcher-make-shell))
 
 
 ;; Coterm
 (elpaca
- coterm
- ;; Coterm enable TUI like program to be run in shell.
- (coterm-mode))
+    coterm
+  ;; Coterm enable TUI like program to be run in shell.
+  (coterm-mode))
 
 
 ;; vterm
 (elpaca
- vterm
- (require 'vterm)
- (setq vterm-buffer-name-string "vterm %s")
- (setq vterm-always-compile-module t)
- (keymap-set vterm-mode-map "C-q" #'vterm-send-next-key)
- (add-to-list 'vterm-eval-cmds '("update-pwd" (lambda (path) (setq default-directory path)))))
+    vterm
+  (require 'vterm)
+  (setq vterm-buffer-name-string "vterm %s")
+  (setq vterm-always-compile-module t)
+  (keymap-set vterm-mode-map "C-q" #'vterm-send-next-key)
+  (add-to-list 'vterm-eval-cmds '("update-pwd" (lambda (path) (setq default-directory path)))))
 
 ;; multi-vterm
 (elpaca
- multi-vterm
- (require 'multi-vterm)
- (defun drsl/new-vterm-or-existing-vterm ()
-   "Create new or open existing vterm buffer.
+    multi-vterm
+  (require 'multi-vterm)
+  (defun drsl/new-vterm-or-existing-vterm ()
+    "Create new or open existing vterm buffer.
 
 Create a new vterm buffer if the current buffer is `vterm-mode'.
 Open an existing vterm buffer if the current buffer is not `vterm-mode'."
-   (interactive)
-   (if (eq major-mode 'vterm-mode)
-       (multi-vterm)
-     (multi-vterm-next)))
+    (interactive)
+    (if (eq major-mode 'vterm-mode)
+        (multi-vterm)
+      (multi-vterm-next)))
 
- (keymap-global-set "C-c v" #'drsl/new-vterm-or-existing-vterm)
- (keymap-set vterm-mode-map "s-n" #'multi-vterm-next)
- (keymap-set vterm-mode-map "s-p" #'multi-vterm-prev))
+  (keymap-global-set "C-c v" #'drsl/new-vterm-or-existing-vterm)
+  (keymap-set vterm-mode-map "s-n" #'multi-vterm-next)
+  (keymap-set vterm-mode-map "s-p" #'multi-vterm-prev))
 
 (elpaca
- vterm-toggle
- (require 'vterm-toggle)
- (setq vterm-toggle-fullscreen-p nil)
- (add-to-list 'display-buffer-alist
-              '((lambda (buffer-or-name _)
-                  (let ((buffer (get-buffer buffer-or-name)))
-                    (with-current-buffer buffer
-                      (or (equal major-mode 'vterm-mode)
-                          (string-prefix-p vterm-buffer-name (buffer-name buffer))))))
-                (display-buffer-reuse-window display-buffer-same-window))))
+    vterm-toggle
+  (require 'vterm-toggle)
+  (setq vterm-toggle-fullscreen-p nil)
+  (add-to-list 'display-buffer-alist
+               '((lambda (buffer-or-name _)
+                   (let ((buffer (get-buffer buffer-or-name)))
+                     (with-current-buffer buffer
+                       (or (equal major-mode 'vterm-mode)
+                           (string-prefix-p vterm-buffer-name (buffer-name buffer))))))
+                 (display-buffer-reuse-window display-buffer-same-window))))
 
 
 ;; This is about eterm.
 (elpaca
- eterm-256color
- (require 'eterm-256color)
- (add-hook 'term-mode-hook #'eterm-256color-mode))
+    eterm-256color
+  (require 'eterm-256color)
+  (add-hook 'term-mode-hook #'eterm-256color-mode))
 
 
 ;; Eat.
 (elpaca
- (eat :host codeberg
-      :repo "akib/emacs-eat"
-      :files ("*.el" ("term" "term/*.el") "*.texi"
-              "*.ti" ("terminfo/e" "terminfo/e/*")
-              ("terminfo/65" "terminfo/65/*")
-              ("integration" "integration/*")
-              (:exclude ".dir-locals.el" "*-tests.el")))
- (require 'eat)
- ;; (eat-compile-terminfo)
- (setq eat-term-name "xterm-256color")
- (keymap-global-set "C-c s" #'eat)
- )
+    (eat :host codeberg
+         :repo "akib/emacs-eat"
+         :files ("*.el" ("term" "term/*.el") "*.texi"
+                 "*.ti" ("terminfo/e" "terminfo/e/*")
+                 ("terminfo/65" "terminfo/65/*")
+                 ("integration" "integration/*")
+                 (:exclude ".dir-locals.el" "*-tests.el")))
+  (require 'eat)
+  ;; (eat-compile-terminfo)
+  (setq eat-term-name "xterm-256color")
+  (keymap-global-set "C-c s" #'eat)
+  )
 
 (provide 'init-shell)
 ;;; init-shell.el ends here

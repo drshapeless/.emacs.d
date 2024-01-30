@@ -274,5 +274,15 @@ to_home:
   (newline)
   (insert-todo-comment))
 
+(defun drsl/mount-hdd0 ()
+  "Mount /dev/sdb to /mnt/hdd0"
+  (interactive)
+  (async-shell-command "sudo mount /dev/sdb /mnt/hdd0"))
+
+(defun drsl/mount-hdd1 ()
+  "Mount /dev/sdb to /mnt/hdd1"
+  (interactive)
+  (async-shell-command "sudo mount /dev/sda1 /mnt/hdd1"))
+
 (provide 'init-helpers)
 ;;; init-helpers.el ends here

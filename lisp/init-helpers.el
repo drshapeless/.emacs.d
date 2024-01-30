@@ -30,6 +30,14 @@
   (interactive)
   (async-shell-command "rsync -urv --delete-after ~/website/web/ jacky@drshapeless.com:web" "*rsync*"))
 
+(defun drsl/sync-blogs ()
+  (interactive)
+  (async-shell-command "rsync -urv --delete-after ~/website/web/blog/ jacky@drshapeless.com:web/blog" "*rsync*"))
+
+(defun drsl/sync-others ()
+  (interactive)
+  (async-shell-command "rsync -urv --delete-after --exclude blog/ ~/website/web/ jacky@drshapeless.com:web" "*rsync*"))
+
 (defun drsl/sync-from-drshapeless ()
   (interactive)
   (async-shell-command "rsync -urv --delete-after jacky@drshapeless.com:web/ ~/website/web" "*rsync*"))

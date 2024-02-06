@@ -7,17 +7,20 @@ go-ts-mode
  > "defer cancel()" n)
 
 (en
- > "if err != nil {" n > p q n "\t}" n)
+ > "if err != nil {" n
+ > p q n
+ "}" >)
 
 (ef
  > "if err != nil {" n
  > "app.serverError(err, w)" n
- > "return" n "\t}")
+ > "return" n
+ "}" >)
 
 (er
  > "if err != nil {" n
  > "return err" n
- > "}")
+ "}" >)
 
 (db "db *pgxpool.Pool")
 

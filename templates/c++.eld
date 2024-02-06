@@ -12,7 +12,7 @@ c++-ts-mode
    "_HH" n
    "#define "
    (upcase (file-name-nondirectory (file-name-sans-extension buffer-file-name)))
-   "_HH" n n p n n
+   "_HH" n n p q n n
    "#endif // "
    (upcase (file-name-nondirectory (file-name-sans-extension buffer-file-name)))
    "_HH")

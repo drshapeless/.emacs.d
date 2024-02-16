@@ -46,6 +46,7 @@
 (keymap-global-set "C-z l" #'duplicate-line)
 (keymap-global-set "C-z w" #'swap-buffers-in-windows)
 (keymap-global-set "C-z a" #'align-regexp)
+(keymap-global-set "C-z t" #'insert-todo-comment)
 
 (provide 'init-keybinding)
 ;;; init-keybinding.el ends here

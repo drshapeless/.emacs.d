@@ -36,6 +36,8 @@ apps are not started from a shell."
 (add-to-list 'exec-path (concat (getenv "HOME") "/.cargo/bin"))
 (add-to-list 'exec-path (concat (getenv "HOME") "/.venv/bin"))
 (add-to-list 'exec-path (concat (getenv "HOME") "/bin"))
+(add-to-list 'exec-path (concat (getenv "HOME") "/src/emsdk"))
+(add-to-list 'exec-path (concat (getenv "HOME") "/src/emsdk/upstream/emscripten"))
 
 ;; Shell switcher
 (elpaca

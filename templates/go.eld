@@ -17,6 +17,12 @@ go-ts-mode
  > "return" n
  "}" >)
 
+(ea
+ > "if err != nil {" n
+ > "app.apiServerError(err, w)" n
+ > "return" n
+ "}" >)
+
 (er
  > "if err != nil {" n
  > "return err" n

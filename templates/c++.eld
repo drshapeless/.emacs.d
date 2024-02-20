@@ -17,9 +17,8 @@ c++-ts-mode
    (upcase (file-name-nondirectory (file-name-sans-extension buffer-file-name)))
    "_HH")
 
-(main "int main(int argc, char *argv[])" n
-      "{" n
-      > p n
+(main "int main(int argc, char *argv[]) {" n
+      > p q n
       > "return 0;" n
       "}")
 

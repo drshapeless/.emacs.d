@@ -408,6 +408,46 @@ UseTab: Always
         (concat (file-name-directory (buffer-file-name))
                 ".clang-format"))))
 
+(defun drsl/generate-makefile ()
+  "Generate makefile"
+  (interactive)
+  (write-region "BIN =
+
+# compiler
+CC = clang
+
+# includes and libs
+INCS =
+LIBS =
+
+# flags
+CFLAGS = $(INCS) -O2 -std=c99
+LDFLAGS = $(LIBS)
+" nil (if (eq major-mode 'dired-mode)
+          (concat (dired-current-directory)
+                  "config.mk")
+        (concat (file-name-directory (buffer-file-name))
+                "config.mk")))
+  (write-region "include config.mk
+
+SRC = $(wildcard *.c)
+OBJ = $(SRC:.c=.o)
+
+all: $(BIN)
+
+$(BIN): $(OBJ)
+        $(CC) -o $@ $(OBJ) $(LDFLAGS)
+
+clean:
+        rm -f $(BIN) $(OBJ)
+
+.PHONY: all clean
+" nil (if (eq major-mode 'dired-mode)
+          (concat (dired-current-directory)
+                  "makefile")
+        (concat (file-name-directory (buffer-file-name))
+                "makefile"))))
+
 (defun drsl/generate-prettierrc ()
   "Generate a .prettierrc.toml in the current directory."
   (interactive)

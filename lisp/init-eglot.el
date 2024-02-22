@@ -11,7 +11,7 @@
 (require 'eglot)
 
 ;; This stops eglot from logging the json events of lsp server.
-(setq eglot-events-buffer-size 0)
+;; (setq eglot-events-buffer-size 0)
 ;; Do not show multiline eldoc.
 ;; (setq eldoc-echo-area-use-multiline-p nil)
 
@@ -38,7 +38,7 @@
 (add-hook 'svelte-mode-hook     #'eglot-ensure)
 (add-hook 'html-mode-hook       #'eglot-ensure)
 (add-hook 'tmpl-mode-hook       #'eglot-ensure)
-(add-hook 'templ-ts-mode-hook      #'eglot-ensure)
+(add-hook 'templ-ts-mode-hook   #'eglot-ensure)
 (add-hook 'web-mode-hook        #'eglot-ensure)
 (add-hook 'zig-mode-hook        #'eglot-ensure)
 

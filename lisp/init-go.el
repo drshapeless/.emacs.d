@@ -17,7 +17,30 @@
 
 (elpaca
     templ-ts-mode
-  (add-hook 'templ-ts-mode-hook (lambda () (setq tab-width 4))))
+  (add-hook 'templ-ts-mode-hook (lambda () (setq tab-width 4)))
+  (add-hook 'templ-ts-mode-hook #'rustywind-format-on-save))
+
+(defun rustywind-format ()
+  (interactive)
+  (if (f-executable-p (executable-find "rustywind"))
+      (let ((tmpfile (make-nearby-temp-file "rustywind" nil nil))
+            (coding-system-for-read 'utf-8)
+            (coding-system-for-write 'utf-8))
+
+        (unwind-protect
+            (save-restriction
+              (widen)
+              (write-region nil nil tmpfile)
+
+              (let ((rustywind-args (list "--write" (file-local-name tmpfile))))
+                (when (zerop (apply #'process-file (executable-find "rustywind") nil nil nil rustywind-args))
+                  (insert-file-contents tmpfile nil nil nil t))))
+
+          (delete-file tmpfile)))
+    (error (format "Can't find rustywind"))))
+
+(defun rustywind-format-on-save ()
+  (add-hook 'before-save-hook #'rustywind-format nil t))
 
 (defun drsl/go-db ()
   "Insert the snake_case version of current field "

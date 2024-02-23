@@ -23,6 +23,7 @@
         (python . ("https://github.com/tree-sitter/tree-sitter-python"))
         (templ . ("https://github.com/vrischmann/tree-sitter-templ"))
         (gomod . ("https://github.com/camdencheek/tree-sitter-go-mod"))
+        (cmake . ("https://github.com/uyha/tree-sitter-cmake"))
         ))
 
 (setq major-mode-remap-alist

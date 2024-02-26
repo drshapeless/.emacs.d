@@ -17,8 +17,254 @@
 
 (elpaca
     templ-ts-mode
+  (require 'templ-ts-mode)
   (add-hook 'templ-ts-mode-hook (lambda () (setq tab-width 4)))
-  (add-hook 'templ-ts-mode-hook #'rustywind-format-on-save))
+  (add-hook 'templ-ts-mode-hook #'rustywind-format-on-save)
+
+  (defcustom drsl/tailwind-css-keyword-file
+    (expand-file-name "dict/tailwind_css_keyword.txt" user-emacs-directory)
+    "tailwindcss keyword file path."
+    :type 'string)
+
+  (defun drsl/templ-tailwind-cape-dict ()
+    (when (drsl/is-class-attr)
+      (setq-local cape-dict-file
+                  drsl/tailwind-css-keyword-file)
+      (pcase-let ((`(,beg . ,end) (cape--bounds 'word)))
+        `(,beg ,end
+               ,(cape--properties-table
+                 (completion-table-case-fold
+                  (cape--dynamic-table beg end #'cape--dict-list)
+                  (not (cape--case-fold-p cape-dict-case-fold)))
+                 :sort nil ;; Presorted word list (by frequency)
+                 :category 'cape-dict)
+               ,@cape--dict-properties))))
+
+  (defvar drsl/templ-ts-mode-tag-list
+    '("a" "abbr" "address" "area" "article" "aside" "audio" "b"
+      "base" "bdi" "bdo" "blockquote" "body" "br" "button" "canvas"
+      "caption" "cite" "code" "col" "colgroup" "data" "datalist"
+      "dd" "del" "details" "dfn" "dialog" "div" "dl" "dt" "em"
+      "embed" "fieldset" "figcaption" "figure" "footer" "form" "h1"
+      "h2" "h3" "h4" "h5" "h6" "head" "header" "hgroup" "hr" "html"
+      "i" "iframe" "img" "input" "ins" "kbd" "label" "legend" "li"
+      "link" "main" "map" "mark" "math" "menu" "meta" "meter" "nav"
+      "noscript" "object" "ol" "optgroup" "option" "output" "p"
+      "picture" "pre" "progress" "q" "rp" "rt" "ruby" "s" "samp"
+      "script" "search" "section" "select" "slot" "small" "source"
+      "span" "strong" "style" "sub" "summary" "sup" "svg" "table"
+      "tbody" "td" "template" "textarea" "tfoot" "th" "thead" "time"
+      "title" "tr" "track" "u" "ul" "var" "video" "wbr")
+    "HTML tags used for completion.
+
+Steal from `web-mode'.")
+
+  (defvar drsl/templ-ts-mode-attribute-list
+    '("accept" "accesskey" "action" "alt" "async" "autocomplete" "autofocus"
+      "autoplay" "charset" "checked" "cite" "class" "cols" "colspan" "content"
+      "contenteditable" "controls" "coords" "data" "datetime" "default" "defer"
+      "dir" "dirname" "disabled" "download" "draggable" "enctype" "for" "form"
+      "formaction" "headers" "height" "hidden" "high" "href" "hreflang" "http"
+      "id" "ismap" "kind" "label" "lang" "list" "loop" "low" "max" "maxlength"
+      "media" "method" "min" "multiple" "muted" "name" "novalidate" "onabort"
+      "onafterprint" "onbeforeprint" "onbeforeunload" "onblur" "oncanplay"
+      "oncanplaythrough" "onchange" "onclick" "oncontextmenu" "oncopy"
+      "oncuechange" "oncut" "ondblclick" "ondrag" "ondragend" "ondragenter"
+      "ondragleave" "ondragover" "ondragstart" "ondrop" "ondurationchange"
+      "onemptied" "onended" "onerror" "onfocus" "onhashchange" "oninput"
+      "oninvalid" "onkeydown" "onkeypress" "onkeyup" "onload" "onloadeddata"
+      "onloadedmetadata" "onloadstart" "onmousedown" "onmousemove" "onmouseout"
+      "onmouseover" "onmouseup" "onmousewheel" "onoffline" "ononline"
+      "onpagehide" "onpageshow" "onpaste" "onpause" "onplay" "onplaying"
+      "onpopstate" "onprogress" "onratechange" "onreset" "onresize" "onscroll"
+      "onsearch" "onseeked" "onseeking" "onselect" "onstalled" "onstorage"
+      "onsubmit" "onsuspend" "ontimeupdate" "ontoggle" "onunload"
+      "onvolumechange" "onwaiting" "onwheel" "open" "optimum" "pattern"
+      "placeholder" "poster" "preload" "readonly" "rel" "required" "reversed"
+      "rows" "rowspan" "sandbox" "scope" "selected" "shape" "size" "sizes"
+      "span" "spellcheck" "src" "srcdoc" "srclang" "srcset" "start" "step"
+      "style" "tabindex" "target" "title" "translate" "type" "usemap" "value"
+      "width" "wrap")
+    "HTML attributes used for completion.
+
+Steal from `web-mode'.")
+
+  (defun drsl/templ-ts-mode-completion ()
+    "templ-ts-mode completion function.
+
+The built-in treesit is required."
+    (cond (;; completing tag name, e.g. <d
+           (let ((bounds (or (bounds-of-thing-at-point 'word)
+                             (cons (point) (point)))))
+             (when (char-equal (char-before (car bounds)) ?\<)
+               (list (car bounds)
+                     (cdr bounds)
+                     drsl/templ-ts-mode-tag-list
+                     :annotation-function (lambda (_) " HTML Tag")
+                     :company-kind (lambda (_) 'text)
+                     :exclude 'no))))
+
+          (;; completing attribute name, e.g. <div c
+           (or (string= (treesit-node-type (treesit-node-at (point)))
+                        "attribute_name")
+               (string= (treesit-node-type (treesit-node-at (point)))
+                        ">"))
+           (let ((bounds (bounds-of-thing-at-point 'word)))
+             (when bounds
+               (list (car bounds)
+                     (cdr bounds)
+                     drsl/templ-ts-mode-attribute-list
+                     :annotation-function (lambda (_) " HTML Attr")
+                     :company-kind (lambda (_) 'text)
+                     :exclusive 'no))))
+          ))
+
+  (defvar drsl/htmx-attribute-list
+    '("hx-get" "hx-post" "hx-on" "hx-push-url" "hx-select" "hx-select-oob"
+      "hx-swap" "hx-swap-oob" "hx-target" "hx-trigger" "hx-vals" "hx-boost"
+      "hx-confirm" "hx-delete" "hx-disable" "hx-disabled-elt" "hx-disinherit"
+      "hx-encoding" "hx-ext" "hx-headers" "hx-history" "hx-history-elt"
+      "hx-include" "hx-indicator" "hx-params" "hx-patch" "hx-preserve"
+      "hx-prompt" "hx-put" "hx-replace-url" "hx-request" "hx-sync" "hx-validate")
+
+    "Htmx attributes used for completion.")
+
+  (defvar drsl/htmx-swap-keyword-list
+    '("innerHTML" "outerHTML" "beforebegin" "afterbegin" "beforeend"
+      "afterend" "delete" "none")
+    "Keywords for hx-swap.")
+
+  (defvar drsl/htmx-target-keyword-list
+    '("this" "closest" "find" "next" "previous")
+    "Keywords for hx-target.")
+
+  (defun drsl/get-htmx-value-list (ATTR)
+    "Return a list of htmx value.
+
+ATTR is the attribute name.
+Only support hx-swap, hx-swap-oob, hx-target."
+    (cond ((string-prefix-p "hx-swap" ATTR)
+           drsl/htmx-swap-keyword-list)
+          ((string= ATTR "hx-target")
+           drsl/htmx-target-keyword-list)))
+
+  (defun drsl/templ-ts-mode-htmx-completion ()
+    "templ-ts-mode completion for htmx.
+
+Built-in treesit is required."
+    (cond (;; completion of htmx attr name, e.g. <div hx-swap
+           (or (string= (treesit-node-type (treesit-node-at (point)))
+                        "attribute_name")
+               (string= (treesit-node-type (treesit-node-at (point)))
+                        ">"))
+           ;; This mess if for the case when a - is typed.
+           ;;
+           ;; In the case of hx-swap*, where * is the pointer.
+           ;;
+           ;; Since word only includes swap, but symbol includes from
+           ;; hx-swap... to the infinity, so just select the first of
+           ;; symbol and last of word. But when a - is type, the
+           ;; bounds of word returns nil, so just set it to the
+           ;; `point'.
+           ;;
+           ;; TODO: This is an issue in the syntax table of
+           ;; `templ-ts-mode'.
+           ;;
+           (let ((word-bounds (bounds-of-thing-at-point 'word))
+                 (symbol-bounds (bounds-of-thing-at-point 'symbol)))
+             (when symbol-bounds
+               (list (car symbol-bounds)
+                     (if word-bounds
+                         (cdr word-bounds)
+                       (point))
+                     drsl/htmx-attribute-list
+                     :annotation-function (lambda (_) " htmx attr")
+                     :company-kind (lambda (_) 'text)
+                     :exclusive 'no)))
+           )
+          (;; completion of some htmx value, e.g. <div hx-swap="innerHTML"
+           (string= (treesit-node-type (treesit-node-parent
+                                        (treesit-node-at (point))))
+                    "quoted_attribute_value")
+           (let ((words (drsl/get-htmx-value-list
+                         (treesit-node-text
+                          (treesit-node-prev-sibling
+                           (treesit-node-parent (treesit-node-at (point)))
+                           t)
+                          t)))
+                 (bounds (or (bounds-of-thing-at-point 'word)
+                             (cons (point) (point)))))
+             (when words
+               (list (car bounds)
+                     (cdr bounds)
+                     words
+                     :annotation-function (lambda (_) " htmx value")
+                     :company-kind (lambda (_) 'text)
+                     :exclusive 'no)
+               ))
+           )))
+
+  (defun drsl/templ-ts-mode-insert-slash ()
+    "Auto closing tag when inserting slash in `templ-ts-mode'"
+    (interactive)
+    (if (char-equal (char-before) ?\<)
+        (let ((TAG (or (treesit-node-text
+                        (treesit-node-child
+                         (drsl/treesit-prev-sibling-until
+                          (treesit-node-at (point))
+                          (lambda (NODE)
+                            (string= (treesit-node-type NODE)
+                                     "tag_start")))
+                         1)
+                        t)
+
+                       (when (drsl/treesit-next-sibling-until
+                              (treesit-node-parent (treesit-node-at (point)))
+                              (lambda (NODE)
+                                (string= (treesit-node-type NODE)
+                                         "tag_end")))
+                         (treesit-node-text
+                          (treesit-node-child
+                           (drsl/treesit-prev-sibling-until
+                            (treesit-node-parent (treesit-node-at (point)))
+                            (lambda (NODE)
+                              (string= (treesit-node-type NODE)
+                                       "tag_start")))
+                           1)
+                          t))
+                       )))
+          (if TAG
+              (progn (insert ?\/
+                             TAG
+                             ?\>)
+                     (treesit-indent))
+            (insert ?\/)))
+      (insert ?\/)))
+
+  (keymap-set templ-ts-mode-map "/" #'drsl/templ-ts-mode-insert-slash)
+
+  (add-hook 'templ-ts-mode-hook
+            (lambda ()
+              (progn
+                (add-to-list 'drsl/eglot-extra-completion-functions
+                             #'drsl/templ-tailwind-cape-dict)
+                (add-to-list 'drsl/eglot-extra-completion-functions
+                             #'drsl/templ-ts-mode-completion)
+                (add-to-list 'drsl/eglot-extra-completion-functions
+                             #'drsl/templ-ts-mode-htmx-completion))))
+  )
+
+
+(defun drsl/is-class-attr ()
+  (let ((mynode (treesit-node-parent
+                 (treesit-node-parent
+                  (treesit-node-at (point))))))
+    (if (and (string= (treesit-node-type mynode) "attribute")
+             (string=
+              (treesit-node-text (treesit-node-child mynode 0))
+              "class"))
+        t
+      nil)))
 
 (defun rustywind-format ()
   (interactive)
@@ -41,6 +287,30 @@
 
 (defun rustywind-format-on-save ()
   (add-hook 'before-save-hook #'rustywind-format nil t))
+
+(defun drsl/treesit-prev-sibling-until (NODE PRED)
+  "Find previous sibling until PRED is t.
+
+PRED is a function which accept a NODE."
+  ;; This is recursion.
+  (when NODE
+    (let ((sibling (treesit-node-prev-sibling NODE)))
+      (when sibling
+        (if (funcall PRED sibling)
+            sibling
+          (drsl/treesit-prev-sibling-until sibling PRED)))))
+  )
+
+(defun drsl/treesit-next-sibling-until (NODE PRED)
+  "Find next sibling until PRED is t.
+
+PRED is a function which accept a NODE."
+  (when NODE
+    (let ((sibling (treesit-node-next-sibling NODE)))
+      (when sibling
+        (if (funcall PRED sibling)
+            sibling
+          (drsl/treesit-next-sibling-until sibling PRED))))))
 
 (defun drsl/go-db ()
   "Insert the snake_case version of current field "

@@ -10,14 +10,23 @@
 (elpaca
     cape
   (require 'cape)
-
-  (add-hook 'makefile-gmake-mode-hook
-            (lambda ()
-              (add-to-list 'completion-at-point-functions #'cape-dabbrev)))
-
-  (add-hook 'makefile-bsdmake-mode-hook
-            (lambda ()
-              (add-to-list 'completion-at-point-functions #'cape-dabbrev))))
+  (keymap-global-set "C-c p p" completion-at-point) ;; capf
+  (keymap-global-set "C-c p t" complete-tag)        ;; etags
+  (keymap-global-set "C-c p d" cape-dabbrev)        ;; or dabbrev-completion
+  (keymap-global-set "C-c p h" cape-history)
+  (keymap-global-set "C-c p f" cape-file)
+  (keymap-global-set "C-c p k" cape-keyword)
+  (keymap-global-set "C-c p s" cape-elisp-symbol)
+  (keymap-global-set "C-c p e" cape-elisp-block)
+  (keymap-global-set "C-c p a" cape-abbrev)
+  (keymap-global-set "C-c p l" cape-line)
+  (keymap-global-set "C-c p w" cape-dict)
+  (keymap-global-set "C-c p :" cape-emoji)
+  (keymap-global-set "C-c p \\" cape-tex)
+  (keymap-global-set "C-c p _" cape-tex)
+  (keymap-global-set "C-c p ^" cape-tex)
+  (keymap-global-set "C-c p &" cape-sgml)
+  (keymap-global-set "C-c p r" cape-rfc1345))
 
 
 (provide 'init-cape)

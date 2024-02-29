@@ -21,20 +21,63 @@
   (add-hook 'templ-ts-mode-hook (lambda () (setq tab-width 4)))
   (add-hook 'templ-ts-mode-hook #'rustywind-format-on-save)
 
+  (defun drsl/is-class-attr ()
+    (let ((mynode (treesit-node-parent
+                   (treesit-node-parent
+                    (treesit-node-at (point))))))
+      (and (string= (treesit-node-type mynode) "attribute")
+           (string= (treesit-node-text (treesit-node-child mynode 0))
+                    "class"))))
+
+  (defun drsl/bounds-of-keyword ()
+    (if (or (char-equal (char-before) ?\s)
+            (char-equal (char-before) ?\"))
+        nil
+      (cons (1+ (save-excursion
+                  (re-search-backward "[\s\"]" (line-beginning-position) t)))
+            (or (1- (save-excursion
+                      (re-search-forward "[\s\"]" (line-end-position) t)))
+                (point)))))
+
   (defcustom drsl/tailwind-css-keyword-file
     (expand-file-name "dict/tailwind_css_keyword.txt" user-emacs-directory)
     "tailwindcss keyword file path."
     :type 'string)
 
+  (defun drsl/tailwind-css-dict-list (input)
+    "Return all words from `drsl/tailwind-css-keyword-file' matching INPUT."
+    (unless (equal input "")
+      (let* ((inhibit-message t)
+             (message-log-max nil)
+             (default-directory
+              (if (and (not (file-remote-p default-directory))
+                       (file-directory-p default-directory))
+                  default-directory
+                user-emacs-directory))
+             (files (mapcar #'expand-file-name
+                            (ensure-list
+                             drsl/tailwind-css-keyword-file)))
+             (words
+              (apply #'process-lines-ignore-status
+                     "grep"
+                     (concat "-Fh"
+                             (and (cape--case-fold-p cape-dict-case-fold) "i")
+                             (and cape-dict-limit (format "m%d" cape-dict-limit)))
+                     input files)))
+        (cons
+         (apply-partially
+          (if (and cape-dict-limit (length= words cape-dict-limit))
+              #'equal #'string-search)
+          input)
+         (cape--case-replace-list cape-dict-case-replace input words)))))
+
   (defun drsl/templ-tailwind-cape-dict ()
     (when (drsl/is-class-attr)
-      (setq-local cape-dict-file
-                  drsl/tailwind-css-keyword-file)
-      (pcase-let ((`(,beg . ,end) (cape--bounds 'word)))
+      (pcase-let ((`(,beg . ,end) (drsl/bounds-of-keyword)))
         `(,beg ,end
                ,(cape--properties-table
                  (completion-table-case-fold
-                  (cape--dynamic-table beg end #'cape--dict-list)
+                  (cape--dynamic-table beg end #'drsl/tailwind-css-dict-list)
                   (not (cape--case-fold-p cape-dict-case-fold)))
                  :sort nil ;; Presorted word list (by frequency)
                  :category 'cape-dict)
@@ -170,13 +213,10 @@ Built-in treesit is required."
            ;; TODO: This is an issue in the syntax table of
            ;; `templ-ts-mode'.
            ;;
-           (let ((word-bounds (bounds-of-thing-at-point 'word))
-                 (symbol-bounds (bounds-of-thing-at-point 'symbol)))
-             (when symbol-bounds
-               (list (car symbol-bounds)
-                     (if word-bounds
-                         (cdr word-bounds)
-                       (point))
+           (let ((bounds (drsl/bounds-of-keyword)))
+             (when bounds
+               (list (car bounds)
+                     (cdr bounds)
                      drsl/htmx-attribute-list
                      :annotation-function (lambda (_) " htmx attr")
                      :company-kind (lambda (_) 'text)
@@ -218,11 +258,15 @@ Built-in treesit is required."
                          1)
                         t)
 
-                       (when (drsl/treesit-next-sibling-until
-                              (treesit-node-parent (treesit-node-at (point)))
-                              (lambda (NODE)
-                                (string= (treesit-node-type NODE)
-                                         "tag_end")))
+                       (when (or (drsl/treesit-next-sibling-until
+                                  (treesit-node-parent (treesit-node-at (point)))
+                                  (lambda (NODE)
+                                    (string= (treesit-node-type NODE)
+                                             "tag_end")))
+                                 (string= (treesit-node-type
+                                           (treesit-node-parent
+                                            (treesit-node-at (point))))
+                                          "ERROR"))
                          (treesit-node-text
                           (treesit-node-child
                            (drsl/treesit-prev-sibling-until
@@ -253,18 +297,6 @@ Built-in treesit is required."
                 (add-to-list 'drsl/eglot-extra-completion-functions
                              #'drsl/templ-ts-mode-htmx-completion))))
   )
-
-
-(defun drsl/is-class-attr ()
-  (let ((mynode (treesit-node-parent
-                 (treesit-node-parent
-                  (treesit-node-at (point))))))
-    (if (and (string= (treesit-node-type mynode) "attribute")
-             (string=
-              (treesit-node-text (treesit-node-child mynode 0))
-              "class"))
-        t
-      nil)))
 
 (defun rustywind-format ()
   (interactive)

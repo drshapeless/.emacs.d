@@ -8,19 +8,20 @@ The structure of this config is heavily influenced by Steve Purcell,
 https://github.com/purcell/emacs.d, but the context is completely
 built from scratch.
 
-I am not a programmer, just a doctor like to tinker with computer.
+I am not a programmer. My profession is a Traditional Chinese Medicine
+practitioner. (This is a legal profession in Hong Kong, and I work in
+clinics to provide medical treatments.)
 
 I have been using Emacs since 2020, and actively update my
 configuration.
 
 * Emacs version
-I used to live in HEAD, compile Emacs from source every week. But
-currently, I am staying at stable version 29. Because eglot does not
-display its messages in the minibuffer at master.
+I used to live in HEAD, compile Emacs from source every month. Now I
+use Gentoo and just update occasionally.
 
-On macOS, I just go with emacs-mac by YAMAMOTO Mitsuharu,
-https://bitbucket.org/mituharu/emacs-mac/overview, which is only up to
-the latest stable build.
+On macOS, I used to go with [[https://bitbucket.org/mituharu/emacs-mac/overview][emacs-mac]] by YAMAMOTO Mitsuharu, which is
+only up to the latest stable build. Now I use [[https://github.com/d12frosted/homebrew-emacs-plus][emacs-plus]], because I
+want to try the newest features in the master.
 
 I wrote [[https://blog.drshapeless.com/posts/emacs-installation-tutorial.html][a blog about how I build Emacs on different platforms]].
 
@@ -44,10 +45,14 @@ either of them in a while).
 I use pure elisp without macros for most of the configurations. This
 may seems an alien act to modern Emacs users.
 
-** Pure [[https://github.com/radian-software/straight.el][straight.el]]
-I use straight.el to fetch the Emacs packages from source instead of
-installing through the internal package manager. (This may change in
-Emacs 29.0 if Emacs is capable of installing package from source.)
+** [[https://github.com/progfolio/elpaca][Elpaca]]
+I used to use [[https://github.com/radian-software/straight.el][straight.el]] to manage my config. It is slow,
+single-threaded. Merging packages will lead to blocking the whole
+Emacs, which is not ideal. Elpaca on the other hand, fixes all the
+issues of straight.el. I was not adapting to it because I was using
+EXWM back in the days, and I didn't know how to use Elpaca to
+initialize EXWM asynchronously. (Now, I know, but I no longer use
+EXWM, instead I am using sway and the pgtk build of Emacs.)
 
 ** Custom theme
 I wrote my own theme from scratch because I want a dark theme with
@@ -85,18 +90,23 @@ As a result, I choose to use the Purcell's way to separate config into
 small files.
 
 * Packages of choice
-These are some of my many packages.
+These are some of my many packages that worth to mention.
 
-- eglot (lsp)
+- eglot (lsp, built-in since version 29)
+- treesit (tree-sitter support, built-in since version 29)
 - corfu (completion)
+- cape (extra completion-at-point-functions)
 - vertico (ivy replacement)
 - marginalia (extra info)
 - consult (better alternatives for build in functions)
-- exwm (window manager)
-- yasnippet (snippet)
+- yasnippet (snippet, now exclusively for eglot)
+- tempel (snippet, major one)
 - vterm (terminal)
 - notmuch (email)
 - nov (epub)
+- moodline (custom modeline)
+- multiple-cursors
+- org-roam
 
 * Theme
 I use my custom shapeless-theme, which is an extremely dark theme with

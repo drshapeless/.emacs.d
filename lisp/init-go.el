@@ -40,7 +40,7 @@
                 (point)))))
 
   (defcustom drsl/tailwind-css-keyword-file
-    (expand-file-name "dict/tailwind_css_keyword.txt" user-emacs-directory)
+    (expand-file-name "dict/tailwindcss_dict.txt" user-emacs-directory)
     "tailwindcss keyword file path."
     :type 'string)
 

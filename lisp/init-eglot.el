@@ -8,7 +8,136 @@
 
 ;;; Code:
 
-(require 'eglot)
+(elpaca eglot
+  (require 'eglot)
+  ;; This stops eglot from logging the json events of lsp server.
+  ;; (setq eglot-events-buffer-size 0)
+  ;; Do not show multiline eldoc.
+  ;; (setq eldoc-echo-area-use-multiline-p nil)
+
+  ;; Auto shutdown server
+  (setq eglot-autoshutdown t)
+  ;; Auto shutdown somehow causes some weird lag.
+
+  (add-hook 'c-ts-mode-hook          #'eglot-ensure)
+  (add-hook 'c++-ts-mode-hook        #'eglot-ensure)
+  (add-hook 'python-ts-mode-hook     #'eglot-ensure)
+  (add-hook 'js-ts-mode-hook         #'eglot-ensure)
+  (add-hook 'typescript-ts-mode-hook #'eglot-ensure)
+  (add-hook 'go-ts-mode-hook         #'eglot-ensure)
+
+  (add-hook 'glsl-mode-hook       #'eglot-ensure)
+  (add-hook 'objc-mode-hook       #'eglot-ensure)
+  (add-hook 'swift-mode-hook      #'eglot-ensure)
+  (add-hook 'sql-mode-hook        #'eglot-ensure)
+  (add-hook 'dart-mode-hook       #'eglot-ensure)
+  (add-hook 'rustic-mode-hook     #'eglot-ensure)
+  (add-hook 'svelte-mode-hook     #'eglot-ensure)
+  (add-hook 'html-mode-hook       #'eglot-ensure)
+  (add-hook 'tmpl-mode-hook       #'eglot-ensure)
+  (add-hook 'templ-ts-mode-hook   #'eglot-ensure)
+  (add-hook 'web-mode-hook        #'eglot-ensure)
+  (add-hook 'zig-mode-hook        #'eglot-ensure)
+
+  (keymap-set eglot-mode-map "C-c e a" #'eglot-code-actions)
+  (keymap-set eglot-mode-map "C-c e r" #'eglot-reconnect)
+  (keymap-set eglot-mode-map "C-c e f" #'eglot-code-action-quickfix)
+  (keymap-set eglot-mode-map "C-c e n" #'eglot-rename)
+  (keymap-set eglot-mode-map "C-c e h" #'eglot-inlay-hints-mode)
+
+  (add-to-list 'eglot-server-programs
+               '(c-mode . ("clangd" "--header-insertion=never")))
+  (add-to-list 'eglot-server-programs
+               '(c++-mode . ("clangd" "--header-insertion=never")))
+  (add-to-list 'eglot-server-programs
+               '(c-ts-mode . ("clangd" "--header-insertion=never")))
+  (add-to-list 'eglot-server-programs
+               '(c++-ts-mode . ("clangd" "--header-insertion=never")))
+  (add-to-list 'eglot-server-programs
+               '(swift-mode . ("sourcekit-lsp")))
+  (add-to-list 'eglot-server-programs
+               '(sql-mode . ("sqls")))
+  ;; (add-to-list 'eglot-server-programs
+  ;;              '(dart-mode . ("dart" "language-server")))
+  (add-to-list 'eglot-server-programs
+               '(svelte-mode . ("svelteserver" "--stdio")))
+  (add-to-list 'eglot-server-programs
+               '(tmpl-mode . ("vscode-html-language-server" "--stdio")))
+  (add-to-list 'eglot-server-programs
+               '(web-mode . ("vscode-html-language-server" "--stdio")))
+  (add-to-list 'eglot-server-programs
+               '(templ-ts-mode . ("templ" "lsp")))
+  (add-to-list 'eglot-server-programs
+               '(glsl-mode . ("glslls" "--stdin")))
+
+  ;; Deno support from https://deno.land/manual@v1.28.3/getting_started/setup_your_environment
+  (add-to-list 'eglot-server-programs '((js-mode typescript-mode) . (eglot-deno "deno" "lsp")))
+
+  (defclass eglot-deno (eglot-lsp-server) ()
+    :documentation "A custom class for deno lsp.")
+
+  (cl-defmethod eglot-initialization-options ((server eglot-deno))
+    "Passes through required deno initialization options"
+    (list :enable t
+          :lint t))
+
+  ;; LSP settings.
+  ;; (setq-default eglot-workspace-configuration
+  ;;               '(;; gopls config.
+  ;;                 (:gopls .
+  ;;                         ((staticcheck . t)
+  ;;                          (matcher . "CaseSensitive")))
+  ;;                 ;; dart config.
+  ;;                 (:dart .
+  ;;                        ((completeFunctionCalls . t)))))
+
+  (setq-default eglot-workspace-configuration
+                (list (cons :gopls  (list :staticcheck t
+                                          :matcher "CaseSensitive"
+                                          :hints (list :assignVariableTypes t)
+                                          :usePlaceholders t))))
+
+  (defun eglot-format-buffer-on-save ()
+    (add-hook 'before-save-hook #'eglot-format-buffer -10 t))
+
+  (defun drsl/format-buffer ()
+    "Format buffer according to major mode."
+    (interactive)
+    (cond ((eq major-mode #'c++-mode) (clang-format-buffer))
+          (t (eglot-format-buffer))))
+
+  ;; Load after format-all.
+  (keymap-set eglot-mode-map "C-c e j" #'format-all-buffer)
+
+  (keymap-set eglot-mode-map "C-c e o" #'ff-find-other-file-other-window)
+  (keymap-set eglot-mode-map "C-c e p" #'ff-find-other-file)
+
+;;; Things with Corfu
+  ;; Use Eglot to provide continuously updated candidates
+  (with-eval-after-load 'eglot
+    (setq completion-category-defaults nil))
+  (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster)
+
+  (defcustom drsl/eglot-extra-completion-functions '()
+    "extra completion functions for eglot"
+    :type '(repeat string))
+
+  (defun drsl/eglot-capf ()
+    (mapc
+     (lambda (FUNCTION)
+       (add-to-list 'completion-at-point-functions
+                    FUNCTION))
+     drsl/eglot-extra-completion-functions))
+
+  (add-hook 'eglot-managed-mode-hook #'drsl/eglot-capf)
+
+  ;; https://github.com/joaotavora/eglot/issues/574
+  ;; This is for gopls to remove unused imports.
+  (defun my-eglot-organize-imports () (interactive)
+         (eglot-code-actions nil nil "source.organizeImports" t))
+  (defun eglot-organize-imports-on-save ()
+    (add-hook 'before-save-hook 'my-eglot-organize-imports nil t))
+  (add-hook 'go-ts-mode-hook #'eglot-organize-imports-on-save))
 
 ;; git clone https://github.com/blahgeek/emacs-lsp-booster
 ;; cd emacs-lsp-booster && cargo install --path .
@@ -16,79 +145,10 @@
   (require 'eglot-booster)
   (eglot-booster-mode))
 
-;; This stops eglot from logging the json events of lsp server.
-;; (setq eglot-events-buffer-size 0)
-;; Do not show multiline eldoc.
-;; (setq eldoc-echo-area-use-multiline-p nil)
-
-;; Auto shutdown server
-(setq eglot-autoshutdown t)
-;; Auto shutdown somehow causes some weird lag.
 
 (setq-default c-basic-offset 4)
 (setq c-ts-mode-indent-offset 4)
 
-(add-hook 'c-ts-mode-hook          #'eglot-ensure)
-(add-hook 'c++-ts-mode-hook        #'eglot-ensure)
-(add-hook 'python-ts-mode-hook     #'eglot-ensure)
-(add-hook 'js-ts-mode-hook         #'eglot-ensure)
-(add-hook 'typescript-ts-mode-hook #'eglot-ensure)
-(add-hook 'go-ts-mode-hook         #'eglot-ensure)
-
-(add-hook 'glsl-mode-hook       #'eglot-ensure)
-(add-hook 'objc-mode-hook       #'eglot-ensure)
-(add-hook 'swift-mode-hook      #'eglot-ensure)
-(add-hook 'sql-mode-hook        #'eglot-ensure)
-(add-hook 'dart-mode-hook       #'eglot-ensure)
-(add-hook 'rustic-mode-hook     #'eglot-ensure)
-(add-hook 'svelte-mode-hook     #'eglot-ensure)
-(add-hook 'html-mode-hook       #'eglot-ensure)
-(add-hook 'tmpl-mode-hook       #'eglot-ensure)
-(add-hook 'templ-ts-mode-hook   #'eglot-ensure)
-(add-hook 'web-mode-hook        #'eglot-ensure)
-(add-hook 'zig-mode-hook        #'eglot-ensure)
-
-(keymap-set eglot-mode-map "C-c e a" #'eglot-code-actions)
-(keymap-set eglot-mode-map "C-c e r" #'eglot-reconnect)
-(keymap-set eglot-mode-map "C-c e f" #'eglot-code-action-quickfix)
-(keymap-set eglot-mode-map "C-c e n" #'eglot-rename)
-(keymap-set eglot-mode-map "C-c e h" #'eglot-inlay-hints-mode)
-
-(add-to-list 'eglot-server-programs
-             '(c-mode . ("clangd" "--header-insertion=never")))
-(add-to-list 'eglot-server-programs
-             '(c++-mode . ("clangd" "--header-insertion=never")))
-(add-to-list 'eglot-server-programs
-             '(c-ts-mode . ("clangd" "--header-insertion=never")))
-(add-to-list 'eglot-server-programs
-             '(c++-ts-mode . ("clangd" "--header-insertion=never")))
-(add-to-list 'eglot-server-programs
-             '(swift-mode . ("sourcekit-lsp")))
-(add-to-list 'eglot-server-programs
-             '(sql-mode . ("sqls")))
-;; (add-to-list 'eglot-server-programs
-;;              '(dart-mode . ("dart" "language-server")))
-(add-to-list 'eglot-server-programs
-             '(svelte-mode . ("svelteserver" "--stdio")))
-(add-to-list 'eglot-server-programs
-             '(tmpl-mode . ("vscode-html-language-server" "--stdio")))
-(add-to-list 'eglot-server-programs
-             '(web-mode . ("vscode-html-language-server" "--stdio")))
-(add-to-list 'eglot-server-programs
-             '(templ-ts-mode . ("templ" "lsp")))
-(add-to-list 'eglot-server-programs
-             '(glsl-mode . ("glslls" "--stdin")))
-
-;; Deno support from https://deno.land/manual@v1.28.3/getting_started/setup_your_environment
-(add-to-list 'eglot-server-programs '((js-mode typescript-mode) . (eglot-deno "deno" "lsp")))
-
-(defclass eglot-deno (eglot-lsp-server) ()
-  :documentation "A custom class for deno lsp.")
-
-(cl-defmethod eglot-initialization-options ((server eglot-deno))
-  "Passes through required deno initialization options"
-  (list :enable t
-        :lint t))
 
 (defun drsl/use-c-gnu-style ()
   (interactive)
@@ -146,21 +206,6 @@
 
 (add-hook 'project-find-functions #'project-find-go-module)
 
-;; LSP settings.
-;; (setq-default eglot-workspace-configuration
-;;               '(;; gopls config.
-;;                 (:gopls .
-;;                         ((staticcheck . t)
-;;                          (matcher . "CaseSensitive")))
-;;                 ;; dart config.
-;;                 (:dart .
-;;                        ((completeFunctionCalls . t)))))
-
-(setq-default eglot-workspace-configuration
-              (list (cons :gopls  (list :staticcheck t
-                                        :matcher "CaseSensitive"
-                                        :hints (list :assignVariableTypes t)
-                                        :usePlaceholders t))))
 
 ;; clang-format
 (elpaca
@@ -471,22 +516,6 @@ overrides = [ { files = \"*.svelte\", options = { parser = \"svelte\"}}]
                       (concat (file-name-directory (buffer-file-name))
                               ".prettierrc.toml"))))
 
-
-(defun eglot-format-buffer-on-save ()
-  (add-hook 'before-save-hook #'eglot-format-buffer -10 t))
-
-(defun drsl/format-buffer ()
-  "Format buffer according to major mode."
-  (interactive)
-  (cond ((eq major-mode #'c++-mode) (clang-format-buffer))
-        (t (eglot-format-buffer))))
-
-;; Load after format-all.
-(keymap-set eglot-mode-map "C-c e j" #'format-all-buffer)
-
-(keymap-set eglot-mode-map "C-c e o" #'ff-find-other-file-other-window)
-(keymap-set eglot-mode-map "C-c e p" #'ff-find-other-file)
-
 (require 'shapeless-c-arrow)
 (add-hook 'c-mode-hook      #'shapeless-c-arrow-mode)
 (add-hook 'c++-mode-hook    #'shapeless-c-arrow-mode)
@@ -498,32 +527,6 @@ overrides = [ { files = \"*.svelte\", options = { parser = \"svelte\"}}]
   (require 'breadcrumb)
   (breadcrumb-mode))
 
-;;; Things with Corfu
-;; Use Eglot to provide continuously updated candidates
-(with-eval-after-load 'eglot
-  (setq completion-category-defaults nil))
-(advice-add 'eglot-completion-at-point :around #'cape-wrap-buster)
-
-(defcustom drsl/eglot-extra-completion-functions '()
-  "extra completion functions for eglot"
-  :type '(repeat string))
-
-(defun drsl/eglot-capf ()
-  (mapc
-   (lambda (FUNCTION)
-     (add-to-list 'completion-at-point-functions
-                  FUNCTION))
-   drsl/eglot-extra-completion-functions))
-
-(add-hook 'eglot-managed-mode-hook #'drsl/eglot-capf)
-
-;; https://github.com/joaotavora/eglot/issues/574
-;; This is for gopls to remove unused imports.
-(defun my-eglot-organize-imports () (interactive)
-       (eglot-code-actions nil nil "source.organizeImports" t))
-(defun eglot-organize-imports-on-save ()
-  (add-hook 'before-save-hook 'my-eglot-organize-imports nil t))
-(add-hook 'go-ts-mode-hook #'eglot-organize-imports-on-save)
 
 (provide 'init-eglot)
 ;;; init-eglot.el ends here

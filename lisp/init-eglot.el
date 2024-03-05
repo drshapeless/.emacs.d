@@ -504,7 +504,7 @@ overrides = [ { files = \"*.svelte\", options = { parser = \"svelte\"}}]
   (setq completion-category-defaults nil))
 (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster)
 
-(defcustom drsl/eglot-extra-completion-functions '(cape-file)
+(defcustom drsl/eglot-extra-completion-functions '()
   "extra completion functions for eglot"
   :type '(repeat string))
 

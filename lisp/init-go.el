@@ -22,22 +22,38 @@
   (add-hook 'templ-ts-mode-hook #'rustywind-format-on-save)
 
   (defun drsl/is-class-attr ()
-    (let ((mynode (treesit-node-parent
-                   (treesit-node-parent
-                    (treesit-node-at (point))))))
-      (and (string= (treesit-node-type mynode) "attribute")
-           (string= (treesit-node-text (treesit-node-child mynode 0))
-                    "class"))))
+    (if (treesit-available-p)
+        (let ((mynode (treesit-node-parent
+                       (treesit-node-parent
+                        (treesit-node-at (point))))))
+          (and (string= (treesit-node-type mynode) "attribute")
+               (string= (treesit-node-text (treesit-node-child mynode 0))
+                        "class")))
+      (let ((pos (save-excursion
+                   (search-backward "="
+                                    (line-beginning-position)
+                                    t))))
+        (when pos
+          (and (string= "class" (buffer-substring (- pos 5) pos))
+               (nth 3 (syntax-ppss)))))))
 
   (defun drsl/bounds-of-keyword ()
     (if (or (char-equal (char-before) ?\s)
             (char-equal (char-before) ?\"))
         nil
-      (cons (1+ (save-excursion
-                  (re-search-backward "[\s\"]" (line-beginning-position) t)))
-            (or (1- (save-excursion
-                      (re-search-forward "[\s\"]" (line-end-position) t)))
-                (point)))))
+      (let ((START (save-excursion
+                     (re-search-backward "[\s\"^]"
+                                         (line-beginning-position)
+                                         t)))
+            (END (save-excursion
+                   (re-search-forward
+                    "[\s\"$]"
+                    (line-end-position)
+                    t))))
+        (if (and START END)
+            (cons (1+ START)
+                  (1- END))
+          nil))))
 
   (defcustom drsl/tailwind-css-keyword-file
     (expand-file-name "dict/tailwindcss_dict.txt" user-emacs-directory)
@@ -289,13 +305,11 @@ Built-in treesit is required."
 
   (add-hook 'templ-ts-mode-hook
             (lambda ()
-              (progn
-                (add-to-list 'drsl/eglot-extra-completion-functions
-                             #'drsl/templ-tailwind-cape-dict)
-                (add-to-list 'drsl/eglot-extra-completion-functions
-                             #'drsl/templ-ts-mode-completion)
-                (add-to-list 'drsl/eglot-extra-completion-functions
-                             #'drsl/templ-ts-mode-htmx-completion))))
+              (setq-local drsl/eglot-extra-completion-functions
+                          (append drsl/eglot-extra-completion-functions
+                                  (list #'drsl/templ-ts-mode-htmx-completion
+                                        #'drsl/templ-ts-mode-completion
+                                        #'drsl/templ-tailwind-cape-dict)))))
   )
 
 (defun rustywind-format ()

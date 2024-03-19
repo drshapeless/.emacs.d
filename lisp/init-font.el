@@ -125,7 +125,9 @@
   (when *is-a-linux*
     (drsl/init-font))
   (when *is-a-mac*
-    (set-face-attribute 'default nil :height 140)))
+    (set-face-attribute 'default nil :font "monaco" :height 140)
+    (set-fontset-font t 'han "PingFang HK")
+    (set-fontset-font t 'han "PingFang SC" nil 'append)))
 
 (drsl/set-font)
 

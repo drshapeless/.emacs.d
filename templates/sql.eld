@@ -13,3 +13,7 @@ sql-mode
 (p "PRIMARY KEY")
 
 (ai "AUTOINCREMENT")
+
+(u "UNIQUE")
+
+(b "bigserial")

@@ -47,7 +47,7 @@
                                          t)))
             (END (save-excursion
                    (re-search-forward
-                    "[\s\"$]"
+                    "[>\s\"$]"
                     (line-end-position)
                     t))))
         (if (and START END)

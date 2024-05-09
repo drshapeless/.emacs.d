@@ -288,9 +288,35 @@ to_home:
   (async-shell-command "sudo mount /dev/sdb /mnt/hdd0"))
 
 (defun drsl/mount-hdd1 ()
-  "Mount /dev/sdb to /mnt/hdd1"
+  "Mount /dev/sda1 to /mnt/hdd1"
   (interactive)
   (async-shell-command "sudo mount /dev/sda1 /mnt/hdd1"))
+
+(defun drsl/sway-command (CMD)
+  "CMD is the command."
+  (shell-command (concat "swaymsg " CMD)))
+
+(defun drsl/sway-enable-dual-monitors ()
+  "Enable dual monitors in sway."
+  (interactive)
+  (drsl/sway-command "output HDMI-A-1 enable")
+  (drsl/sway-command "output DP-2 enable")
+  (drsl/sway-command "output HDMI-A-1 pos 0 0")
+  (drsl/sway-command "output DP-2 pos 1920 0"))
+
+(defun drsl/sway-right-monitor-only ()
+  "Disable the left monitor, only enable the right one."
+  (interactive)
+  (drsl/sway-command "output HDMI-A-1 disable")
+  (drsl/sway-command "output DP-2 enable")
+  (drsl/sway-command "output DP-2 pos 0 0"))
+
+(defun drsl/sway-left-monitor-only ()
+  "Disable the right monitor, only enable the left one."
+  (interactive)
+  (drsl/sway-command "output HDMI-A-1 enable")
+  (drsl/sway-command "output DP-2 disable")
+  (drsl/sway-command "output HDMI-A-1 pos 0 0"))
 
 (provide 'init-helpers)
 ;;; init-helpers.el ends here

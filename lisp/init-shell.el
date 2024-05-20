@@ -16,28 +16,33 @@
 (setq explicit-shell-file-name "/bin/zsh")
 (setenv "SHELL" "/bin/zsh")
 
+(elpaca exec-path-from-shell
+  (require 'exec-path-from-shell)
+  (exec-path-from-shell-initialize))
+
 ;; From emacs wiki, https://www.emacswiki.org/emacs/ExecPath
 ;; This is particularly useful if you edited the path variable, e.g. in your .zshrc.
-(defun set-exec-path-from-shell-PATH ()
-  "Set up Emacs' `exec-path' and PATH environment variable to match
-that used by the user's shell.
+;; (defun set-exec-path-from-shell-PATH ()
+;;   "Set up Emacs' `exec-path' and PATH environment variable to match
+;; that used by the user's shell.
 
-This is particularly useful under Mac OS X and macOS, where GUI
-apps are not started from a shell."
-  (interactive)
-  (let ((path-from-shell (replace-regexp-in-string
-                          "[ \t\n]*$" "" (shell-command-to-string
-                                          "$SHELL --login -c 'echo $PATH'"))))
-    (setenv "PATH" path-from-shell)
-    (setq exec-path (split-string path-from-shell path-separator))))
+;; This is particularly useful under Mac OS X and macOS, where GUI
+;; apps are not started from a shell."
+;;   (interactive)
+;;   (let ((path-from-shell (replace-regexp-in-string
+;;                           "[ \t\n]*$" "" (shell-command-to-string
+;;                                           "$SHELL --login -c 'echo $PATH'"))))
+;;     (setenv "PATH" path-from-shell)
+;;     (setq exec-path (split-string path-from-shell path-separator))))
 
 ;; No reason to make things complicated, add what I need to path.
-(add-to-list 'exec-path (concat (getenv "HOME") "/go/bin"))
-(add-to-list 'exec-path (concat (getenv "HOME") "/.cargo/bin"))
-(add-to-list 'exec-path (concat (getenv "HOME") "/.venv/bin"))
-(add-to-list 'exec-path (concat (getenv "HOME") "/bin"))
-(add-to-list 'exec-path (concat (getenv "HOME") "/src/emsdk"))
-(add-to-list 'exec-path (concat (getenv "HOME") "/src/emsdk/upstream/emscripten"))
+;; (add-to-list 'exec-path (concat (getenv "HOME") "/go/bin"))
+;; (add-to-list 'exec-path (concat (getenv "HOME") "/.cargo/bin"))
+;; (add-to-list 'exec-path (concat (getenv "HOME") "/.venv/bin"))
+;; (add-to-list 'exec-path (concat (getenv "HOME") "/bin"))
+;; (add-to-list 'exec-path (concat (getenv "HOME") "/.local/bin"))
+;; (add-to-list 'exec-path (concat (getenv "HOME") "/src/emsdk"))
+;; (add-to-list 'exec-path (concat (getenv "HOME") "/src/emsdk/upstream/emscripten"))
 
 ;; Shell switcher
 (elpaca

@@ -46,6 +46,7 @@
     (set-fontset-font t 'gurmukhi "Noto Sans Gurmukhi")
     (set-fontset-font t 'han "Noto Sans CJK HK")
     (set-fontset-font t 'han "Noto Sans CJK TC Regular" nil 'append)
+    (set-fontset-font t 'han "Noto Sans CJK SC Regular" nil 'append)
     (set-fontset-font t 'hangul "Noto Sans CJK KR Regular")
     (set-fontset-font t 'hanunoo "Noto Sans Hanunoo")
     (set-fontset-font t 'hebrew "Noto Sans Hebrew")

@@ -143,7 +143,7 @@
 ;; cd emacs-lsp-booster && cargo install --path .
 (elpaca (eglot-booster :host github :repo "jdtsmith/eglot-booster")
   (require 'eglot-booster)
-  ;; (eglot-booster-mode)
+  (eglot-booster-mode)
   )
 
 

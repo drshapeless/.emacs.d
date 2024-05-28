@@ -34,7 +34,7 @@ go-ts-mode
 
 (main "package main" n n
       "func main() {" n
-      > p n
+      > p q n
       "}" n)
 
 (wr "func (app *Application) " p q "(w http.ResponseWriter, r *http.Request) {" n

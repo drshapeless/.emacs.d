@@ -2,7 +2,7 @@ c++-mode
 c++-ts-mode
 
 (cerr "std::cerr << " p " std::endl;")
-(cf "// clang-format off" n p n "// clang-format on" n)
+(cf "// clang-format off" n p q n "// clang-format on" n)
 (cout "std::cout << " p " std::endl;")
 (endl "<< std::endl;")
 

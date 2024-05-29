@@ -68,7 +68,7 @@
   (add-to-list 'eglot-server-programs
                '(templ-ts-mode . ("templ" "lsp")))
   (add-to-list 'eglot-server-programs
-               '(glsl-mode . ("glslls" "--stdin")))
+               '(glsl-mode . ("glsl_analyzer")))
 
   ;; Deno support from https://deno.land/manual@v1.28.3/getting_started/setup_your_environment
   (add-to-list 'eglot-server-programs '((js-mode typescript-mode) . (eglot-deno "deno" "lsp")))

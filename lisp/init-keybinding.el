@@ -17,7 +17,7 @@
       (setq mac-command-modifier 'hyper)
       (setq mac-right-command-modifier 'super)))
 
-(keymap-global-set "C-x k" #'kill-this-buffer) ; Kill buffer directly.
+(keymap-global-set "C-x k" #'kill-current-buffer) ; Kill buffer directly.
 (keymap-global-set "C-x C-b" #'ibuffer)        ; Use ibuffer.
 (keymap-global-set "C-c K" #'compile)
 (keymap-global-set "C-c k" #'recompile)

@@ -26,7 +26,11 @@
   (keymap-global-set "C-c p _" cape-tex)
   (keymap-global-set "C-c p ^" cape-tex)
   (keymap-global-set "C-c p &" cape-sgml)
-  (keymap-global-set "C-c p r" cape-rfc1345))
+  (keymap-global-set "C-c p r" cape-rfc1345)
+  (if *is-a-linux*
+      ;; In Gentoo, install sys-apps/miscfiles.
+      (setq ispell-alternate-dictionary "/usr/share/dict/web2"))
+  )
 
 
 (provide 'init-cape)

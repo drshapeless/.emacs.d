@@ -53,13 +53,13 @@
 (require 'init-helpful)
 (require 'init-ripgrep)
 (require 'init-request)
-(require 'init-framemove)
 (require 'init-cape)
 (require 'init-corfu)
 (require 'init-tree-sitter)
 (require 'init-rainbow)
 (require 'init-multiple-cursors)
 (require 'init-string-inflection)
+(require 'init-edit-server)
 
 ;;; Appearance
 (require 'init-mood-line)

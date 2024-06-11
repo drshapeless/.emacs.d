@@ -42,18 +42,24 @@
             (char-equal (char-before) ?\"))
         nil
       (let ((START (save-excursion
-                     (re-search-backward "[\s\"^]"
-                                         (line-beginning-position)
-                                         t)))
+                     (re-search-backward
+                      "[<\"\s\t]"
+                      (line-beginning-position)
+                      t)))
             (END (save-excursion
                    (re-search-forward
-                    "[>\s\"$]"
+                    "[>\s\"]"
                     (line-end-position)
                     t))))
-        (if (and START END)
-            (cons (1+ START)
-                  (1- END))
-          nil))))
+        (cond ((and START END)
+               (cons (1+ START)
+                     (1- END)))
+              ((and START (not END))
+               (cons (1+ START)
+                     (line-end-position)))
+              ((and (not START) END)
+               (cons (line-beginning-position) (1- END)))
+              (t (cons (line-beginning-position) (line-end-position)))))))
 
   (defcustom drsl/tailwind-css-keyword-file
     (expand-file-name "dict/tailwindcss_dict.txt" user-emacs-directory)
@@ -306,11 +312,13 @@ Built-in treesit is required."
   (add-hook 'templ-ts-mode-hook
             (lambda ()
               (setq-local drsl/eglot-extra-completion-functions
-                          (append drsl/eglot-extra-completion-functions
-                                  (list #'drsl/templ-ts-mode-htmx-completion
-                                        #'drsl/templ-ts-mode-completion
-                                        #'drsl/templ-tailwind-cape-dict)))))
-  )
+                          (list
+                           (cape-capf-super
+                            #'drsl/templ-ts-mode-htmx-completion
+                            #'drsl/templ-ts-mode-completion
+                            )
+                           #'drsl/templ-tailwind-cape-dict
+                           )))))
 
 (defun rustywind-format ()
   (interactive)

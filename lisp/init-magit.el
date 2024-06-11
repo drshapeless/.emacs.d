@@ -6,14 +6,17 @@
 
 ;;; Code:
 
+(elpaca transient
+  (require 'transient))
+
 (elpaca
- magit
- (require 'magit))
+    magit
+  (require 'magit))
 
 ;; I currently don't have any use with forge.
 (elpaca
- forge
- (require 'forge))
+    forge
+  (require 'forge))
 
 (provide 'init-magit)
 ;;; init-magit.el ends here

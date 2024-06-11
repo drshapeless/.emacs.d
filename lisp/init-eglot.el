@@ -8,6 +8,12 @@
 
 ;;; Code:
 
+(elpaca eldoc
+  (require 'eldoc))
+
+(elpaca jsonrpc
+  (require 'jsonrpc))
+
 (elpaca eglot
   (require 'eglot)
   ;; This stops eglot from logging the json events of lsp server.

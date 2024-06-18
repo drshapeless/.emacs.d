@@ -43,7 +43,7 @@
         nil
       (let ((START (save-excursion
                      (re-search-backward
-                      "[<\"\s\t]"
+                      "[<\"\s\t:]"
                       (line-beginning-position)
                       t)))
             (END (save-excursion

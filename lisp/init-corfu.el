@@ -8,33 +8,33 @@
 ;;; Code:
 
 (elpaca
- corfu
- (require 'corfu)
- (setq corfu-auto t
-       corfu-quit-no-match 'separator
-       corfu-auto-prefix 1
-       corfu-auto-delay 0
-       corfu-min-width 80
-       corfu-max-width corfu-min-width
-       corfu-count 14
-       corfu-scroll-margin 4
-       corfu-cycle nil
-       corfu-preselect-first t
-       corfu-echo-documentation t)
- (global-corfu-mode)
+    corfu
+  (require 'corfu)
+  (setq corfu-auto t
+        corfu-quit-no-match 'separator
+        corfu-auto-prefix 1
+        corfu-auto-delay 0
+        corfu-min-width 80
+        corfu-max-width corfu-min-width
+        corfu-count 14
+        corfu-scroll-margin 4
+        corfu-cycle nil
+        corfu-on-exact-match nil
+        corfu-echo-documentation t)
+  (global-corfu-mode)
 
- ;; Corfu for eglot.
- (setq completion-category-overrides '((eglot (styles orderless))))
+  ;; Corfu for eglot.
+  (setq completion-category-overrides '((eglot (styles orderless))))
 
- (corfu-history-mode 1)
- (savehist-mode 1)
- (add-to-list 'savehist-additional-variables 'corfu-history))
+  (corfu-history-mode 1)
+  (savehist-mode 1)
+  (add-to-list 'savehist-additional-variables 'corfu-history))
 
 (elpaca
- (corfu-terminal
-  :repo "https://codeberg.org/akib/emacs-corfu-terminal.git")
- (unless (display-graphic-p)
-   (corfu-terminal-mode 1)))
+    (corfu-terminal
+     :repo "https://codeberg.org/akib/emacs-corfu-terminal.git")
+  (unless (display-graphic-p)
+    (corfu-terminal-mode 1)))
 
 (provide 'init-corfu)
 ;;; init-corfu.el ends here

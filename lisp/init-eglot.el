@@ -88,15 +88,6 @@
           :lint t))
 
   ;; LSP settings.
-  ;; (setq-default eglot-workspace-configuration
-  ;;               '(;; gopls config.
-  ;;                 (:gopls .
-  ;;                         ((staticcheck . t)
-  ;;                          (matcher . "CaseSensitive")))
-  ;;                 ;; dart config.
-  ;;                 (:dart .
-  ;;                        ((completeFunctionCalls . t)))))
-
   (setq-default eglot-workspace-configuration
                 (list (cons :gopls  (list :staticcheck t
                                           :matcher "CaseSensitive"
@@ -139,10 +130,11 @@
 
   ;; https://github.com/joaotavora/eglot/issues/574
   ;; This is for gopls to remove unused imports.
-  (defun my-eglot-organize-imports () (interactive)
-         (eglot-code-actions nil nil "source.organizeImports" t))
   (defun eglot-organize-imports-on-save ()
-    (add-hook 'before-save-hook 'my-eglot-organize-imports nil t))
+    (add-hook 'before-save-hook
+              (lambda ()
+                (call-interactively 'eglot-code-action-organize-imports))
+              nil t))
   (add-hook 'go-ts-mode-hook #'eglot-organize-imports-on-save))
 
 ;; git clone https://github.com/blahgeek/emacs-lsp-booster

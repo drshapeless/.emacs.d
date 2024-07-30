@@ -46,7 +46,7 @@
   (add-hook 'zig-mode-hook        #'eglot-ensure)
 
   (keymap-set eglot-mode-map "C-c e a" #'eglot-code-actions)
-  (keymap-set eglot-mode-map "C-c e r" #'eglot-reconnect)
+  (keymap-set eglot-mode-map "C-c e r" #'eglot)
   (keymap-set eglot-mode-map "C-c e f" #'eglot-code-action-quickfix)
   (keymap-set eglot-mode-map "C-c e n" #'eglot-rename)
   (keymap-set eglot-mode-map "C-c e h" #'eglot-inlay-hints-mode)

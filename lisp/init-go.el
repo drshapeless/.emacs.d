@@ -173,7 +173,9 @@ The built-in treesit is required."
            (or (string= (treesit-node-type (treesit-node-at (point)))
                         "attribute_name")
                (string= (treesit-node-type (treesit-node-at (point)))
-                        ">"))
+                        ">")
+               (string= (treesit-node-type (treesit-node-at (point)))
+                        "/>"))
            (let ((bounds (bounds-of-thing-at-point 'word)))
              (when bounds
                (list (car bounds)
@@ -182,7 +184,25 @@ The built-in treesit is required."
                      :annotation-function (lambda (_) " HTML Attr")
                      :company-kind (lambda (_) 'text)
                      :exclusive 'no))))
-          ))
+          (;; completing attribute value, e.g. <input type="text"
+           (string= (treesit-node-type (treesit-node-parent
+                                        (treesit-node-at (point))))
+                    "quoted_attribute_value")
+           (let ((words (drsl/get-html-value-list
+                         (treesit-node-text
+                          (treesit-node-prev-sibling
+                           (treesit-node-parent (treesit-node-at (point)))
+                           t)
+                          t)))
+                 (bounds (or (bounds-of-thing-at-point 'word)
+                             (cons (point) (point)))))
+             (when words
+               (list (car bounds)
+                     (cdr bounds)
+                     words
+                     :annotation-function (lambda (_) " HTML value")
+                     :company-kind (lambda (_) 'text)
+                     :exclusive 'no))))))
 
   (defvar drsl/htmx-attribute-list
     '("hx-get" "hx-post" "hx-on" "hx-push-url" "hx-select" "hx-select-oob"
@@ -203,6 +223,10 @@ The built-in treesit is required."
     '("this" "closest" "find" "next" "previous")
     "Keywords for hx-target.")
 
+  (defvar drsl/html-input-type-list
+    '("text" "password" "email" "url" "tel" "number" "range" "date" "time" "datetime-local" "month" "week" "color" "checkbox" "radio" "file" "hidden" "submit" "reset" "button")
+    "Keywords for html input type.")
+
   (defun drsl/get-htmx-value-list (ATTR)
     "Return a list of htmx value.
 
@@ -212,6 +236,14 @@ Only support hx-swap, hx-swap-oob, hx-target."
            drsl/htmx-swap-keyword-list)
           ((string= ATTR "hx-target")
            drsl/htmx-target-keyword-list)))
+
+  (defun drsl/get-html-value-list (ATTR)
+    "Return a list of HTML value.
+
+ATTR is the attribute name.
+Only support type."
+    (cond ((string= ATTR "type")
+           drsl/html-input-type-list)))
 
   (defun drsl/templ-ts-mode-htmx-completion ()
     "templ-ts-mode completion for htmx.

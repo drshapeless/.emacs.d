@@ -88,6 +88,7 @@
 (require 'init-typescript)
 (require 'init-caddyfile)
 (require 'init-zig)
+(require 'init-emmet)
 
 ;;; Programming helper
 (require 'init-indent-guide)

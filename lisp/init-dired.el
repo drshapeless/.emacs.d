@@ -125,6 +125,7 @@ Setting it to other values may have undetermined effect.")
 ;; Omit junk files in macos.
 (setq dired-omit-files
       (concat dired-omit-files "\\|^.DS_Store$\\|^[.]_"))
+(add-to-list 'dired-omit-extensions ".spv")
 
 (provide 'init-dired)
 ;;; init-dired.el ends here

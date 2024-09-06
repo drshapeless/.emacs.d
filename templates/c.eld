@@ -31,3 +31,6 @@ c-ts-mode
      "#ifdef __cplusplus" n
      "}" n
      "#endif" n)
+
+(e "ERROR(\"" p q "\");" n
+>   "exit(EXIT_FAILURE);" n)

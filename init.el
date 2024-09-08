@@ -93,6 +93,7 @@
 ;;; Programming helper
 (require 'init-indent-guide)
 (require 'init-apheleia)
+(require 'init-smart-dash)
 
 ;;; lsp server
 (require 'init-eglot)

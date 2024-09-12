@@ -1,9 +1,9 @@
 c++-mode
 c++-ts-mode
 
-(cerr "std::cerr << " p " std::endl;")
+(cerr "std::cerr << " p q " << std::endl;")
 (cf "// clang-format off" n p q n "// clang-format on" n)
-(cout "std::cout << " p " std::endl;")
+(cout "std::cout << " p q " << std::endl;")
 (endl "<< std::endl;")
 
 ;; Header
@@ -23,9 +23,10 @@ c++-ts-mode
       "}")
 
 ;; Runtime error
-(rte "std::runtime_error(" p ")")
+(rte "std::runtime_error(" p q ")")
 
 (s "std::string")
 (v "std::vector")
 
-(todo "// TODO: " p)
+(todo
+ > "// TODO: " p q)

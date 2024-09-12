@@ -31,6 +31,7 @@
   (add-hook 'js-ts-mode-hook         #'eglot-ensure)
   (add-hook 'typescript-ts-mode-hook #'eglot-ensure)
   (add-hook 'go-ts-mode-hook         #'eglot-ensure)
+  (add-hook 'cmake-ts-mode-hook      #'eglot-ensure)
 
   (add-hook 'glsl-mode-hook       #'eglot-ensure)
   (add-hook 'objc-mode-hook       #'eglot-ensure)

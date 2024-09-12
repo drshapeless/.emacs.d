@@ -32,10 +32,10 @@
   (add-hook 'typescript-ts-mode-hook #'eglot-ensure)
   (add-hook 'go-ts-mode-hook         #'eglot-ensure)
   (add-hook 'cmake-ts-mode-hook      #'eglot-ensure)
+  (add-hook 'swift-ts-mode-hook      #'eglot-ensure)
 
   (add-hook 'glsl-mode-hook       #'eglot-ensure)
   (add-hook 'objc-mode-hook       #'eglot-ensure)
-  (add-hook 'swift-mode-hook      #'eglot-ensure)
   (add-hook 'sql-mode-hook        #'eglot-ensure)
   (add-hook 'dart-mode-hook       #'eglot-ensure)
   (add-hook 'rustic-mode-hook     #'eglot-ensure)
@@ -61,7 +61,7 @@
   (add-to-list 'eglot-server-programs
                '(c++-ts-mode . ("clangd" "--header-insertion=never")))
   (add-to-list 'eglot-server-programs
-               '(swift-mode . ("sourcekit-lsp")))
+               '(swift-ts-mode . ("sourcekit-lsp")))
   (add-to-list 'eglot-server-programs
                '(sql-mode . ("sqls")))
   ;; (add-to-list 'eglot-server-programs

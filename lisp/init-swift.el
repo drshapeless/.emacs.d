@@ -7,12 +7,12 @@
 ;;; Code:
 
 (elpaca
- swift-mode
- (require 'swift-mode)
- (keymap-set swift-mode-map "C-c p b" #'xcode-build)
- (keymap-set swift-mode-map "C-c p r" #'xcode-run)
- (keymap-set swift-mode-map "C-c p t" #'xcode-test)
- (keymap-set swift-mode-map "C-c p o" #'xcode-open-current-file))
+    swift-ts-mode
+  (require 'swift-ts-mode)
+  (keymap-set swift-ts-mode-map "C-c p b" #'xcode-build)
+  (keymap-set swift-ts-mode-map "C-c p r" #'xcode-run)
+  (keymap-set swift-ts-mode-map "C-c p t" #'xcode-test)
+  (keymap-set swift-ts-mode-map "C-c p o" #'xcode-open-current-file))
 
 (defun print-swift-var-under-point()
   (interactive)

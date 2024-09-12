@@ -138,6 +138,14 @@
               nil t))
   (add-hook 'go-ts-mode-hook #'eglot-organize-imports-on-save))
 
+(defun eglot-open-link ()
+  "Open markdown link at point in the `eldoc-doc-buffer'."
+  (interactive)
+  (let ((url (get-text-property (point) 'help-echo)))
+    (if url
+        (browse-url url)
+      (message "No URL found at point"))))
+
 ;; git clone https://github.com/blahgeek/emacs-lsp-booster
 ;; cd emacs-lsp-booster && cargo install --path .
 (elpaca (eglot-booster :host github :repo "jdtsmith/eglot-booster")
@@ -242,8 +250,8 @@ AlwaysBreakAfterDefinitionReturnType: None
 AlwaysBreakAfterReturnType: None
 AlwaysBreakBeforeMultilineStrings: false
 AlwaysBreakTemplateDeclarations: false
-BinPackArguments: true
-BinPackParameters: true
+BinPackArguments: false
+BinPackParameters: false
 BraceWrapping:
   AfterClass: false
   AfterControlStatement: false

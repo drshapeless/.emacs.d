@@ -526,6 +526,7 @@ overrides = [ { files = \"*.svelte\", options = { parser = \"svelte\"}}]
   (require 'breadcrumb)
   (breadcrumb-mode))
 
+(require 'cmake-ts-mode)
 
 (provide 'init-eglot)
 ;;; init-eglot.el ends here

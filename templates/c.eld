@@ -34,3 +34,5 @@ c-ts-mode
 
 (e "ERROR(\"" p q "\");" n
 >   "exit(EXIT_FAILURE);" n)
+
+(s "struct ")

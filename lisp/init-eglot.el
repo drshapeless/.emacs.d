@@ -480,7 +480,7 @@ INCS =
 LIBS =
 
 # flags
-CFLAGS = $(INCS) -O2 -std=c99
+CFLAGS = $(INCS) -O2 -std=c18
 LDFLAGS = $(LIBS)
 " nil (if (eq major-mode 'dired-mode)
           (concat (dired-current-directory)
@@ -495,12 +495,69 @@ OBJ = $(SRC:.c=.o)
 all: $(BIN)
 
 $(BIN): $(OBJ)
-        $(CC) -o $@ $(OBJ) $(LDFLAGS)
+\t$(CC) -o $@ $(OBJ) $(LDFLAGS)
+
+$(filter-out main.o, $(OBJ)): %.o: %.h
 
 clean:
-        rm -f $(BIN) $(OBJ)
+\trm -f $(BIN) $(OBJ)
 
-.PHONY: all clean
+run: $(BIN)
+\t./$(BIN)
+
+.PHONY: all clean run
+" nil (if (eq major-mode 'dired-mode)
+          (concat (dired-current-directory)
+                  "makefile")
+        (concat (file-name-directory (buffer-file-name))
+                "makefile"))))
+
+(defun drsl/generate-cpp-makefile ()
+  "Generate makefile"
+  (interactive)
+  (write-region "BIN =
+
+# compiler
+CC = clang
+CXX = clang++
+
+# includes and libs
+INCS =
+LIBS =
+
+# flags
+CFLAGS = $(INCS) -O2 -std=c18
+CXXFLAGS = $(INCS) -O2 -std=c++17
+LDFLAGS = $(LIBS)
+" nil (if (eq major-mode 'dired-mode)
+          (concat (dired-current-directory)
+                  "config.mk")
+        (concat (file-name-directory (buffer-file-name))
+                "config.mk")))
+  (write-region "include config.mk
+
+CSRC = $(wildcard *.c)
+CXXSRC = $(wildcard *.cc)
+COBJ = $(CSRC:.c=.o)
+CXXOBJ = $(CXXSRC:.cc=.o)
+OBJ = $(COBJ) $(CXXOBJ)
+
+all: $(BIN)
+
+$(BIN): $(OBJ)
+\t$(CXX) -o $@ $(OBJ) $(LDFLAGS)
+
+$(filter-out main.o, $(CXXOBJ)): %.o: %.hh
+
+$(COBJ): %.o: %.h
+
+clean:
+\trm -f $(BIN) $(OBJ)
+
+run: $(BIN)
+\t./$(BIN)
+
+.PHONY: all clean run
 " nil (if (eq major-mode 'dired-mode)
           (concat (dired-current-directory)
                   "makefile")

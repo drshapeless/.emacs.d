@@ -594,5 +594,36 @@ overrides = [ { files = \"*.svelte\", options = { parser = \"svelte\"}}]
 
 (require 'cmake-ts-mode)
 
+;; This is a cpp helper function to easily create definition from declaration
+(defun drsl/cpp-definition-in-class ()
+  "Format the current declaration of function into definition and
+put it into kill-ring."
+  (interactive)
+  (kill-new
+   (let* ((original-string
+           (string-trim-left (buffer-substring-no-properties
+                              (line-beginning-position)
+                              (line-end-position))))
+          (insert-string (concat (treesit-node-text
+                                  (treesit-node-child-by-field-name
+                                   (treesit-parent-until
+                                    (treesit-node-at (point))
+                                    (lambda (NODE)
+                                      (let ((NODE-TYPE (treesit-node-type NODE)))
+                                        (or (string-equal NODE-TYPE "class_specifier")
+                                            (string-equal NODE-TYPE "struct_specifier")))
+                                      )
+                                    t)
+                                   "name")
+                                  t)
+                                 "::"))
+          (insert-pos (1+ (string-match " " original-string))))
+     (replace-regexp-in-string ";" "{\n\n}"
+                               (concat (substring original-string 0 insert-pos)
+                                       insert-string
+                                       (substring original-string insert-pos)))
+     ))
+  )
+
 (provide 'init-eglot)
 ;;; init-eglot.el ends here

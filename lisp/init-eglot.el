@@ -601,9 +601,12 @@ put it into kill-ring."
   (interactive)
   (kill-new
    (let* ((original-string
-           (string-trim-left (buffer-substring-no-properties
-                              (line-beginning-position)
-                              (line-end-position))))
+           (treesit-node-text
+            (treesit-parent-until (treesit-node-at (point))
+                                  (lambda (NODE)
+                                    (string-equal (treesit-node-type NODE)
+                                                  "field_declaration")))
+            t))
           (insert-string (concat (treesit-node-text
                                   (treesit-node-child-by-field-name
                                    (treesit-parent-until
@@ -623,7 +626,7 @@ put it into kill-ring."
                                        insert-string
                                        (substring original-string insert-pos)))
      ))
-  )
+  (message "definition is put in kill-ring"))
 
 (provide 'init-eglot)
 ;;; init-eglot.el ends here

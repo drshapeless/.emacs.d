@@ -27,11 +27,19 @@
              (insert "->")))
           (t (insert ".")))))
 
+(defun shapeless-smart-semicolon ()
+  (interactive)
+  (if (eq (char-before) ?\;)
+      (progn (backward-delete-char 1)
+             (insert "::"))
+    (insert ";")))
+
 (define-minor-mode shapeless-c-arrow-mode
   "Quickly insert arrow operator. ->"
   :keymap
   (let ((map (make-sparse-keymap)))
     (keymap-set map "." #'shapeless-c-arrow-insert-dot)
+    (keymap-set map ";" #'shapeless-smart-semicolon)
     map))
 
 (provide 'shapeless-c-arrow)

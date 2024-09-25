@@ -224,6 +224,19 @@
   (defun clang-format-buffer-on-save ()
     (add-hook 'before-save-hook #'clang-format-buffer -10 t)))
 
+(defun drsl/generate-clangd-config ()
+  "Generate a .clangd file in the current directory.
+
+Default to locate compile_commands.json in the build directory."
+  (interactive)
+  (write-region
+   "CompileFlags:
+\tCompilationDatabase: build/"
+   nil (if (eq major-mode 'dired-mode)
+           (concat (dired-current-directory)
+                   ".clangd")
+         (concat (file-name-directory (buffer-file-name))
+                 ".clangd"))))
 
 (defun drsl/generate-clang-format ()
   "Generate a .clang-format file in the current directory.

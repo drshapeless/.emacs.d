@@ -262,7 +262,7 @@ AllowShortLoopsOnASingleLine: false
 AlwaysBreakAfterDefinitionReturnType: None
 AlwaysBreakAfterReturnType: None
 AlwaysBreakBeforeMultilineStrings: false
-AlwaysBreakTemplateDeclarations: false
+AlwaysBreakTemplateDeclarations: true
 BinPackArguments: false
 BinPackParameters: false
 BraceWrapping:
@@ -617,8 +617,10 @@ put it into kill-ring."
            (treesit-node-text
             (treesit-parent-until (treesit-node-at (point))
                                   (lambda (NODE)
-                                    (string-equal (treesit-node-type NODE)
-                                                  "field_declaration")))
+                                    (or (string-equal (treesit-node-type NODE)
+                                                      "field_declaration")
+                                        (string-equal (treesit-node-type NODE)
+                                                      "declaration"))))
             t))
           (insert-string (concat (treesit-node-text
                                   (treesit-node-child-by-field-name
@@ -626,8 +628,12 @@ put it into kill-ring."
                                     (treesit-node-at (point))
                                     (lambda (NODE)
                                       (let ((NODE-TYPE (treesit-node-type NODE)))
-                                        (or (string-equal NODE-TYPE "class_specifier")
-                                            (string-equal NODE-TYPE "struct_specifier")))
+                                        (or (string-equal NODE-TYPE
+                                                          "class_specifier")
+                                            (string-equal NODE-TYPE
+                                                          "struct_specifier")
+                                            (string-equal NODE-TYPE
+                                                          "namespace_definition")))
                                       )
                                     t)
                                    "name")

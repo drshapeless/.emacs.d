@@ -200,6 +200,21 @@
 ;;                         (cc-mode . "linux")
 ;;                         (other . "llvm")))
 
+(defun drsl/c-ts-indent-style()
+  "Override the built-in BSD indentation style with some additional rules.
+         Docs: https://www.gnu.org/software/emacs/manual/html_node/elisp/Parser_002dbased-Indentation.html
+         Notes: `treesit-explore-mode' can be very useful to see where you're at in the tree-sitter tree,
+                especially paired with `(setq treesit--indent-verbose t)' to debug what rules is being
+                applied at a given point."
+  `(;; do not indent preprocessor statements
+    ((node-is "preproc") column-0 0)
+    ;; do not indent namespace children
+    ((n-p-gp nil nil "namespace_definition") grand-parent 0)
+    ;; append to bsd style
+    ,@(alist-get 'bsd (c-ts-mode--indent-styles 'cpp))))
+
+(setq c-ts-mode-indent-style #'drsl/c-ts-indent-style)
+
 (setq compile-command "make")
 
 ;; Find the nearest parent go.mod as the project root.

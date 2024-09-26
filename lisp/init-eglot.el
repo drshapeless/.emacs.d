@@ -33,6 +33,7 @@
   (add-hook 'go-ts-mode-hook         #'eglot-ensure)
   (add-hook 'cmake-ts-mode-hook      #'eglot-ensure)
   (add-hook 'swift-ts-mode-hook      #'eglot-ensure)
+  (add-hook 'c3-ts-mode-hook         #'eglot-ensure)
 
   (add-hook 'glsl-mode-hook       #'eglot-ensure)
   (add-hook 'objc-mode-hook       #'eglot-ensure)
@@ -76,6 +77,8 @@
                '(templ-ts-mode . ("templ" "lsp")))
   (add-to-list 'eglot-server-programs
                '(glsl-mode . ("glsl_analyzer")))
+  (add-to-list 'eglot-server-programs
+               '(c3-ts-mode . ("c3lsp")))
 
   ;; Deno support from https://deno.land/manual@v1.28.3/getting_started/setup_your_environment
   (add-to-list 'eglot-server-programs '((js-mode typescript-mode) . (eglot-deno "deno" "lsp")))

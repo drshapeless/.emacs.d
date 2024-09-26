@@ -89,6 +89,7 @@
 (require 'init-caddyfile)
 (require 'init-zig)
 (require 'init-emmet)
+(require 'init-c3)
 
 ;;; Programming helper
 (require 'init-indent-guide)

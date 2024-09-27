@@ -631,39 +631,82 @@ overrides = [ { files = \"*.svelte\", options = { parser = \"svelte\"}}]
 put it into kill-ring."
   (interactive)
   (kill-new
-   (let* ((original-string
-           (treesit-node-text
-            (treesit-parent-until (treesit-node-at (point))
-                                  (lambda (NODE)
-                                    (or (string-equal (treesit-node-type NODE)
-                                                      "field_declaration")
-                                        (string-equal (treesit-node-type NODE)
-                                                      "declaration"))))
-            t))
-          (insert-string (concat (treesit-node-text
-                                  (treesit-node-child-by-field-name
-                                   (treesit-parent-until
-                                    (treesit-node-at (point))
-                                    (lambda (NODE)
-                                      (let ((NODE-TYPE (treesit-node-type NODE)))
-                                        (or (string-equal NODE-TYPE
-                                                          "class_specifier")
-                                            (string-equal NODE-TYPE
-                                                          "struct_specifier")
-                                            (string-equal NODE-TYPE
-                                                          "namespace_definition")))
-                                      )
-                                    t)
-                                   "name")
-                                  t)
-                                 "::"))
-          (insert-pos (1+ (string-match " " original-string))))
-     (replace-regexp-in-string ";" "{\n\n}"
-                               (concat (substring original-string 0 insert-pos)
-                                       insert-string
-                                       (substring original-string insert-pos)))
-     ))
+   (drsl/generate-cpp-class-function-definition-at-point))
   (message "definition is put in kill-ring"))
+
+(defun drsl/get-cpp-template-node (class-node)
+  "Return parent template treesit node.
+
+Return nil if is not in a template."
+  (treesit-parent-until class-node
+                        (lambda (NODE)
+                          (string-equal (treesit-node-type NODE)
+                                        "template_declaration"))))
+
+(defun drsl/get-class-function-node-at-point ()
+  "Return a treesit node of the current class function."
+  (treesit-parent-until (treesit-node-at (point))
+                        (lambda (NODE)
+                          (string-equal (treesit-node-type NODE)
+                                        "field_declaration"))
+                        t))
+
+(defun drsl/get-cpp-class-node-at-point ()
+  "Return the current class treesit node."
+  (treesit-parent-until (treesit-node-at (point))
+                        (lambda (NODE)
+                          (let ((NODE-TYPE (treesit-node-type NODE)))
+                            (or (string-equal NODE-TYPE
+                                              "class_specifier")
+                                (string-equal NODE-TYPE
+                                              "struct_specifier"))))
+                        t))
+
+(defun drsl/generate-cpp-class-function-definition-at-point ()
+  "Return the class function definition at point."
+  (interactive)
+  (string-replace
+   ";"
+   " {\n\n}"
+   (let* ((class-node (drsl/get-cpp-class-node-at-point))
+          (func-node  (drsl/get-class-function-node-at-point))
+          (template-node (drsl/get-cpp-template-node class-node))
+          (class-text (treesit-node-text
+                       (treesit-node-child-by-field-name
+                        class-node
+                        "name")
+                       t))
+          (func-text (treesit-node-text
+                      func-node
+                      t))
+          (first-space-pos (string-match " "
+                                         func-text))
+          (insert-pos (string-match "[a-z]"
+                                    func-text
+                                    first-space-pos))         )
+     (if template-node
+         (let* ((template-parameter (treesit-node-text
+                                     (treesit-node-child-by-field-name
+                                      template-node
+                                      "parameters")
+                                     t))
+                (template-head (concat "template "
+                                       template-parameter
+                                       "\n"))
+
+                )
+           (concat template-head
+                   (substring func-text 0 insert-pos)
+                   class-text
+                   (string-replace "typename " "" template-parameter)
+                   "::"
+                   (substring func-text insert-pos))
+           )
+
+       (concat (substring func-text 0 insert-pos)
+               class-text
+               "::"
+               (substring func-text insert-pos))))))
 
 (provide 'init-eglot)
 ;;; init-eglot.el ends here

@@ -69,7 +69,7 @@
 (require 'init-calibredb)
 (require 'init-nov)
 (require 'init-hackernews)
-(require 'init-djvu)
+;; (require 'init-djvu)
 (require 'init-restclient)
 
 ;;; Programming languages

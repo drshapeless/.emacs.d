@@ -65,11 +65,11 @@
                                      ((allow-no-window . t))))
 
 ;; I now want compilation to show up.
-(add-to-list 'display-buffer-alist '("\\*compilation\\*"
-                                     display-buffer-no-window
-                                     ((allow-no-window . t))))
 ;; (add-to-list 'display-buffer-alist '("\\*compilation\\*"
-;;                                      display-buffer-in-previous-window))
+;;                                      display-buffer-no-window
+;;                                      ((allow-no-window . t))))
+(add-to-list 'display-buffer-alist '("\\*compilation\\*"
+                                     display-buffer-in-previous-window))
 
 (add-to-list 'display-buffer-alist '("\\*Async Shell Command\\*"
                                      display-buffer-no-window

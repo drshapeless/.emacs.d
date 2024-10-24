@@ -213,8 +213,8 @@
     ((node-is "preproc") column-0 0)
     ;; do not indent namespace children
     ((n-p-gp nil nil "namespace_definition") grand-parent 0)
-    ;; append to bsd style
-    ,@(alist-get 'bsd (c-ts-mode--indent-styles 'cpp))))
+    ;; append to k&r style
+    ,@(alist-get 'k&r (c-ts-mode--indent-styles 'cpp))))
 
 (setq c-ts-mode-indent-style #'drsl/c-ts-indent-style)
 

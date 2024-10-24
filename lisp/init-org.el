@@ -7,40 +7,30 @@
 
 ;;; Code:
 
-;; This will clone the latest version of org instead of the old
-;; version shipped with Emacs. Sounds stupid, but having it handled by
-;; straight prevent compatibility issues.
-;; https://github.com/raxod502/straight.el#the-wrong-version-of-my-package-was-loaded
+(require 'org)
+(add-hook 'org-mode-hook #'auto-fill-mode)
+(add-hook 'org-mode-hook #'org-indent-mode)
 
-;; (straight-use-package '(org :type built-in))
-(elpaca
-    org
-  (require 'org)
-  (add-hook 'org-mode-hook #'auto-fill-mode)
-  (add-hook 'org-mode-hook #'org-indent-mode)
+(setq org-return-follows-link t)
+(setq org-src-window-setup 'current-window)
 
-  (setq org-return-follows-link t)
-  (setq org-src-window-setup 'current-window)
+(setq org-time-stamp-custom-formats (cons "<%Y-%m-%d>" "<%Y-%m-%d %a %H:%M>"))
+(setq org-time-stamp-formats (cons "<%Y-%m-%d %H:%M>" "<%Y-%m-%d>"))
 
-  (setq org-time-stamp-custom-formats (cons "<%Y-%m-%d>" "<%Y-%m-%d %a %H:%M>"))
-  (setq org-time-stamp-formats (cons "<%Y-%m-%d %H:%M>" "<%Y-%m-%d>"))
+(setq org-html-doctype "html5")
 
-  (setq org-html-doctype "html5")
+(setq org-link-frame-setup
+      '((vm . vm-visit-folder-other-frame)
+        (vm-imap . vm-visit-imap-folder-other-frame)
+        (gnus . org-gnus-no-new-news)
+        (file . find-file)
+        (wl . wl-other-frame)))
 
-  (setq org-link-frame-setup
-        '((vm . vm-visit-folder-other-frame)
-          (vm-imap . vm-visit-imap-folder-other-frame)
-          (gnus . org-gnus-no-new-news)
-          (file . find-file)
-          (wl . wl-other-frame)))
-
-  (setq org-image-actual-width nil)
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((dot . t)
-     (shell . t))))
-
-(elpaca-wait)
+(setq org-image-actual-width nil)
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((dot . t)
+   (shell . t)))
 
 (elpaca
     valign

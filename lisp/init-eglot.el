@@ -203,12 +203,15 @@
 ;;                         (cc-mode . "linux")
 ;;                         (other . "llvm")))
 
+
 (defun drsl/c-ts-indent-style()
   "Override the built-in BSD indentation style with some additional rules.
-         Docs: https://www.gnu.org/software/emacs/manual/html_node/elisp/Parser_002dbased-Indentation.html
-         Notes: `treesit-explore-mode' can be very useful to see where you're at in the tree-sitter tree,
-                especially paired with `(setq treesit--indent-verbose t)' to debug what rules is being
-                applied at a given point."
+         Docs:
+         https://www.gnu.org/software/emacs/manual/html_node/elisp/Parser_002dbased-Indentation.html
+         Notes: `treesit-explore-mode' can be very useful to see where
+         you're at in the tree-sitter tree, especially paired
+         with `(setq treesit--indent-verbose t)' to debug what rules is
+         being applied at a given point."
   `(;; do not indent preprocessor statements
     ((node-is "preproc") column-0 0)
     ;; do not indent namespace children
@@ -216,7 +219,25 @@
     ;; append to k&r style
     ,@(alist-get 'k&r (c-ts-mode--indent-styles 'cpp))))
 
-(setq c-ts-mode-indent-style #'drsl/c-ts-indent-style)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; TODO: figure out what happened and fix this
+(defun drsl/c-ts-add-indent-style ()
+  "Directly add indent styles into `treesit-simple-indent-rules'
+
+This is a ridiculous temporary fix in latest Emacs where
+`c-ts-mode--indent-styles' is gone."
+  (let ((my-rules treesit-simple-indent-rules)
+        (rule-to-add '((n-p-gp nil nil "namespace_definition") grand-parent 0)))
+    (setq-local treesit-simple-indent-rules
+                (list (cons (car (car my-rules))
+                            (cons rule-to-add
+                                  (cdr (car my-rules))))))))
+
+(if (version< emacs-version "30.0")
+    (setq c-ts-mode-indent-style #'drsl/c-ts-indent-style)
+  (progn (setq c-ts-mode-indent-style 'k&r)
+         (add-hook 'c++-ts-mode-hook #'drsl/c-ts-add-indent-style)))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setq compile-command "make")
 

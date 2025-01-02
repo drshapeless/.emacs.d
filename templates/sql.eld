@@ -17,3 +17,5 @@ sql-mode
 (u "UNIQUE")
 
 (b "bigserial")
+
+(v "version int NOT NULL DEFAULT 1")

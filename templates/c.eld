@@ -36,3 +36,5 @@ c-ts-mode
 >   "exit(EXIT_FAILURE);" n)
 
 (s "struct ")
+
+(p "#pragma once")

@@ -729,5 +729,39 @@ Return nil if is not in a template."
                "::"
                (substring func-text insert-pos))))))
 
+(defun drsl/get-function-node-at-point ()
+  "Return a treesit node of the current class function."
+  (treesit-parent-until (treesit-node-at (point))
+                        (lambda (NODE)
+                          (string-equal (treesit-node-type NODE)
+                                        "declaration"))
+                        t))
+
+(defun drsl/generate-c-function-definition-at-point ()
+  "Return the function definition at point"
+  (interactive)
+  (string-replace
+   ";"
+   " {\n\n}"
+   (let* ((func-node (drsl/get-function-node-at-point))
+          (func-text (treesit-node-text func-node t)))
+     func-text)))
+
+(defun drsl/c-function-definition ()
+  "Format the current declaration of function into definition and
+put it into kill-ring."
+  (interactive)
+  (kill-new
+   (drsl/generate-c-function-definition-at-point))
+  (message "definition is put in kill-ring"))
+
+(defun drsl/c-expand-struct-pointer ()
+  "Expand the current word into a struct pointer."
+  (interactive)
+  (let ((word (thing-at-point 'word t)))
+    (progn
+      (delete-region (beginning-of-thing 'word) (end-of-thing 'word))
+      (insert "struct " word " *" (string-inflection-underscore-function word)))))
+
 (provide 'init-eglot)
 ;;; init-eglot.el ends here

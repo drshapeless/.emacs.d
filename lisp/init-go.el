@@ -97,12 +97,9 @@
     (when (drsl/is-class-attr)
       (pcase-let ((`(,beg . ,end) (drsl/bounds-of-keyword)))
         `(,beg ,end
-               ,(cape--properties-table
-                 (completion-table-case-fold
-                  (cape--dynamic-table beg end #'drsl/tailwind-css-dict-list)
-                  (not (cape--case-fold-p cape-dict-case-fold)))
-                 :sort nil ;; Presorted word list (by frequency)
-                 :category 'cape-dict)
+               ,(completion-table-case-fold
+                 (cape--dynamic-table beg end #'drsl/tailwind-css-dict-list)
+                 (not (cape--case-fold-p cape-dict-case-fold)))
                ,@cape--dict-properties))))
 
   (defvar drsl/templ-ts-mode-tag-list

@@ -38,3 +38,5 @@ c-ts-mode
 (s "struct ")
 
 (p "#pragma once")
+
+(da "/* darray */")

@@ -4,8 +4,8 @@
 ;; Description: The shapeless theme.
 ;; Author: drshapeless <drsl@drshapeless.com>
 ;; Created: Sat Jan 23 14:05:48 2021 (+0800)
-;; Modified: Tue May 23 20:12:38 2023 (+0800)
-;; Version: 0.6.1
+;; Modified: Fri Jan 24 22:31:45 2025 (+0800)
+;; Version: 0.6.2
 
 ;;; Commentary:
 
@@ -34,10 +34,12 @@
       (sl/calm-red      "#a10000")
       (sl/pale-orange   "#ceb058")
       (sl/bright-orange "#e09712")
+      (sl/sharp-orange  "#ecab1f")
       (sl/orange        "#b45900")
       (sl/brown         "#542121")
       (sl/calm-yellow   "#cecb6e")
       (sl/calm-green    "#32cd32")
+      (sl/sharp-green   "#69dd40")
       (sl/calm-blue     "#4785ee")
       (sl/dodger-blue   "#1E90FF")
       (sl/purple        "#ce66ce")
@@ -48,6 +50,7 @@
       (sl/weird-green   "#306C53")
       (sl/weirder-green "#214c3a")
       (sl/crazy-green   "#5f93a0")
+      (sl/seaweed-green "#7fabc3")
 
       ;; ansi-color-name
       (sl/black         "#000000")
@@ -87,9 +90,11 @@
    `(font-lock-comment-delimiter-face    ((t (:inherit font-lock-comment-face))))
    `(font-lock-comment-face              ((t (:foreground ,sl/gray))))
    `(font-lock-constant-face             ((t (:foreground ,sl/violet))))
+   `(font-lock-delimiter-face            ((t (:foreground ,sl/calm-white))))
    `(font-lock-doc-face                  ((t (:foreground ,sl/calm-yellow))))
    `(font-lock-doc-markup-face           ((t (:foreground ,sl/calm-yellow))))
    `(font-lock-escape-face               ((t (:foreground ,sl/calm-white))))
+   `(font-lock-function-call-face        ((t (:foreground ,sl/sharp-green))))
    `(font-lock-function-name-face        ((t (:foreground ,sl/calm-green))))
    `(font-lock-keyword-face              ((t (:foreground ,sl/dodger-blue))))
    `(font-lock-misc-punctuation-face     ((t (:foreground ,sl/calm-white))))
@@ -97,7 +102,8 @@
    `(font-lock-number-face               ((t (:foreground ,sl/calm-yellow))))
    `(font-lock-operator-face             ((t (:foreground ,sl/dodger-blue))))
    `(font-lock-preprocessor-face         ((t (:foreground ,sl/calm-yellow))))
-   `(font-lock-property-face             ((t (:foreground ,sl/crazy-green))))
+   `(font-lock-property-name-face        ((t (:foreground ,sl/light-blue))))
+   `(font-lock-property-use-face         ((t (:foreground ,sl/light-blue))))
    `(font-lock-punctuation-face          ((t (:foreground ,sl/calm-white))))
    `(font-lock-regexp-face               ((t (:foreground ,sl/pale-orange))))
    `(font-lock-regexp-grouping-backslash ((t (:foreground ,sl/calm-white :bold t))))
@@ -105,6 +111,7 @@
    `(font-lock-string-face               ((t (:foreground ,sl/pale-orange))))
    `(font-lock-type-face                 ((t (:foreground ,sl/pink))))
    `(font-lock-variable-name-face        ((t (:foreground ,sl/bright-orange))))
+   `(font-lock-variable-use-face         ((t (:foreground ,sl/sharp-orange))))
    `(font-lock-warning-face              ((t (:foreground ,sl/calm-red :bold t))))
 
    ;; tree-sitter

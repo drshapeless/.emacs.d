@@ -532,7 +532,7 @@ INCS =
 LIBS =
 
 # flags
-CFLAGS = $(INCS) -O2 -std=c18
+CFLAGS = $(INCS) -O2 -std=c23
 LDFLAGS = $(LIBS)
 " nil (if (eq major-mode 'dired-mode)
           (concat (dired-current-directory)
@@ -578,8 +578,8 @@ INCS =
 LIBS =
 
 # flags
-CFLAGS = $(INCS) -O2 -std=c18
-CXXFLAGS = $(INCS) -O2 -std=c++17
+CFLAGS = $(INCS) -O2 -std=c23
+CXXFLAGS = $(INCS) -O2 -std=c++20
 LDFLAGS = $(LIBS)
 " nil (if (eq major-mode 'dired-mode)
           (concat (dired-current-directory)

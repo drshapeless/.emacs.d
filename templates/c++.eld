@@ -30,3 +30,9 @@ c++-ts-mode
 
 (todo
  > "// TODO: " p q)
+
+(p "#pragma once")
+
+(c "VK_CHECK(result);" n > )
+(r "vk::Result result;" n > )
+(tie "std::tie(result, " p q ")")

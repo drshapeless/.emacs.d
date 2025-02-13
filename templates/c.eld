@@ -40,3 +40,5 @@ c-ts-mode
 (p "#pragma once")
 
 (da "/* darray */")
+
+(temp > "struct Allocator *temp = temp_create();" n > p q n > "temp_destroy(temp);" n)

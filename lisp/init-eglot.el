@@ -653,7 +653,9 @@ overrides = [ { files = \"*.svelte\", options = { parser = \"svelte\"}}]
 put it into kill-ring."
   (interactive)
   (kill-new
-   (drsl/generate-cpp-class-function-definition-at-point))
+   (string-replace " override "
+                   " "
+                   (drsl/generate-cpp-class-function-definition-at-point)))
   (message "definition is put in kill-ring"))
 
 (defun drsl/get-cpp-template-node (class-node)

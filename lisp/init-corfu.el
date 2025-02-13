@@ -31,8 +31,7 @@
   (add-to-list 'savehist-additional-variables 'corfu-history))
 
 (elpaca
-    (corfu-terminal
-     :repo "https://codeberg.org/akib/emacs-corfu-terminal.git")
+    corfu-terminal
   (unless (display-graphic-p)
     (corfu-terminal-mode 1)))
 

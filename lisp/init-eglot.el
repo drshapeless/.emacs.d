@@ -131,6 +131,7 @@
      drsl/eglot-extra-completion-functions))
 
   (add-hook 'eglot-managed-mode-hook #'drsl/eglot-capf)
+  (add-hook 'eglot-managed-mode-hook (lambda () (eglot-inlay-hints-mode -1)))
 
   ;; https://github.com/joaotavora/eglot/issues/574
   ;; This is for gopls to remove unused imports.

@@ -90,6 +90,7 @@
 (require 'init-zig)
 (require 'init-emmet)
 (require 'init-c3)
+(require 'init-odin)
 
 ;;; Programming helper
 (require 'init-indent-guide)

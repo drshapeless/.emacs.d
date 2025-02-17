@@ -636,10 +636,11 @@ overrides = [ { files = \"*.svelte\", options = { parser = \"svelte\"}}]
                               ".prettierrc.toml"))))
 
 (require 'shapeless-c-arrow)
-(add-hook 'c-mode-hook      #'shapeless-c-arrow-mode)
-(add-hook 'c++-mode-hook    #'shapeless-c-arrow-mode)
-(add-hook 'c-ts-mode-hook   #'shapeless-c-arrow-mode)
-(add-hook 'c++-ts-mode-hook #'shapeless-c-arrow-mode)
+(add-hook 'c-mode-hook       #'shapeless-c-arrow-mode)
+(add-hook 'c++-mode-hook     #'shapeless-c-arrow-mode)
+(add-hook 'c-ts-mode-hook    #'shapeless-c-arrow-mode)
+(add-hook 'c++-ts-mode-hook  #'shapeless-c-arrow-mode)
+(add-hook 'odin-ts-mode-hook #'shapeless-c-arrow-mode)
 
 (elpaca
     (breadcrumb :host github :repo "joaotavora/breadcrumb")

@@ -111,5 +111,8 @@
 
 (setq comint-pager "cat")
 
+;; Add color in compilation buffer
+(add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
+
 (provide 'init-ui)
 ;;; init-ui.el ends here

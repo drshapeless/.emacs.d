@@ -113,6 +113,7 @@
 
 ;; Add color in compilation buffer
 (add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
+(add-hook 'shell-mode-hook (lambda () (ansi-color-for-comint-mode-on)))
 
 (provide 'init-ui)
 ;;; init-ui.el ends here

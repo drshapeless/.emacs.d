@@ -35,6 +35,7 @@
   (add-hook 'swift-ts-mode-hook      #'eglot-ensure)
   (add-hook 'c3-ts-mode-hook         #'eglot-ensure)
   (add-hook 'odin-ts-mode-hook       #'eglot-ensure)
+  (add-hook 'zig-ts-mode-hook        #'eglot-ensure)
 
   (add-hook 'glsl-mode-hook       #'eglot-ensure)
   (add-hook 'objc-mode-hook       #'eglot-ensure)

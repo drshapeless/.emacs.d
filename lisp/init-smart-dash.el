@@ -12,6 +12,7 @@
   (add-hook 'c++-ts-mode-hook  #'smart-dash-mode)
   (add-hook 'rustic-mode-hook  #'smart-dash-mode)
   (add-hook 'zig-mode-hook     #'smart-dash-mode)
+  (add-hook 'zig-ts-mode-hook  #'smart-dash-mode)
   (add-hook 'go-ts-mode-hook   #'smart-dash-mode)
   (add-hook 'odin-ts-mode-hook #'smart-dash-mode))
 

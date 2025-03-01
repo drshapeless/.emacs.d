@@ -11,7 +11,8 @@
                '(odin "https://github.com/tree-sitter-grammars/tree-sitter-odin"))
   (add-to-list 'auto-mode-alist '("\\.odin\\'" . odin-ts-mode))
   (if *is-a-linux*
-      (setenv "ODIN_ROOT" (concat (getenv "HOME") "/src/Odin"))))
+      (setenv "ODIN_ROOT" (concat (getenv "HOME") "/src/Odin")))
+  (add-hook 'odin-ts-mode-hook (lambda () (setq-local shapeless-c-arrow-p nil))))
 
 (provide 'init-odin)
 ;;; init-odin.el ends here

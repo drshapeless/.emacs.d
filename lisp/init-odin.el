@@ -14,6 +14,7 @@
   (if *is-a-linux*
       (setenv "ODIN_ROOT" (concat (getenv "HOME") "/src/Odin")))
   (add-hook 'odin-ts-mode-hook (lambda () (setq-local shapeless-c-arrow-p nil)))
+  (add-hook 'odin-ts-mode-hook #'eglot-format-buffer-on-save)
   (keymap-set odin-ts-mode-map "C-c c" #'completion-at-point))
 
 (provide 'init-odin)

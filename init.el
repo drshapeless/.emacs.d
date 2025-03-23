@@ -91,6 +91,7 @@
 (require 'init-emmet)
 (require 'init-c3)
 (require 'init-odin)
+(require 'init-ebuild)
 
 ;;; Programming helper
 (require 'init-indent-guide)

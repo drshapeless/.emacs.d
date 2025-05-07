@@ -113,7 +113,7 @@
           (t (eglot-format-buffer))))
 
   ;; Load after format-all.
-  (keymap-set eglot-mode-map "C-c e j" #'format-all-buffer)
+  (keymap-set eglot-mode-map "C-c e j" #'drsl/format-buffer)
 
   (keymap-set eglot-mode-map "C-c e o" #'ff-find-other-file-other-window)
   (keymap-set eglot-mode-map "C-c e p" #'ff-find-other-file)

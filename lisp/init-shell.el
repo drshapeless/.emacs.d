@@ -49,15 +49,7 @@
     shell-switcher
   (require 'shell-switcher)
   (setq shell-switcher-mode t)
-  (setq shell-switcher-new-shell-function #'shell-switcher-make-shell))
-
-
-;; Coterm
-(elpaca
-    coterm
-  ;; Coterm enable TUI like program to be run in shell.
-  (coterm-mode))
-
+  (setq shell-switcher-new-shell-function #'shell-switcher-make-eshell))
 
 ;; vterm
 (elpaca
@@ -86,33 +78,26 @@ Open an existing vterm buffer if the current buffer is not `vterm-mode'."
   (keymap-set vterm-mode-map "s-n" #'multi-vterm-next)
   (keymap-set vterm-mode-map "s-p" #'multi-vterm-prev))
 
-(elpaca
-    vterm-toggle
-  (require 'vterm-toggle)
-  (setq vterm-toggle-fullscreen-p nil)
-  (add-to-list 'display-buffer-alist
-               '((lambda (buffer-or-name _)
-                   (let ((buffer (get-buffer buffer-or-name)))
-                     (with-current-buffer buffer
-                       (or (equal major-mode 'vterm-mode)
-                           (string-prefix-p vterm-buffer-name (buffer-name buffer))))))
-                 (display-buffer-reuse-window display-buffer-same-window))))
-
-
-;; This is about eterm.
-(elpaca
-    eterm-256color
-  (require 'eterm-256color)
-  (add-hook 'term-mode-hook #'eterm-256color-mode))
+;; (elpaca
+;;     vterm-toggle
+;;   (require 'vterm-toggle)
+;;   (setq vterm-toggle-fullscreen-p nil)
+;;   (add-to-list 'display-buffer-alist
+;;                '((lambda (buffer-or-name _)
+;;                    (let ((buffer (get-buffer buffer-or-name)))
+;;                      (with-current-buffer buffer
+;;                        (or (equal major-mode 'vterm-mode)
+;;                            (string-prefix-p vterm-buffer-name (buffer-name buffer))))))
+;;                  (display-buffer-reuse-window display-buffer-same-window))))
 
 
 ;; Eat.
 (elpaca
     eat
   (require 'eat)
-  ;; (eat-compile-terminfo)
-  (setq eat-term-name "xterm-256color")
   (keymap-global-set "C-c s" #'eat)
+  (add-hook 'eshell-load-hook #'eat-eshell-mode)
+  (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
   )
 
 (provide 'init-shell)

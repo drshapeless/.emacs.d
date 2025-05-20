@@ -6,11 +6,9 @@
 
 ;;; Code:
 
-(elpaca
- which-key
- (require 'which-key)
- (which-key-mode t)
- (setq which-key-idle-delay 0.3))
+(require 'which-key)
+(which-key-mode t)
+(setq which-key-idle-delay 0.3)
 
 (provide 'init-which-key)
 ;;; init-which-key.el ends here

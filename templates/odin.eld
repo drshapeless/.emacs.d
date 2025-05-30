@@ -1,5 +1,9 @@
 odin-ts-mode
 
+(main "package main
+
+main :: proc() {" n > p q n "}")
+
 (p "@(private)" n)
 (pf "@(private=\"file\")" n)
 

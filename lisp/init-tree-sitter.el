@@ -6,18 +6,6 @@
 
 ;;; Code:
 
-;; (elpaca tree-sitter)
-;; (require 'tree-sitter)
-
-;; (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
-
-;; (elpaca tree-sitter-langs)
-;; (require 'tree-sitter-langs)
-
-(elpaca treesit-auto
-  (require 'treesit-auto)
-  (global-treesit-auto-mode)
-  (setq treesit-auto-install t))
 (require 'treesit)
 (add-to-list 'treesit-language-source-alist
              '(jsdoc "https://github.com/tree-sitter/tree-sitter-jsdoc"))
@@ -35,21 +23,21 @@
 ;;         (cmake . ("https://github.com/uyha/tree-sitter-cmake"))
 ;;         ))
 
-;; (setq major-mode-remap-alist
-;;       '((c-mode . c-ts-mode)
-;;         (c++-mode        . c++-ts-mode)
-;;         (c-or-c++-mode . c-or-c++-ts-mode)
-;;         (go-mode         . go-ts-mode)
-;;         (cmake-mode      . cmake-ts-mode)
-;;         (conf-toml-mode  . toml-ts-mode)
-;;         (css-mode        . css-ts-mode)
-;;         (js-mode         . js-ts-mode)
-;;         (javascript-mode . js-ts-mode)
-;;         (js-json-mode    . json-ts-mode)
-;;         (python-mode     . python-ts-mode)
-;;         (sh-mode         . bash-ts-mode)
-;;         (rust-mode       . rust-ts-mode)
-;;         (typescript-mode . typescript-ts-mode)))
+(setq major-mode-remap-alist
+      '((c-mode . c-ts-mode)
+        (c++-mode        . c++-ts-mode)
+        (c-or-c++-mode   . c-or-c++-ts-mode)
+        (go-mode         . go-ts-mode)
+        (cmake-mode      . cmake-ts-mode)
+        (conf-toml-mode  . toml-ts-mode)
+        (css-mode        . css-ts-mode)
+        (js-mode         . js-ts-mode)
+        (javascript-mode . js-ts-mode)
+        (js-json-mode    . json-ts-mode)
+        (python-mode     . python-ts-mode)
+        (sh-mode         . bash-ts-mode)
+        (rust-mode       . rust-ts-mode)
+        (typescript-mode . typescript-ts-mode)))
 
 (provide 'init-tree-sitter)
 ;;; init-tree-sitter.el ends here

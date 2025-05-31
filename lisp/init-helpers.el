@@ -318,5 +318,10 @@ to_home:
   (drsl/sway-command "output DP-2 disable")
   (drsl/sway-command "output HDMI-A-1 pos 0 0"))
 
+(defun drsl/fake-wifi ()
+  "Spoof mac address"
+  (interactive)
+  (async-shell-command "sudo sh ~/code/scripts/spoof-mac-address.sh"))
+
 (provide 'init-helpers)
 ;;; init-helpers.el ends here

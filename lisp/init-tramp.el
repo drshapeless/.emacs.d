@@ -20,6 +20,8 @@
               vc-ignore-dir-regexp
               tramp-file-name-regexp))
 (setq tramp-verbose 1)
+(setq tramp-backup-directory-alist nil)
+(setq tramp-auto-save-directory (expand-file-name "tramp-autosave" user-emacs-directory))
 
 (provide 'init-tramp)
 ;;; init-tramp.el ends here

@@ -295,6 +295,50 @@ Built-in treesit is required."
                ))
            )))
 
+  (defvar drsl/datastar-attribute-list
+    '("data-signals" "data-computed" "data-star-ignore" "data-attr" "data-bind"
+      "data-class" "data-on" "data-persist" "data-ref" "data-replace-url" "data-show"
+      "data-text" "data-indicator" "data-custom-validity" "data-on-intersect"
+      "data-on-interval" "data-on-load" "data-on-raf" "data-on-signal-change"
+      "data-scroll-into-view" "data-view-transition"))
+
+  (defvar drsl/datastar-action-keyword-list
+    '("@get" "@post" "@put" "@patch" "@delete" "@clipboard" "@setAll" "@toggleAll"
+      "@fit"))
+
+  (defun drsl/templ-ts-mode-datastar-completion ()
+    "templ-ts-mode completion for datastar.
+
+Built-in treesit is required."
+    (cond (;; completion of datastar attr name
+           (or (string= (treesit-node-type (treesit-node-at (point)))
+                        "attribute_name")
+               (string= (treesit-node-type (treesit-node-at (point)))
+                        ">"))
+           (let ((bounds (drsl/bounds-of-keyword)))
+             (when bounds
+               (list (car bounds)
+                     (cdr bounds)
+                     drsl/datastar-attribute-list
+                     :annotation-function (lambda (_) " datastar attr")
+                     :company-kind (lambda (_) 'text)
+                     :exclusive 'no)))
+           )
+          (;; completion of some datastar value
+           (string= (treesit-node-type (treesit-node-parent
+                                        (treesit-node-at (point))))
+                    "quoted_attribute_value")
+           (let ((bounds (drsl/bounds-of-keyword)))
+             (when bounds
+               (list (car bounds)
+                     (cdr bounds)
+                     drsl/datastar-action-keyword-list
+                     :annotation-function (lambda (_) " datastar action")
+                     :company-kind (lambda (_) 'text)
+                     :exclusive 'no)))
+           )
+          ))
+
   (defun drsl/templ-ts-mode-insert-slash ()
     "Auto closing tag when inserting slash in `templ-ts-mode'"
     (interactive)
@@ -345,6 +389,7 @@ Built-in treesit is required."
                            (cape-capf-super
                             #'drsl/templ-ts-mode-htmx-completion
                             #'drsl/templ-ts-mode-completion
+                            #'drsl/templ-ts-mode-datastar-completion
                             )
                            #'drsl/templ-tailwind-cape-dict
                            )))))

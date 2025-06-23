@@ -28,9 +28,9 @@ go-ts-mode
  > "return err" n
  "}" >)
 
-(db "db *pgxpool.Pool")
+(db "db:\"" p q "\"")
 
-(js "`json:\"" p q "\"`")
+(js "json:\"" p q "\"")
 
 (main "package main" n n
       "func main() {" n

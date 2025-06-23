@@ -19,3 +19,5 @@ sql-mode
 (b "bigserial")
 
 (v "version int NOT NULL DEFAULT 1")
+
+(r "REFERENCES")

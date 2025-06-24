@@ -13,7 +13,7 @@ go-ts-mode
 
 (ef
  > "if err != nil {" n
- > "app.serverError(err, w)" n
+ > "app.serverError(err, w, r)" n
  > "return" n
  "}" >)
 
@@ -84,6 +84,6 @@ go-ts-mode
 (rows > "rows, err := db.Query(ctx, q, " p q ")" n
       > "if err != nil {" n
       > "return nil, err" n
-      > "}" n)
+      "}" > n)
 
 (todo "// TODO: ")

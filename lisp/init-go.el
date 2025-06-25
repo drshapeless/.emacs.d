@@ -441,11 +441,18 @@ PRED is a function which accept a NODE."
           (drsl/treesit-next-sibling-until sibling PRED))))))
 
 (defun drsl/go-db ()
-  "Insert the snake_case version of current field "
+  "Insert the snake_case version of current field as db."
   (interactive)
   (let ((word (string-inflection-underscore-function (current-word))))
     (end-of-line)
     (insert " `db:\"" word "\"`")))
+
+(defun drsl/go-json ()
+  "Insert the snake_case version of current field as json."
+  (interactive)
+  (let ((word (string-inflection-underscore-function (current-word))))
+    (end-of-line)
+    (insert " `js:\"" word "\"`")))
 
 (provide 'init-go)
 ;;; init-go.el ends here

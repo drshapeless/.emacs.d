@@ -69,14 +69,14 @@ go-ts-mode
 
 (tx > "tx, err := app.DB.Begin(ctx)" n
     > "if err != nil {" n
-    > "app.serverError(err, w)" n
+    > "app.serverError(err, w, r)" n
     > "return" n
      "\t}" n
     > "defer tx.Rollback(ctx)" n
     > p q n
     > "err = tx.Commit(ctx)" n
     > "if err != nil {" n
-        > "app.serverError(err, w)" n
+        > "app.serverError(err, w, r)" n
     > "return" n
      "\t}" n
 )

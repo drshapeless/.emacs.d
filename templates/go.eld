@@ -71,14 +71,14 @@ go-ts-mode
     > "if err != nil {" n
     > "app.serverError(err, w, r)" n
     > "return" n
-     "\t}" n
-    > "defer tx.Rollback(ctx)" n
-    > p q n
+    "}" > n
+    > "defer tx.Rollback(ctx)" n n
+    > p q n n
     > "err = tx.Commit(ctx)" n
     > "if err != nil {" n
-        > "app.serverError(err, w, r)" n
+    > "app.serverError(err, w, r)" n
     > "return" n
-     "\t}" n
+    "}" > n
 )
 
 (rows > "rows, err := db.Query(ctx, q, " p q ")" n

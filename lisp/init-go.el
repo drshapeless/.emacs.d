@@ -102,6 +102,47 @@
                  (not (cape--case-fold-p cape-dict-case-fold)))
                ,@cape--dict-properties))))
 
+  (defcustom drsl/daisyui-css-keyword-file
+    (expand-file-name "dict/daisyui_dict.txt" user-emacs-directory)
+    "daisyui keyword file path."
+    :type 'string)
+
+  (defun drsl/daisyui-css-dict-list (input)
+    "Return all words from `drsl/daisyui-css-keyword-file' matching INPUT."
+    (unless (equal input "")
+      (let* ((inhibit-message t)
+             (message-log-max nil)
+             (default-directory
+              (if (and (not (file-remote-p default-directory))
+                       (file-directory-p default-directory))
+                  default-directory
+                user-emacs-directory))
+             (files (mapcar #'expand-file-name
+                            (ensure-list
+                             drsl/daisyui-css-keyword-file)))
+             (words
+              (apply #'process-lines-ignore-status
+                     "grep"
+                     (concat "-Fh"
+                             (and (cape--case-fold-p cape-dict-case-fold) "i")
+                             (and cape-dict-limit (format "m%d" cape-dict-limit)))
+                     input files)))
+        (cons
+         (apply-partially
+          (if (and cape-dict-limit (length= words cape-dict-limit))
+              #'equal #'string-search)
+          input)
+         (cape--case-replace-list cape-dict-case-replace input words)))))
+
+  (defun drsl/templ-daisyui-cape-dict ()
+    (when (drsl/is-class-attr)
+      (pcase-let ((`(,beg . ,end) (drsl/bounds-of-keyword)))
+        `(,beg ,end
+               ,(completion-table-case-fold
+                 (cape--dynamic-table beg end #'drsl/daisyui-css-dict-list)
+                 (not (cape--case-fold-p cape-dict-case-fold)))
+               ,@cape--dict-properties))))
+
   (defvar drsl/templ-ts-mode-tag-list
     '("a" "abbr" "address" "area" "article" "aside" "audio" "b"
       "base" "bdi" "bdo" "blockquote" "body" "br" "button" "canvas"
@@ -392,6 +433,7 @@ Built-in treesit is required."
                             #'drsl/templ-ts-mode-datastar-completion
                             )
                            #'drsl/templ-tailwind-cape-dict
+                           #'drsl/templ-daisyui-cape-dict
                            )))))
 
 (defun rustywind-format ()

@@ -13,7 +13,7 @@ go-ts-mode
 
 (ef
  > "if err != nil {" n
- > "app.serverError(err, w, r)" n
+ > "app.serverError(w, r, err)" n
  > "return" n
  "}" >)
 
@@ -69,14 +69,14 @@ go-ts-mode
 
 (tx > "tx, err := app.DB.Begin(ctx)" n
     > "if err != nil {" n
-    > "app.serverError(err, w, r)" n
+    > "app.serverError(w, r, err)" n
     > "return" n
     "}" > n
     > "defer tx.Rollback(ctx)" n n
     > p q n n
     > "err = tx.Commit(ctx)" n
     > "if err != nil {" n
-    > "app.serverError(err, w, r)" n
+    > "app.serverError(w, r, err)" n
     > "return" n
     "}" > n
 )
@@ -87,3 +87,5 @@ go-ts-mode
       "}" > n)
 
 (todo "// TODO: ")
+
+(sse > "sse := datastar.NewSSE(w, r)")

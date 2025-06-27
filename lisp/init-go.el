@@ -494,7 +494,7 @@ PRED is a function which accept a NODE."
   (interactive)
   (let ((word (string-inflection-underscore-function (current-word))))
     (end-of-line)
-    (insert " `js:\"" word "\"`")))
+    (insert " `json:\"" word "\"`")))
 
 (provide 'init-go)
 ;;; init-go.el ends here

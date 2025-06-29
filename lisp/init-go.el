@@ -341,7 +341,7 @@ Built-in treesit is required."
       "data-class" "data-on" "data-persist" "data-ref" "data-replace-url" "data-show"
       "data-text" "data-indicator" "data-custom-validity" "data-on-intersect"
       "data-on-interval" "data-on-load" "data-on-raf" "data-on-signal-change"
-      "data-scroll-into-view" "data-view-transition"))
+      "data-scroll-into-view" "data-view-transition" "data-on-click"))
 
   (defvar drsl/datastar-action-keyword-list
     '("@get" "@post" "@put" "@patch" "@delete" "@clipboard" "@setAll" "@toggleAll"

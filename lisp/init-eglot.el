@@ -247,19 +247,6 @@ This is a ridiculous temporary fix in latest Emacs where
 
 (setq compile-command "make")
 
-;; Find the nearest parent go.mod as the project root.
-(require 'project)
-
-(defun project-find-go-module (dir)
-  (when-let ((root (locate-dominating-file dir "go.mod")))
-    (cons 'go-module root)))
-
-(cl-defmethod project-root ((project (head go-module)))
-  (cdr project))
-
-(add-hook 'project-find-functions #'project-find-go-module)
-
-
 ;; clang-format
 (elpaca
     clang-format

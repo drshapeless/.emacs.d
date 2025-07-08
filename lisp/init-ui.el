@@ -115,5 +115,7 @@
 (add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
 (add-hook 'shell-mode-hook (lambda () (ansi-color-for-comint-mode-on)))
 
+(setq use-package-always-ensure t)
+
 (provide 'init-ui)
 ;;; init-ui.el ends here

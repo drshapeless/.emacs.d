@@ -351,19 +351,19 @@ Built-in treesit is required."
                      :company-kind (lambda (_) 'text)
                      :exclusive 'no)))
            )
-          (;; completion of some datastar value
-           (string= (treesit-node-type (treesit-node-parent
-                                        (treesit-node-at (point))))
-                    "quoted_attribute_value")
-           (let ((bounds (drsl/bounds-of-keyword)))
-             (when bounds
-               (list (car bounds)
-                     (cdr bounds)
-                     drsl/datastar-action-keyword-list
-                     :annotation-function (lambda (_) " datastar action")
-                     :company-kind (lambda (_) 'text)
-                     :exclusive 'no)))
-           )
+          ;; (;; completion of some datastar value
+          ;;  (string= (treesit-node-type (treesit-node-parent
+          ;;                               (treesit-node-at (point))))
+          ;;           "quoted_attribute_value")
+          ;;  (let ((bounds (drsl/bounds-of-keyword)))
+          ;;    (when bounds
+          ;;      (list (car bounds)
+          ;;            (cdr bounds)
+          ;;            drsl/datastar-action-keyword-list
+          ;;            :annotation-function (lambda (_) " datastar action")
+          ;;            :company-kind (lambda (_) 'text)
+          ;;            :exclusive 'no)))
+          ;;  )
           ))
 
   (defun drsl/templ-ts-mode-insert-slash ()

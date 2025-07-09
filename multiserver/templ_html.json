@@ -1,0 +1,21 @@
+{
+    "completion": ["vscode-html-language-server"],
+    "completion_item_resolve": ["vscode-html-language-server"],
+    "diagnostics": ["templ", "vscode-html-language-server"],
+    "code_action": ["templ", "vscode-html-language-server"],
+    "execute_command": ["templ", "vscode-html-language-server"],
+    "find_define": "templ",
+    "find_type_define": "templ",
+    "find_implementation": "templ",
+    "find_references": "templ",
+    "peek_find_definition": "templ",
+    "peek_find_references": "templ",
+    "formatting": "templ",
+    "hover": "templ",
+    "signature_help": "templ",
+    "prepare_rename": "templ",
+    "rename": "templ",
+    "document_symbol": "templ",
+    "workspace_symbol": "templ",
+    "inlay_hint": "templ"
+}

@@ -1,0 +1,6 @@
+{
+    "name": "templ",
+    "languageId": "templ",
+    "command": ["templ", "lsp"],
+    "settings": {}
+}

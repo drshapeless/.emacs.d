@@ -1,0 +1,13 @@
+{
+    "name": "tailwindcss2",
+    "languageId": "",
+    "command": ["tailwindcss-language-server", "--stdio"],
+    "settings": {
+        "tailwindCSS": {
+            "includeLanguages": {
+                "templ": "html"
+            }
+        }
+    },
+    "support-single-file": false
+}

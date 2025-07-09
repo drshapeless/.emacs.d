@@ -1,0 +1,22 @@
+{
+    "completion": ["tailwindcss2", "templ"],
+    "completion_item_resolve": ["tailwindcss2", "templ"],
+    "diagnostics": ["templ"],
+    "code_action": ["templ"],
+    "execute_command": ["templ"],
+    "find_define": "templ",
+    "find_type_define": "templ",
+    "find_implementation": "templ",
+    "find_references": "templ",
+    "peek_find_definition": "templ",
+    "peek_find_references": "templ",
+    "formatting": "templ",
+    "hover": "templ",
+    "signature_help": "templ",
+    "prepare_rename": "templ",
+    "rename": "templ",
+    "document_symbol": "templ",
+    "workspace_symbol": "templ",
+    "semantic_tokens": "templ",
+    "inlay_hint": "templ"
+}

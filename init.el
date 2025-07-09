@@ -60,6 +60,7 @@
 (require 'init-multiple-cursors)
 (require 'init-string-inflection)
 (require 'init-edit-server)
+(require 'init-pyvenv)
 
 ;;; Appearance
 (require 'init-mood-line)
@@ -100,6 +101,8 @@
 
 ;;; lsp server
 (require 'init-eglot)
+;; (require 'init-lsp)
+;; (require 'init-lsp-bridge)
 
 (require 'init-pdf)
 (require 'init-emms)

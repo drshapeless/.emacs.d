@@ -101,8 +101,7 @@
 
 ;;; lsp server
 (require 'init-eglot)
-;; (require 'init-lsp)
-;; (require 'init-lsp-bridge)
+(require 'init-eldoc-box)
 
 (require 'init-pdf)
 (require 'init-emms)

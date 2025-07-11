@@ -183,8 +183,7 @@ Steal from `web-mode'.")
 
 The built-in treesit is required."
     (cond (;; completing tag name, e.g. <d
-           (let ((bounds (or (bounds-of-thing-at-point 'word)
-                             (cons (point) (point)))))
+           (let ((bounds (drsl/bounds-of-keyword)))
              (when (char-equal (char-before (car bounds)) ?\<)
                (list (car bounds)
                      (cdr bounds)
@@ -200,7 +199,7 @@ The built-in treesit is required."
                         ">")
                (string= (treesit-node-type (treesit-node-at (point)))
                         "/>"))
-           (let ((bounds (bounds-of-thing-at-point 'word)))
+           (let ((bounds (drsl/bounds-of-keyword)))
              (when bounds
                (list (car bounds)
                      (cdr bounds)
@@ -218,8 +217,7 @@ The built-in treesit is required."
                            (treesit-node-parent (treesit-node-at (point)))
                            t)
                           t)))
-                 (bounds (or (bounds-of-thing-at-point 'word)
-                             (cons (point) (point)))))
+                 (bounds (drsl/bounds-of-keyword)))
              (when words
                (list (car bounds)
                      (cdr bounds)
@@ -417,11 +415,11 @@ Built-in treesit is required."
                   ;; #'drsl/templ-ts-mode-htmx-completion
                   #'drsl/templ-ts-mode-datastar-completion
                   )
-                 #'drsl/templ-tailwind-cape-dict
+                 ;; #'drsl/templ-tailwind-cape-dict
                  )))
 
-  (add-hook 'templ-ts-mode-hook
-            #'drsl/templ-ts-mode-setup-completion)
+  ;; (add-hook 'templ-ts-mode-hook
+  ;;           #'drsl/templ-ts-mode-setup-completion)
   )
 
 (defun rustywind-format ()

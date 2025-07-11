@@ -77,7 +77,7 @@
   (add-to-list 'eglot-server-programs
                '(web-mode . ("vscode-html-language-server" "--stdio")))
   (add-to-list 'eglot-server-programs
-               '(templ-ts-mode . ("templ" "lsp")))
+               '(templ-ts-mode . ("lspx" "--lsp" "templ lsp" "--lsp" "tailwindcss-language-server --stdio" "--lsp" "vscode-html-language-server --stdio")))
   (add-to-list 'eglot-server-programs
                '(glsl-mode . ("glsl_analyzer")))
   (add-to-list 'eglot-server-programs
@@ -101,7 +101,9 @@
                 (list (cons :gopls  (list :staticcheck t
                                           :matcher "CaseSensitive"
                                           :hints (list :assignVariableTypes t)
-                                          :usePlaceholders t))))
+                                          :usePlaceholders t))
+                      (cons :tailwindCSS  (list :includeLanguages (list :templ "html")
+                                                ))))
 
   (defun eglot-format-buffer-on-save ()
     (add-hook 'before-save-hook #'eglot-format-buffer -10 t))

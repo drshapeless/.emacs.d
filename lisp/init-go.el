@@ -410,16 +410,14 @@ Built-in treesit is required."
   (defun drsl/templ-ts-mode-setup-completion ()
     (setq-local drsl/eglot-extra-completion-functions
                 (list
-                 (cape-capf-super
-                  #'drsl/templ-ts-mode-completion
-                  ;; #'drsl/templ-ts-mode-htmx-completion
-                  #'drsl/templ-ts-mode-datastar-completion
-                  )
+                 ;; #'drsl/templ-ts-mode-completion
+                 ;; #'drsl/templ-ts-mode-datastar-completion
+                 #'drsl/templ-ts-mode-htmx-completion
                  ;; #'drsl/templ-tailwind-cape-dict
                  )))
 
-  ;; (add-hook 'templ-ts-mode-hook
-  ;;           #'drsl/templ-ts-mode-setup-completion)
+  (add-hook 'templ-ts-mode-hook
+            #'drsl/templ-ts-mode-setup-completion)
   )
 
 (defun rustywind-format ()

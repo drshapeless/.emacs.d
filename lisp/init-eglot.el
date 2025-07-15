@@ -76,8 +76,10 @@
                '(tmpl-mode . ("vscode-html-language-server" "--stdio")))
   (add-to-list 'eglot-server-programs
                '(web-mode . ("vscode-html-language-server" "--stdio")))
+  ;; (add-to-list 'eglot-server-programs
+  ;;              '(templ-ts-mode . ("lspx" "--lsp" "templ lsp" "--lsp" "tailwindcss-language-server --stdio" "--lsp" "vscode-html-language-server --stdio")))
   (add-to-list 'eglot-server-programs
-               '(templ-ts-mode . ("lspx" "--lsp" "templ lsp" "--lsp" "tailwindcss-language-server --stdio" "--lsp" "vscode-html-language-server --stdio")))
+               '(templ-ts-mode . ("templ" "lsp")))
   (add-to-list 'eglot-server-programs
                '(glsl-mode . ("glsl_analyzer")))
   (add-to-list 'eglot-server-programs
@@ -131,11 +133,10 @@
     :type '(repeat string))
 
   (defun drsl/eglot-capf ()
-    (mapc
-     (lambda (FUNCTION)
-       (add-to-list 'completion-at-point-functions
-                    FUNCTION))
-     drsl/eglot-extra-completion-functions))
+    (setq-local completion-at-point-functions
+                (list (apply #'cape-capf-super
+                             #'eglot-completion-at-point
+                             drsl/eglot-extra-completion-functions))))
 
   (add-hook 'eglot-managed-mode-hook #'drsl/eglot-capf)
   (add-hook 'eglot-managed-mode-hook (lambda () (eglot-inlay-hints-mode -1)))

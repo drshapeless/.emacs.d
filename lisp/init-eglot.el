@@ -133,10 +133,11 @@
     :type '(repeat string))
 
   (defun drsl/eglot-capf ()
-    (setq-local completion-at-point-functions
-                (list (apply #'cape-capf-super
-                             #'eglot-completion-at-point
-                             drsl/eglot-extra-completion-functions))))
+    (mapc
+     (lambda (FUNCTION)
+       (add-to-list 'completion-at-point-functions
+                    FUNCTION))
+     drsl/eglot-extra-completion-functions))
 
   (add-hook 'eglot-managed-mode-hook #'drsl/eglot-capf)
   (add-hook 'eglot-managed-mode-hook (lambda () (eglot-inlay-hints-mode -1)))

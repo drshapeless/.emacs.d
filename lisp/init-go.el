@@ -480,5 +480,8 @@ PRED is a function which accept a NODE."
     (end-of-line)
     (insert " `json:\"" word "\"`")))
 
+(elpaca go-tag
+  (require 'go-tag))
+
 (provide 'init-go)
 ;;; init-go.el ends here

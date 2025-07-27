@@ -61,6 +61,7 @@
 (require 'init-string-inflection)
 (require 'init-edit-server)
 (require 'init-pyvenv)
+(require 'init-move-text)
 
 ;;; Appearance
 (require 'init-mood-line)

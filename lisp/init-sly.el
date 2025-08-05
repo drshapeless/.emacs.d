@@ -6,14 +6,14 @@
 
 ;;; Code:
 
+;; Always use sbcl.
+(setq inferior-lisp-program "sbcl")
+
 (elpaca
     sly
   (require 'sly)
   (setq sly-command-switch-to-existing-lisp 'always)
   (keymap-global-set "C-c l" #'sly)
-
-  ;; Always use sbcl.
-  (setq inferior-lisp-program "sbcl")
 
   (add-hook 'sly-mode-hook
             (lambda ()

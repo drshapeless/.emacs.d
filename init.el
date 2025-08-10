@@ -94,6 +94,7 @@
 (require 'init-c3)
 (require 'init-odin)
 (require 'init-ebuild)
+(require 'init-jai)
 
 ;;; Programming helper
 (require 'init-indent-guide)

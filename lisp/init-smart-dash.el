@@ -14,7 +14,8 @@
   (add-hook 'zig-mode-hook     #'smart-dash-mode)
   (add-hook 'zig-ts-mode-hook  #'smart-dash-mode)
   (add-hook 'go-ts-mode-hook   #'smart-dash-mode)
-  (add-hook 'odin-ts-mode-hook #'smart-dash-mode))
+  (add-hook 'odin-ts-mode-hook #'smart-dash-mode)
+  (add-hook 'jai-mode-hook     #'smart-dash-mode))
 
 (provide 'init-smart-dash)
 ;;; init-smart-dash.el ends here

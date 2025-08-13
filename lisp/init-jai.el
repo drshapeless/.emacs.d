@@ -7,8 +7,9 @@
 ;;; Code:
 
 (elpaca
-    (jai-mode :host github :repo "elp-revive/jai-mode")
-  (require 'jai-mode))
+    (jai-ts-mode :host github :repo "cpoile/jai-ts-mode")
+  (require 'jai-ts-mode)
+  (add-to-list 'auto-mode-alist '("\\.jai\\'" . jai-ts-mode)))
 
 (provide 'init-jai)
 ;;; init-jai.el ends here

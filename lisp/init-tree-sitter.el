@@ -9,6 +9,8 @@
 (require 'treesit)
 (add-to-list 'treesit-language-source-alist
              '(jsdoc "https://github.com/tree-sitter/tree-sitter-jsdoc"))
+(add-to-list 'treesit-language-source-alist
+             '(jai "https://github.com/constantitus/tree-sitter-jai"))
 
 (setq-default treesit-font-lock-level 4)
 ;; (setq treesit-language-source-alist

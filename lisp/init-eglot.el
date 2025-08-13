@@ -37,6 +37,7 @@
   (add-hook 'odin-ts-mode-hook       #'eglot-ensure)
   (add-hook 'zig-ts-mode-hook        #'eglot-ensure)
   (add-hook 'glsl-ts-mode-hook       #'eglot-ensure)
+  (add-hook 'jai-ts-mode-hook        #'eglot-ensure)
 
   (add-hook 'glsl-mode-hook       #'eglot-ensure)
   (add-hook 'objc-mode-hook       #'eglot-ensure)
@@ -49,7 +50,6 @@
   (add-hook 'templ-ts-mode-hook   #'eglot-ensure)
   (add-hook 'web-mode-hook        #'eglot-ensure)
   (add-hook 'zig-mode-hook        #'eglot-ensure)
-  (add-hook 'jai-mode-hook        #'eglot-ensure)
 
   (keymap-set eglot-mode-map "C-c e a" #'eglot-code-actions)
   (keymap-set eglot-mode-map "C-c e r" #'eglot)
@@ -88,7 +88,7 @@
   (add-to-list 'eglot-server-programs
                '(glsl-ts-mode . ("glsl_analyzer")))
   (add-to-list 'eglot-server-programs
-               '(jai-mode . ("jails")))
+               '(jai-ts-mode . ("jails")))
 
   ;; Deno support from https://deno.land/manual@v1.28.3/getting_started/setup_your_environment
   (add-to-list 'eglot-server-programs '((js-mode typescript-mode) . (eglot-deno "deno" "lsp")))

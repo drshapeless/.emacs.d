@@ -13,7 +13,7 @@
   (setq corfu-auto t
         corfu-quit-no-match 'separator
         corfu-auto-prefix 1
-        corfu-auto-delay 0.1
+        corfu-auto-delay 0.2
         corfu-min-width 80
         corfu-max-width corfu-min-width
         corfu-count 14

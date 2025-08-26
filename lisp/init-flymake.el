@@ -6,8 +6,9 @@
 
 ;;; Code:
 
-(require 'flymake)
-(flymake-mode t)
+(elpaca flymake
+  (require 'flymake)
+  (flymake-mode t))
 
 (provide 'init-flymake)
 ;;; init-flymake.el ends here

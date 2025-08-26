@@ -283,14 +283,14 @@ to_home:
   (insert-todo-comment))
 
 (defun drsl/mount-hdd0 ()
-  "Mount /dev/sdb to /mnt/hdd0"
+  "Mount /dev/sda to /mnt/hdd0"
   (interactive)
-  (async-shell-command "sudo mount /dev/sdb /mnt/hdd0"))
+  (async-shell-command "sudo mount /dev/sda /mnt/hdd0"))
 
 (defun drsl/mount-hdd1 ()
-  "Mount /dev/sda1 to /mnt/hdd1"
+  "Mount /dev/sdb1 to /mnt/hdd1"
   (interactive)
-  (async-shell-command "sudo mount /dev/sda1 /mnt/hdd1"))
+  (async-shell-command "sudo mount /dev/sdb1 /mnt/hdd1"))
 
 (defun drsl/sway-command (CMD)
   "CMD is the command."

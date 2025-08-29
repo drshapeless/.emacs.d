@@ -300,22 +300,22 @@ to_home:
   "Enable dual monitors in sway."
   (interactive)
   (drsl/sway-command "output HDMI-A-1 enable")
-  (drsl/sway-command "output DP-2 enable")
+  (drsl/sway-command "output DP-1 enable")
   (drsl/sway-command "output HDMI-A-1 pos 0 0")
-  (drsl/sway-command "output DP-2 pos 1920 0"))
+  (drsl/sway-command "output DP-1 pos 1920 0"))
 
 (defun drsl/sway-right-monitor-only ()
   "Disable the left monitor, only enable the right one."
   (interactive)
   (drsl/sway-command "output HDMI-A-1 disable")
-  (drsl/sway-command "output DP-2 enable")
-  (drsl/sway-command "output DP-2 pos 0 0"))
+  (drsl/sway-command "output DP-1 enable")
+  (drsl/sway-command "output DP-1 pos 0 0"))
 
 (defun drsl/sway-left-monitor-only ()
   "Disable the right monitor, only enable the left one."
   (interactive)
   (drsl/sway-command "output HDMI-A-1 enable")
-  (drsl/sway-command "output DP-2 disable")
+  (drsl/sway-command "output DP-1 disable")
   (drsl/sway-command "output HDMI-A-1 pos 0 0"))
 
 (defun drsl/fake-wifi ()

@@ -62,6 +62,7 @@
 (require 'init-edit-server)
 (require 'init-pyvenv)
 (require 'init-move-text)
+(require 'init-atomic-chrome)
 
 ;;; Appearance
 (require 'init-mood-line)

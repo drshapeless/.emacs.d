@@ -7,7 +7,7 @@
 ;;; Code:
 
 (elpaca
-    (jai-ts-mode :host github :repo "drshapeless/jai-ts-mode")
+    (jai-ts-mode :host github :repo "cpoile/jai-ts-mode")
   (require 'jai-ts-mode)
   (add-to-list 'auto-mode-alist '("\\.jai\\'" . jai-ts-mode)))
 

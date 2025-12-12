@@ -29,7 +29,7 @@
   )
 
 (elpaca
-    templ-ts-mode
+    (templ-ts-mode :host github :repo "drshapeless/templ-ts-mode")
   (require 'templ-ts-mode)
   (add-hook 'templ-ts-mode-hook (lambda () (setq tab-width 4)))
   (add-hook 'templ-ts-mode-hook #'rustywind-format-on-save)

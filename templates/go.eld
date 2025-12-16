@@ -67,7 +67,7 @@ go-ts-mode
       > p n
       "}" n)
 
-(tx > "tx, err := app.DB.Begin(ctx)" n
+(ptx > "tx, err := app.DB.Begin(ctx)" n
     > "if err != nil {" n
     > "app.serverError(w, r, err)" n
     > "return" n
@@ -81,7 +81,26 @@ go-ts-mode
     "}" > n
 )
 
-(rows > "rows, err := db.Query(ctx, q, " p q ")" n
+(tx > "tx, err := app.DB.BeginTx(ctx, nil)" n
+    > "if err != nil {" n
+    > "app.serverError(w, r, err)" n
+    > "return" n
+    "}" > n
+    > "defer tx.Rollback()" n n
+    > p q n n
+    > "err = tx.Commit()" n
+    > "if err != nil {" n
+    > "app.serverError(w, r, err)" n
+    > "return" n
+    "}" > n
+)
+
+(nrows > "rows, err := db.Query(ctx, q, " p q ")" n
+      > "if err != nil {" n
+      > "return nil, err" n
+      "}" > n)
+
+(rows > "rows, err := db.QueryContext(ctx, q, " p q ")" n
       > "if err != nil {" n
       > "return nil, err" n
       "}" > n)

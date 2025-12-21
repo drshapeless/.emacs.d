@@ -164,10 +164,10 @@
 
 ;; git clone https://github.com/blahgeek/emacs-lsp-booster
 ;; cd emacs-lsp-booster && cargo install --path .
-(elpaca (eglot-booster :host github :repo "jdtsmith/eglot-booster")
-  (require 'eglot-booster)
-  (eglot-booster-mode)
-  )
+;; (elpaca (eglot-booster :host github :repo "jdtsmith/eglot-booster")
+;;   (require 'eglot-booster)
+;;   (eglot-booster-mode)
+;;   )
 
 
 (setq-default c-basic-offset 4)

@@ -237,8 +237,7 @@ The built-in treesit is required."
     "Htmx attributes used for completion.")
 
   (defvar drsl/htmx-swap-keyword-list
-    '("innerHTML" "outerHTML" "beforebegin" "afterbegin" "beforeend"
-      "afterend" "delete" "none")
+    '("innerHTML" "outerHTML" "delete" "none" "innerMorph" "outerMorph" "textContent" "before" "prepend" "append" "after")
     "Keywords for hx-swap.")
 
   (defvar drsl/htmx-target-keyword-list

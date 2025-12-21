@@ -14,3 +14,5 @@ templ-mode
  "<body>" n p q n "</body>")
 
 (hyper "<script type=\"text/hyperscript\">" n p q n "</script>")
+
+(sf "fmt.Sprintf(" p q ")")

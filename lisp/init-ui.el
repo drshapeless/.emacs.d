@@ -50,6 +50,8 @@
 ;; Never use tab.
 (setq-default indent-tabs-mode nil)
 
+(setq-default tab-always-indent 'complete)
+
 ;; Use y-or-n
 (setq use-short-answers t)
 

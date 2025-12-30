@@ -108,3 +108,5 @@ go-ts-mode
 (todo "// TODO: ")
 
 (sse > "sse := datastar.NewSSE(w, r)")
+
+(idp > "id, err := idParam(r)" n)

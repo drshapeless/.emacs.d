@@ -96,6 +96,7 @@
 (require 'init-odin)
 (require 'init-ebuild)
 (require 'init-jai)
+(require 'init-slang)
 
 ;;; Programming helper
 (require 'init-indent-guide)

@@ -323,5 +323,12 @@ to_home:
   (interactive)
   (async-shell-command "sudo sh ~/code/scripts/spoof-mac-address.sh"))
 
+;; https://blog.lambda.cx/posts/emacs-align-columns/
+(defun align-non-space (BEG END)
+  "Align non-space columns in region BEG END."
+  (interactive "r")
+  (align-regexp BEG END "\\(\\s-*\\)\\S-+" 1 1 t)
+  (indent-region BEG END))
+
 (provide 'init-helpers)
 ;;; init-helpers.el ends here

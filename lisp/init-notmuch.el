@@ -24,7 +24,7 @@
 (setq send-mail-function 'smtpmail-send-it
       smtpmail-smtp-server "mail.drshapeless.com"
       smtpmail-smtp-service 587
-      smtpmail-smtp-user "drsl")
+      smtpmail-smtp-user "drsl@drshapeless.com")
 
 ;; Open not much
 (keymap-global-set "C-c n n" #'notmuch)

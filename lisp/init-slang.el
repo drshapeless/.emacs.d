@@ -11,7 +11,8 @@
   (require 'slang-mode)
   (require 'slang-lsp)
   ;; (slang-lsp-initialize)
-  (add-hook 'slang-mode-hook (lambda () (apheleia-mode -1))))
+  (add-hook 'slang-mode-hook (lambda () (apheleia-mode -1)))
+  (add-hook 'slang-mode-hook (lambda () (setq-local corfu-auto nil))))
 
 (provide 'init-slang)
 ;;; init-slang.el ends here

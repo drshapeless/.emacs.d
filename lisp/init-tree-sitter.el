@@ -13,6 +13,8 @@
              '(jai "https://github.com/constantitus/tree-sitter-jai"))
 (add-to-list 'treesit-language-source-alist
              '(templ "https://github.com/vrischmann/tree-sitter-templ"))
+;; (add-to-list 'treesit-language-source-alist
+;;              '(swift "https://codeberg.org/woolsweater/tree-sitter-swifter"))
 
 (setq-default treesit-font-lock-level 4)
 ;; (setq treesit-language-source-alist

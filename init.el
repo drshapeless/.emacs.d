@@ -97,6 +97,7 @@
 (require 'init-ebuild)
 (require 'init-jai)
 (require 'init-slang)
+(require 'init-metal)
 
 ;;; Programming helper
 (require 'init-indent-guide)
@@ -116,6 +117,7 @@
 (require 'init-pass)
 (require 'init-sly)
 (require 'init-geiser)
+(require 'init-dape)
 
 (when *is-a-linux*
   (require 'init-shapeless-record))

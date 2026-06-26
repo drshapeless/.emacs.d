@@ -118,6 +118,7 @@
 (require 'init-sly)
 (require 'init-geiser)
 (require 'init-dape)
+(require 'init-ghostel)
 
 (when *is-a-linux*
   (require 'init-shapeless-record))

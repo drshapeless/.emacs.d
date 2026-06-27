@@ -95,9 +95,18 @@ Open an existing vterm buffer if the current buffer is not `vterm-mode'."
 (elpaca
     eat
   (require 'eat)
-  (keymap-global-set "C-c s" #'eat)
   (add-hook 'eshell-load-hook #'eat-eshell-mode)
   (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
+  )
+
+(elpaca
+    (ghostel :host github :repo "dakra/ghostel")
+  (require 'ghostel)
+  (keymap-global-set "C-c s" #'ghostel)
+  (keymap-set project-prefix-map "s" #'ghostel-project)
+  (keymap-set ghostel-mode-map "s-n" #'ghostel-next)
+  (keymap-set ghostel-mode-map "s-p" #'ghostel-previous)
+  (add-hook 'after-init-hook #'ghostel-compile-global-mode)
   )
 
 (provide 'init-shell)
